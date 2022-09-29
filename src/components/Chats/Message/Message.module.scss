@@ -1,0 +1,58 @@
+.message {
+  width: 45%;
+  height: auto;
+  display: flex;
+  align-items: flex-end;
+  margin: 1rem 1rem;
+  gap: 1rem;
+  .img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    margin-bottom: 0.2rem;
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+  .new_message {
+    flex: 1;
+    height: auto;
+    border-radius: 1rem 1rem 1rem 0;
+    background-color: var(--btnG);
+    padding: 1rem;
+    position: relative;
+    p{
+      font-size: 1.5rem;
+      color: var(--text);
+    }
+    .till {
+      position: absolute;
+      width: 5rem;
+      height: 0.8rem;
+      background-color: var(--btnG);
+      bottom: 0rem;
+      left: -1rem;
+      border-radius: 1rem 0rem 0rem 0rem;
+    }
+  }
+}
+.own {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+  .own_newmessage {
+    border-radius: 1rem 1rem 0rem 1rem;
+    position: relative;
+    .own_till {
+      position: absolute;
+      width: 5rem;
+      height: 0.8rem;
+      background-color: var(--btnG);
+      bottom: 0rem;
+      right: -1rem;
+      border-radius: 0rem 1rem 0rem 0rem;
+    }
+  }
+}
