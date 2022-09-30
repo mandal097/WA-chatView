@@ -1,5 +1,116 @@
-.navbar{
-    width: 100%;
-    height: 70px;
-    background-color:var(--bgPrimary);
+.navbar {
+  width: 100%;
+  height: 6rem;
+  background-color: var(--bgDark);
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  gap: 3rem;
+  border-bottom: 1px solid var(--border);
+  .logo {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    cursor: pointer;
+  }
+  .search_box {
+    width: 30rem;
+    height: 4rem;
+    border: 2px solid var(--border);
+    border-radius: 1rem;
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    gap: 1rem;
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      font-size: 4rem;
+    }
+    input {
+      flex: 1;
+      height: 100%;
+      font-size: 1.5rem;
+      color: var(--text);
+    }
+  }
+  .middle {
+    flex: 1.5;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    .items {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--textSoft);
+      font-size: 8rem;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      &:hover {
+        border-bottom: 2px solid var(--btnBh);
+      }
+    }
+  }
+  .toolkit {
+    flex: 1;
+    height: 4.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+    .tools {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background-color: var(--bgLighter);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--textSoft);
+      font-size: 5rem;
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      cursor: pointer;
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+  .auth_actions {
+    height: 4rem;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    button {
+      height: 100%;
+      background-color: var(--bgLight);
+      width: 10rem;
+      color: var(--text);
+      border-radius: 1rem;
+      .icon {
+        font-size: 2.5rem;
+        margin-right:0.5rem;
+      }
+      span {
+        font-size: 1.5rem;
+      }
+      &:hover {
+        background-color: var(--bgLighter);
+      }
+    }
+  }
 }

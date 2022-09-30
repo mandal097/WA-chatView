@@ -1,16 +1,14 @@
 .chat_card {
   width: 90%;
   height: 70px;
-  background-color: var(--bgLight);
+  background-color: var(--bgDark);
   border-radius: 1rem;
   display: flex;
-  background-color: var(--bgPrimary);
   align-items: center;
   padding: 5px 0.5rem;
   cursor: pointer;
   &:hover {
-    background-color: var(--bgPrimary);
-    // background-color: var(--bgLighter);
+    background-color: var(--bgLight);
     transform: scale(1.04);
     .img{
       transform: scale(0.9);

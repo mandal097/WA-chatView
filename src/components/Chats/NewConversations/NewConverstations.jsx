@@ -3,7 +3,7 @@ import styles from './NewConversations.module.scss';
 import ChatsCard from '../FriendsCard/FriendsCard';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 
-const NewConverstations = ({ setNewConverstations }) => {
+const NewConverstations = ({ setNewConverstations  ,setCurrentChat}) => {
     return (
         <div className={styles.new_conversations}>
             <div className={styles.btn_wrapper}>
@@ -12,26 +12,30 @@ const NewConverstations = ({ setNewConverstations }) => {
                     <span>Go to chats</span>
                 </button>
             </div>
-            <ChatsCard />
-            <ChatsCard />
-            <ChatsCard />
-            <ChatsCard />
-            <ChatsCard />
-            <ChatsCard />
-            <ChatsCard />
-            <ChatsCard />
-            <ChatsCard />
-            <ChatsCard />
-            <ChatsCard />
-            <ChatsCard />
-            <ChatsCard />
-            <ChatsCard />
-            <ChatsCard />
-            <ChatsCard />
-            <ChatsCard />
-            <ChatsCard />
-            <ChatsCard />
-            <ChatsCard />
+            <ChatsCard setCurrentChat={setCurrentChat}/>
+            <ChatsCard setCurrentChat={setCurrentChat}/>
+            <ChatsCard setCurrentChat={setCurrentChat}/>
+            <ChatsCard setCurrentChat={setCurrentChat}/>
+            <ChatsCard setCurrentChat={setCurrentChat}/>
+            <ChatsCard setCurrentChat={setCurrentChat}/>
+            <ChatsCard setCurrentChat={setCurrentChat}/>
+            <ChatsCard setCurrentChat={setCurrentChat}/>
+            <ChatsCard setCurrentChat={setCurrentChat}/>
+            <ChatsCard setCurrentChat={setCurrentChat}/>
+            <ChatsCard setCurrentChat={setCurrentChat}/>
+            <ChatsCard setCurrentChat={setCurrentChat}/>
+            <ChatsCard setCurrentChat={setCurrentChat}/>
+            <ChatsCard setCurrentChat={setCurrentChat}/>
+            <ChatsCard setCurrentChat={setCurrentChat}/>
+            <ChatsCard setCurrentChat={setCurrentChat}/>
+            <ChatsCard setCurrentChat={setCurrentChat}/>
+            <ChatsCard setCurrentChat={setCurrentChat}/>
+            <ChatsCard setCurrentChat={setCurrentChat}/>
+            <ChatsCard setCurrentChat={setCurrentChat}/>
+            <ChatsCard setCurrentChat={setCurrentChat}/>
+            <ChatsCard setCurrentChat={setCurrentChat}/>
+            <ChatsCard setCurrentChat={setCurrentChat}/>
+            <ChatsCard setCurrentChat={setCurrentChat}/>
         </div>
     )
 }

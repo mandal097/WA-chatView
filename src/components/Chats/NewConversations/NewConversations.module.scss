@@ -1,7 +1,7 @@
 .new_conversations {
   width: 100%;
   margin: 0 auto;
-  height: 70vh;
+  height: 78vh;
   padding: 10px 0;
   display: flex;
   flex-direction: column;
@@ -24,15 +24,17 @@
         font-size: 1.2rem;
       }
       &:hover {
-        color: var(--btnGh);
+        color: var(--success);
+        // color: var(--btnGh);
       }
     }
   }
+
   &::-webkit-scrollbar {
-    width: .6rem;
+    width: 0.6rem;
   }
   &::-webkit-scrollbar-track {
-    background: var(--bgPrimary);
+    background: var(--bgLight);
   }
   &::-webkit-scrollbar-thumb {
     background: #888;

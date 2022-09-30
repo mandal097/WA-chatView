@@ -9,11 +9,11 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-        <Navbar />
+          <Navbar />
         <Routes>
           <Route path='/'>
             <Route index element={<Home />} />
-            <Route path='messenger' element={<Messages  />} />
+            <Route path='messenger' element={<Messages />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -1,16 +1,16 @@
 .messages {
   width: 95%;
-  height: calc(100vh - 7.5rem);
-  margin: 5px auto;
+  height: 97vh;
+  margin: 1rem auto;
   display: flex;
-  border: 2px solid var(--border);
+  border: 1px solid var(--border);
   color: var(--text);
   .left {
     flex: 1;
-    border-right: 2px solid var(--border);
+    border-right: 1px solid var(--border);
     height: 100%;
     .left_header {
-      border-bottom: 2px solid var(--border);
+      border-bottom: 1px solid var(--border);
       .left_header_wrapper {
         width: 90%;
         margin: 0 auto;
@@ -86,7 +86,7 @@
     height: 100%;
     .right_header {
       height: 7rem;
-      border-bottom: 2px solid var(--border);
+      border-bottom: 1px solid var(--border);
       .right_header_wrapper {
         height: 100%;
         display: flex;
@@ -142,5 +142,18 @@
         }
       }
     }
+  }
+  .to_bottom {
+    position: absolute;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    background-color: var(--bgLight);
+    color: skyblue;
+    display: grid;
+    place-items: center;
+    font-size: 5rem;
+    bottom: 1rem;
+    right: 1rem;
   }
 }

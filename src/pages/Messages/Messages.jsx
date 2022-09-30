@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Converations from '../../components/Chats/Conversations/Converations';
 import NewConverstations from '../../components/Chats/NewConversations/NewConverstations';
 import styles from './Message.module.scss';
@@ -10,12 +10,24 @@ import {
   SearchOutlined,
   AlignCenterOutlined,
   VideoCameraOutlined,
-  PhoneOutlined
+  PhoneOutlined,
+  // DownOutlined
 } from '@ant-design/icons';
 
 
 const Message = () => {
   const [newConverstations, setNewConverstations] = useState(false);
+  const [currentChat, setCurrentChat] = useState(false)
+
+  useEffect(() => {
+    setTimeout(() => {
+      window.addEventListener('scroll', () => {
+        if (window.scroll < 0) {
+          window.scrollY({ top: 30 })
+        } 
+      })
+    }, 2000);
+  }, [])
 
   return (
     <div className={styles.messages}>
@@ -51,8 +63,8 @@ const Message = () => {
         </div>
 
         {newConverstations
-          ? <NewConverstations setNewConverstations={setNewConverstations} />
-          : <Converations setNewConverstations={setNewConverstations} />
+          ? <NewConverstations setNewConverstations={setNewConverstations} setCurrentChat={setCurrentChat}/>
+          : <Converations setNewConverstations={setNewConverstations} setCurrentChat={setCurrentChat}/>
         }
       </div>
 
@@ -78,9 +90,12 @@ const Message = () => {
             </div>
           </div>
         </div>
-        <ChatBox />
+        <ChatBox currentChat={currentChat}/>
       </div>
-
+      {/* {
+        showBtn &&
+        <button className={styles.to_bottom} ><DownOutlined /></button>
+      } */}
     </div>
   )
 }

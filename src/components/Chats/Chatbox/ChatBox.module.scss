@@ -12,7 +12,7 @@
       width: 0.6rem;
     }
     &::-webkit-scrollbar-track {
-      background: var(--bgPrimary);
+      background: var(--bgLight);
     }
     &::-webkit-scrollbar-thumb {
       background: #888;
@@ -38,7 +38,7 @@
     .input {
       flex: 1;
       height: 5rem;
-      background-color: var(--bgPrimary);
+      background-color: var(--bgDark);
       margin: 0 1.5rem;
       border-radius: 1.1rem;
       position: relative;
