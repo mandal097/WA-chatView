@@ -1,0 +1,14 @@
+.login {
+  form {
+    .to_register {
+      margin: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      span {
+        color: var(--text);
+        font-size: 1.3rem;
+        margin-right: 0.8rem;
+      }
+    }
+  }
+}

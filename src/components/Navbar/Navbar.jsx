@@ -10,9 +10,11 @@ import {
     UserOutlined,
     UserAddOutlined
 } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
     const user = false;
+    const navigate = useNavigate();
 
     return (
         <nav className={styles.navbar}>
@@ -38,10 +40,20 @@ const Navbar = () => {
                     </div>
                 </>
             }
-            <div className={styles.auth_actions}>
-                <button><UserOutlined className={styles.icon}/><span>Login</span></button>
-                <button><UserAddOutlined className={styles.icon}/><span>Register</span></button>
-            </div>
+
+            {
+                !user &&
+                <div className={styles.auth_actions}>
+                    <button
+                        onClick={() => navigate('/login')}>
+                        <UserOutlined className={styles.icon} /><span>Login</span>
+                    </button>
+                    <button
+                        onClick={() => navigate('/register')}>
+                        <UserAddOutlined className={styles.icon} /><span>Register</span>
+                    </button>
+                </div>
+            }
         </nav>
     )
 }

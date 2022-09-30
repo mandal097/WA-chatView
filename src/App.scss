@@ -35,6 +35,11 @@ input{
   font-size: 5rem;
   cursor: pointer;
 }
+.link{
+color: var(--btnLight);
+text-decoration: none;
+font-size: 1.5rem;
+}
 
 @media screen and (max-width:1200px) {
   .container{
