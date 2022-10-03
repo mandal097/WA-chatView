@@ -11,7 +11,7 @@ import { useEffect } from 'react';
 
 const ChangePassword = () => {
     const navigate = useNavigate()
-    const [otp, setOtp] = useState();
+    const [otp, setOtp] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
     const [phoneEmail, setPhoneEmail] = useState('');
@@ -49,30 +49,27 @@ const ChangePassword = () => {
                     if (res.data.status === 'success') { //if  password successfully updated
                         toast.success(res.data.message);
                         setLoading(false);
-                        // if everything is fine, know according to backend api we have delete the otp
-                        // document of this user with given credential from OTP table
+                        // if everything is fine, know according to backend api we have delete the otp document of this user with given credential from OTP table
+                        // setTimeout(async () => {
 
-                        if (otpState.phone !== '') {
-                            const res = await axios.post('/delete-otp', {
-                                phone: phoneEmail
-                            });
-                            if (res.data.status === 'err') {
-                                toast.error(res.data.message)
-                            }
-                            if (res.data.status === 'success') {
-                                toast.error(res.data.message)
-                            }
-                        } else {
-                            const res = await axios.post('/delete-otp', {
-                                email: phoneEmail
-                            })
-                            if (res.data.status === 'err') {
-                                toast.error(res.data.message)
-                            }
-                            if (res.data.status === 'success') {
-                                toast.error(res.data.message)
-                            }
-                        }
+                        //     if (otpState.phone !== '') {
+                        //         const res = await axios.delete(`/delete-otp/${phoneEmail}`);
+                        //         if (res.data.status === 'err') {
+                        //             toast.error(res.data.message)
+                        //         }
+                        //         if (res.data.status === 'success') {
+                        //             toast.error(res.data.message)
+                        //         }
+                        //     } else {
+                        //         const res = await axios.post(`/delete-otp/${phoneEmail}`)
+                        //         if (res.data.status === 'err') {
+                        //             toast.error(res.data.message)
+                        //         }
+                        //         if (res.data.status === 'success') {
+                        //             toast.error(res.data.message)
+                        //         }
+                        //     }
+                        // }, 2000);
                     };
                 } catch (error) {
                     setLoading(false);
