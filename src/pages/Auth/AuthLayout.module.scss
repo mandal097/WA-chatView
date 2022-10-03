@@ -5,6 +5,7 @@
   align-items: center;
   justify-content: center;
   .wrapper {
+    position: relative;
     width: 45rem;
     min-height: 40rem;
     border: 1px solid var(--border);
@@ -29,11 +30,28 @@
       font-size: 2rem;
       margin-bottom: 1.5rem;
     }
-    footer{
-        font-size: 1.4rem;
-        justify-self: center;
-        margin-top: auto;
-        text-align: center;
+    footer {
+      font-size: 1.4rem;
+      justify-self: center;
+      margin-top: auto;
+      text-align: center;
+    }
+    .back_btn {
+      position: absolute;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      background-color: var(--bg);
+      display: grid;
+      place-items: center;
+      top: 1rem;
+      left: 1rem;
+      font-size: 3rem;
+      color: var(--text);
+      cursor: pointer;
+      &:hover{
+        background-color: var(--bgLighter);
+      }
     }
   }
 }

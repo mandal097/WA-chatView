@@ -1,15 +1,16 @@
-html,body{
+html,
+body {
   background-color: var(--bg);
   font-family: var(--fontS);
 }
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-size: 62.5%;
 }
 
-button{
+button {
   border: none;
   background-color: transparent;
   color: var(--textSoft);
@@ -19,13 +20,13 @@ button{
   justify-content: center;
 }
 
-input{
+input {
   border: none;
   background-color: transparent;
   outline: none;
 }
 
-.container{
+.container {
   width: 1200px;
   margin: 0 auto;
 }
@@ -35,14 +36,19 @@ input{
   font-size: 5rem;
   cursor: pointer;
 }
-.link{
-color: var(--btnLight);
-text-decoration: none;
-font-size: 1.5rem;
+.link {
+  color: var(--btnLight);
+  text-decoration: none;
+  font-size: 1.5rem;
 }
 
-@media screen and (max-width:1200px) {
-  .container{
+.toaster {
+  font-size: 6rem;
+  right: 1rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .container {
     width: 95%;
   }
 }

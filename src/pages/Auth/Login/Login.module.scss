@@ -1,5 +1,9 @@
 .login {
   form {
+    .or{
+      text-align: center;
+      font-size: 1.7rem;
+    }
     .to_register {
       margin: 0.5rem 0;
       display: flex;
@@ -8,6 +12,9 @@
         color: var(--text);
         font-size: 1.3rem;
         margin-right: 0.8rem;
+      }
+      &:last-child{
+        margin-bottom: 3rem;
       }
     }
   }

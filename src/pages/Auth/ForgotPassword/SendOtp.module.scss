@@ -1,0 +1,63 @@
+.send_otp {
+  .options {
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 2rem;
+    button {
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      background-color: var(--bgLight);
+      &:hover {
+        background-color: var(--bgLighter);
+      }
+    }
+    .active {
+      background-color: var(--successLight);
+      transform: scale(1.1);
+      &:hover {
+        background-color: var(--success);
+      }
+    }
+  }
+  form {
+    .req_status {
+      margin-left: auto;
+      display: flex;
+      justify-content: flex-end;
+      span {
+        color: var(--successLight);
+        font-size: 1.4rem;
+      }
+      button {
+        font-size: 1.3rem;
+        text-decoration: underline;
+      }
+    }
+    .or {
+      text-align: center;
+      font-size: 1.6rem;
+      margin-top: 1rem;
+    }
+    .back {
+      display: inline-block;
+      align-self: center;
+      font-size: 1.4rem;
+      margin: 1rem 0;
+      background-color: var(--bg);
+      padding: 0.6rem 2rem;
+      border-radius: 1rem;
+      cursor: pointer;
+      .icon {
+        font-size: 2rem;
+        margin-right: 1rem;
+      }
+    }
+  }
+}

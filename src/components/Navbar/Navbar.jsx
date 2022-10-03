@@ -8,7 +8,8 @@ import {
     BellFilled,
     MessageFilled,
     UserOutlined,
-    UserAddOutlined
+    UserAddOutlined,
+    GlobalOutlined
 } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 
@@ -18,7 +19,7 @@ const Navbar = () => {
 
     return (
         <nav className={styles.navbar}>
-            <div className={styles.logo}></div>
+            <div className={styles.logo} onClick={()=>navigate('/')}><GlobalOutlined className='icon' /></div>
             {
                 user &&
                 <>
