@@ -3,7 +3,7 @@ import AuthLayout from '../AuthLayout';
 import styles from './Login.module.scss'
 import { Input, InputPassword, Submit } from '../../../components/Auth/Inputs';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import { ToastContainer, toast } from 'react-toastify';
 import axios from '../../../config/axios';
@@ -15,6 +15,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const submit = async (e) => {
     e.preventDefault();
@@ -27,12 +28,13 @@ const Login = () => {
         email: email,
         password: password
       });
-
-
       if (res.data.status === 'success') {
         toast.success(res.data.message);
         localStorage.setItem('token', res.data.token);
         dispatch(login(res.data.data))
+        setTimeout(() => {
+          navigate('/messenger')
+        }, 1000);
       }
       if (res.data.status === 'err') {
         toast.error(res.data.message);
@@ -62,7 +64,7 @@ const Login = () => {
           <InputPassword
             label='Password'
             value={password}
-            placeholder='Write your email'
+            placeholder='Write your password'
             onchange={(e) => setPassword(e.target.value)}
           />
 

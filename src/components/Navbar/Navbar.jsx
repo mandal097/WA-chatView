@@ -7,19 +7,34 @@ import {
     UsergroupDeleteOutlined,
     BellFilled,
     MessageFilled,
-    UserOutlined,
     UserAddOutlined,
-    GlobalOutlined
+    GlobalOutlined,
+    LogoutOutlined,
+    LoginOutlined
 } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../../redux/userRedux';
 
 const Navbar = () => {
-    const user = false;
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const user = useSelector((state) => state.user.currentUser);
+
+    const logoutUser = () => {
+        localStorage.removeItem('token');
+        localStorage.clear();
+        dispatch(logout());
+        setTimeout(() => {
+            navigate('/login');
+        }, 1000);
+
+    }
 
     return (
         <nav className={styles.navbar}>
-            <div className={styles.logo} onClick={()=>navigate('/')}><GlobalOutlined className='icon' /></div>
+            <div className={styles.logo} onClick={() => navigate('/')}><GlobalOutlined className='icon' /></div>
             {
                 user &&
                 <>
@@ -33,21 +48,27 @@ const Navbar = () => {
                         <button className={styles.items}><UsergroupDeleteOutlined /></button>
                     </div>
                     <div className={styles.toolkit}>
+                        <div className={styles.auth_actions}>
+                            <button
+                                onClick={logoutUser}>
+                                <LogoutOutlined className={styles.icon} /><span>Logout</span>
+                            </button>
+                        </div>
                         <button className={styles.tools}><MessageFilled /></button>
                         <button className={styles.tools}><BellFilled /></button>
                         <button className={styles.tools}>
-                            <img src="https://media.istockphoto.com/photos/young-man-with-laptop-and-coffee-working-indoors-home-office-concept-picture-id1334702614?b=1&k=20&m=1334702614&s=170667a&w=0&h=Ea5KZt7q8D_dm1kHuNG7__R8J--thzE-Yj7Q9nXMg6E=" alt="" />
+                            <img src={user?.profilePic} alt="profile_pic" />
                         </button>
                     </div>
                 </>
             }
 
             {
-                !user &&
-                <div className={styles.auth_actions}>
+                !user
+                && <div className={styles.auth_actions}>
                     <button
                         onClick={() => navigate('/login')}>
-                        <UserOutlined className={styles.icon} /><span>Login</span>
+                        <LoginOutlined className={styles.icon} /><span>Login</span>
                     </button>
                     <button
                         onClick={() => navigate('/register')}>
