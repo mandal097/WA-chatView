@@ -19,7 +19,7 @@ const Navbar = () => {
 
     return (
         <nav className={styles.navbar}>
-            <div className={styles.logo}><GlobalOutlined className='icon' /></div>
+            <div className={styles.logo} onClick={()=>navigate('/')}><GlobalOutlined className='icon' /></div>
             {
                 user &&
                 <>

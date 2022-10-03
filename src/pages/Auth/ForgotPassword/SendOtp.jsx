@@ -1,39 +1,85 @@
 import React from 'react';
-import styles from './ForgotPassword.module.scss';
+import styles from './SendOtp.module.scss';
 import AuthLayout from '../AuthLayout'
 import { Input, Submit } from '../../../components/Auth/Inputs';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PhoneFilled, MailFilled, ArrowLeftOutlined } from '@ant-design/icons';
+import axios from '../../../config/axios';
+import { ToastContainer, toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { setOtpState } from '../../../redux/userRedux';
 
-const ForgotPasword = () => {
+const SendOtp = () => {
     const navigate = useNavigate()
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [loading, setLoading] = useState(false);
-    const [option, setOption] = useState('email')
+    const [option, setOption] = useState('phone');
 
-    const submit = (e) => {
+    const dispatch = useDispatch()
+
+    const submit = async (e) => {
         e.preventDefault()
-        console.log(email);
-        setLoading(true);
-        setTimeout(() => {
+        let res;
+        if (option === 'phone') {  //opted for phone to send otp
+            if (!phone) {
+                toast.error('Please enter your phone number')
+            } else {
+                setLoading(true);
+                res = await axios.post('/send-otp', {
+                    phone: phone
+                });
+                if (res.data.status === 'success') {
+                    dispatch(setOtpState({ phone: phone }))
+                    setLoading(false)
+                }
+            }
+        }
+        if (option === 'email') { //opted email for sending otp
+            if (!email) {
+                toast.error('Please enter your email Id')
+            } else {
+                setLoading(true);
+                res = await axios.post('/send-otp', {
+                    email: email
+                });
+                if (res.data.status === 'success') {
+                    dispatch(setOtpState({ email: email }))
+                    setLoading(false);
+                }
+            }
+        }
+        if (res.data.status === 'err') { //if any backend errors comes
+            toast.error(res.data.message)
             setLoading(false);
-            navigate('/forgot-password/otp')
-        }, 2000);
+        }
+        if (res.data.status === 'success') {  //if successully otp sent to user
+            toast.success(res.data.message)
+            setTimeout(() => {
+                navigate('/forgot-password')
+            }, 1000);
+        }
     }
     return (
-        <div className={styles.forgotPassword}>
+        <div className={styles.send_otp}>
+            <ToastContainer className='toaster' />
             <AuthLayout heading='WeChat'>
                 <h4 style={{ marginTop: '0.5rem' }}>Enter your {option} to get OTP</h4>
                 <div className={styles.options}>
                     <button
-                        onClick={() => setOption('email')}
+                        onClick={() => {
+                            setOption('email');
+                            setPhone('')
+                        }}
                         className={`${option === 'email' && styles.active}`}>
                         <MailFilled />
                     </button>
                     <button
-                        onClick={() => setOption('phone')}
+                        onClick={() => {
+                            setOption('phone')
+                            setEmail('')
+                        }}
                         className={`${option === 'phone' && styles.active}`}>
                         <PhoneFilled />
                     </button>
@@ -68,4 +114,4 @@ const ForgotPasword = () => {
     )
 }
 
-export default ForgotPasword
+export default SendOtp;

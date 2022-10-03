@@ -35,7 +35,7 @@ export const InputPassword = ({ label, placeholder, onchange, value }) => {
         }
     }
     return (
-        <div className={styles.input}>
+        <div className={`${styles.input} ${styles.password}`}>
             <label htmlFor="">{label} : </label>
             <input
                 type={show ? 'text' : 'password'}
@@ -44,16 +44,19 @@ export const InputPassword = ({ label, placeholder, onchange, value }) => {
                 placeholder={placeholder}
             />
             <div className={styles.hide_show} onClick={handelType}>
-                {!show ? <EyeOutlined /> : <EyeInvisibleOutlined />}
+                <>
+                    {!show ? <EyeOutlined /> : <EyeInvisibleOutlined />}
+                </>
             </div>
         </div>
     )
 }
 
-export const Submit = ({value}) => {
+export const Submit = ({ value, color }) => {
     return (
-        <div className={styles.input}>
+        <div className={styles.input} >
             <input
+                style={{ background: color }}
                 className={styles.submit}
                 type='submit'
                 value={`${value}`}

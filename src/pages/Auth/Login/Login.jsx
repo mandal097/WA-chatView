@@ -4,17 +4,49 @@ import styles from './Login.module.scss'
 import { Input, InputPassword, Submit } from '../../../components/Auth/Inputs';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux'
+import { ToastContainer, toast } from 'react-toastify';
+import axios from '../../../config/axios';
+import { login } from '../../../redux/userRedux'
 
 const Login = () => {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('')
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const submit = (e) => {
+  const dispatch = useDispatch();
+
+  const submit = async (e) => {
     e.preventDefault();
-    console.log(email, password)
+    if (!email || !password) {
+      toast.error('All fields are required')
+    }
+    setLoading(true);
+    try {
+      const res = await axios.post('user/login', {
+        email: email,
+        password: password
+      });
+
+
+      if (res.data.status === 'success') {
+        toast.success(res.data.message);
+        localStorage.setItem('token', res.data.token);
+        dispatch(login(res.data.data))
+      }
+      if (res.data.status === 'err') {
+        toast.error(res.data.message);
+      }
+      setLoading(false);
+    } catch (error) {
+      toast.error('Something went wrong')
+    } finally {
+      setLoading(false);
+    }
   }
   return (
     <div className={styles.login}>
+      <ToastContainer className='toaster' />
       <AuthLayout
         heading='Welcome to WeChat'
       >
@@ -34,13 +66,15 @@ const Login = () => {
             onchange={(e) => setPassword(e.target.value)}
           />
 
-          <Submit value="Login" />
+          <Submit value={loading ? "Loading" : "Login"} />
+          <p className={styles.or}>OR</p>
+          <Submit value='Sign In with Google' color='coral' />
           <div className={styles.to_register}>
             <span>Don't have an Account ?</span>
             <Link to='/register' className='link'>Sign Up</Link>
           </div>
           <div className={styles.to_register}>
-            <Link to='/forgot-password' className='link'>Forgot Password</Link>
+            <Link to='/send-otp' className='link'>Forgot Password</Link>
           </div>
 
         </form>
