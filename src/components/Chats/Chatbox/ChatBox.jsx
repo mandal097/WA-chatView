@@ -6,38 +6,85 @@ import {
     AudioOutlined, SendOutlined
 } from '@ant-design/icons';
 import Message from '../Message/Message';
-import { data } from './dummydata';
 import Default from './Default';
+import { useSelector } from 'react-redux';
+import axios from '../../../config/axios';
+import { toast, ToastContainer } from 'react-toastify';
+import socketInit from '../../../socket/index';
 
-const ChatBox = ({currentChat}) => {
+const ChatBox = () => {
+    const { currentUser } = useSelector((state) => state.user);
+    const { currentChat, chatId } = useSelector((state) => state.chat);
     const [newMessage, setNewMessage] = useState('');
-    const [messages, setMessages] = useState([]);   
+    const [messages, setMessages] = useState([]);
     const scrollRef = useRef();
+    const socket = useRef()
+
+    const sendMessage = async (e) => {
+        e.preventDefault();
+        if (!newMessage) {
+            toast.error('Please write a message')
+        } else {
+            const token = localStorage.getItem('token')
+            const res = await axios.post('/message', {
+                chatId: chatId,
+                content: newMessage
+            }, {
+                headers: {
+                    token: `Bearer ${token}`
+                }
+            })
+            if (res.data.status === 'err') {
+                toast.error(res.data.message)
+            }
+            if (res.data.status === 'success') {
+                setNewMessage('');
+            }
+        }
+    }
 
     useEffect(() => {
-        setMessages(data)
-    }, []);
+        const fetchMessages = async () => {
+            const token = localStorage.getItem('token');
+            const res = await axios.get(`/message/${chatId}`, {
+                headers: {
+                    token: `Bearer ${token}`
+                },
+            });
+            setMessages(res.data.data);
+        }
+        fetchMessages();
+    }, [chatId]);
 
     useEffect(() => {
         scrollRef?.current?.scrollIntoView({ behavior: 'smooth' })
-    }, [newMessage]);
+    }, [messages]);
+
+    // socket io
+    useEffect(() => {
+        socket.current = socketInit();
+        socket.current.emit('addUsers', currentUser._id)
+    }, [currentUser])
 
     return (
         <>
-            {!currentChat ? < Default /> :
+            {currentChat === null ? < Default /> :
                 <div className={styles.chat_box}>
+                    <ToastContainer className='toaster' />
                     {/* ---------------------------all messages--------------------------------*/}
                     <div className={styles.chats} ref={scrollRef}>
                         {
                             messages.map(m => (
-                                <Message key={m.id} own={m.own} message={m.text} />
+                                <Message key={m._id}
+                                    message={m}
+                                />
                             ))
                         }
                     </div>
 
                     {/* ---------------------------sending message form  */}
 
-                    <div className={styles.form}>
+                    <form onSubmit={sendMessage} className={styles.form}>
                         <div className={styles.left}>
                             <button><SmileOutlined /></button>
                             <button><PaperClipOutlined /></button>
@@ -45,6 +92,7 @@ const ChatBox = ({currentChat}) => {
                         <div className={styles.input}>
                             <input
                                 type="text"
+                                value={newMessage}
                                 onChange={(e) => setNewMessage(e.target.value)}
                             />
                         </div>
@@ -52,10 +100,10 @@ const ChatBox = ({currentChat}) => {
                             {
                                 newMessage === ""
                                     ? <button><AudioOutlined /></button>
-                                    : <button style={{ color: 'var(--successLight)' }} ><SendOutlined /></button>
+                                    : <button style={{ color: 'var(--successLight)' }} type='submit' ><SendOutlined /></button>
                             }
                         </div>
-                    </div>
+                    </form>
                 </div>
             }
         </>
