@@ -39,4 +39,14 @@ export const data = [
         text: 'ipsum dolor sit amet consecteturoluptatibus consequuntur alias iusto quasi dolores? ',
         own: false
     },
+    {
+        id: 9,
+        text: 'ipsum do ',
+        own: false
+    },
+    {
+        id: 10,
+        text: 'ipsum do shit ',
+        own: true
+    },
 ]

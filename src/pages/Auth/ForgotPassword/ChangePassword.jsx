@@ -49,6 +49,9 @@ const ChangePassword = () => {
                     if (res.data.status === 'success') { //if  password successfully updated
                         toast.success(res.data.message);
                         setLoading(false);
+                        // setTimeout(() => {
+                        //     navigate('/login');                            
+                        // }, 1000);
                         // if everything is fine, know according to backend api we have delete the otp document of this user with given credential from OTP table
                         // setTimeout(async () => {
 
@@ -73,10 +76,10 @@ const ChangePassword = () => {
                     };
                 } catch (error) {
                     setLoading(false);
-                }
-            }
-        }
-    }
+                };
+            };
+        };
+    };
     return (
         <div className={styles.change_password}>
             <ToastContainer className='toaster' />
@@ -107,7 +110,7 @@ const ChangePassword = () => {
                         placeholder='Enter OTP here'
                         onchange={(e) => setOtp(e.target.value)}
                     />
-                    <div className={styles.resend}>
+                    <div className={styles.resend} onClick={() => navigate('/send-otp')}>
                         resend otp
                     </div>
                     <Submit value={loading ? "loading..." : "Submit"} />

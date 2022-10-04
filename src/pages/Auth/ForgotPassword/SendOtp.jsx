@@ -11,13 +11,14 @@ import { useDispatch } from 'react-redux';
 import { setOtpState } from '../../../redux/userRedux';
 
 const SendOtp = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [loading, setLoading] = useState(false);
     const [option, setOption] = useState('phone');
 
-    const dispatch = useDispatch()
 
     const submit = async (e) => {
         e.preventDefault()
