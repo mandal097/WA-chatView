@@ -13,13 +13,17 @@ import {
   PhoneOutlined,
   // DownOutlined
 } from '@ant-design/icons';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import AddToGroup from '../../components/Chats/_GroupCreations/AddToGroup';
+import { setCurrentChatInitial } from '../../redux/chatRedux';
 
 
 const Message = () => {
   const [newConverstations, setNewConverstations] = useState(false);
+  const [showGroupModal, setShowGroupModal] = useState(false);
   const { currentChat } = useSelector((state) => state.chat);
   const { currentUser } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setTimeout(() => {
@@ -46,7 +50,10 @@ const Message = () => {
             <div className={styles.actions}>
               <button><HistoryOutlined /></button>
               <button onClick={() => setNewConverstations(true)}><PlusOutlined /></button>
-              <button><MoreOutlined /></button>
+              <button onClick={() => {
+                setShowGroupModal(!showGroupModal)
+                dispatch(setCurrentChatInitial())
+              }}><MoreOutlined /></button>
             </div>
           </div>
         </div>
@@ -64,11 +71,14 @@ const Message = () => {
           <div className='icon'><AlignCenterOutlined /></div>
         </div>
 
-        {newConverstations
-          ? <NewConverstations setNewConverstations={setNewConverstations} />
-          : <Converations setNewConverstations={setNewConverstations} />
+        {showGroupModal
+          ? <AddToGroup setShowGroupModal={setShowGroupModal} /> :
+          newConverstations ? <NewConverstations setNewConverstations={setNewConverstations} />
+            : <Converations setNewConverstations={setNewConverstations} />
         }
+        {/* ------------------------------------group creations------------------------------------ */}
       </div>
+
 
 
       {/* ------------------------------------ right side------------------------------------- */}

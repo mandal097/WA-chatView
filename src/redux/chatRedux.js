@@ -14,8 +14,12 @@ const userSlice = createSlice({
             state.currentChat = action.payload.currentChat
             state.chatId = action.payload.chatId
         },
+        setCurrentChatInitial: (state) => {
+            state.currentChat = null
+            state.chatId = ''
+        }
     },
 });
 
-export const { setCurrentChat, setCurrentMessage } = userSlice.actions;
+export const { setCurrentChat, setCurrentChatInitial } = userSlice.actions;
 export default userSlice.reducer

@@ -5,10 +5,12 @@
   display: flex;
   border: 1px solid var(--border);
   color: var(--text);
+  overflow: hidden;
   .left {
     flex: 1;
     border-right: 1px solid var(--border);
     height: 100%;
+    position: relative;
     .left_header {
       border-bottom: 1px solid var(--border);
       .left_header_wrapper {
