@@ -15,6 +15,8 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../redux/userRedux';
+import { removeMembers } from '../../redux/AddToGroup';
+import { setCurrentChatInitial } from '../../redux/chatRedux';
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -27,6 +29,8 @@ const Navbar = () => {
         localStorage.removeItem('token');
         localStorage.clear();
         dispatch(logout());
+        dispatch(removeMembers());
+        dispatch(setCurrentChatInitial())
         setTimeout(() => {
             navigate('/login');
         }, 1000);
@@ -55,7 +59,7 @@ const Navbar = () => {
                                 <LogoutOutlined className={styles.icon} /><span>Logout</span>
                             </button>
                         </div>
-                        <button className={styles.tools}><MessageFilled /></button>
+                        <button className={styles.tools} onClick={()=>navigate('/messenger')}><MessageFilled /></button>
                         <button className={styles.tools}><BellFilled /></button>
                         <button className={styles.tools}>
                             <img src={user?.profilePic} alt="profile_pic" />

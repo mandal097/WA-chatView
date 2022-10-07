@@ -19,16 +19,27 @@
     }
   }
   .new_message {
-    // flex: 1;
     width: auto;
     height: auto;
     border-radius: 1rem 1rem 1rem 0;
     background-color: var(--bgChat);
-    padding: 1rem;
     position: relative;
+    .name{
+      font-size: 1.3rem;
+      text-transform: capitalize;
+      font-weight: 500;
+      border-bottom: 1px solid var(--btn);
+      color: var(--bgDark);
+      overflow: hidden;
+      display: flex;
+      justify-content: flex-end;
+      border-bottom: 1px solid var(--bgDark);
+      padding: 0 1rem;
+    }
     p {
       font-size: 1.5rem;
       color: var(--text);
+      padding: 1rem;
     }
     .till {
       position: absolute;

@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import styles from './Members.module.scss';
 import { CloseOutlined } from '@ant-design/icons';
 import { useSelector, useDispatch } from 'react-redux';
-import { setMembers } from '../../../redux/AddToGroup';
+import { setMembers } from '../../../../redux/AddToGroup';
 import { useEffect } from 'react';
-import axios from '../../../config/axios';
+import axios from '../../../../config/axios';
 import { ArrowRightOutlined } from '@ant-design/icons';
 
 
@@ -23,7 +23,7 @@ const Member = ({ m }) => {
           token: `Bearer ${localStorage.getItem('token')}`
         }
       })
-      console.log(res.data.data);
+      // console.log(res.data.data);
       setMember(res.data.data);
     }
     fetchUser()
@@ -41,7 +41,7 @@ const Member = ({ m }) => {
 }
 
 
-const Members = () => {
+const Members = ({ setShowCreateGroup }) => {
   const { members } = useSelector(state => state.group);
   return (
     <div className={styles.selected_user}>
@@ -51,10 +51,12 @@ const Members = () => {
             <Member key={m} m={m} />
           ))
         }
-        <button className={styles.continue}><ArrowRightOutlined className={styles.ok} /></button>
+        <button className={styles.continue} onClick={() => setShowCreateGroup(true)}>
+          <ArrowRightOutlined className={styles.ok} />
+        </button>
       </div>
     </div>
   )
 }
 
-export default Members
+export default Members;

@@ -14,13 +14,15 @@ import {
   // DownOutlined
 } from '@ant-design/icons';
 import { useSelector, useDispatch } from 'react-redux';
-import AddToGroup from '../../components/Chats/_GroupCreations/AddToGroup';
+import AddToGroup from '../../components/Chats/_Group/_GroupCreations/AddToGroup';
 import { setCurrentChatInitial } from '../../redux/chatRedux';
+import GroupList from '../../components/Chats/_Group/GroupList/GroupList';
 
 
 const Message = () => {
   const [newConverstations, setNewConverstations] = useState(false);
   const [showGroupModal, setShowGroupModal] = useState(false);
+  const [showGroupList, setShowGroupList] = useState(false);
   const { currentChat } = useSelector((state) => state.chat);
   const { currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -47,9 +49,13 @@ const Message = () => {
             <div className={styles.profile}>
               <img src={currentUser?.profilePic} alt="" />
             </div>
+            <h4 style={{fontSize:'1.4rem'}}>{currentUser.name.split(' ')[0]}</h4>
             <div className={styles.actions}>
               <button><HistoryOutlined /></button>
-              <button onClick={() => setNewConverstations(true)}><PlusOutlined /></button>
+              <button onClick={() => {
+                setNewConverstations(true);
+                setShowGroupList(false);
+              }}><PlusOutlined /></button>
               <button onClick={() => {
                 setShowGroupModal(!showGroupModal)
                 dispatch(setCurrentChatInitial())
@@ -68,14 +74,21 @@ const Message = () => {
               placeholder='Search or start new chat'
             />
           </div>
-          <div className='icon'><AlignCenterOutlined /></div>
+          <div className='icon' onClick={() => {
+            setShowGroupList(!showGroupList);
+          }}><AlignCenterOutlined /></div>
         </div>
 
         {showGroupModal
           ? <AddToGroup setShowGroupModal={setShowGroupModal} /> :
-          newConverstations ? <NewConverstations setNewConverstations={setNewConverstations} />
-            : <Converations setNewConverstations={setNewConverstations} />
+          showGroupList ? <GroupList /> :
+            newConverstations ? <NewConverstations setNewConverstations={setNewConverstations} />
+              : <Converations setNewConverstations={setNewConverstations} />
         }
+        {/* {showGroupList && <GroupList />}
+        {showGroupList && <GroupList />}
+        {newConverstations && <NewConverstations />}
+        {showGroupList && <GroupList />} */}
         {/* ------------------------------------group creations------------------------------------ */}
       </div>
 
@@ -89,10 +102,17 @@ const Message = () => {
           <div className={styles.right_header}>
             <div className={styles.right_header_wrapper}>
               <div className={styles.img}>
-                <img src={currentChat?.profilePic} alt="profile pic" />
+                <img src={
+                  currentChat?.isGroupChat === true ?
+                    currentChat?.groupAvatar : currentChat.profilePic
+                } alt="profile pic" />
               </div>
               <div className={styles.details}>
-                <h4 className={styles.chat_name}>{currentChat?.name}</h4>
+                <h4 className={styles.chat_name}>{
+                  currentChat?.isGroupChat === true ?
+                    currentChat.chatName : currentChat.name
+                }
+                </h4>
                 <p>Lorem, ipsum dolor sit amet consecteturoluptatibus consequuntur alias iusto quasi dolores? Vel.</p>
               </div>
               <div className={styles.actions}>
