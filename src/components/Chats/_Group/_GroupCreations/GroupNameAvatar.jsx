@@ -6,12 +6,21 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
 import { removeMembers } from '../../../../redux/AddToGroup';
+// import uploadFile from '../../../../helpers/upload';
+import { useUpload } from '../../../../hooks/useUpload';
 
 const GroupNameAvatar = ({ setShowCreateGroup }) => {
     const { members } = useSelector(state => state.group);
     const [groupName, setGroupName] = useState('');
     const [loading, setLoading] = useState(false);
-    const dispatch = useDispatch()
+    const [img, setImg] = useState(undefined);
+    const dispatch = useDispatch();
+    const { uploadPerc, url } = useUpload(img)
+
+    const handleChange = (e) => {
+        setImg(e.target.files[0]);
+    }
+
 
     const createGroup = async (e) => {
         e.preventDefault()
@@ -19,11 +28,13 @@ const GroupNameAvatar = ({ setShowCreateGroup }) => {
             toast.error("Please give name to your group ")
         }
         try {
+            console.log(url);
             setLoading(true)
             const token = localStorage.getItem('token');
             const res = await axios.post('/chats/group/create-group', {
                 name: groupName,
-                users: members
+                users: members,
+                groupAvatar: url
             }, {
                 headers: {
                     token: `Bearer ${token}`
@@ -40,10 +51,12 @@ const GroupNameAvatar = ({ setShowCreateGroup }) => {
                     setShowCreateGroup(false);
                 }, 1000);
             };
+            setLoading(false)
         } catch (error) {
             toast.error('something went wrong')
+            setLoading(false)
         }
-    }
+    };
 
     return (
         <div className={styles.group_name_avatar}>
@@ -55,8 +68,18 @@ const GroupNameAvatar = ({ setShowCreateGroup }) => {
                 </div>
             </div>
             <div className={styles.img}>
-                <img src="https://images.unsplash.com/photo-1533105045747-b9d71a0955f9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YWN0aW9ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="" />
-                <div className={styles.add_img}><CameraOutlined className={styles.icon} /></div>
+                {
+                    img ? <img src={URL.createObjectURL(img)} alt="" /> :
+                        <img src="https://images.unsplash.com/photo-1533105045747-b9d71a0955f9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YWN0aW9ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="" />
+                }
+                <label className={styles.add_img} htmlFor='groupAvatar'><CameraOutlined className={styles.icon} /></label>
+                <input
+                    type="file"
+                    id="groupAvatar"
+                    style={{ display: 'none' }}
+                    accept='image/*'
+                    onChange={handleChange}
+                />
             </div>
             <div className={styles.name}>
                 <input
@@ -66,9 +89,15 @@ const GroupNameAvatar = ({ setShowCreateGroup }) => {
                     onChange={(e) => setGroupName(e.target.value)}
                 />
             </div>
-            <button onClick={createGroup}>
+            {img &&
+
+                <p style={{ fontSize: '1.6rem', textAlign: 'center' }}>Wait until your file is uploading <br />{uploadPerc}</p>
+            }
+            <button onClick={createGroup} style={{
+                cursor: uploadPerc !== 100 ? 'not-allowed' : 'default'
+            }}>
                 {
-                    loading ? "Wait... " :
+                    loading ? "Wait...  " :
                         <>
                             Create Group <ArrowRightOutlined className={styles.icon} />
                         </>
