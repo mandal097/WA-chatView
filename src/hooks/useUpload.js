@@ -7,7 +7,6 @@ import { useEffect } from "react";
 
 export const useUpload = (file) => {
     const [uploadPerc, setUploadPerc] = useState(0);
-    // const [inputs, setInputs] = useState({});
     const [url, setUrl] = useState('');
 
 
@@ -40,10 +39,6 @@ export const useUpload = (file) => {
             (error) => { },
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    // setInputs((prev) => {
-                    //     return { ...prev, [urlType]: downloadURL };
-                    // })
-                    // console.log('File available at', downloadURL);
                     setUrl(downloadURL);
                 });
             }

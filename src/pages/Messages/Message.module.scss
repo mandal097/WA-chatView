@@ -7,7 +7,7 @@
   color: var(--text);
   overflow: hidden;
   .left {
-    flex: 1;
+    flex: 1.1;
     border-right: 1px solid var(--border);
     height: 100%;
     position: relative;
@@ -84,8 +84,9 @@
     }
   }
   .right {
-    flex: 2.5;
+    flex: 2.4;
     height: 100%;
+    transition: all 200ms linear;
     .right_header {
       height: 7rem;
       border-bottom: 1px solid var(--border);
@@ -112,6 +113,7 @@
           display: flex;
           flex-direction: column;
           justify-content: center;
+          cursor: pointer;
           .chat_name {
             font-size: 1.8rem;
             font-weight: bold;

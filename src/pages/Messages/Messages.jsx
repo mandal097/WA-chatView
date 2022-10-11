@@ -17,12 +17,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import AddToGroup from '../../components/Chats/_Group/_GroupCreations/AddToGroup';
 import { setCurrentChatInitial } from '../../redux/chatRedux';
 import GroupList from '../../components/Chats/_Group/GroupList/GroupList';
+import ChatInfo from '../../components/Chats/ChatInfo/ChatInfo';
 
 
 const Message = () => {
   const [newConverstations, setNewConverstations] = useState(false);
   const [showGroupModal, setShowGroupModal] = useState(false);
   const [showGroupList, setShowGroupList] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
   const { currentChat } = useSelector((state) => state.chat);
   const { currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -49,7 +51,7 @@ const Message = () => {
             <div className={styles.profile}>
               <img src={currentUser?.profilePic} alt="" />
             </div>
-            <h4 style={{fontSize:'1.4rem'}}>{currentUser.name.split(' ')[0]}</h4>
+            <h4 style={{ fontSize: '1.4rem' }}>{currentUser.name.split(' ')[0]}</h4>
             <div className={styles.actions}>
               <button><HistoryOutlined /></button>
               <button onClick={() => {
@@ -107,7 +109,11 @@ const Message = () => {
                     currentChat?.groupAvatar : currentChat.profilePic
                 } alt="profile pic" />
               </div>
-              <div className={styles.details}>
+              <div className={styles.details} onClick={() => {
+                currentChat?.isGroupChat ===true &&
+                setShowInfo(true)
+              }
+              }>
                 <h4 className={styles.chat_name}>{
                   currentChat?.isGroupChat === true ?
                     currentChat.chatName : currentChat.name
@@ -126,10 +132,12 @@ const Message = () => {
         }
         <ChatBox currentChat={currentChat} />
       </div>
-      {/* {
-        showBtn &&
-        <button className={styles.to_bottom} ><DownOutlined /></button>
-      } */}
+
+      {
+        showInfo && currentChat?.isGroupChat === true &&
+        <ChatInfo setShowInfo={setShowInfo} currentChat={currentChat} />
+      }
+
     </div>
   )
 }

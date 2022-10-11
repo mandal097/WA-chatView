@@ -1,0 +1,220 @@
+.info {
+  flex: 1.3;
+  border-left: 1px solid var(--border);
+  position: relative;
+  .info_header {
+    display: flex;
+    align-items: center;
+    height: 7rem;
+    padding: 0 1rem;
+    border-bottom: 1px solid var(--border);
+    .heading {
+      font-size: 1.7rem;
+      color: var(--textSoft);
+      text-transform: capitalize;
+      font-weight: 200;
+    }
+    .icon {
+      font-size: 4rem;
+      color: var(--textSoft);
+      cursor: pointer;
+    }
+  }
+  .body {
+    height: calc(97vh - 7rem);
+    overflow-y: scroll;
+    .img_div {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1rem;
+      background-color: var(--bgDark);
+
+      gap: 1rem;
+      .img {
+        width: 17rem;
+        height: 17rem;
+        border-radius: 50%;
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+      }
+      ._name {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        h3 {
+          font-size: 1.5rem;
+          font-weight: 400;
+          background-color: var(--bg);
+          padding: 0.6rem 1.4rem;
+          border-radius: 0.4rem;
+          color: var(--textSoft);
+        }
+        .icon {
+          color: var(--bgLighter);
+          font-size: 3rem;
+          visibility: hidden;
+          cursor: pointer;
+        }
+        &:hover {
+          .icon {
+            visibility: visible;
+          }
+        }
+      }
+      .input {
+        background-color: var(--bg);
+        width: 80%;
+        padding: 0.7rem 0.7rem;
+        display: flex;
+        align-items: center;
+        border-radius: 0.6rem;
+        input {
+          font-size: 1.6rem;
+          width: 100%;
+          color: var(--textSoft);
+        }
+        .icon {
+          color: var(--bgLighter);
+          font-size: 3rem;
+          cursor: pointer;
+        }
+      }
+      span {
+        font-size: 1.5rem;
+      }
+    }
+    .information {
+      margin-top: 1rem;
+      height: auto;
+      background-color: var(--bgDark);
+      padding: 1rem;
+      h6 {
+        font-size: 1.6rem;
+        color: var(--successLight);
+        font-weight: 200;
+        margin: 0.3rem 0;
+      }
+      p {
+        font-size: 1.4rem;
+        font-weight: 300;
+        color: var(--textSoft);
+      }
+    }
+    .participants {
+      margin-top: 1rem;
+      height: auto;
+      background-color: var(--bgDark);
+      h5 {
+        font-size: 1.4rem;
+        font-weight: 300;
+        color: var(--textSoft);
+        margin: 0.5rem 0;
+        padding: 0.5rem 3rem;
+      }
+      .add {
+        padding: 0.5rem 2rem;
+        display: flex;
+        align-items: center;
+        margin: 1rem 0;
+        margin-bottom: 2rem;
+        gap: 2rem;
+        cursor: pointer;
+        &:hover {
+          background-color: var(--bgLight);
+        }
+        ._icon {
+          width: 4rem;
+          height: 4rem;
+          border-radius: 50%;
+          background-color: var(--successLight);
+          display: grid;
+          place-items: center;
+          .icon {
+            font-size: 3rem;
+          }
+        }
+        span {
+          font-size: 1.7rem;
+        }
+      }
+      .participant {
+        display: flex;
+        padding: 0.5rem 2rem;
+        align-items: center;
+        gap: 2rem;
+        cursor: pointer;
+        margin: 1rem 0;
+        &:hover {
+          background-color: var(--bgLight);
+        }
+        .img {
+          width: 4rem;
+          height: 4rem;
+          border-radius: 50%;
+          img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+        }
+        span {
+          font-size: 1.5rem;
+          color: var(--textSoft);
+        }
+        .isAdmin {
+          font-size: 1.2rem;
+          padding: 0.2rem 0.8rem;
+          margin-left: auto;
+          border-radius: 0.2rem;
+          color: var(--textSoft);
+          background-color: var(--bgLighter);
+        }
+      }
+      .actions {
+        padding: 0.5rem 2rem;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        cursor: pointer;
+        &:hover {
+          background-color: var(--bgLight);
+        }
+        ._icon {
+          width: 4rem;
+          height: 4rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          .icon {
+            font-size: 3rem;
+            color: var(--error);
+          }
+        }
+        span {
+          color: var(--error);
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+    &::-webkit-scrollbar {
+      width: 0.6rem;
+    }
+    &::-webkit-scrollbar-track {
+      background: var(--bgLight);
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #888;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+  }
+}
