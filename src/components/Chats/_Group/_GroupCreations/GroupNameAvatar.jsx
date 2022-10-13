@@ -94,7 +94,8 @@ const GroupNameAvatar = ({ setShowCreateGroup }) => {
                 <p style={{ fontSize: '1.6rem', textAlign: 'center' }}>Wait until your file is uploading <br />{uploadPerc}</p>
             }
             <button onClick={createGroup} style={{
-                cursor: uploadPerc !== 100 ? 'not-allowed' : 'default'
+                visibility: uploadPerc !== 100 ? 'hidden' : 'visible'
+                // visibility: uploadPerc !== 100 ? 'not-allowed' : 'default'
             }}>
                 {
                     loading ? "Wait...  " :

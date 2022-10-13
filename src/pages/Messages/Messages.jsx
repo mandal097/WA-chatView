@@ -8,7 +8,7 @@ import {
   HistoryOutlined,
   MoreOutlined,
   SearchOutlined,
-  AlignCenterOutlined,
+  TeamOutlined,
   VideoCameraOutlined,
   PhoneOutlined,
   // DownOutlined
@@ -17,7 +17,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import AddToGroup from '../../components/Chats/_Group/_GroupCreations/AddToGroup';
 import { setCurrentChatInitial } from '../../redux/chatRedux';
 import GroupList from '../../components/Chats/_Group/GroupList/GroupList';
-import ChatInfo from '../../components/Chats/ChatInfo/ChatInfo';
+import GroupInfo from '../../components/Chats/_Group/GroupInfo/GroupInfo';
 
 
 const Message = () => {
@@ -78,7 +78,7 @@ const Message = () => {
           </div>
           <div className='icon' onClick={() => {
             setShowGroupList(!showGroupList);
-          }}><AlignCenterOutlined /></div>
+          }}><TeamOutlined /></div>
         </div>
 
         {showGroupModal
@@ -135,7 +135,7 @@ const Message = () => {
 
       {
         showInfo && currentChat?.isGroupChat === true &&
-        <ChatInfo setShowInfo={setShowInfo} currentChat={currentChat} />
+        <GroupInfo setShowInfo={setShowInfo} currentChat={currentChat} />
       }
 
     </div>

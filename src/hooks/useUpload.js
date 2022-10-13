@@ -47,6 +47,6 @@ export const useUpload = (file) => {
     useEffect(() => {
         file && uploadFile(file)
     }, [file])
-    console.log(url);
+    // console.log(url);
     return { uploadPerc, url }
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import styles from './ChatInfo.module.scss';
+import styles from './GroupInfo.module.scss';
 import {
     ArrowLeftOutlined,
     EditFilled,
@@ -7,20 +7,29 @@ import {
     ExportOutlined,
     CheckOutlined,
     LoadingOutlined,
-    DeleteOutlined
+    DeleteOutlined,
+    DownOutlined,
+    CameraOutlined
 } from '@ant-design/icons';
-import axios from '../../../config/axios';
+import axios from '../../../../config/axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
-import { setCurrentChatInitial } from '../../../redux/chatRedux';
+import { changeAvatar, removeFromGroup, setCurrentChatInitial, setCurrentChatName } from '../../../..//redux/chatRedux';
+import { useUpload } from '../../../../hooks/useUpload';
+import AddModal from '../AddNewUserModal/AddModal';
 
 const ChatInfo = ({ setShowInfo }) => {
+    const { currentChat, chatId } = useSelector(state => state.chat);
+    const { currentUser } = useSelector(state => state.user);
+
     const [showInput, setShowInput] = useState(false);
-    const [groupName, setGroupName] = useState('');
+    const [showAddModal, setShowAddModal] = useState(false);
+    const [groupName, setGroupName] = useState(currentChat.chatName);
+    const [groupAvatar, setGroupAvatar] = useState('');
     const [loading, setLoading] = useState(false);
+    const { uploadPerc, url } = useUpload(groupAvatar)
     const inputRef = useRef(null);
     const dispatch = useDispatch();
-    const { currentChat,chatId } = useSelector(state => state.chat)
 
     const renameGroup = async (e) => {
         e.preventDefault();
@@ -38,10 +47,10 @@ const ChatInfo = ({ setShowInfo }) => {
             }
             if (res.data.status === 'success') {
                 toast.success(res.data.message);
-                console.log(res.data);
+                // console.log(res.data);
                 setGroupName('')
                 setShowInput(false);
-                dispatch(renameGroup({ name: res.data.data.chatName }));
+                dispatch(setCurrentChatName({ chatName: res.data.data.chatName, chatId: currentChat._id }));
             }
             setLoading(false)
         } catch (error) {
@@ -72,7 +81,31 @@ const ChatInfo = ({ setShowInfo }) => {
         }
     }
 
-
+    const removeUser = async (id, params) => {
+        try {
+            const token = localStorage.getItem('token');
+            const res = await axios.put(`/chats/group/${params}`, {
+                userId: id,
+                chatId: chatId
+            }, {
+                headers: {
+                    token: `Bearer ${token}`
+                }
+            });
+            if (res.data.status === 'err') {
+                toast.error(res.data.message);
+            }
+            if (res.data.status === 'success') {
+                toast.success(res.data.message);
+                dispatch(removeFromGroup(id))
+            }
+            if (params === 'exit-group' && res.data.status === 'success') {
+                window.location.reload()
+            }
+        } catch (error) {
+            toast.error('Something went wrong');
+        }
+    }
 
 
     useEffect(() => {
@@ -88,7 +121,27 @@ const ChatInfo = ({ setShowInfo }) => {
         }
     }, [showInput])
 
-
+    const handleAvatar = async (e) => {
+        try {
+            setLoading(true)
+            const token = localStorage.getItem('token');
+            const res = await axios.put('/chats/group/change-avatar', { chatId: chatId, groupAvatar: url }, {
+                headers: {
+                    token: `Bearer ${token}`
+                }
+            });
+            if (res.data.status === 'err') {
+                toast.error(res.data.message);
+            }
+            if (res.data.status === 'success') {
+                toast.success(res.data.message);
+                dispatch(changeAvatar({ url: res.data.data.groupAvatar, chatId: currentChat._id }));
+            }
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+        }
+    }
 
     return (
         <div className={styles.info}>
@@ -100,8 +153,32 @@ const ChatInfo = ({ setShowInfo }) => {
             <div className={styles.body}>
                 <div className={styles.img_div}>
                     <div className={styles.img}>
-                        <img src={currentChat.groupAvatar} alt="" />
+                        {
+                            groupAvatar ? <img src={URL.createObjectURL(groupAvatar)} alt="" />
+                                : <img src={currentChat.groupAvatar} alt="" />
+                        }
+                        <div className={styles.img_backdrop} style={{
+                            opacity: groupAvatar && uploadPerc < 100 && 1
+                            // opacity: (groupAvatar && uploadPerc > 1 && uploadPerc < 100) ? 1 : (uploadPerc === 100 && groupAvatar) && 0
+                        }}>
+
+                            <label htmlFor="avatar">Upload <br /><CameraOutlined className={styles.icon} /></label>
+                            <input
+                                style={{ display: 'none' }}
+                                type="file"
+                                id="avatar"
+                                accept='image/*'
+                                onChange={(e) => setGroupAvatar(e.target.files[0])}
+                            />
+
+                        </div>
                     </div>
+                    {
+                        uploadPerc === 100 &&
+                        <div style={{ display: 'flex', gap: '1rem' }}>
+                            <button className={styles.change_avatar} onClick={handleAvatar}>{loading ? <LoadingOutlined style={{ fontSize: '3rem' }} /> : 'Upload'}</button>
+                        </div>
+                    }
                     {
                         !showInput
                             ? <div className={styles._name}>
@@ -111,6 +188,7 @@ const ChatInfo = ({ setShowInfo }) => {
                             : <div className={styles.input} ref={inputRef}>
                                 <input
                                     type="text"
+                                    value={groupName}
                                     placeholder='group Name'
                                     onChange={(e) => setGroupName(e.target.value)}
                                 />
@@ -129,7 +207,7 @@ const ChatInfo = ({ setShowInfo }) => {
                 </div>
                 <div className={styles.participants}>
                     <h5>{currentChat.users.length} Participants</h5>
-                    <div className={styles.add}>
+                    <div className={styles.add} onClick={()=>setShowAddModal(true)}>
                         <div className={styles._icon}>
                             <UserAddOutlined className={styles.icon} />
                         </div>
@@ -143,6 +221,17 @@ const ChatInfo = ({ setShowInfo }) => {
                                 </div>
                                 <span>{u.name}</span>
                                 {
+                                    !Object.values(u).includes(currentChat.groupAdmin._id) &&
+                                    <>
+                                        <div className={styles.down_arrow}>
+                                            <DownOutlined className={styles.icon} />
+                                            <div className={styles.popup}>
+                                                <button onClick={() => removeUser(u._id, 'remove-user')}>Remove</button>
+                                            </div>
+                                        </div>
+                                    </>
+                                }
+                                {
                                     Object.values(u).includes(currentChat.groupAdmin._id) &&
                                     <div className={styles.isAdmin}>Admin </div>
                                 }
@@ -151,7 +240,7 @@ const ChatInfo = ({ setShowInfo }) => {
                         ))
                     }
                     <div style={{ backgroundColor: 'var(--bg)', height: '0.7rem' }}></div>
-                    <div className={styles.actions}>
+                    <div className={styles.actions} onClick={() => removeUser(currentUser._id, 'exit-group')}>
                         <div className={styles._icon}>
                             <ExportOutlined className={styles.icon} /></div>
                         <span>Leave group</span>
@@ -162,9 +251,11 @@ const ChatInfo = ({ setShowInfo }) => {
                         <span>Delete group</span>
                     </div>
                 </div>
-
             </div>
-        </div>
+            {
+                showAddModal && <AddModal setShowAddModal={setShowAddModal} />
+            }
+        </div >
     )
 }
 
