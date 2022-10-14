@@ -8,6 +8,7 @@ import PostCard from '../../PostCard/PostCard';
 const Posts = () => {
     return (
         <div className={styles.posts}>
+            
             <div className={styles.left}>
                 <div className={styles.left_wrapper}>
                     <div className={styles.intro}>

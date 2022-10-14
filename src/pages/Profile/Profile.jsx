@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import { EditFilled, PlusCircleFilled, CameraFilled } from '@ant-design/icons';
 import { Link, Outlet } from 'react-router-dom';
 import { useState } from 'react';
-import Posts from '../../components/Profiles/Posts/Posts';
 
 
 const Profile = () => {
@@ -60,11 +59,11 @@ const Profile = () => {
                         <Link to={`/profile/${currentUser._id}`} className={`${styles.nav_items}  ${active === 'posts' && styles.active_nav}`} onClick={() => setActive('posts')}>
                             <span className='link'>Posts</span>
                         </Link>
-                        <Link to={`/profile/${currentUser._id}/photos`} className={`${styles.nav_items}  ${active === 'photos' && styles.active_nav}`} onClick={() => setActive('photos')}>
-                            <span className='link'>Photos</span>
-                        </Link>
                         <Link to={`/profile/${currentUser._id}/about`} className={`${styles.nav_items}  ${active === 'about' && styles.active_nav}`} onClick={() => setActive('about')}>
                             <span className='link'>About</span>
+                        </Link>
+                        <Link to={`/profile/${currentUser._id}/photos`} className={`${styles.nav_items}  ${active === 'photos' && styles.active_nav}`} onClick={() => setActive('photos')}>
+                            <span className='link'>Photos</span>
                         </Link>
                         <Link to={`/profile/${currentUser._id}/videos`} className={`${styles.nav_items}  ${active === 'videos' && styles.active_nav}`} onClick={() => setActive('videos')}>
                             <span className='link'>Videos</span>
