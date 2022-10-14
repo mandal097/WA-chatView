@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Profile.module.scss';
 import { useSelector } from 'react-redux';
 import { EditFilled, PlusCircleFilled, CameraFilled } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { useState } from 'react';
 import Posts from '../../components/Profiles/Posts/Posts';
 
@@ -57,26 +57,29 @@ const Profile = () => {
                         </div>
                     </div>
                     <div className={styles.navs}>
-                        <Link to='#' className={`${styles.nav_items}  ${active === 'posts' && styles.active_nav}`} onClick={() => setActive('posts')}>
+                        <Link to={`/profile/${currentUser._id}`} className={`${styles.nav_items}  ${active === 'posts' && styles.active_nav}`} onClick={() => setActive('posts')}>
                             <span className='link'>Posts</span>
                         </Link>
-                        <Link to='#' className={`${styles.nav_items}  ${active === 'photos' && styles.active_nav}`} onClick={() => setActive('photos')}>
+                        <Link to={`/profile/${currentUser._id}/photos`} className={`${styles.nav_items}  ${active === 'photos' && styles.active_nav}`} onClick={() => setActive('photos')}>
                             <span className='link'>Photos</span>
                         </Link>
-                        <Link to='#' className={`${styles.nav_items}  ${active === 'about' && styles.active_nav}`} onClick={() => setActive('about')}>
+                        <Link to={`/profile/${currentUser._id}/about`} className={`${styles.nav_items}  ${active === 'about' && styles.active_nav}`} onClick={() => setActive('about')}>
                             <span className='link'>About</span>
                         </Link>
-                        <Link to='#' className={`${styles.nav_items}  ${active === 'videos' && styles.active_nav}`} onClick={() => setActive('videos')}>
+                        <Link to={`/profile/${currentUser._id}/videos`} className={`${styles.nav_items}  ${active === 'videos' && styles.active_nav}`} onClick={() => setActive('videos')}>
                             <span className='link'>Videos</span>
                         </Link>
-                        <Link to='#' className={`${styles.nav_items}  ${active === 'more' && styles.active_nav}`} onClick={() => setActive('more')}>
-                            <span className='link'>More</span>
+                        <Link to={`/profile/${currentUser._id}/friends`} className={`${styles.nav_items}  ${active === 'friends' && styles.active_nav}`} onClick={() => setActive('friends')}>
+                            <span className='link'>Friends</span>
                         </Link>
+                        {/* <Link to='#' className={`${styles.nav_items}  ${active === 'more' && styles.active_nav}`} onClick={() => setActive('more')}>
+                            <span className='link'>More</span>
+                        </Link> */}
                     </div>
                 </div>
             </div>
             <div className={styles.outlets}>
-                <Posts />
+                <Outlet />
             </div>
         </>
     )

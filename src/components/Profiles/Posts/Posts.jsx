@@ -90,7 +90,7 @@ const Posts = () => {
                                 <span>Ashish singh kuyal</span>
                             </div>
                             <div className={styles.card}>
-                                <img src="https://scontent.fdel27-5.fna.fbcdn.net/v/t1.6435-9/168738929_499821881425162_8386386098057129348_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=41saZKivepUAX-6zDxZ&_nc_ht=scontent.fdel27-5.fna&oh=00_AT8CyDCcPw5HkZwl8s7ymIi-xHhV3zebApdwlOmY7pllPw&oe=63709154" alt="" />
+                                <img src="https://scontent.fdel27-5.fna.fbcdn.net/v/t1.6435-9/168738929_499821881425162_8386386098057129348_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=41saZKivepUAX845-9s&_nc_ht=scontent.fdel27-5.fna&oh=00_AT_SW9iHdBGJo9taA8-mPOFF8aE5sUgedu0PPn1J50jz1g&oe=63709154" alt="" />
                                 <span>Ashish singh kuyal</span>
                             </div>
                         </div>
