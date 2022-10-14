@@ -61,7 +61,7 @@ const Navbar = () => {
                         </div>
                         <button className={styles.tools} onClick={()=>navigate('/messenger')}><MessageFilled /></button>
                         <button className={styles.tools}><BellFilled /></button>
-                        <button className={styles.tools}>
+                        <button className={styles.tools} onClick={()=>navigate(`/profile/:${user?._id}`)}>
                             <img src={user?.profilePic} alt="profile_pic" />
                         </button>
                     </div>

@@ -157,21 +157,21 @@ const ChatInfo = ({ setShowInfo }) => {
                             groupAvatar ? <img src={URL.createObjectURL(groupAvatar)} alt="" />
                                 : <img src={currentChat.groupAvatar} alt="" />
                         }
-                        <div className={styles.img_backdrop} style={{
-                            opacity: groupAvatar && uploadPerc < 100 && 1
-                            // opacity: (groupAvatar && uploadPerc > 1 && uploadPerc < 100) ? 1 : (uploadPerc === 100 && groupAvatar) && 0
-                        }}>
+                        {/* {currentChat.isGroupAdmin && */}
+                            <div className={styles.img_backdrop} style={{
+                                opacity: groupAvatar && uploadPerc < 100 && 1
 
-                            <label htmlFor="avatar">Upload <br /><CameraOutlined className={styles.icon} /></label>
-                            <input
-                                style={{ display: 'none' }}
-                                type="file"
-                                id="avatar"
-                                accept='image/*'
-                                onChange={(e) => setGroupAvatar(e.target.files[0])}
-                            />
-
-                        </div>
+                            }}>
+                                <label htmlFor="avatar">Upload <br /><CameraOutlined className={styles.icon} /></label>
+                                <input
+                                    style={{ display: 'none' }}
+                                    type="file"
+                                    id="avatar"
+                                    accept='image/*'
+                                    onChange={(e) => setGroupAvatar(e.target.files[0])}
+                                />
+                            </div>
+                        {/* } */}
                     </div>
                     {
                         uploadPerc === 100 &&
@@ -207,7 +207,7 @@ const ChatInfo = ({ setShowInfo }) => {
                 </div>
                 <div className={styles.participants}>
                     <h5>{currentChat.users.length} Participants</h5>
-                    <div className={styles.add} onClick={()=>setShowAddModal(true)}>
+                    <div className={styles.add} onClick={() => setShowAddModal(true)}>
                         <div className={styles._icon}>
                             <UserAddOutlined className={styles.icon} />
                         </div>
@@ -221,7 +221,7 @@ const ChatInfo = ({ setShowInfo }) => {
                                 </div>
                                 <span>{u.name}</span>
                                 {
-                                    !Object.values(u).includes(currentChat.groupAdmin._id) && 
+                                    !Object.values(u).includes(currentChat.groupAdmin._id) &&
                                     <>
                                         <div className={styles.down_arrow}>
                                             <DownOutlined className={styles.icon} />

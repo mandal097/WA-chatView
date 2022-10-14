@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Converations from '../../components/Chats/Conversations/Converations';
 import NewConverstations from '../../components/Chats/NewConversations/NewConverstations';
-import styles from './Message.module.scss';
+import styles from './Messages.module.scss';
 import ChatBox from '../../components/Chats/Chatbox/ChatBox';
 import {
   PlusOutlined,

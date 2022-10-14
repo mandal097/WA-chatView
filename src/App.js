@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import SendOtp from './pages/Auth/ForgotPassword/SendOtp';
 import ChangePassword from './pages/Auth/ForgotPassword/ChangePassword';
 import { useSelector } from 'react-redux';
+import Profile from './pages/Profile/Profile';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
@@ -29,6 +30,7 @@ const App = () => {
             <Route path='forgot-password' element={<ChangePassword />} />
 
             <Route path='messenger' element={user ? <Messages /> : <Navigate to='/login' />} />
+            <Route path='profile/:id' element={user ? <Profile /> : <Navigate to='/login' />} />
 
           </Route>
         </Routes>
