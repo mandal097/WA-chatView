@@ -25,6 +25,7 @@ const Message = () => {
   const [showGroupModal, setShowGroupModal] = useState(false);
   const [showGroupList, setShowGroupList] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
   const { currentChat } = useSelector((state) => state.chat);
   const { currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -74,6 +75,8 @@ const Message = () => {
             <input
               type="text"
               placeholder='Search or start new chat'
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
           <div className='icon' onClick={() => {
@@ -82,15 +85,11 @@ const Message = () => {
         </div>
 
         {showGroupModal
-          ? <AddToGroup setShowGroupModal={setShowGroupModal} /> :
-          showGroupList ? <GroupList /> :
-            newConverstations ? <NewConverstations setNewConverstations={setNewConverstations} />
-              : <Converations setNewConverstations={setNewConverstations} />
+          ? <AddToGroup setShowGroupModal={setShowGroupModal} searchTerm={searchTerm} />
+          : showGroupList ? <GroupList searchTerm={searchTerm} />
+            : newConverstations ? <NewConverstations setNewConverstations={setNewConverstations} searchTerm={searchTerm} />
+              : <Converations setNewConverstations={setNewConverstations} searchTerm={searchTerm} />
         }
-        {/* {showGroupList && <GroupList />}
-        {showGroupList && <GroupList />}
-        {newConverstations && <NewConverstations />}
-        {showGroupList && <GroupList />} */}
         {/* ------------------------------------group creations------------------------------------ */}
       </div>
 
@@ -110,8 +109,8 @@ const Message = () => {
                 } alt="profile pic" />
               </div>
               <div className={styles.details} onClick={() => {
-                currentChat?.isGroupChat ===true &&
-                setShowInfo(true)
+                currentChat?.isGroupChat === true &&
+                  setShowInfo(true)
               }
               }>
                 <h4 className={styles.chat_name}>{

@@ -34,7 +34,8 @@
     }
     .body {
       padding: 0 1rem;
-
+      display: flex;
+      flex-direction: column;
       height: 90%;
       overflow-y: scroll;
       .search {
@@ -92,6 +93,28 @@
               color: var(--error);
             }
           }
+        }
+      }
+      .add_user_btn{
+        // height: 4rem;
+        background-color: var(--successLight);
+        margin-top: 1rem;
+        display: inline-flex;
+        cursor: pointer;
+        align-items: center;
+        color: var(--textSoft);
+        padding: 0.7rem 2rem;
+        border-radius: 0.4rem;
+        gap: 1rem;
+        align-self: flex-end;
+        span{
+          font-size: 1.5rem;
+        }
+        .icon{
+          font-size: 3rem;
+        }
+        &:hover{
+          background-color: var(--success);
         }
       }
       .users_list {

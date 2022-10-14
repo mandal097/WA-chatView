@@ -13,6 +13,8 @@ import GroupNameAvatar from './GroupNameAvatar';
 const AddToGroup = ({ setShowGroupModal }) => {
     const { members } = useSelector((state) => state.group);
     const [friends, setFriends] = useState([]);
+    const [searchTerm , setSearchTerm] = useState('');
+    const [searchedUsers, setSearchedUsers] = useState([]);
     const [showCreateGroup, setShowCreateGroup] = useState(false)
     const dispatch = useDispatch()
     useEffect(() => {
@@ -31,6 +33,21 @@ const AddToGroup = ({ setShowGroupModal }) => {
         dispatch(setMembers(id))
     };
 
+
+    
+    useEffect(() => {
+        const search = friends?.filter((user) => {
+            if (searchTerm === '') {
+                return user
+            } else if (user?.name?.toLowerCase().includes(searchTerm.toLowerCase())) {
+                return user
+            }
+            return false;
+        });
+        setSearchedUsers(search);
+    }, [searchTerm, friends])
+
+
     return (
         <div className={styles.add_to_group}>
             {
@@ -48,13 +65,20 @@ const AddToGroup = ({ setShowGroupModal }) => {
                     </div>
                     <div className={styles.body}>
                         <div className={styles.input}>
-                            <input type="text" placeholder='search peoples' multiple />
+                            <input 
+                            type="text" 
+                            placeholder='search peoples' 
+                            multiple 
+                            value={searchTerm}
+                            onChange={(e)=>setSearchTerm(e.target.value)}
+                            />
                         </div>
 
                         <div className={styles.alluser}>
 
 
-                            {friends.map(f => (
+                            {searchTerm?
+                            searchedUsers.map(f => (
                                 <div key={f._id} className={styles.user}
                                     onClick={() => getValue(f._id)}
                                 >
@@ -63,7 +87,18 @@ const AddToGroup = ({ setShowGroupModal }) => {
                                     </div>
                                     <h6 className={styles.name}>{f.name}</h6>
                                 </div>
-                            ))}
+                            )):
+                            friends.map(f => (
+                                <div key={f._id} className={styles.user}
+                                    onClick={() => getValue(f._id)}
+                                >
+                                    <div className={styles.img} >
+                                        <img src={f.profilePic} alt="" />
+                                    </div>
+                                    <h6 className={styles.name}>{f.name}</h6>
+                                </div>
+                            ))
+                        }
                         </div>
                     </div>
                     {members.length !== 0 &&

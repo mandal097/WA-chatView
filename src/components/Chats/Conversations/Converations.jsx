@@ -5,9 +5,11 @@ import axios from '../../../config/axios';
 import { useState } from 'react';
 import Loading from '../../Loading/Loading';
 
-const Converations = () => {
+const Converations = ({ searchTerm }) => {
     const [conversations, setConversations] = useState([]);
-    const [loading , setLoading] =useState(false);
+    const [searchedUsers, setSearchedUsers] = useState([]);
+    const [loading, setLoading] = useState(false);
+
     useEffect(() => {
         const fetchChats = async () => {
             setLoading(true)
@@ -21,13 +23,26 @@ const Converations = () => {
             setLoading(false)
         }
         fetchChats()
-    }, [])
-if(loading) return <Loading font='7rem'/>
+    }, []);
+
+
+
+
+    useEffect(() => {
+        const search = conversations?.filter(conv => conv.users.some(user => user.name.toLowerCase().includes(searchTerm.toLowerCase())));
+        setSearchedUsers(search);
+    }, [searchTerm, conversations])
+
+
+    if (loading) return <Loading font='7rem' />
     return (
         <div className={styles.conversations}>
-            {
+            {searchTerm ?
+                searchedUsers?.map((conv) => (
+                    <ChatsCard key={conv._id} conv={conv} type='existedChat' />
+                )) :
                 conversations.map((conv) => (
-                    <ChatsCard key={conv._id} conv={conv} type='existedChat'/>
+                    <ChatsCard key={conv._id} conv={conv} type='existedChat' />
                 ))
             }
         </div>

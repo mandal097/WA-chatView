@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './GroupInfo.module.scss';
 import {
-    ArrowLeftOutlined,
+    CloseOutlined,
     EditFilled,
     UserAddOutlined,
     ExportOutlined,
@@ -9,7 +9,7 @@ import {
     LoadingOutlined,
     DeleteOutlined,
     DownOutlined,
-    CameraOutlined
+    CameraOutlined,
 } from '@ant-design/icons';
 import axios from '../../../../config/axios';
 import { useDispatch, useSelector } from 'react-redux';
@@ -148,7 +148,7 @@ const ChatInfo = ({ setShowInfo }) => {
             <ToastContainer className='toaster' />
             <div className={styles.info_header}>
                 <h3 className={styles.heading}>
-                    <ArrowLeftOutlined className={styles.icon} onClick={() => setShowInfo(false)} /> Group info</h3>
+                    <CloseOutlined className={styles.icon} onClick={() => setShowInfo(false)} /> Group info</h3>
             </div>
             <div className={styles.body}>
                 <div className={styles.img_div}>
@@ -221,7 +221,7 @@ const ChatInfo = ({ setShowInfo }) => {
                                 </div>
                                 <span>{u.name}</span>
                                 {
-                                    !Object.values(u).includes(currentChat.groupAdmin._id) &&
+                                    !Object.values(u).includes(currentChat.groupAdmin._id) && 
                                     <>
                                         <div className={styles.down_arrow}>
                                             <DownOutlined className={styles.icon} />

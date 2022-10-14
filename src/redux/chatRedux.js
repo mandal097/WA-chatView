@@ -39,17 +39,17 @@ const userSlice = createSlice({
             }
         },
         removeFromGroup: (state, action) => {
-            console.log(action.payload);
-            state.currentChat.users.includes(action.payload) &&
-                state.currentChat.users.splice(
-                    state.currentChat.users.findIndex(
-                        userId => userId === action.payload
-                    ),
-                    1
-                )
+            const objIndex = state.currentChat.users.findIndex(user => user._id === action.payload)
+           state.currentChat.users.splice(objIndex,1)
+        },
+        addNewUserToGroup: (state, action) => {
+            const filteredArr = (a, b) => {
+                return a.filter(x => !b.filter(y => y?._id === x?._id).length);
+            }
+            state.currentChat.users = state.currentChat.users.concat(filteredArr( action.payload,state.currentChat.users ))
         },
     },
 });
 
-export const { setGroups, setCurrentChat, setCurrentChatInitial, setCurrentChatName, removeFromGroup ,changeAvatar} = userSlice.actions;
+export const { setGroups, setCurrentChat, setCurrentChatInitial, setCurrentChatName, removeFromGroup, changeAvatar ,addNewUserToGroup} = userSlice.actions;
 export default userSlice.reducer

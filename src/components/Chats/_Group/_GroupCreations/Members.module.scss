@@ -4,10 +4,10 @@
   position: fixed;
   background-color: var(--bgDark);
   width: 30rem;
-  left: 42rem;
+  left: 45rem;
   margin-top: 5rem;
   height: auto;
-  border-radius: 2rem;
+  border-radius: 0.5rem;
   padding-bottom:2rem ;
   .wrapper {
     display: flex;
@@ -16,6 +16,16 @@
     gap: 2rem;
     padding: 2rem;
     position: relative;
+    .cancel{
+      position: absolute;
+      top: 1rem;
+      right: -1rem;
+      cursor: pointer;
+      .icon{
+        font-size: 3rem;
+        color: var(--textSoft);
+      }
+    }
     .continue {
       width: 5rem;
       height: 5rem;

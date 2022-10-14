@@ -19,6 +19,7 @@ const NewConvCard = ({ conv, type, newUser, setNewConverstations }) => {
     }
   }, [currentUser, conv, type]);
 
+
   const startChat = () => {
     dispatch(setCurrentChat({ currentChat: details, chatId: conv._id }))
   }
@@ -60,7 +61,7 @@ const NewConvCard = ({ conv, type, newUser, setNewConverstations }) => {
             <div className={styles.img}>
               <img src={newUser?.profilePic} alt='profile pic' />
             </div>
-         
+
             <span className={styles.name}>{newUser?.name}</span>
           </div>
         )

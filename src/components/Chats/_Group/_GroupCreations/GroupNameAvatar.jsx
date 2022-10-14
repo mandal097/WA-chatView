@@ -28,7 +28,7 @@ const GroupNameAvatar = ({ setShowCreateGroup }) => {
             toast.error("Please give name to your group ")
         }
         try {
-            console.log(url);
+            // console.log(url);
             setLoading(true)
             const token = localStorage.getItem('token');
             const res = await axios.post('/chats/group/create-group', {

@@ -7,9 +7,9 @@ import GroupCard from '../GroupCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { setGroups } from '../../../../redux/chatRedux';
 
-const GroupList = () => {
-  // const [group, setGroups] = useState([]);
+const GroupList = ({ searchTerm }) => {
   const [loading, setLoading] = useState(false);
+  const [searchedUsers, setSearchedUsers] = useState([]);
   const { groups } = useSelector(state => state.chat)
   const dispatch = useDispatch();
   // console.log(groups);
@@ -22,16 +22,35 @@ const GroupList = () => {
           token: `Bearer ${token}`
         }
       })
-      // setGroups(res.data.data);
       dispatch(setGroups(res.data.data))
       setLoading(false)
     }
     fetchChats()
-  }, [dispatch])
+  }, [dispatch]);
+
+
+  useEffect(() => {
+    const search = groups?.filter((user) => {
+      if (searchTerm === '') {
+        return user
+      } else if (user?.chatName?.toLowerCase().trim().includes(searchTerm.toLowerCase().trim())) {
+        return user
+      }
+      return false;
+    });
+    setSearchedUsers(search);
+
+  }, [searchTerm, groups])
+
+
+
   if (loading) return <Loading font='7rem' />
   return (
     <div className={styles.group_list}>
-      {
+      {searchTerm ?
+        searchedUsers.map((group) => (
+          <GroupCard key={group._id} group={group} type='group' />
+        )) :
         groups.map((group) => (
           <GroupCard key={group._id} group={group} type='group' />
         ))
