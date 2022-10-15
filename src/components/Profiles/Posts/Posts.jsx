@@ -10,7 +10,7 @@ const Posts = () => {
         <div className={styles.posts}>
             
             <div className={styles.left}>
-                <div className={styles.left_wrapper}>
+                <div className={`${styles.left_wrapper} ${'custom_scroll'}`}>
                     <div className={styles.intro}>
                         <h3>Intro</h3>
                         <button>Add Bio</button>

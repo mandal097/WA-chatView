@@ -24,7 +24,7 @@ const AddPostModal = ({ setShowModal }) => {
                     </div>
                     <div className={styles.post_inputs}>
                         <div className={styles.inputs}>
-                            <textarea placeholder="What's new in your mind"></textarea>
+                            <textarea placeholder="What's new in your mind?"></textarea>
                         </div>
                         <div className={styles.media}>
                             {img

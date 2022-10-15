@@ -8,8 +8,12 @@
     width: 36rem;
     .left_wrapper {
       display: flex;
+      height: 100vh;
+      overflow-y: scroll;
       flex-direction: column;
       gap: 2rem;
+      position: sticky;
+      top: 0;
       .intro {
         height: auto;
         background-color: var(--bgDark);
@@ -124,13 +128,13 @@
           justify-content: center;
           margin-top: 1rem;
           .card {
-            width: 10rem;
+            width: 9rem;
             height: auto;
             margin: 0.5rem;
             cursor: pointer;
             img {
-              height: 10rem;
-              width: 10rem;
+              height: 9rem;
+              width: 100%;
               object-fit: cover;
               border-radius: 0.6rem;
             }

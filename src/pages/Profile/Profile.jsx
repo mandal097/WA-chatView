@@ -4,11 +4,22 @@ import { useSelector } from 'react-redux';
 import { EditFilled, PlusCircleFilled, CameraFilled } from '@ant-design/icons';
 import { Link, Outlet } from 'react-router-dom';
 import { useState } from 'react';
+import EditProfileModal from '../../components/Profiles/_Edits/EditProfileModal/EditProfileModal';
+import { useEffect } from 'react';
 
 
 const Profile = () => {
     const { currentUser } = useSelector(state => state.user);
+    const [showEditProfileModal, setShowEditProfileModal] = useState(false);
     const [active, setActive] = useState('posts');
+
+    useEffect(() => {
+        if (showEditProfileModal === true) {
+            document.body.style.overflowY = 'hidden'
+        } else {
+            document.body.style.overflowY = 'scroll'
+        }
+    }, [showEditProfileModal])
     return (
         <>
             <div className={styles.profile_container}>
@@ -50,7 +61,9 @@ const Profile = () => {
                                 </div>
                                 <div className={styles.actions}>
                                     <button><PlusCircleFilled className={styles.icon} />Add story</button>
-                                    <button><EditFilled className={styles.icon} />Edit Profile </button>
+                                    <button onClick={() => setShowEditProfileModal(true)}>
+                                        <EditFilled className={styles.icon} />Edit Profile
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -77,9 +90,14 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
-            <div className={styles.outlets}>
+            <div className={styles.outlets} >
                 <Outlet />
             </div>
+
+            {
+                showEditProfileModal && <EditProfileModal setShowEditProfileModal={setShowEditProfileModal} />
+            }
+
         </>
     )
 }
