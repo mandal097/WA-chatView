@@ -26,19 +26,6 @@
           font-size: 2.5rem;
           color: var(--text);
         }
-        .intro_ {
-          color: var(--text);
-          display: flex;
-          align-items: flex-start;
-          gap: 1.4rem;
-          margin-top: 0.4rem;
-          .icon {
-            font-size: 3rem;
-          }
-          p {
-            font-size: 1.6rem;
-          }
-        }
         button {
           font-size: 1.6rem;
           background-color: var(--bgLight);
@@ -46,6 +33,44 @@
           border-radius: 0.5rem;
           &:hover {
             background-color: var(--bgLighter);
+          }
+        }
+        .bio {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 5rem;
+          font-size: 1.8rem;
+          color: var(--bgLighter);
+        }
+        .edit_bio {
+          width: 100%;
+          height: auto;
+          textarea {
+            width: 100%;
+            height: 7rem;
+            background-color: transparent;
+            resize: none;
+            color: var(--textSoft);
+            font-size: 1.6rem;
+            outline: none;
+            border-radius: 1rem;
+            padding: 1rem;
+            border: 1px solid var(--btn);
+          }
+          .btns {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 1rem ;
+            button {
+              background-color: var(--bgLight);
+              &:hover {
+                background-color: var(--bgLighter);
+              }
+            }
           }
         }
       }

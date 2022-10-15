@@ -1,22 +1,14 @@
 import React, { useState } from 'react';
 import styles from './EditProfileModal.module.scss';
-import {
-    CloseOutlined,
-    BankFilled,
-    HomeFilled,
-    MailFilled,
-    InstagramFilled,
-    PhoneFilled,
-    ClockCircleFilled,
-    UserOutlined,
-} from '@ant-design/icons';
+import { CloseOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 import EditDetailsModal from '../EditDetailsModal/EditDetailsModal';
+import Details from '../Details/Details';
 
 const EditProfileModal = ({ setShowEditProfileModal }) => {
     const { currentUser } = useSelector(state => state.user);
     const [showEditDetailsModal, setShowEditDetailsModal] = useState(false);
-    const [showBioInput, setShowBioInfo] = useState(false);
+    const [showBioInput, setShowBioInput] = useState(false);
     const [profile, setProfile] = useState('');
     const [coverImg, setCoverImg] = useState('');
     const [bioText, setBioText] = useState('');
@@ -76,7 +68,7 @@ const EditProfileModal = ({ setShowEditProfileModal }) => {
                 <div className={`${styles.update_sections} ${styles.bio_section}`}>
                     <div className={styles.update_options}>
                         <span> Bio</span>
-                        <div className={styles.edit} onClick={() => setShowBioInfo(!showBioInput)}>
+                        <div className={styles.edit} onClick={() => setShowBioInput(!showBioInput)}>
                             {showBioInput ? 'Cancel' : 'Add'}
                         </div>
                     </div>
@@ -89,8 +81,8 @@ const EditProfileModal = ({ setShowEditProfileModal }) => {
                                 placeholder='write something about yourself...'
                             ></textarea>
                             <div className={styles.btns}>
-                                <button onClick={() => setShowBioInfo(!showBioInput)}>Cancel</button>
-                                <button disabled={!bioText} style={{cursor:!bioText?'not-allowed':'pointer'}}>Save</button>
+                                <button onClick={() => setShowBioInput(!showBioInput)}>Cancel</button>
+                                <button disabled={!bioText} style={{ cursor: !bioText ? 'not-allowed' : 'pointer' }}>Save</button>
                             </div>
                         </div>}
                 </div>
@@ -101,36 +93,7 @@ const EditProfileModal = ({ setShowEditProfileModal }) => {
                         <div className={styles.edit} onClick={() => setShowEditDetailsModal(true)}>Edit</div>
                     </div>
                     <div className={styles.intros_}>
-                        <ul>
-                            <li>
-                                <div className={styles.icon_}><UserOutlined className={styles.icon} /></div>
-                                <div className={styles.fields}><p>{currentUser.name}</p></div>
-                            </li>
-                            <li>
-                                <div className={styles.icon_}><MailFilled className={styles.icon} /></div>
-                                <div className={styles.fields}><p>{currentUser.email}</p></div>
-                            </li>
-                            <li>
-                                <div className={styles.icon_}><PhoneFilled className={styles.icon} /></div>
-                                <div className={styles.fields}> <p>{currentUser?.phone}</p></div>
-                            </li>
-                            <li>
-                                <div className={styles.icon_}><ClockCircleFilled className={styles.icon} /></div>
-                                <div className={styles.fields}>Joined on <p>{currentUser.createdAt.slice(0, 4)}</p></div>
-                            </li>
-                            <li>
-                                <div className={styles.icon_}><HomeFilled className={styles.icon} /></div>
-                                <div className={styles.fields}>Lives in <p>New Delhi</p></div>
-                            </li>
-                            <li>
-                                <div className={styles.icon_}><BankFilled className={styles.icon} /></div>
-                                <div className={styles.fields}>went to <p>SS khalsa sr. secc school</p></div>
-                            </li>
-                            <li>
-                                <div className={styles.icon_}><InstagramFilled className={styles.icon} /></div>
-                                <div className={styles.fields}><a href="www.instagram.com">www.instagram.com</a></div>
-                            </li>
-                        </ul>
+                        <Details />
                     </div>
                 </div>
 

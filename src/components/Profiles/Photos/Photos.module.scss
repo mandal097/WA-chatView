@@ -1,0 +1,76 @@
+.photos {
+  background-color: var(--bgDark);
+  border-radius: 1rem;
+  padding: 1rem;
+  color: var(--text);
+  .body {
+    display: flex;
+    flex-direction: column;
+    .head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      h3 {
+        font-size: 2.3rem;
+      }
+      button {
+        font-size: 1.6rem;
+        padding: 0.7rem 1rem;
+        border-radius: 0.6rem;
+        color: var(--btnLight);
+        &:hover {
+          background-color: var(--bgLight);
+        }
+      }
+    }
+    .filter_options {
+      display: inline-flex;
+      margin: 1rem 0;
+      gap: 2rem;
+      height: 5rem;
+      align-items: center;
+      .filter {
+        height: 4.5rem;
+        font-size: 1.6rem;
+        border-radius: 0.5rem;
+        display: grid;
+        place-items: center;
+        padding: 0 1rem;
+        position: relative;
+        &:hover {
+          background-color: var(--bgLight);
+        }
+      }
+      .active {
+        &::after {
+          content: "";
+          position: absolute;
+          height: 0.25rem;
+          width: 100%;
+          background-color: var(--btnLight);
+          bottom: 0;
+        }
+      }
+    }
+    .photos_div {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      .img {
+        width: 14rem;
+        height: 14rem;
+        margin: 0.8rem 0;
+        cursor: pointer;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 0.5rem;
+        }
+        &:hover{
+            transform: scale(1.1);
+        }
+      }
+    }
+  }
+}

@@ -157,43 +157,5 @@
         }
       }
     }
-    .intro_section {
-      .intros_ {
-        ul {
-          li {
-            display: flex;
-            align-items: center;
-            color: var(--text);
-            .icon_ {
-              width: 4rem;
-              height: 4rem;
-              display: grid;
-              place-items: center;
-              .icon {
-                font-size: 3rem;
-              }
-            }
-            .fields {
-              display: flex;
-              align-items: center;
-              font-size: 1.5rem;
-              p {
-                font-size: 1.5rem;
-                margin-left: 0.6rem;
-                color: var(--btnLight);
-              }
-              a {
-                font-size: 1.5rem;
-                color: lightskyblue;
-                text-decoration: none;
-                &:hover {
-                  text-decoration: underline;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
   }
 }

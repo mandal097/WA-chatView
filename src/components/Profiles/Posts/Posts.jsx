@@ -1,32 +1,67 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './Posts.module.scss';
-import { ReadOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
-import AddPost from '../../AddPostModal/AddPost';
+import { Link, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useRef } from 'react';
 import PostCard from '../../PostCard/PostCard';
+import Details from '../_Edits/Details/Details';
+import AddPost from '../../AddPostModal/AddPost';
+import EditDetailsModal from '../_Edits/EditDetailsModal/EditDetailsModal';
 
 const Posts = () => {
+    const { currentUser } = useSelector(state => state.user)
+    const [showEditDetailsModal, setShowEditDetailsModal] = useState(false);
+    const [bioText, setBioText] = useState('');
+    const [showBioInput, setShowBioInput] = useState(false);
+    const [owner, setOwner] = useState(false);
+    const bioRef = useRef();
+    const location = useLocation();
+    const id = location.pathname.split('/')[2]
+
+    useEffect(() => {
+        const checkCLick = (e) => {
+            if (showBioInput && !bioRef.current.contains(e.target)) {
+                setShowBioInput(false)
+            }
+        }
+        document.addEventListener('mousedown', checkCLick)
+        return () => {
+            document.removeEventListener('mousedown', checkCLick)
+        }
+    }, [showBioInput]);
+
+    useEffect(() => {
+        if (id === currentUser._id) {
+            setOwner(true)
+        } else {
+            setOwner(false)
+        }
+    }, [id, currentUser])
     return (
         <div className={styles.posts}>
-            
+
             <div className={styles.left}>
                 <div className={`${styles.left_wrapper} ${'custom_scroll'}`}>
                     <div className={styles.intro}>
                         <h3>Intro</h3>
-                        <button>Add Bio</button>
-                        <div className={styles.intro_}>
-                            <ReadOutlined className={styles.icon} /> <p>Went to SS Khalsa Sr. Sec. School, Lajpat nagar, New delhi.</p>
-                        </div>
-                        <div className={styles.intro_}>
-                            <ReadOutlined className={styles.icon} /> <p>We School, Lajpat nagar, New delhi.</p>
-                        </div>
-                        <div className={styles.intro_}>
-                            <ReadOutlined className={styles.icon} /> <p>Went to SS Khalsa Sr. Sec. School, Lajpat nagar, New delhi.</p>
-                        </div>
-                        <div className={styles.intro_}>
-                            <ReadOutlined className={styles.icon} /> <p>Went to SS Khalsa Sr. Sec. School, Lajpat nagar, New delhi.</p>
-                        </div>
-                        <button>Edit Intro</button>
+                        {!showBioInput && owner
+                            ? <button onClick={() => setShowBioInput(!showBioInput)}>Add Bio</button>
+                            : showBioInput && owner && <div className={styles.edit_bio} ref={bioRef}>
+                                <textarea
+                                    value={bioText}
+                                    onChange={(e) => setBioText(e.target.value)}
+                                    placeholder='Describe who you are...'
+                                ></textarea>
+                                <div className={styles.btns}>
+                                    <button onClick={() => setShowBioInput(!showBioInput)}>Cancel</button>
+                                    <button disabled={!bioText} style={{ cursor: !bioText ? 'not-allowed' : 'pointer' }}>Save</button>
+                                </div>
+                            </div>}
+
+                        <Details id={id} />
+
+                        {owner && <button onClick={() => setShowEditDetailsModal(true)}>Edit Intro</button>}
                     </div>
 
 
@@ -108,8 +143,9 @@ const Posts = () => {
                 <PostCard />
                 <PostCard />
                 <PostCard />
-                
+
             </div>
+            {showEditDetailsModal && <EditDetailsModal setShowEditDetailsModal={setShowEditDetailsModal} />}
         </div>
     )
 }
