@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   height: auto;
-  padding-bottom: 1rem ;
+  padding-bottom: 1rem;
   .post_details {
     display: flex;
     align-items: center;
@@ -22,11 +22,40 @@
     }
     .details {
       flex: 1;
-      display: flex;
-      align-items: center;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       text-transform: capitalize;
-      color: var(--text);
+      small {
+        display: inline;
+        color: var(--text);
+        font-size: 1.2rem;
+      }
+      .link {
+        text-decoration: none;
+        display: inline;
+        color: var(--text);
+        font-size: 1.5rem;
+        margin-right: 0.6rem;
+        &:hover {
+          color: var(--textSoft);
+        }
+      }
+      .name_link {
+        color: var(--btnLight);
+        &:hover {
+          color: var(--btn);
+        }
+      }
+      .more_tags {
+        display: inline;
+        font-size: 1.5rem;
+        span {
+          font-size: 1.5rem;
+          cursor: pointer;
+          &:hover {
+            color: var(--textSoft);
+          }
+        }
+      }
     }
     .more {
       margin-left: auto;

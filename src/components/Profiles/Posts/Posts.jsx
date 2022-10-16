@@ -8,6 +8,7 @@ import PostCard from '../../PostCard/PostCard';
 import Details from '../_Edits/Details/Details';
 import AddPost from '../../AddPostModal/AddPost';
 import EditDetailsModal from '../_Edits/EditDetailsModal/EditDetailsModal';
+import axios from '../../../config/axios';
 
 const Posts = () => {
     const { currentUser } = useSelector(state => state.user)
@@ -15,6 +16,7 @@ const Posts = () => {
     const [bioText, setBioText] = useState('');
     const [showBioInput, setShowBioInput] = useState(false);
     const [owner, setOwner] = useState(false);
+    const [posts, setPosts] = useState([]);
     const bioRef = useRef();
     const location = useLocation();
     const id = location.pathname.split('/')[2]
@@ -38,6 +40,22 @@ const Posts = () => {
             setOwner(false)
         }
     }, [id, currentUser])
+
+    useEffect(() => {
+        const getPosts = async () => {
+            try {
+                const res = await axios.get('/post/get-all-posts', {
+                    headers: {
+                        token: `Bearer ${localStorage.getItem('token')}`
+                    }
+                })
+                setPosts(res.data.data)
+            } catch (error) {
+                console.log('something went wrong');
+            }
+        }
+        getPosts()
+    }, [])
     return (
         <div className={styles.posts}>
 
@@ -137,12 +155,13 @@ const Posts = () => {
 
 
             <div className={styles.right}>
-                <AddPost />
+                {owner && <AddPost />}
 
-                <PostCard />
-                <PostCard />
-                <PostCard />
-                <PostCard />
+                {
+                    posts.map(post => (
+                        <PostCard key={post._id} post={post} />
+                    ))
+                }
 
             </div>
             {showEditDetailsModal && <EditDetailsModal setShowEditDetailsModal={setShowEditDetailsModal} />}

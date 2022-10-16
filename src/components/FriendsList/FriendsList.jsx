@@ -4,6 +4,7 @@ import styles from './FriendsList.module.scss';
 import axios from '../../config/axios';
 import { ToastContainer, toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import { ArrowLeftOutlined, SearchOutlined } from '@ant-design/icons';
 
 
 const Card = ({ el, setShowFriendsList, setSearchText }) => {
@@ -20,10 +21,10 @@ const Card = ({ el, setShowFriendsList, setSearchText }) => {
     )
 }
 
-const FriendsList = ({ showFriendsList, setShowFriendsList, searchText, setSearchText }) => {
+const FriendsList = ({ showFriendsList, setShowFriendsList }) => {
     const listRef = useRef();
     const [list, setList] = useState([]);
-    // const [loading, setLoading] = useState(false);
+    const [searchText, setSearchText] = useState('');
     const [searchedUsers, setSearchedUsers] = useState([]);
 
     useEffect(() => {
@@ -81,46 +82,53 @@ const FriendsList = ({ showFriendsList, setShowFriendsList, searchText, setSearc
         // {
 
         <>
-            {/* {loading
-                ? <Loading font='7rem' />
-                : */}
-                <div div className={`${styles.friendslist} ${'custom_scroll'}`
-                } ref={listRef} >
-                    <ToastContainer className='toaster' />
-                    <div className={styles.wrapper}>
-                        {/* -------------------searched users----------------- */}
-
-                        {searchedUsers.length > 0 && <h3>Searched users</h3>}
-                        {searchedUsers &&
-                            searchedUsers.map(el => (
-                                <Card
-                                    key={el._id}
-                                    el={el}
-                                    setShowFriendsList={setShowFriendsList}
-                                    setSearchText={setSearchText}
-                                />
-                            ))
-                        }
-
-                        {/* -------------------all users----------------- */}
-                        <h3 style={{ marginTop: '2rem' }}>Suggested</h3>
-                        {
-                            list.map(el => (
-                                <Card
-                                    key={el._id}
-                                    el={el}
-                                    setShowFriendsList={setShowFriendsList}
-                                    setSearchText={setSearchText}
-                                />
-                            ))
-                        }
-
-
+            <div div className={`${styles.friendslist} ${'custom_scroll'}`
+            } ref={listRef} >
+                <ToastContainer className='toaster' />
+                <div className={styles.wrapper}>
+                    <div className={styles.search_bar}>
+                        <div className={styles.back} onClick={()=>setShowFriendsList(false)}>
+                            <ArrowLeftOutlined className={styles.icon} />
+                        </div>
+                        <div className={styles.search_box}>
+                            <div className={styles.icon}><SearchOutlined /></div>
+                            <input
+                                type="text"
+                                placeholder='search friends here...'
+                                value={searchText}
+                                onChange={(e) => setSearchText(e.target.value)}
+                            />
+                        </div>
                     </div>
-                </div >
-            {/* } */}
+                    {/* -------------------searched users----------------- */}
+
+                    {searchedUsers.length > 0 && <h3>Searched users</h3>}
+                    {searchedUsers &&
+                        searchedUsers.map(el => (
+                            <Card
+                                key={el._id}
+                                el={el}
+                                setShowFriendsList={setShowFriendsList}
+                                setSearchText={setSearchText}
+                            />
+                        ))
+                    }
+
+                    {/* -------------------all users----------------- */}
+                    <h3 style={{ marginTop: '2rem' }}>Suggested</h3>
+                    {
+                        list.map(el => (
+                            <Card
+                                key={el._id}
+                                el={el}
+                                setShowFriendsList={setShowFriendsList}
+                                setSearchText={setSearchText}
+                            />
+                        ))
+                    }
+                </div>
+            </div >
         </>
-        // }
     )
 }
 

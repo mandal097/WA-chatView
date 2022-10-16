@@ -10,8 +10,7 @@ import {
     UserAddOutlined,
     GlobalOutlined,
     LogoutOutlined,
-    LoginOutlined,
-    ArrowLeftOutlined
+    LoginOutlined
 } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -25,7 +24,6 @@ const Navbar = () => {
     const user = useSelector((state) => state.user.currentUser);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [searchText, setSearchText] = useState('');
     const [showFriendsList, setShowFriendsList] = useState('');
 
 
@@ -45,27 +43,16 @@ const Navbar = () => {
     return (
         <>
             <nav className={styles.navbar}>
-                {!showFriendsList
-                    ? <div className={styles.logo} onClick={() => navigate('/')}>
-                        <GlobalOutlined className='icon' />
-                    </div>
-                    : <div className={styles.logo} onClick={() => setShowFriendsList(false)}>
-                        <ArrowLeftOutlined className='icon' />
-                    </div>
-                }
+                <div className={styles.logo} onClick={() => navigate('/')}>
+                    <GlobalOutlined className='icon' />
+                </div>
                 {
                     user &&
                     <>
-                        <div className={styles.search_box} 
-                        onClick={() => setShowFriendsList(!showFriendsList)}
+                        <div className={styles.search_box}
+                            onClick={() => setShowFriendsList(!showFriendsList)}
                         >
                             <div className={styles.icon}><SearchOutlined /></div>
-                            <input
-                                type="text"
-                                placeholder='search friends here...'
-                                value={searchText}
-                                onChange={(e) => setSearchText(e.target.value)}
-                            />
                         </div>
                         <div className={styles.middle}>
                             <button className={styles.items}><HomeOutlined /></button>
@@ -101,13 +88,11 @@ const Navbar = () => {
                         </button>
                     </div>
                 }
-                </nav>
-                {showFriendsList &&
+            </nav>
+            {showFriendsList &&
                 <FriendsList
                     setShowFriendsList={setShowFriendsList}
                     showFriendsList={showFriendsList}
-                    searchText={searchText}
-                    setSearchText={setSearchText}
                 />
             }
         </>

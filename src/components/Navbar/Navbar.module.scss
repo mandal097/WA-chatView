@@ -23,13 +23,13 @@
   .search_box {
     width: 27rem;
     height: 4rem;
-    border: 2px solid var(--border);
-    border-radius: 1rem;
+    border-radius: 2rem;
     margin-left: 1rem;
     display: flex;
     align-items: center;
     padding: 0 1rem;
     gap: 1rem;
+    background-color: var(--bgLighter);
     .icon {
       display: flex;
       align-items: center;
