@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from './AddPostModal.module.scss';
+import styles from './CreatePostModal.module.scss';
 import { CloseOutlined, FileImageFilled } from '@ant-design/icons';
 import { useState } from 'react';
 
-const AddPostModal = ({ setShowModal }) => {
+const CreatePostModal = ({ setShowModal }) => {
     const [active, setActive] = useState(false);
     const [img, setImg] = useState('');
     return (
@@ -54,4 +54,4 @@ const AddPostModal = ({ setShowModal }) => {
     )
 }
 
-export default AddPostModal
+export default CreatePostModal

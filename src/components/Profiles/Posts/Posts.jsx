@@ -5,9 +5,9 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useRef } from 'react';
 import PostCard from '../../PostCard/PostCard';
-import Details from '../_Edits/Details/Details';
-import AddPost from '../../AddPostModal/AddPost';
-import EditDetailsModal from '../_Edits/EditDetailsModal/EditDetailsModal';
+import Details from '../Details/Details';
+import CreatePost from '../../CreatePost/CreatePost';
+import EditDetailsModal from '../../_Modals/EditDetailsModal/EditDetailsModal';
 import axios from '../../../config/axios';
 
 const Posts = () => {
@@ -155,7 +155,7 @@ const Posts = () => {
 
 
             <div className={styles.right}>
-                {owner && <AddPost />}
+                {owner && <CreatePost />}
 
                 {
                     posts.map(post => (

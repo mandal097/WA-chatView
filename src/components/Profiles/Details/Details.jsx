@@ -11,7 +11,7 @@ import {
 } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import axios from '../../../../config/axios';
+import axios from '../../../config/axios';
 
 const Details = ({ id }) => {
     const { currentUser } = useSelector(state => state.user);
@@ -24,7 +24,7 @@ const Details = ({ id }) => {
                         token: `Bearer ${localStorage.getItem('token')}`
                     }
                 })
-                if (String(id) === String(currentUser._id)) {
+                if (String(id) === String(currentUser.id)) {
                     setCurrentProfile(currentUser)
                 } else {
                     setCurrentProfile(res.data.data)

@@ -14,7 +14,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import axios from '../../config/axios';
-import EditProfileModal from '../../components/Profiles/_Edits/EditProfileModal/EditProfileModal';
+import EditProfileModal from '../../components/_Modals/EditProfileModal/EditProfileModal';
 import Loading from '../../components/Loading/Loading';
 
 

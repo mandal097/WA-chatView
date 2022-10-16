@@ -3,7 +3,7 @@ import styles from './PostCard.module.scss';
 import { MoreOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import TaggedUser from '../TaggedUsersModal/TaggedUser';
+import TaggedUser from '../_Modals/TaggedUsersModal/TaggedUser';
 // import axios from '../../config/axios';
 // import { useEffect } from 'react';
 
