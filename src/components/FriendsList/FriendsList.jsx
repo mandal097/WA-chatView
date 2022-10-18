@@ -87,7 +87,7 @@ const FriendsList = ({ showFriendsList, setShowFriendsList }) => {
                 <ToastContainer className='toaster' />
                 <div className={styles.wrapper}>
                     <div className={styles.search_bar}>
-                        <div className={styles.back} onClick={()=>setShowFriendsList(false)}>
+                        <div className={styles.back} onClick={() => setShowFriendsList(false)}>
                             <ArrowLeftOutlined className={styles.icon} />
                         </div>
                         <div className={styles.search_box}>
@@ -96,13 +96,17 @@ const FriendsList = ({ showFriendsList, setShowFriendsList }) => {
                                 type="text"
                                 placeholder='search friends here...'
                                 value={searchText}
+                                autoFocus
                                 onChange={(e) => setSearchText(e.target.value)}
                             />
                         </div>
                     </div>
                     {/* -------------------searched users----------------- */}
 
-                    {searchedUsers.length > 0 && <h3>Searched users</h3>}
+                    {searchedUsers.length>0
+                        ?  <h3>Searched users</h3>
+                        : searchText && <h3>Not results found</h3>
+                    }
                     {searchedUsers &&
                         searchedUsers.map(el => (
                             <Card

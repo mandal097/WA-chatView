@@ -9,11 +9,13 @@ import Details from '../Details/Details';
 import CreatePost from '../../CreatePost/CreatePost';
 import EditDetailsModal from '../../_Modals/EditDetailsModal/EditDetailsModal';
 import axios from '../../../config/axios';
+import Loading from '../../Loading/Loading';
 
 const Posts = () => {
     const { currentUser } = useSelector(state => state.user)
     const [showEditDetailsModal, setShowEditDetailsModal] = useState(false);
     const [bioText, setBioText] = useState('');
+    const [loading, setLoading] = useState(false)
     const [showBioInput, setShowBioInput] = useState(false);
     const [owner, setOwner] = useState(false);
     const [posts, setPosts] = useState([]);
@@ -44,14 +46,17 @@ const Posts = () => {
     useEffect(() => {
         const getPosts = async () => {
             try {
+                setLoading(true)
                 const res = await axios.get('/post/get-all-posts', {
                     headers: {
                         token: `Bearer ${localStorage.getItem('token')}`
                     }
                 })
                 setPosts(res.data.data)
+                setLoading(false)
             } catch (error) {
                 console.log('something went wrong');
+                setLoading(false)
             }
         }
         getPosts()
@@ -159,7 +164,13 @@ const Posts = () => {
 
                 {
                     posts.map(post => (
-                        <PostCard key={post._id} post={post} />
+                        <>
+                            {
+                                loading
+                                    ? <Loading font='10rem' color='white' />
+                                    : <PostCard key={post._id} post={post} loading={loading} />
+                            }
+                        </>
                     ))
                 }
 

@@ -2,6 +2,7 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import userRedux from "./userRedux";
 import chatRedux from "./chatRedux";
 import groupRedux from "./AddToGroup";
+import currentProfile from "./currentProfile";
 
 
 import {
@@ -26,7 +27,8 @@ const persistConfig = {
 const rootReducer = combineReducers({
     user: userRedux,
     chat: chatRedux,
-    group:groupRedux
+    group: groupRedux,
+    profile: currentProfile
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

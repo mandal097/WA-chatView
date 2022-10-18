@@ -1,0 +1,83 @@
+.friends {
+  height: auto;
+  background-color: var(--bgDark);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem;
+  .header {
+    display: flex;
+    align-items: center;
+    height: 4rem;
+    margin-top: 1.5rem;
+    justify-content: space-between;
+    h3 {
+      font-size: 2.4rem;
+    }
+    .right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      .search_box {
+        width: 24rem;
+        height: 4rem;
+        border-radius: 5rem;
+        padding: 0 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        background-color: var(--bgLight);
+        .icon {
+          font-size: 2.4rem;
+          color: var(--textSoft);
+        }
+        input {
+            width: 100%;
+          font-size: 1.5rem;
+          color: var(--text);
+        }
+      }
+      button {
+        font-size: 1.6rem;
+        height: 4rem;
+        border-radius: 0.5rem;
+        padding: 0 1rem;
+        color: var(--btnLight);
+        &:hover {
+          background-color: var(--bgLight);
+        }
+      }
+    }
+  }
+  .navs {
+    height: 5rem;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    .nav_items {
+      height: 85%;
+      width: 10rem;
+      display: grid;
+      place-items: center;
+      position: relative;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      cursor: pointer;
+      &:hover {
+        background-color: var(--bgLight);
+      }
+    }
+    .active_nav {
+      &::after {
+        content: "";
+        position: absolute;
+        height: 3px;
+        width: 100%;
+        border-bottom: 2px solid var(--btnLight);
+        bottom: -4px;
+      }
+    }
+  }
+}

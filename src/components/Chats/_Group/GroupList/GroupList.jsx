@@ -48,10 +48,10 @@ const GroupList = ({ searchTerm }) => {
   return (
     <div className={styles.group_list}>
       {searchTerm ?
-        searchedUsers.map((group) => (
+        searchedUsers?.map((group) => (
           <GroupCard key={group._id} group={group} type='group' />
         )) :
-        groups.map((group) => (
+        groups?.map((group) => (
           <GroupCard key={group._id} group={group} type='group' />
         ))
       }

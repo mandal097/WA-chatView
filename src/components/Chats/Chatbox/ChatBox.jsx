@@ -21,6 +21,7 @@ const ChatBox = () => {
     const [messages, setMessages] = useState([]);
     const socket = useRef()
 
+
     const sendMessage = async (e) => {
         e.preventDefault();
         if (!newMessage) {
@@ -55,6 +56,7 @@ const ChatBox = () => {
             });
             setMessages(res.data.data);
             setLoading(false)
+            console.log(res.data.data);
         }
         fetchMessages();
     }, [chatId]);

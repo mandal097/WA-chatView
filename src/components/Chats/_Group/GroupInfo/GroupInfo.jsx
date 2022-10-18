@@ -190,6 +190,7 @@ const ChatInfo = ({ setShowInfo }) => {
                                     type="text"
                                     value={groupName}
                                     placeholder='group Name'
+                                    autoFocus
                                     onChange={(e) => setGroupName(e.target.value)}
                                 />
                                 {

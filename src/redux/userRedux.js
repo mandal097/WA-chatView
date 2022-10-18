@@ -5,7 +5,8 @@ const initialState = {
     otpState: {
         phone: '',
         email: ''
-    }
+    },
+    // loading: false
 };
 
 
@@ -27,8 +28,23 @@ const userSlice = createSlice({
             state.otpState.phone = phone;
             state.otpState.email = email;
         },
+        followFriend: (state, action) => {
+            if (!state.currentUser.followings.includes(action.payload)) {
+                state.currentUser.followings.push(action.payload)
+            }
+        },
+        unFollowFriend: (state, action) => {
+            if (state.currentUser.followings.includes(action.payload)) {
+                state.currentUser.followings.splice(
+                    state.currentUser.followings.findIndex(
+                        userId => userId === action.payload
+                    ),
+                    1
+                )
+            }
+        },
     },
 });
 
-export const { login, logout, updateProfile, setOtpState } = userSlice.actions;
+export const { login, logout, updateProfile, setOtpState, followFriend, unFollowFriend } = userSlice.actions;
 export default userSlice.reducer

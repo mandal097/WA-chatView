@@ -29,7 +29,7 @@ const App = () => {
           <Route path='/'>
             <Route index element={<Home />} />
             {/* ---------------------authentication routes -------------------------------*/}
-            <Route path='login' element={<Login />} />
+            <Route path='login' element={user ? <Navigate to={`/profile/${user._id}`}/> : <Login />} />
             <Route path='register' element={<Register />} />
             <Route path='reset-password' element={<ResetPassword />} />
             <Route path='send-otp' element={<SendOtp />} />

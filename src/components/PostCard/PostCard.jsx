@@ -4,12 +4,12 @@ import { MoreOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import TaggedUser from '../_Modals/TaggedUsersModal/TaggedUser';
+// import Loading from '../Loading/Loading';
 // import axios from '../../config/axios';
 // import { useEffect } from 'react';
 
 const PostCard = ({ post }) => {
     const [showTagsModal, setShowTagModal] = useState(false);
-
     return (
         <div className={styles.postcard}>
             <div className={styles.post_details}>
