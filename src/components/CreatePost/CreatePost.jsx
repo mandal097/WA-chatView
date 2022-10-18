@@ -6,6 +6,7 @@ import CreatePostModal from '../_Modals/CreatePostModal/CreatePostModal';
 
 const CreatePost = () => {
     const [showModal, setShowModal] = useState(false);
+
     return (
         <div className={styles.create_post}>
             <div className={styles.top}>

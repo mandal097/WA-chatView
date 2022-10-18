@@ -11,7 +11,7 @@ import TaggedUser from '../_Modals/TaggedUsersModal/TaggedUser';
 const PostCard = ({ post }) => {
     const [showTagsModal, setShowTagModal] = useState(false);
     return (
-        <div className={styles.postcard}>
+        <div className={styles.postcard} key={post._id}>
             <div className={styles.post_details}>
                 <div className={styles.user_image}>
                     <img src={post.userId?.profilePic} alt="image_" />
