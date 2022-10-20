@@ -47,7 +47,7 @@ const Posts = () => {
         const getPosts = async () => {
             try {
                 setLoading(true)
-                const res = await axios.get('/post/get-all-posts', {
+                const res = await axios.get('/post/my-posts', {
                     headers: {
                         token: `Bearer ${localStorage.getItem('token')}`
                     }

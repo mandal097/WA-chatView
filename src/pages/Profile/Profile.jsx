@@ -104,7 +104,7 @@ const Profile = () => {
                 setLoading(false)
             }
             if (res.data.status === 'success') {
-                toast.success(res.data.message)
+                // toast.success(res.data.message)
                 dispatch(currentProfileState(res.data.data))
                 setLoading(false)
                 if (String(id) === String(currentUser._id)) {
@@ -137,10 +137,10 @@ const Profile = () => {
             if (res.data.status === 'err') {
                 toast.error(res.data.message)
             }
-            if (res.data.status === 'success') {
-                toast.success(res.data.message)
-                console.log(res.data);
-            }
+            // if (res.data.status === 'success') {
+            //     toast.success(res.data.message)
+            //     console.log(res.data);
+            // }
         } catch (error) {
             toast.error('something went wrong')
 
@@ -159,9 +159,9 @@ const Profile = () => {
             if (res.data.status === 'err') {
                 toast.error(res.data.message)
             }
-            if (res.data.status === 'success') {
-                toast.success(res.data.message)
-            }
+            // if (res.data.status === 'success') {
+            //     toast.success(res.data.message)
+            // }
         } catch (error) {
             toast.error('something went wrong')
         }

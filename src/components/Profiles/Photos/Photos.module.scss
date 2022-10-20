@@ -18,6 +18,7 @@
         padding: 0.7rem 1rem;
         border-radius: 0.6rem;
         color: var(--btnLight);
+        cursor: pointer;
         &:hover {
           background-color: var(--bgLight);
         }
@@ -37,6 +38,7 @@
         place-items: center;
         padding: 0 1rem;
         position: relative;
+        cursor: pointer;
         &:hover {
           background-color: var(--bgLight);
         }
@@ -57,18 +59,37 @@
       flex-wrap: wrap;
       justify-content: space-around;
       .img {
-        width: 14rem;
-        height: 14rem;
+        width: 16rem;
+        height: 16rem;
         margin: 0.8rem 0;
         cursor: pointer;
+        position: relative;
         img {
           width: 100%;
           height: 100%;
           object-fit: cover;
           border-radius: 0.5rem;
         }
-        &:hover{
-            transform: scale(1.1);
+        .actions {
+          position: absolute;
+          top: 0.3rem;
+          right: 0.3rem;
+          border-radius: 50%;
+          width: 3rem;
+          height: 3rem;
+          background-color: rgba(0, 0, 0, 0.6);
+          display: grid;
+          place-items: center;
+          .icon {
+            font-size: 2.6rem;
+            color: var(--text);
+          }
+        }
+        &:hover {
+          img {
+            border: 1px solid var(--bgLighter);
+            padding: 0.1rem;
+          }
         }
       }
     }

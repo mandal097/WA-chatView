@@ -1,0 +1,53 @@
+.actions_popup {
+  width: 23rem;
+  height: auto;
+  background-color: var(--bgLight);
+  border-radius: 1rem;
+  position: fixed;
+  top: 3rem;
+  z-index: 150;
+  padding: 1rem;
+  .wrapper {
+    height: auto;
+    position: relative;
+    ul {
+      li {
+        button,a {
+          padding: 0.5rem 0;
+          display: flex;
+          width: 100%;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 1.5rem;
+          padding: 0.5rem 1rem;
+          border-radius: 0.5rem;
+          color: var(--text);
+          text-decoration: none;
+          .icon {
+            font-size: 3rem;
+            color: var(--text);
+          }
+          span {
+            font-size: 1.5rem;
+          }
+          &:hover {
+            background-color: var(--bg);
+          }
+        }
+      }
+    }
+    &::before {
+      position: absolute;
+      content: "";
+      top: -2rem;
+      left: -1rem;
+      border-radius: 0rem 7rem 1rem 0rem;
+      width: 0;
+      height: 0;
+      border-left: 0px solid transparent;
+      border-right: 30px solid transparent;
+      border-bottom: 20px solid var(--bgLight);
+      z-index: 0;
+    }
+  }
+}

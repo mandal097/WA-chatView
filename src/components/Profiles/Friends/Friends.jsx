@@ -7,7 +7,8 @@ import { setActiveFriend } from '../../../redux/currentProfile';
 
 const Friends = () => {
   const { activeFriend } = useSelector(state => state.profile);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
 
   return (
     <div className={styles.friends}>
