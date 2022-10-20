@@ -17,6 +17,7 @@ import About from './components/Profiles/About/About';
 import Friends from './components/Profiles/Friends/Friends';
 import Videos from './components/Profiles/Videos/Videos.jsx';
 import Photos from './components/Profiles/Photos/Photos';
+import Welcome from './pages/Welcome/Welcome';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
@@ -27,7 +28,7 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path='/'>
-            <Route index element={<Home />} />
+            <Route index element={user ?<Navigate to='home'/>:<Welcome />} />
             {/* ---------------------authentication routes -------------------------------*/}
             <Route path='login' element={user ? <Navigate to={`/profile/${user._id}`}/> : <Login />} />
             <Route path='register' element={<Register />} />
@@ -37,6 +38,8 @@ const App = () => {
 
             {/* --------------------------------------messenger routes --------------------*/}
             <Route path='messenger' element={user ? <Messages /> : <Navigate to='/login' />} />
+
+            <Route path='home' element={<Home />} />
 
             {/* ----------------------profile routes --------------------------------*/}
             <Route path='profile/:id/*' element={user ? <Profile /> : <Navigate to='/login' />} >

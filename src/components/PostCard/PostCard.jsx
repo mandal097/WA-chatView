@@ -4,12 +4,11 @@ import { MoreOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import TaggedUser from '../_Modals/TaggedUsersModal/TaggedUser';
-// import Loading from '../Loading/Loading';
-// import axios from '../../config/axios';
-// import { useEffect } from 'react';
+import Loading from '../Loading/Loading';
 
-const PostCard = ({ post }) => {
+const PostCard = ({ post ,loading}) => {
     const [showTagsModal, setShowTagModal] = useState(false);
+    if(loading) return <Loading font='8rem' color='white'/>
     return (
         <div className={styles.postcard} key={post._id}>
             <div className={styles.post_details}>

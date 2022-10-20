@@ -9,7 +9,6 @@ import Details from '../Details/Details';
 import CreatePost from '../../CreatePost/CreatePost';
 import EditDetailsModal from '../../_Modals/EditDetailsModal/EditDetailsModal';
 import axios from '../../../config/axios';
-import Loading from '../../Loading/Loading';
 
 const Posts = () => {
     const { currentUser } = useSelector(state => state.user)
@@ -63,7 +62,6 @@ const Posts = () => {
     }, [])
     return (
         <div className={styles.posts}>
-
             <div className={styles.left}>
                 <div className={`${styles.left_wrapper} ${'custom_scroll'}`}>
                     <div className={styles.intro}>
@@ -165,11 +163,7 @@ const Posts = () => {
                 {
                     posts.map(post => (
                         <>
-                            {
-                                loading
-                                    ? <Loading font='10rem' color='white' />
-                                    : <PostCard key={post._id} post={post} loading={loading} />
-                            }
+                            <PostCard key={post._id} post={post} loading={loading} />
                         </>
                     ))
                 }
