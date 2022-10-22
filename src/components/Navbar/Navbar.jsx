@@ -55,7 +55,9 @@ const Navbar = () => {
                             <div className={styles.icon}><SearchOutlined /></div>
                         </div>
                         <div className={styles.middle}>
-                            <button className={styles.items}><HomeOutlined /></button>
+                            <button 
+                            onClick={()=>navigate('/home')}
+                            className={styles.items}><HomeOutlined /></button>
                             <button className={styles.items}><DesktopOutlined /></button>
                             <button className={styles.items}><UsergroupDeleteOutlined /></button>
                         </div>

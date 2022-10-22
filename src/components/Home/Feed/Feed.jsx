@@ -3,6 +3,8 @@ import styles from './Feed.module.scss';
 import axios from '../../../config/axios';
 import { useState } from 'react';
 import PostCard from '../../PostCard/PostCard'
+import Loading from '../../Loading/Loading';
+import CreatePost from '../../CreatePost/CreatePost';
 
 
 const Feed = () => {
@@ -28,15 +30,17 @@ const Feed = () => {
         getPosts()
     }, [])
 
+    if (loading) return <Loading font='10rem' color='white' />
     return (
         <div className={styles.feeds}>
+            <CreatePost/>
             {
                 posts?.map((post => (
                     <PostCard key={post._id} post={post} loading={loading} />
                 )))
             }
             {
-                posts && <h2>No posts founds...</h2>
+                !posts && !loading && <h2>No posts founds...</h2>
             }
         </div>
     )

@@ -17,6 +17,7 @@ const UsersCard = ({ u, onClick }) => {
         </div>
     )
 }
+
 const SelectedUser = ({ m }) => {
     const [member, setMember] = useState({});
     const dispatch = useDispatch()
@@ -130,7 +131,7 @@ const AddModal = ({ setShowAddModal }) => {
             return false;
         });
         setSearchedUsers(search);
-        
+
     }, [searchTerm, filteredUsers])
 
 
@@ -175,8 +176,9 @@ const AddModal = ({ setShowAddModal }) => {
 
                     <div className={styles.users_list}>
                         {
-                            loading ? <Loading /> :
-                                <>
+                            loading
+                                ? <Loading />
+                                : <>
                                     {searchTerm ?
                                         searchedUsers.map(u => (
                                             <UsersCard key={u?._id} u={u} onClick={() => addUser(u?._id)} />

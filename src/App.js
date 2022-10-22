@@ -18,6 +18,7 @@ import Friends from './components/Profiles/Friends/Friends';
 import Videos from './components/Profiles/Videos/Videos.jsx';
 import Photos from './components/Profiles/Photos/Photos';
 import Welcome from './pages/Welcome/Welcome';
+import FriendsPage from './pages/FriendsPage/FriendsPage';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
@@ -49,6 +50,8 @@ const App = () => {
               <Route path='videos' element={<Videos />} />
               <Route path='photos' element={<Photos />} />
             </Route>
+
+            <Route path='friends' element={<FriendsPage/>}/>
 
           </Route>
         </Routes>
