@@ -65,7 +65,7 @@ const ConnectionsModal = ({ setShowConnectionModal, active, setActive, friend })
             <div className={styles.head}>
                 <div className={`${styles.filter}  ${active === 'followers' && styles.active}`}
                     onClick={() => setActive('followers')}
-                >Followings</div>
+                >Followers</div>
                 <div className={`${styles.filter}  ${active === 'followings' && styles.active}`}
                     onClick={() => setActive('followings')}
                 >Followings</div>
@@ -80,7 +80,24 @@ const ConnectionsModal = ({ setShowConnectionModal, active, setActive, friend })
                         friend.followings?.map(f => (
                             <Card key={f} f={f} />
                         ))
-
+                }
+                {
+                  active==='followers' &&  friend.followers.length === 0  &&
+                    <span style={{
+                        fontSize: '1.6rem',
+                        color: 'var(--textSoft)',
+                        padding: '0 2rem'
+                    }}
+                    >NO {active}</span>
+                }
+                {
+                  active==='followings' &&  friend.followings.length === 0  &&
+                    <span style={{
+                        fontSize: '1.6rem',
+                        color: 'var(--textSoft)',
+                        padding: '0 2rem'
+                    }}
+                    >NO {active}</span>
                 }
             </div>
         </Modal>

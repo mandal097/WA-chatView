@@ -29,7 +29,7 @@ const Card = ({ user }) => {
                     token: `Bearer ${localStorage.getItem('token')}`
                 }
             })
-            if (res.data.status === 'success') {
+            if (res.data.status === 'err') {
                 toast.success(res.data.message)
             }
         } catch (error) {
@@ -46,16 +46,12 @@ const Card = ({ user }) => {
                 token: `Bearer ${localStorage.getItem('token')}`
             }
         });
-
-
-        console.log(res.data.data);
         const filter = res.data.data[0]?.users.find((c) => c._id !== currentUser._id);
         dispatch(setCurrentChat({ currentChat: filter, chatId: res.data.data[0]._id }));
         if (filter) {
             navigate('/messenger');
         }
     }
-
 
     return (
         <>
@@ -65,10 +61,10 @@ const Card = ({ user }) => {
                     <img src={user?.profilePic} alt="" />
                 </div>
                 <div className={styles.details}>
-                    <span>
+                    <span  onClick={()=>navigate(`/profile/${user._id}`)}>
                         {user.name}
                     </span>
-                    <small>45 followers</small>
+                    <small>{user?.followers?.length}</small>
                 </div>
                 {!currentUser.followings?.includes(user._id)
                     ? String(user._id) !== String(currentUser._id) && <button onClick={followUsers} > <UserAddOutlined className={styles.icon} /> Follow</button>

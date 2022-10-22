@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './Suggestions.module.scss';
 import axios from '../../../config/axios';
 import { useDispatch } from 'react-redux'
@@ -8,7 +8,7 @@ import { followFriend } from '../../../redux/userRedux';
 import { toast, ToastContainer } from 'react-toastify';
 import Loading from '../../Loading/Loading';
 
-const Card = ({ user }) => {
+const Card = ({ user, onClick }) => {
   const dispatch = useDispatch()
 
   const followUsers = async (e) => {
@@ -39,7 +39,7 @@ const Card = ({ user }) => {
         <div className={styles.img} style={{ width: '3.8rem', height: '3.8rem' }}>
           <img src={user.profilePic} alt="profilepic" />
         </div>
-        <span>{user.name}</span>
+        <span onClick={onClick}>{user.name}</span>
         <button onClick={followUsers}>Follow</button>
       </div>
     </>
@@ -55,6 +55,7 @@ const Suggestions = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [filteredUsers, setFilteredUsers] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchList = async () => {
@@ -91,8 +92,6 @@ const Suggestions = () => {
 
   }, [users, currentUser]);
 
-  console.log(filteredUsers);
-
 
   return (
     <div className={styles.suggestions}>
@@ -101,7 +100,7 @@ const Suggestions = () => {
         <div className={styles.img}>
           <img src={currentUser.profilePic} alt="profilepic" />
         </div>
-        <span>{currentUser.name}</span>
+        <span onClick={() => navigate(`/profile/${currentUser._id}`)}>{currentUser.name}</span>
       </div>
 
       <div className={styles.head}>
@@ -114,13 +113,13 @@ const Suggestions = () => {
           : <>
             {
               filteredUsers?.slice(0, 4).map((user) => (
-                <Card key={user._id} user={user} />
+                <Card key={user._id} user={user} onClick={() => navigate(`/profile/${user._id}`)} />
               ))
             }
           </>
       }
       {
-        filteredUsers.length === 0  && <span style={{fontSize:'1.8rem' , textAlign:'center'}}>No suggestions</span>
+        filteredUsers.length === 0 && <span style={{ fontSize: '1.8rem', textAlign: 'center' }}>No suggestions</span>
       }
 
     </div>

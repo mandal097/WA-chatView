@@ -22,14 +22,18 @@
       font-size: 1.5rem;
       color: var(--textSoft);
       text-transform: capitalize;
+      cursor: pointer;
+      &:hover{
+        text-decoration: underline;
+      }
     }
     button {
       display: flex;
       align-items: center;
-      padding: 0.3rem 1rem;
+      padding: 0.4rem 1.4rem;
       color: var(--text);
-      font-size: 1.6rem;
-      border-radius: 0.5rem;
+      font-size: 1.4rem;
+      border-radius: 0.2rem;
       margin-left: auto;
       background-color: var(--btnLight);
       &:hover {
