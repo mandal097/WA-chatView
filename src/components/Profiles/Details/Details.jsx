@@ -65,7 +65,7 @@ const Details = ({ id }) => {
                 </li>
                 <li>
                     <div className={styles.icon_}><InstagramFilled className={styles.icon} /></div>
-                    <div className={styles.fields}><a href="https://www.facebook.com/aniket.raj.1610092">www.instagram.com</a></div>
+                    <div className={styles.fields}><a href="https://www.instagram.com/_mandal097___/" target='blank_'>www.instagram.com</a></div>
                 </li>
             </ul>
         </>

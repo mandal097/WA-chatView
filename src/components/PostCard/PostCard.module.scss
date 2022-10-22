@@ -73,18 +73,135 @@
       }
     }
   }
-  .post_captions {
-    padding: 1rem;
-    p {
-      font-size: 1.6rem;
-      color: var(--text);
-    }
-  }
   .image {
     img {
       width: 100%;
       max-height: 90vh;
       object-fit: cover;
+    }
+  }
+  .bottom {
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    .icons_ {
+      width: 100%;
+      height: 5rem;
+      display: flex;
+      .left {
+        width: max-content;
+        display: flex;
+        gap: 1rem;
+      }
+      .right {
+        width: max-content;
+        display: flex;
+        margin-left: auto;
+      }
+      .icons {
+        width: max-content;
+        height: 5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        // border: 1px solid red;
+        .icon {
+          font-size: 3.3rem;
+          cursor: pointer;
+          &:hover {
+            color: var(--bgLighter);
+          }
+        }
+        &:nth-child(3) {
+          transform: rotate(-25deg) translateY(-0.3rem);
+          padding-left: 0.3rem;
+        }
+      }
+    }
+    .counters {
+      small {
+        font-size: 1.4rem;
+        cursor: pointer;
+        color: var(--successLight);
+        font-weight: 500;
+        &:hover {
+          color: var(--error);
+        }
+      }
+    }
+    .post_captions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      height: auto;
+      span {
+        font-size: 1.3rem;
+        text-transform: capitalize;
+        color: var(--btnLight);
+        cursor: pointer;
+        font-weight: bold;
+        &:hover {
+          color: var(--btn);
+        }
+      }
+      p {
+        font-size: 1.6rem;
+        color: var(--text);
+      }
+      div {
+        font-size: 1.2rem;
+        color: var(--textsoft);
+        border: 1px solid transparent;
+        padding: 0rem 0.6rem;
+        border-radius: 2px;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        &:hover {
+          border: 1px solid var(--border);
+        }
+      }
+    }
+    .post_time {
+      small {
+        font-size: 1.4rem;
+        color: var(--bgLighter);
+        cursor: pointer;
+        &:hover {
+          color: grey;
+        }
+      }
+    }
+    .comment_form {
+      height: 5rem;
+      background-color: var(--bgLight);
+      border-radius: 0.5rem;
+      padding: 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      .img {
+        height: 3.5rem;
+        width: 3.5rem;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+      }
+      input {
+        flex: 1;
+        padding: 0.2rem 1rem;
+        font-size: 1.6rem;
+        color: var(--text);
+      }
+      button {
+        height: 5rem;
+        width: 5rem;
+        font-size: 5rem;
+      }
     }
   }
 }

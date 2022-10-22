@@ -1,0 +1,80 @@
+.comments {
+  //   border: 1px solid red;
+  width: 100%;
+  padding: 2rem 0;
+  .comment {
+    display: flex;
+    gap: 1rem;
+    width: max-content;
+    .img {
+      width: 3.5rem;
+      height: 3.5rem;
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
+    .comment_wrapper {
+      //   border: 1px solid red;
+      //   display: flex;
+      .comment_details {
+        width: 30rem;
+        height: auto;
+        border-radius: 1rem;
+        background-color: var(--bgLight);
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+        span {
+          font-size: 1.3rem;
+          color: var(--btnLight);
+          font-weight: bolder;
+          text-transform: capitalize;
+          cursor: pointer;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+        p {
+          font-size: 1.3rem;
+        }
+        .cta_ {
+          height: 3rem;
+          display: flex;
+          align-items: center;
+          gap: 2rem;
+          small {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--text);
+            cursor: pointer;
+            &:hover {
+              color: var(--textSoft);
+            }
+          }
+        }
+        .like {
+          width: 2rem;
+          cursor: pointer;
+          margin-left: auto;
+          .icon {
+            color: var(--text);
+            font-size: 2.3rem;
+          }
+        }
+      }
+      .show_reply {
+        font-size: 1.2rem;
+        cursor: pointer;
+        margin: 1rem 0;
+        display: inline-block;
+        &:hover {
+          color: var(--textSoft);
+        }
+      }
+    }
+  }
+}
