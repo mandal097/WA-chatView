@@ -36,7 +36,7 @@ const Feed = () => {
             <CreatePost/>
             {
                 posts?.map((post => (
-                    <PostCard key={post._id} post={post} loading={loading} />
+                    <PostCard key={post?._id} post={post} loading={loading} />
                 )))
             }
             {

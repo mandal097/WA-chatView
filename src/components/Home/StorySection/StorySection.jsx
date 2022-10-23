@@ -8,7 +8,7 @@ const Card = () => {
     return (
         <div className={styles.story_card}>
             <div className={styles.img} style={{border: "px solid tomato"}}>
-                <img src={currentUser.profilePic} alt="profile_picture" />
+                <img src={currentUser?.profilePic} alt="profile_picture" />
             </div>
             <p className={styles.name}>{'Amarnath kumar mandal'.split(' ')[0]}</p>
         </div>

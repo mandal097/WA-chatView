@@ -6,21 +6,27 @@ import TaggedUser from '../_Modals/TaggedUsersModal/TaggedUser';
 import Loading from '../Loading/Loading';
 import {
     // HeartFilled,
-    HeartOutlined,
-    MessageOutlined,
+    // HeartOutlined,
+    // MessageOutlined,
     MoreOutlined,
-    BookOutlined,
+    // BookOutlined,
     SendOutlined
 } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
-import Comment from '../Comment/Comment';
+// import Comment from '../Comment/Comment';
+import PostModal from '../_Modals/PostModal/PostModal';
+import { useRef } from 'react';
+import PostActions from './PostActions';
+import axios from '../../config/axios';
 
 const PostCard = ({ post, loading }) => {
     const { currentUser } = useSelector(state => state.user);
     const [showTagsModal, setShowTagModal] = useState(false);
-
+    const [showPostModal, setShowPostModal] = useState(false);
     const [commentText, setCommentText] = useState('');
+
+    const inputRef = useRef()
 
     const postComment = async (e) => {
         e.preventDefault()
@@ -28,11 +34,37 @@ const PostCard = ({ post, loading }) => {
             return toast.error('Please write something')
         }
         try {
-            console.log(commentText);
+            const res = await axios.post(`/comment/${post?._id}`, { commentText: commentText }, {
+                headers: {
+                    token: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            console.log(res.data);
+            if (res.data.status === 'err') {
+                toast.error(res.data.message)
+            }
+            if (res.data.status === 'success') {
+                toast.success(res.data.message);
+                setCommentText('');
+            }
         } catch (error) {
             toast.error('something went wrong')
         }
     }
+
+
+    const focusInput = () => {
+        const input_ = inputRef.current
+        input_ && input_.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+            inline: 'start'
+        });
+        setTimeout(() => {
+            input_.focus()
+        }, 400);
+    };
+
     if (loading) return <Loading font='8rem' color='white' />
     return (
         <div className={styles.postcard} key={post._id}>
@@ -59,52 +91,40 @@ const PostCard = ({ post, loading }) => {
                 <img src={post.mediaUrl} alt="post" />
             </div>
             <div className={styles.bottom}>
-                <div className={styles.icons_}>
-                    <div className={styles.left}>
-                        <div className={styles.icons}>
-                            {/* <HeartFilled  className={styles.icon}/> */}
-                            <HeartOutlined className={styles.icon} />
-                        </div>
-                        <div className={styles.icons}>
-                            <MessageOutlined className={styles.icon} />
-                        </div>
-                        <div className={styles.icons}>
-                            <SendOutlined className={styles.icon} />
-                        </div>
-                    </div>
-                    <div className={styles.right}>
-                        <div className={styles.icons}>
-                            <BookOutlined className={styles.icon} />
-                        </div>
-                    </div>
-                </div>
 
-                <div className={styles.counters}>
-                    <small>89 likes</small>
-                </div>
+                {/* ------------------------ */}
+
+                <PostActions
+                    type='postCard'
+                    onClick={focusInput} />
+                {/* ------------------------------ */}
 
                 <div className={styles.post_captions}>
                     <span>{post.userId?.name}</span>
                     <p>{post.text}</p>
-                    <div>more</div>
+                    <div
+                        onClick={() => setShowPostModal(true)}
+                    >more</div>
                 </div>
 
+
                 <div className={styles.counters}>
-                    <small> view all 310 comments</small>
+                    <small onClick={() => setShowPostModal(true)}> view all 310 comments</small>
                 </div>
 
                 <div className={styles.post_time}>
                     <small>22 hrs ago</small>
                 </div>
 
-                <Comment />
-                <Comment />
-                <div className={styles.comment_form}>
+                {/* <Comment />
+                <Comment /> */}
+                <div className={styles.comment_form} >
                     <div className={styles.img}>
                         <img src={currentUser?.profilePic} alt="" />
                     </div>
                     <input
                         type="text"
+                        ref={inputRef}
                         value={commentText}
                         placeholder={`comment as ${currentUser?.name}`}
                         onChange={(e) => setCommentText(e.target.value)}
@@ -112,6 +132,13 @@ const PostCard = ({ post, loading }) => {
                     <button onClick={postComment}><SendOutlined /></button>
                 </div>
             </div>
+            {
+                showPostModal &&
+                <PostModal
+                    setShowPostModal={setShowPostModal}
+                    post={post}
+                />
+            }
         </div>
     )
 }

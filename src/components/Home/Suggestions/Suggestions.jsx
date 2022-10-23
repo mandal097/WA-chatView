@@ -37,9 +37,9 @@ const Card = ({ user, onClick }) => {
       <ToastContainer className='toaster' />
       <div className={styles.card}>
         <div className={styles.img} style={{ width: '3.8rem', height: '3.8rem' }}>
-          <img src={user.profilePic} alt="profilepic" />
+          <img src={user?.profilePic} alt="profilepic" />
         </div>
-        <span onClick={onClick}>{user.name}</span>
+        <span onClick={onClick}>{user?.name}</span>
         <button onClick={followUsers}>Follow</button>
       </div>
     </>
@@ -86,9 +86,9 @@ const Suggestions = () => {
 
   useEffect(() => {
     const filteredArr = (a, b) => {
-      return a.filter(x => !b.filter(y => y === x?._id).length);
+      return a?.filter(x => !b?.filter(y => y === x?._id).length);
     }
-    setFilteredUsers(filteredArr(users, currentUser.followings))
+    setFilteredUsers(filteredArr(users, currentUser?.followings))
 
   }, [users, currentUser]);
 
@@ -98,9 +98,9 @@ const Suggestions = () => {
 
       <div className={styles.card}>
         <div className={styles.img}>
-          <img src={currentUser.profilePic} alt="profilepic" />
+          <img src={currentUser?.profilePic} alt="profilepic" />
         </div>
-        <span onClick={() => navigate(`/profile/${currentUser._id}`)}>{currentUser.name}</span>
+        <span onClick={() => navigate(`/profile/${currentUser?._id}`)}>{currentUser?.name}</span>
       </div>
 
       <div className={styles.head}>
@@ -113,7 +113,7 @@ const Suggestions = () => {
           : <>
             {
               filteredUsers?.slice(0, 4).map((user) => (
-                <Card key={user._id} user={user} onClick={() => navigate(`/profile/${user._id}`)} />
+                <Card key={user?._id} user={user} onClick={() => navigate(`/profile/${user?._id}`)} />
               ))
             }
           </>

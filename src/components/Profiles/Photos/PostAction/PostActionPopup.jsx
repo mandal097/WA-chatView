@@ -39,12 +39,12 @@ const PostActionPopup = ({ left, top, setShowActionPopup, showActionPopup, post 
         }
     }, [showActionPopup, setShowActionPopup, actionPopupRef]);
 
-    function download(fileUrl, fileName) {
-        let a = document.createElement("a");
-        a.href = fileUrl;
-        a.setAttribute("download", fileName);
-        a.click();
-       }
+    // function download(fileUrl, fileName) {
+    //     let a = document.createElement("a");
+    //     a.href = fileUrl;
+    //     a.setAttribute("download", fileName);
+    //     a.click();
+    //    }
 
     return (
         <>

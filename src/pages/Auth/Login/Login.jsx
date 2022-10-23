@@ -42,6 +42,7 @@ const Login = () => {
       setLoading(false);
     } catch (error) {
       toast.error('Something went wrong')
+      setLoading(false);
     } finally {
       setLoading(false);
     }
@@ -68,7 +69,7 @@ const Login = () => {
             onchange={(e) => setPassword(e.target.value)}
           />
 
-          <Submit value={loading ? "Loading" : "Login"} />
+          <Submit value={loading ? "Loading..." : "Login"} />
           <p className={styles.or}>OR</p>
           <Submit value='Sign In with Google' color='coral' />
           <div className={styles.to_register}>

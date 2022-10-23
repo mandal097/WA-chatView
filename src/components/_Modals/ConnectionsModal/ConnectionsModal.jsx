@@ -4,15 +4,18 @@ import styles from './ConnectionsModal.module.scss';
 import axios from '../../../config/axios';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import Loading from '../../Loading/Loading';
 
 
 
 const Card = ({ f }) => {
     const [obj, setObj] = useState({});
+    const [loading, setLoading] = useState(false)
     useEffect(() => {
         const fetchFriends = async () => {
             try {
-                // setLoading(true)
+                setLoading(true)
                 const res = await axios.get(`/user/get-profile/${f}`, {
                     headers: {
                         token: `Bearer ${localStorage.getItem('token')}`
@@ -20,27 +23,27 @@ const Card = ({ f }) => {
                 })
                 if (res.data.status === 'err') {
                     toast.error(res.data.message)
-                    // setLoading(false)
+                    setLoading(false)
                 }
                 if (res.data.status === 'success') {
-                    //    setLoading(false)
+                       setLoading(false)
                     setObj(res.data.data)
 
                 }
             } catch (error) {
                 toast.error('Something went wrong')
-                // setLoading(false)
+                setLoading(false)
             }
         }
         fetchFriends()
     }, [f])
-
+if(loading)return <Loading font='6rem' color='var(--text)'/>
     return (
         <div className={styles.card}>
             <div className={styles.img}>
                 <img src={obj.profilePic} alt="" />
             </div>
-            <span>{obj.name}</span>
+            <Link to={`/profile/${obj._id}`} className={styles.link}>{obj.name}</Link>
         </div>
     )
 }
@@ -82,7 +85,7 @@ const ConnectionsModal = ({ setShowConnectionModal, active, setActive, friend })
                         ))
                 }
                 {
-                  active==='followers' &&  friend.followers.length === 0  &&
+                    active === 'followers' && friend.followers.length === 0 &&
                     <span style={{
                         fontSize: '1.6rem',
                         color: 'var(--textSoft)',
@@ -91,7 +94,7 @@ const ConnectionsModal = ({ setShowConnectionModal, active, setActive, friend })
                     >NO {active}</span>
                 }
                 {
-                  active==='followings' &&  friend.followings.length === 0  &&
+                    active === 'followings' && friend.followings.length === 0 &&
                     <span style={{
                         fontSize: '1.6rem',
                         color: 'var(--textSoft)',

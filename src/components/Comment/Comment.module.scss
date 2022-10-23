@@ -28,11 +28,12 @@
         display: flex;
         flex-direction: column;
         gap: 0.3rem;
-        span {
+        .link {
           font-size: 1.3rem;
           color: var(--btnLight);
           font-weight: bolder;
           text-transform: capitalize;
+          text-decoration: none;
           cursor: pointer;
           &:hover {
             text-decoration: underline;
@@ -62,8 +63,12 @@
           margin-left: auto;
           .icon {
             color: var(--text);
-            font-size: 2.3rem;
+            font-size: 2.5rem;
+            color: red;
           }
+        }
+        .pop {
+          animation: pop 400ms linear 1;
         }
       }
       .show_reply {
@@ -76,5 +81,20 @@
         }
       }
     }
+  }
+}
+
+@keyframes pop {
+  25%{
+    transform: scale(1.5);
+  }
+  50%{
+    transform: scale(1);
+  }
+  75%{
+    transform: scale(1.5);
+  }
+  100%{
+    transform: scale(1);
   }
 }
