@@ -39,6 +39,7 @@
             text-decoration: underline;
           }
         }
+
         p {
           font-size: 1.3rem;
         }
@@ -57,6 +58,19 @@
             }
           }
         }
+        .delete {
+          width: 2rem;
+          cursor: pointer;
+          margin-left: auto;
+          .icon {
+            color: var(--text);
+            font-size: 2.5rem;
+            color: var(--error);
+          }
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
         .like {
           width: 2rem;
           cursor: pointer;
@@ -69,6 +83,37 @@
         }
         .pop {
           animation: pop 400ms linear 1;
+        }
+      }
+      .input {
+        margin-top: 0.3rem;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        display: none;
+        .img {
+          width: 2.5rem;
+          height: 2.5rem;
+          border-radius: 50%;
+          img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+        }
+        input {
+          flex: 1;
+          font-size: 1.4rem;
+          color: var(--text);
+        }
+        button{
+          width: 3rem;
+          height: 3rem;
+          font-size: 3rem;
+          display: grid;
+          place-items: center;
         }
       }
       .show_reply {
@@ -85,16 +130,16 @@
 }
 
 @keyframes pop {
-  25%{
+  25% {
     transform: scale(1.5);
   }
-  50%{
+  50% {
     transform: scale(1);
   }
-  75%{
+  75% {
     transform: scale(1.5);
   }
-  100%{
+  100% {
     transform: scale(1);
   }
 }

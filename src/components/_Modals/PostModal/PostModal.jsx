@@ -8,41 +8,18 @@ import PostActions from '../../PostCard/PostActions';
 import Modal from '../ModalLayout';
 import styles from './PostModal.module.scss';
 import axios from '../../../config/axios';
-import { useEffect } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
+import { format } from 'timeago.js';
 
-const PostModal = ({ setShowPostModal, post }) => {
+const PostModal = ({ setShowPostModal, post,comments }) => {
     const { currentUser } = useSelector(state => state.user);
     const inputRef = useRef(null)
     const [commentText, setCommentText] = useState('');
-    const [comments, setComments] = useState([]);
+    const [placeholder , setPlaceholder] = useState(`comment as ${currentUser?.name}`)
 
     const focusInput = () => {
         inputRef.current.focus()
     }
-
-    useEffect(() => {
-        const fetchComments = async () => {
-            try {
-                const res = await axios.get(`/comment/${post?._id}`, {
-                    headers: {
-                        token: `Bearer ${localStorage.getItem('token')}`
-                    }
-                })
-                console.log(res.data);
-                if (res.data.status === 'err') {
-                    toast.error(res.data.message)
-                }
-                if (res.data.status === 'success') {
-                    setComments(res.data.data);
-                }
-
-            } catch (error) {
-                toast.error('something went wrong')
-            }
-        }
-        fetchComments()
-    }, [post]);
 
 
     const postComment = async (e) => {
@@ -69,7 +46,9 @@ const PostModal = ({ setShowPostModal, post }) => {
         }
     }
 
-    
+  
+
+
     return (
         <Modal
             width='80vw'
@@ -100,7 +79,13 @@ const PostModal = ({ setShowPostModal, post }) => {
                     <div className={`${styles.comments_div} ${'custom_scroll'}`}>
                         {
                             comments?.map(comment => (
-                                <Comment key={comment._id} details={comment} />
+                                <Comment 
+                                key={comment._id} 
+                                details={comment} 
+                                setPlaceholder={setPlaceholder}
+                                inputRef={inputRef}
+                                post={post}
+                                />
                             ))
                         }
                         {
@@ -118,9 +103,10 @@ const PostModal = ({ setShowPostModal, post }) => {
 
                     <PostActions
                         onClick={focusInput}
+                        post={post}
                     />
                     <div className={styles.post_time}>
-                        <small>22 hrs ago</small>
+                        <small>{format(post?.createdAt)}</small>
                     </div>
 
                     <div className={styles.all_comments}>
@@ -135,7 +121,7 @@ const PostModal = ({ setShowPostModal, post }) => {
                             type="text"
                             ref={inputRef}
                             value={commentText}
-                            placeholder={`comment as ${currentUser?.name}`}
+                            placeholder={`${placeholder}`}
                             onChange={(e) => setCommentText(e.target.value)}
                         />
                         <button onClick={postComment}><SendOutlined /></button>

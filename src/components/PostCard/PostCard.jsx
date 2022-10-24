@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './PostCard.module.scss';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
@@ -19,12 +19,14 @@ import PostModal from '../_Modals/PostModal/PostModal';
 import { useRef } from 'react';
 import PostActions from './PostActions';
 import axios from '../../config/axios';
+import { format } from 'timeago.js';
 
 const PostCard = ({ post, loading }) => {
     const { currentUser } = useSelector(state => state.user);
     const [showTagsModal, setShowTagModal] = useState(false);
     const [showPostModal, setShowPostModal] = useState(false);
     const [commentText, setCommentText] = useState('');
+    const [comments, setComments] = useState([]);
 
     const inputRef = useRef()
 
@@ -64,6 +66,32 @@ const PostCard = ({ post, loading }) => {
             input_.focus()
         }, 400);
     };
+
+
+    useEffect(() => {
+        const fetchComments = async () => {
+            // try {
+                const res = await axios.get(`/comment/${post?._id}`, {
+                    headers: {
+                        token: `Bearer ${localStorage.getItem('token')}`
+                    }
+                })
+                // console.log(res.data);
+                if (res.data.status === 'err') {
+                    toast.error(res.data.message)
+                }
+                if (res.data.status === 'success') {
+                    setComments(res.data.data);
+                }
+
+            // } catch (error) {
+            //     toast.error('something went wrong')
+            // }
+        }
+        fetchComments()
+    }, [post]);
+
+
 
     if (loading) return <Loading font='8rem' color='white' />
     return (
@@ -107,13 +135,15 @@ const PostCard = ({ post, loading }) => {
                     >more</div>
                 </div>
 
-
-                <div className={styles.counters}>
-                    <small onClick={() => setShowPostModal(true)}> view all 310 comments</small>
-                </div>
+                {
+                    comments.length > 0 &&
+                    <div className={styles.counters}>
+                        <small onClick={() => setShowPostModal(true)}> view {comments.length > 1 ? "all" : ""} {comments?.length} comment{comments.length > 1 &&"'s"}</small>
+                    </div>
+                }
 
                 <div className={styles.post_time}>
-                    <small>22 hrs ago</small>
+                    <small>{format(post?.createdAt)}</small>
                 </div>
 
                 {/* <Comment />
@@ -137,6 +167,7 @@ const PostCard = ({ post, loading }) => {
                 <PostModal
                     setShowPostModal={setShowPostModal}
                     post={post}
+                    comments={comments}
                 />
             }
         </div>

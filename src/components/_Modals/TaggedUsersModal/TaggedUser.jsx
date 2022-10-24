@@ -64,7 +64,6 @@ const Card = ({ user }) => {
                     <span  onClick={()=>navigate(`/profile/${user._id}`)}>
                         {user.name}
                     </span>
-                    <small>{user?.followers?.length}</small>
                 </div>
                 {!currentUser.followings?.includes(user._id)
                     ? String(user._id) !== String(currentUser._id) && <button onClick={followUsers} > <UserAddOutlined className={styles.icon} /> Follow</button>

@@ -8,7 +8,7 @@ import {
     SendOutlined
 } from '@ant-design/icons';
 
-const PostActions = ({onClick }) => {
+const PostActions = ({onClick ,post}) => {
     return (
         <>
             <div className={styles.icons_}>
