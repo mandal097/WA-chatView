@@ -55,9 +55,9 @@ const Media = ({ loading, post, isFriendsProfile, active, type }) => {
         {
           loading
             ? <Loading font='6rem' color='white' />
-            : type==='video'
-            ?<video src={post?.mediaUrl} alt="profilepicture" onClick={() => setShowPostModal(true)} />
-            :<img src={post?.mediaUrl} alt="profilepicture" onClick={() => setShowPostModal(true)} />
+            : type === 'video'
+              ? <video src={post?.mediaUrl} alt="profilepicture" onClick={() => setShowPostModal(true)} />
+              : <img src={post?.mediaUrl} alt="profilepicture" onClick={() => setShowPostModal(true)} />
         }
 
 
@@ -188,16 +188,19 @@ const ProfileMedias = ({ type }) => {
       <div className={styles.body}>
 
         <div className={styles.head}>
-          <h3>{type ==='video' ?"Videos" :"Photos"}</h3>
+          <h3>{type === 'video' ? "Videos" : "Photos"}</h3>
           <button>Add Photo/Video</button>
         </div>
 
         <div className={styles.filter_options}>
-          <div className={`${styles.filter} ${active === 'mine' && styles.active}`} onClick={filterMyPhotos}>{
-            isFriendsProfile ? currentProfile.name?.split(' ')[0] + "' s photos" : 'Photos of you'
-          }{type ==='video' ?"Videos" :"Photos"}
+          <div className={`${styles.filter} ${active === 'mine' && styles.active}`} onClick={filterMyPhotos}>
+            {
+              isFriendsProfile ? currentProfile.name?.split(' ')[0] +
+                `${type === 'video' ? "'s videos" : "s' photos"}`
+                : `${type !== 'video' ? "Your photo's" : "Your video's"}`
+            }
           </div>
-          <div className={`${styles.filter} ${active === 'friends' && styles.active}`} onClick={filterFriendsPhotos}>Friends {type ==='video' ?"Videos" :"Photos"}</div>
+          <div className={`${styles.filter} ${active === 'friends' && styles.active}`} onClick={filterFriendsPhotos}>Friends {type === 'video' ? "Videos" : "Photos"}</div>
         </div>
 
         <div className={styles.photos_div} style={{
