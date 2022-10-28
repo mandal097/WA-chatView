@@ -2,35 +2,44 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import Image from '../../ImagePopup/Image';
-import styles from './Photos.module.scss';
+import styles from './ProfileMedias.module.scss';
 import axios from '../../../config/axios';
 import Loading from '../../Loading/Loading'
 import { useLocation } from 'react-router-dom';
 import { EditFilled } from '@ant-design/icons';
 import { useRef } from 'react';
 import PostActionPopup from './PostAction/PostActionPopup';
+import PostModal from '../../_Modals/PostModal/PostModal';
 
-const Photo = ({ loading, post, isFriendsProfile, active }) => {
-  const [showImagePopup, setShowImagePopup] = useState(false);
-  // const { currentUser } = useSelector(state => state.user);
-  const [showActionPopup, setShowActionPopup] = useState(false)
+const Media = ({ loading, post, isFriendsProfile, active, type }) => {
+  // const [showImagePopup, setShowImagePopup] = useState(false);
+  const [showActionPopup, setShowActionPopup] = useState(false);
+  const [showPostModal, setShowPostModal] = useState(false);
+  const [comments, setComments] = useState([]);
   const actionRef = useRef();
   const [left, setLeft] = useState(0);
   const [top, setTop] = useState(0);
 
-  // useEffect(() => {
-  //   const checkClick = (e) => {
-  //     if (showActionPopup && !actionPopupRef.current.contains(e.target)) {
-  //       setShowActionPopup(false)
-  //     }
-  //   }
-  //   document.addEventListener('mousedown', checkClick);
 
-  //   return () => {
-  //     document.removeEventListener('mousedown', checkClick);
-  //   }
-  // }, [showActionPopup])
+  useEffect(() => {
+    const fetchComments = async () => {
+      const res = await axios.get(`/comment/${post?._id}`, {
+        headers: {
+          token: `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+      if (res.data.status === 'err') {
+        toast.error(res.data.message)
+      }
+      if (res.data.status === 'success') {
+        setComments(res.data.data);
+      }
+    }
+    fetchComments()
+  }, [post]);
+
+
+
 
   const showActions = () => {
     const positionLeft = actionRef.current.getBoundingClientRect().left
@@ -46,7 +55,9 @@ const Photo = ({ loading, post, isFriendsProfile, active }) => {
         {
           loading
             ? <Loading font='6rem' color='white' />
-            : <img src={post?.mediaUrl} alt="profilepicture" onClick={() => setShowImagePopup(true)} />
+            : type==='video'
+            ?<video src={post?.mediaUrl} alt="profilepicture" onClick={() => setShowPostModal(true)} />
+            :<img src={post?.mediaUrl} alt="profilepicture" onClick={() => setShowPostModal(true)} />
         }
 
 
@@ -59,22 +70,31 @@ const Photo = ({ loading, post, isFriendsProfile, active }) => {
 
         {
           showActionPopup &&
-          <PostActionPopup 
-          showActionPopup={showActionPopup}
-          setShowActionPopup={setShowActionPopup}
-          left={left}
-          top={top}
-          post={post}
+          <PostActionPopup
+            showActionPopup={showActionPopup}
+            setShowActionPopup={setShowActionPopup}
+            left={left}
+            top={top}
+            post={post}
+            type={type}
           />
         }
       </div>
-      {showImagePopup && <Image src={post?.mediaUrl} setShowImagePopup={setShowImagePopup} />}
+      {
+        showPostModal &&
+        <PostModal
+          setShowPostModal={setShowPostModal}
+          post={post}
+          type={type}
+          comments={comments}
+        />
+      }
     </>
   )
 }
 
 
-const Photos = () => {
+const ProfileMedias = ({ type }) => {
   const { currentUser } = useSelector(state => state.user);
   const { currentProfile } = useSelector(state => state.profile);
   const [loading, setLoading] = useState(false)
@@ -100,7 +120,16 @@ const Photos = () => {
           toast.error(res.data.message)
         }
         if (res.data.status === 'success') {
-          setPosts(res.data.data)
+          const arr = res.data.data;
+          if (type === 'video') {
+            const filter = arr.filter(ele => ele.mediaType === 'video')
+            setPosts(filter)
+          }
+          if (type === 'image') {
+            const filter = arr.filter(ele => ele.mediaType === 'image')
+            setPosts(filter)
+          }
+          // setPosts(res.data.data)
           setLoading(false)
         }
       } catch (error) {
@@ -108,7 +137,7 @@ const Photos = () => {
       }
     }
     fetchPosts()
-  }, []);
+  }, [type]);
 
   useEffect(() => {
     if (String(currentProfileId) === String(currentUser._id)) {
@@ -159,16 +188,16 @@ const Photos = () => {
       <div className={styles.body}>
 
         <div className={styles.head}>
-          <h3>Photos</h3>
+          <h3>{type ==='video' ?"Videos" :"Photos"}</h3>
           <button>Add Photo/Video</button>
         </div>
 
         <div className={styles.filter_options}>
           <div className={`${styles.filter} ${active === 'mine' && styles.active}`} onClick={filterMyPhotos}>{
             isFriendsProfile ? currentProfile.name?.split(' ')[0] + "' s photos" : 'Photos of you'
-          }
+          }{type ==='video' ?"Videos" :"Photos"}
           </div>
-          <div className={`${styles.filter} ${active === 'friends' && styles.active}`} onClick={filterFriendsPhotos}>Friends photos</div>
+          <div className={`${styles.filter} ${active === 'friends' && styles.active}`} onClick={filterFriendsPhotos}>Friends {type ==='video' ?"Videos" :"Photos"}</div>
         </div>
 
         <div className={styles.photos_div} style={{
@@ -178,7 +207,14 @@ const Photos = () => {
           {loading && <Loading font='8rem' color='white' />}
           {
             filteredPosts.map(post => (
-              <Photo key={post._id} loading={loading} post={post} isFriendsProfile={isFriendsProfile} active={active} />
+              <Media
+                key={post._id}
+                loading={loading}
+                post={post}
+                isFriendsProfile={isFriendsProfile}
+                active={active}
+                type={type}
+              />
             ))
           }
 
@@ -188,4 +224,4 @@ const Photos = () => {
   )
 }
 
-export default Photos
+export default ProfileMedias;

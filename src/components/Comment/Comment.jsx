@@ -6,6 +6,7 @@ import {
     HeartFilled,
     // HeartFilled,
     HeartOutlined,
+    LoadingOutlined,
     SendOutlined
 } from '@ant-design/icons'
 import { Link } from 'react-router-dom';
@@ -21,11 +22,12 @@ const Comment = ({ details, post }) => {
     const [show, setShow] = useState(false)
     const { currentUser } = useSelector(state => state.user);
     const [liked, setLiked] = useState(details.likes?.includes(currentUser._id));
-    const [clicked, setClicked] = useState(true);
+    const [clicked, setClicked] = useState(false);
     const [likes, setLikes] = useState(details.likes?.length)
     const [showLikesModal, setShowLikesModal] = useState(false)
     const [replyText, setReplyText] = useState('');
     const [replies, setReplies] = useState([]);
+    const [posting, setPosting] = useState(false);
 
     const inputRef = useRef(null)
     const repliesRef = useRef(null);
@@ -112,6 +114,7 @@ const Comment = ({ details, post }) => {
             return toast.error('Please write somethings')
         }
         try {
+            setPosting(true);
             const res = await axios.post(`/comment/${post?._id}`, {
                 commentText: replyText,
                 parentCommentId: details?._id,
@@ -122,16 +125,19 @@ const Comment = ({ details, post }) => {
                     token: `Bearer ${localStorage.getItem('token')}`
                 }
             })
-            console.log(res.data);
+            // console.log(res.data);
             if (res.data.status === 'err') {
                 toast.error(res.data.message)
+                setPosting(false);
             }
             if (res.data.status === 'success') {
                 toast.success(res.data.message);
                 setReplyText('');
+                setPosting(false);
             }
         } catch (error) {
             toast.error('something went wrong')
+            setPosting(false);
         }
     };
 
@@ -183,7 +189,7 @@ const Comment = ({ details, post }) => {
                                         <DeleteFilled className={styles.icon} />
                                     </div>
                                 }
-                                <div className={`${styles.like} ${clicked && styles.pop}`} onClick={likeDislikeComment}>
+                                <div className={`${styles.like} ${clicked && 'pop'}`} onClick={likeDislikeComment}>
                                     {
                                         liked
                                             ? <HeartFilled className={styles.icon} />
@@ -205,14 +211,18 @@ const Comment = ({ details, post }) => {
                                 placeholder={`reply to ${details.userId?.name}`}
                                 onChange={(e) => setReplyText(e.target.value)}
                             />
-                            <button onClick={postReply}><SendOutlined /></button>
+                            {
+                                !posting
+                                    ? <button onClick={postReply}><SendOutlined /></button>
+                                    : <button ><LoadingOutlined /></button>
+                            }
                         </div>
 
 
                         {
                             !show && replies?.length > 0 &&
                             <div className={styles.show_reply} onClick={() => handleReplies('show')}>
-                                _____ View replies
+                                _____ View {replies.length}  replies
                             </div>
                         }
 

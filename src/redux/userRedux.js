@@ -43,8 +43,29 @@ const userSlice = createSlice({
                 )
             }
         },
+        updateDetails: (state, action) => {
+            const { details } = action.payload;
+            state.currentUser.name = details.name;
+            state.currentUser.email = details.email;
+            state.currentUser.phone = details.phone;
+            state.currentUser.city = details.city;
+            state.currentUser.schoolCollege = details.schoolCollege;
+            state.currentUser.insta = details.insta;
+        },
+        updateBio:(state,action)=>{
+            state.currentUser.bio = action.payload.bio
+        }
     },
 });
 
-export const { login, logout, updateProfile, setOtpState, followFriend, unFollowFriend } = userSlice.actions;
+export const {
+    login,
+    logout,
+    updateProfile,
+    setOtpState,
+    followFriend,
+    unFollowFriend,
+    updateDetails,
+    updateBio
+} = userSlice.actions;
 export default userSlice.reducer

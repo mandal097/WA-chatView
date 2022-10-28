@@ -6,6 +6,7 @@ import {
     HeartFilled,
     // HeartFilled,
     HeartOutlined,
+    LoadingOutlined,
     SendOutlined
 } from '@ant-design/icons'
 import { Link } from 'react-router-dom';
@@ -24,7 +25,8 @@ const Replies = ({ replyDetails }) => {
     const [clicked, setClicked] = useState(true);
     const [showLikesModal, setShowLikesModal] = useState(false)
     const [likes, setLikes] = useState(replyDetails.likes?.length)
-    console.log(replyDetails);
+    const [posting, setPosting] = useState(false);
+    // console.log(replyDetails);
     const inputRef = useRef(null);
 
 
@@ -90,6 +92,7 @@ const Replies = ({ replyDetails }) => {
             return toast.error('Please write somethings')
         }
         try {
+            setPosting(true);
             const res = await axios.post(`/comment/${replyDetails?.postId}`, {
                 commentText: replyText,
                 parentCommentId: replyDetails?.parentCommentId,
@@ -103,13 +106,16 @@ const Replies = ({ replyDetails }) => {
             console.log(res.data);
             if (res.data.status === 'err') {
                 toast.error(res.data.message)
+                setPosting(false);
             }
             if (res.data.status === 'success') {
                 toast.success(res.data.message);
                 setReplyText('');
+                setPosting(false);
             }
         } catch (error) {
             toast.error('something went wrong')
+            setPosting(false);
         }
     };
 
@@ -151,11 +157,11 @@ const Replies = ({ replyDetails }) => {
                             <small onClick={() => setShowLikesModal(true)}>{likes} likes </small>
                             <small onClick={handleReply}>reply </small>
                             {
-                                    Object.values(replyDetails?.userId).includes(currentUser._id) &&
-                                    <div className={styles.delete} onClick={deleteComment}>
-                                        <DeleteFilled className={styles.icon} />
-                                    </div>
-                                }
+                                Object.values(replyDetails?.userId).includes(currentUser._id) &&
+                                <div className={styles.delete} onClick={deleteComment}>
+                                    <DeleteFilled className={styles.icon} />
+                                </div>
+                            }
 
                             <div className={`${styles.like} ${clicked && styles.pop}`} onClick={likeDislikeComment}>
                                 {
@@ -178,7 +184,11 @@ const Replies = ({ replyDetails }) => {
                             placeholder={`reply to ${replyDetails?.userId?.name}`}
                             onChange={(e) => setReplyText(e.target.value)}
                         />
-                        <button onClick={postReply}><SendOutlined /></button>
+                        {
+                            !posting
+                                ? <button onClick={postReply}><SendOutlined /></button>
+                                : <button ><LoadingOutlined /></button>
+                        }
                     </div>
 
                 </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './GroupInfo.module.scss';
 import {
-    CloseOutlined,
+    ArrowLeftOutlined,
     EditFilled,
     UserAddOutlined,
     ExportOutlined,
@@ -122,6 +122,7 @@ const ChatInfo = ({ setShowInfo }) => {
     }, [showInput])
 
     const handleAvatar = async (e) => {
+        
         try {
             setLoading(true)
             const token = localStorage.getItem('token');
@@ -148,7 +149,7 @@ const ChatInfo = ({ setShowInfo }) => {
             <ToastContainer className='toaster' />
             <div className={styles.info_header}>
                 <h3 className={styles.heading}>
-                    <CloseOutlined className={styles.icon} onClick={() => setShowInfo(false)} /> Group info</h3>
+                    <ArrowLeftOutlined className={styles.icon} onClick={() => setShowInfo(false)} /> Group info</h3>
             </div>
             <div className={styles.body}>
                 <div className={styles.img_div}>

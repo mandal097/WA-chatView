@@ -103,6 +103,10 @@
             object-fit: cover;
             border-radius: 0.5rem;
           }
+          input{
+            font-size: 1.6rem;
+            margin: 1rem 0;
+          }
           .dummy {
             width: 100%;
             height: 20rem;
@@ -125,6 +129,9 @@
               }
             }
           }
+        }.perc{
+          font-size: 1.5rem;
+          margin: 1rem 0;
         }
         .add_media {
           height: 4rem;

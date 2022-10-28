@@ -8,26 +8,27 @@ import axios from '../../../config/axios';
 import { useUpload } from '../../../hooks/useUpload';
 import { useEffect } from 'react';
 
-const CreatePostModal = ({ setShowModal }) => {
+const CreatePostModal = ({ setShowModal, mediaType }) => {
     const { currentUser } = useSelector(state => state.user)
     const [active, setActive] = useState(false);
     const [loading, setLoading] = useState(false)
-    const [img, setImg] = useState('');
+    const [media, setMedia] = useState('');
     const [text, setText] = useState('');
     // const [uploadMedia, setUploadMedia] = useState(undefined);
+    console.log(mediaType);
 
-    const { uploadPerc, url } = useUpload(img);
+    const { uploadPerc, url } = useUpload(media);
 
     useEffect(() => {
-        if (img && text && uploadPerc === 100) {
+        if (media && text && uploadPerc === 100) {
             setActive(true)
         }
-    }, [img, text,uploadPerc])
+    }, [media, text, uploadPerc])
 
 
     const createPost = async (e) => {
         e.preventDefault();
-        if (!img && !text) {
+        if (!media && !text) {
             toast.error('Please add all inputs')
         }
         setLoading(true)
@@ -37,7 +38,8 @@ const CreatePostModal = ({ setShowModal }) => {
                 userId: currentUser._id,
                 mediaUrl: url,
                 tags: ['633be8ffc375f1dc68973285', '634e6706a7a2c27d585d42b7'],
-                text
+                text,
+                mediaType
             },
                 {
                     headers: {
@@ -53,7 +55,7 @@ const CreatePostModal = ({ setShowModal }) => {
             if (res.data.status === 'success') {
                 setActive(false);
                 setLoading(false);
-                setImg('');
+                setMedia('');
                 setText('')
                 toast.success(res.data.message)
                 setTimeout(() => {
@@ -93,25 +95,48 @@ const CreatePostModal = ({ setShowModal }) => {
                                 value={text}
                                 onChange={(e) => setText(e.target.value)}></textarea>
                         </div>
-                        <div className={styles.media}>
-                            {img
-                                ? <img src={URL.createObjectURL(img)} alt="" />
-                                : <label className={styles.dummy} htmlFor='img'>
-                                    <div className={styles.add}>
-                                        <FileImageFilled className={styles.icon} />
-                                        <span>Choose your media</span>
+
+                        {
+                            mediaType === 'video'
+                                ?
+                                <>
+                                    <div className={styles.media}>
+
+                                        <input
+                                            // style={{ display: 'none' }}
+                                            type="file"
+                                            id='video'
+                                            accept='video/*'
+                                            onChange={(e) => setMedia(e.target.files[0])}
+                                        />
+                                        <div className={styles.perc}> {uploadPerc > 0 && "Uploading" + uploadPerc + "%"}</div>
+                                        <label htmlFor='video' className={styles.add_media}>Change</label>
                                     </div>
-                                </label>
-                            }
-                        </div>
-                        <label htmlFor='img' className={styles.add_media}>Change</label>
-                        <input
-                            style={{ display: 'none' }}
-                            type="file"
-                            id='img'
-                            accept='image/*'
-                            onChange={(e) => setImg(e.target.files[0])}
-                        />
+                                </>
+                                :
+
+                                <>
+                                    <div className={styles.media}>
+                                        {media
+                                            ? <img src={URL.createObjectURL(media)} alt="" />
+                                            : <label className={styles.dummy} htmlFor='img'>
+                                                <div className={styles.add}>
+                                                    <FileImageFilled className={styles.icon} />
+                                                    <span>Choose your media</span>
+                                                </div>
+                                            </label>
+                                        }
+                                    </div>
+                                    <label htmlFor='img' className={styles.add_media}>Change</label>
+                                    <input
+                                        style={{ display: 'none' }}
+                                        type="file"
+                                        id='img'
+                                        accept='image/*'
+                                        onChange={(e) => setMedia(e.target.files[0])}
+                                    />
+                                </>
+                        }
                     </div>
                     <button className={`${styles.submit}  ${!active && styles.in_active}`}
                         onClick={createPost}

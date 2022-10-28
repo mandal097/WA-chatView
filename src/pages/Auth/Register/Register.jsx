@@ -41,7 +41,7 @@ const Register = () => {
                 }, 1000);
             }
         } catch (error) {
-            toast.error('something went wrong or Phone/Email already exists')
+            toast.error('something went wrong')
         } finally {
             setLoading(false)
         }

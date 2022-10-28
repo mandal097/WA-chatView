@@ -6,7 +6,7 @@ import {
     EyeOutlined
 } from '@ant-design/icons'
 
-export const Input = ({ label, type, placeholder, onchange, value }) => {
+export const Input = ({ label, type, placeholder, onchange, value ,required}) => {
     return (
         <div className={styles.input}>
             <label htmlFor="">{label} : </label>
@@ -15,6 +15,7 @@ export const Input = ({ label, type, placeholder, onchange, value }) => {
                 value={value}
                 onChange={onchange}
                 placeholder={placeholder}
+                required={required}
             />
         </div>
     )

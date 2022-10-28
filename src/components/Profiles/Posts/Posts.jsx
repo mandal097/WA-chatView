@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styles from './Posts.module.scss';
 import { Link, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useRef } from 'react';
 import PostCard from '../../PostCard/PostCard';
@@ -9,11 +9,38 @@ import Details from '../Details/Details';
 import CreatePost from '../../CreatePost/CreatePost';
 import EditDetailsModal from '../../_Modals/EditDetailsModal/EditDetailsModal';
 import axios from '../../../config/axios';
+import { toast, ToastContainer } from 'react-toastify';
+import { updateBio } from '../../../redux/userRedux';
+
+const Card = ({ id }) => {
+    const [details, setDetails] = useState({});
+
+    useEffect(() => {
+        const fetchDetails = async () => {
+            const res = await axios.get(`/user/get-profile/${id}`, {
+                headers: {
+                    token: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            setDetails(res.data.data)
+        }
+        fetchDetails()
+    }, [id])
+
+    return (
+        <Link to={`/profile/${id}`} className={styles.card}>
+            <img src={details?.profilePic} alt="profile_picture" />
+            <p>{details?.name?.split(' ')[0]}</p>
+        </Link>
+    )
+}
 
 const Posts = () => {
-    const { currentUser } = useSelector(state => state.user)
+    const { currentUser } = useSelector(state => state.user);
+    const { currentProfile } = useSelector(state => state.profile);
     const [showEditDetailsModal, setShowEditDetailsModal] = useState(false);
     const [bioText, setBioText] = useState('');
+    const [posting, setPosting] = useState(false)
     const [loading, setLoading] = useState(false)
     const [showBioInput, setShowBioInput] = useState(false);
     const [owner, setOwner] = useState(false);
@@ -21,6 +48,7 @@ const Posts = () => {
     const bioRef = useRef();
     const location = useLocation();
     const id = location.pathname.split('/')[2]
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const checkCLick = (e) => {
@@ -46,12 +74,15 @@ const Posts = () => {
         const getPosts = async () => {
             try {
                 setLoading(true)
-                const res = await axios.get('/post/my-posts', {
+                const res = await axios.get(`/post/my-posts/${id}`, {
                     headers: {
                         token: `Bearer ${localStorage.getItem('token')}`
                     }
                 })
-                setPosts(res.data.data)
+                // setPosts(res.data.data)
+                const arr = res.data.data;
+                const filter = arr.filter(ele => ele.mediaType !== 'video')
+                setPosts(filter)
                 setLoading(false)
             } catch (error) {
                 console.log('something went wrong');
@@ -59,9 +90,38 @@ const Posts = () => {
             }
         }
         getPosts()
-    }, [])
+    }, [id])
+
+
+    const addBio = async () => {
+        if (!bioText) {
+            return toast.error('Write something')
+        }
+        if (bioText?.length > 50) {
+            return toast.error('50 characters allowed')
+        }
+        try {
+            setPosting(true)
+            const res = await axios.put(`/user/update-profile`, {
+                bio: bioText
+            }, {
+                headers: {
+                    token: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            if (res.data.status === 'success') {
+                toast.success(res.data.message)
+                setPosting(false);
+                dispatch(updateBio({ bio: bioText }))
+            }
+        } catch (error) {
+            setPosting(false);
+            toast.error('something went wrong')
+        }
+    }
     return (
         <div className={styles.posts}>
+            <ToastContainer className='toaster' />
             <div className={styles.left}>
                 <div className={`${styles.left_wrapper} ${'custom_scroll'}`}>
                     <div className={styles.intro}>
@@ -72,11 +132,17 @@ const Posts = () => {
                                 <textarea
                                     value={bioText}
                                     onChange={(e) => setBioText(e.target.value)}
-                                    placeholder='Describe who you are...'
+                                    placeholder='Describe who you are...
+                                    in 50 words'
                                 ></textarea>
                                 <div className={styles.btns}>
+                                    <div>{50 - bioText?.length} characters</div>
                                     <button onClick={() => setShowBioInput(!showBioInput)}>Cancel</button>
-                                    <button disabled={!bioText} style={{ cursor: !bioText ? 'not-allowed' : 'pointer' }}>Save</button>
+                                    <button
+                                        disabled={!bioText}
+                                        style={{ cursor: !bioText ? 'not-allowed' : 'pointer' }}
+                                        onClick={addBio}
+                                    > {posting ? 'Adding Bio...' : 'Save'}</button>
                                 </div>
                             </div>}
 
@@ -89,84 +155,61 @@ const Posts = () => {
                     <div className={styles.photos}>
                         <div className={styles.head}>
                             <span>Photos</span>
-                            <Link className={styles.link}>See All Photos</Link>
+                            <Link className={styles.link} to={`/profile/${currentProfile?._id}/photos`}>See All Photos</Link>
                         </div>
                         <div className={styles.photos_}>
-                            <img src="https://scontent.fdel27-4.fna.fbcdn.net/v/t1.18169-9/28276317_493845827679312_2634791347943654370_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=e3f864&_nc_ohc=-cWeFV8OZYcAX_nqJNy&_nc_ht=scontent.fdel27-4.fna&oh=00_AT9rLvN3e_lsXlIbCz_kWlQv0OJJ4q_rZfeey1dBBOdWZg&oe=636F9E50" alt="" />
-                            <img src="https://scontent.fdel27-4.fna.fbcdn.net/v/t1.18169-9/28276317_493845827679312_2634791347943654370_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=e3f864&_nc_ohc=-cWeFV8OZYcAX_nqJNy&_nc_ht=scontent.fdel27-4.fna&oh=00_AT9rLvN3e_lsXlIbCz_kWlQv0OJJ4q_rZfeey1dBBOdWZg&oe=636F9E50" alt="" />
-                            <img src="https://scontent.fdel27-4.fna.fbcdn.net/v/t1.18169-9/28276317_493845827679312_2634791347943654370_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=e3f864&_nc_ohc=-cWeFV8OZYcAX_nqJNy&_nc_ht=scontent.fdel27-4.fna&oh=00_AT9rLvN3e_lsXlIbCz_kWlQv0OJJ4q_rZfeey1dBBOdWZg&oe=636F9E50" alt="" />
-                            <img src="https://scontent.fdel27-4.fna.fbcdn.net/v/t1.18169-9/28276317_493845827679312_2634791347943654370_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=e3f864&_nc_ohc=-cWeFV8OZYcAX_nqJNy&_nc_ht=scontent.fdel27-4.fna&oh=00_AT9rLvN3e_lsXlIbCz_kWlQv0OJJ4q_rZfeey1dBBOdWZg&oe=636F9E50" alt="" />
-                            <img src="https://scontent.fdel27-4.fna.fbcdn.net/v/t1.18169-9/28276317_493845827679312_2634791347943654370_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=e3f864&_nc_ohc=-cWeFV8OZYcAX_nqJNy&_nc_ht=scontent.fdel27-4.fna&oh=00_AT9rLvN3e_lsXlIbCz_kWlQv0OJJ4q_rZfeey1dBBOdWZg&oe=636F9E50" alt="" />
-                            <img src="https://scontent.fdel27-4.fna.fbcdn.net/v/t1.18169-9/28276317_493845827679312_2634791347943654370_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=e3f864&_nc_ohc=-cWeFV8OZYcAX_nqJNy&_nc_ht=scontent.fdel27-4.fna&oh=00_AT9rLvN3e_lsXlIbCz_kWlQv0OJJ4q_rZfeey1dBBOdWZg&oe=636F9E50" alt="" />
-                            <img src="https://scontent.fdel27-4.fna.fbcdn.net/v/t1.18169-9/28276317_493845827679312_2634791347943654370_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=e3f864&_nc_ohc=-cWeFV8OZYcAX_nqJNy&_nc_ht=scontent.fdel27-4.fna&oh=00_AT9rLvN3e_lsXlIbCz_kWlQv0OJJ4q_rZfeey1dBBOdWZg&oe=636F9E50" alt="" />
-                            <img src="https://scontent.fdel27-4.fna.fbcdn.net/v/t1.18169-9/28276317_493845827679312_2634791347943654370_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=e3f864&_nc_ohc=-cWeFV8OZYcAX_nqJNy&_nc_ht=scontent.fdel27-4.fna&oh=00_AT9rLvN3e_lsXlIbCz_kWlQv0OJJ4q_rZfeey1dBBOdWZg&oe=636F9E50" alt="" />
-                            <img src="https://scontent.fdel27-4.fna.fbcdn.net/v/t1.18169-9/28276317_493845827679312_2634791347943654370_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=e3f864&_nc_ohc=-cWeFV8OZYcAX_nqJNy&_nc_ht=scontent.fdel27-4.fna&oh=00_AT9rLvN3e_lsXlIbCz_kWlQv0OJJ4q_rZfeey1dBBOdWZg&oe=636F9E50" alt="" />
+                            {
+                                posts?.map(post => (
+                                    <div key={post._id}>
+                                        <img src={post.mediaUrl} alt="post" />
+                                    </div>
+                                ))
+                            }
+
                         </div>
                     </div>
 
 
                     <div className={styles.followers}>
                         <div className={styles.head}>
-                            <span>Friends</span>
-                            <Link className={styles.link}>See All Friends</Link>
+                            <span>Followers</span>
+                            <Link className={styles.link} to={`/profile/${currentProfile?._id}/friends`}>See All Followers</Link>
                         </div>
-                        <div className={styles.friends_count}>423 Friends</div>
+                        <div className={styles.friends_count}>
+                            {currentProfile?.followers?.length}{' '}
+                            Friend{currentProfile?.followers?.length === 1 ? '' : "'s"}
+                        </div>
                         <div className={styles.followers_}>
-
-                            <div className={styles.card}>
-                                <img src="https://scontent.fdel27-5.fna.fbcdn.net/v/t1.6435-9/168738929_499821881425162_8386386098057129348_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=41saZKivepUAX-6zDxZ&_nc_ht=scontent.fdel27-5.fna&oh=00_AT8CyDCcPw5HkZwl8s7ymIi-xHhV3zebApdwlOmY7pllPw&oe=63709154" alt="" />
-                                <span>Ashish singh kuyal</span>
-                            </div>
-
-                            <div className={styles.card}>
-                                <img src="https://scontent.fdel27-5.fna.fbcdn.net/v/t1.6435-9/168738929_499821881425162_8386386098057129348_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=41saZKivepUAX-6zDxZ&_nc_ht=scontent.fdel27-5.fna&oh=00_AT8CyDCcPw5HkZwl8s7ymIi-xHhV3zebApdwlOmY7pllPw&oe=63709154" alt="" />
-                                <span>Ashish singh kuyal</span>
-                            </div>
-                            <div className={styles.card}>
-                                <img src="https://scontent.fdel27-5.fna.fbcdn.net/v/t1.6435-9/168738929_499821881425162_8386386098057129348_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=41saZKivepUAX-6zDxZ&_nc_ht=scontent.fdel27-5.fna&oh=00_AT8CyDCcPw5HkZwl8s7ymIi-xHhV3zebApdwlOmY7pllPw&oe=63709154" alt="" />
-                                <span>Ashish singh kuyal</span>
-                            </div>
-                            <div className={styles.card}>
-                                <img src="https://scontent.fdel27-5.fna.fbcdn.net/v/t1.6435-9/168738929_499821881425162_8386386098057129348_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=41saZKivepUAX-6zDxZ&_nc_ht=scontent.fdel27-5.fna&oh=00_AT8CyDCcPw5HkZwl8s7ymIi-xHhV3zebApdwlOmY7pllPw&oe=63709154" alt="" />
-                                <span>Ashish singh kuyal</span>
-                            </div>
-                            <div className={styles.card}>
-                                <img src="https://scontent.fdel27-5.fna.fbcdn.net/v/t1.6435-9/168738929_499821881425162_8386386098057129348_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=41saZKivepUAX-6zDxZ&_nc_ht=scontent.fdel27-5.fna&oh=00_AT8CyDCcPw5HkZwl8s7ymIi-xHhV3zebApdwlOmY7pllPw&oe=63709154" alt="" />
-                                <span>Ashish singh kuyal</span>
-                            </div>
-                            <div className={styles.card}>
-                                <img src="https://scontent.fdel27-5.fna.fbcdn.net/v/t1.6435-9/168738929_499821881425162_8386386098057129348_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=41saZKivepUAX-6zDxZ&_nc_ht=scontent.fdel27-5.fna&oh=00_AT8CyDCcPw5HkZwl8s7ymIi-xHhV3zebApdwlOmY7pllPw&oe=63709154" alt="" />
-                                <span>Ashish singh kuyal</span>
-                            </div>
-                            <div className={styles.card}>
-                                <img src="https://scontent.fdel27-5.fna.fbcdn.net/v/t1.6435-9/168738929_499821881425162_8386386098057129348_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=41saZKivepUAX-6zDxZ&_nc_ht=scontent.fdel27-5.fna&oh=00_AT8CyDCcPw5HkZwl8s7ymIi-xHhV3zebApdwlOmY7pllPw&oe=63709154" alt="" />
-                                <span>Ashish singh kuyal</span>
-                            </div>
-                            <div className={styles.card}>
-                                <img src="https://scontent.fdel27-5.fna.fbcdn.net/v/t1.6435-9/168738929_499821881425162_8386386098057129348_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=41saZKivepUAX-6zDxZ&_nc_ht=scontent.fdel27-5.fna&oh=00_AT8CyDCcPw5HkZwl8s7ymIi-xHhV3zebApdwlOmY7pllPw&oe=63709154" alt="" />
-                                <span>Ashish singh kuyal</span>
-                            </div>
-                            <div className={styles.card}>
-                                <img src="https://scontent.fdel27-5.fna.fbcdn.net/v/t1.6435-9/168738929_499821881425162_8386386098057129348_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=41saZKivepUAX845-9s&_nc_ht=scontent.fdel27-5.fna&oh=00_AT_SW9iHdBGJo9taA8-mPOFF8aE5sUgedu0PPn1J50jz1g&oe=63709154" alt="" />
-                                <span>Ashish singh kuyal</span>
-                            </div>
+                            {
+                                currentProfile?.followers?.map(p => (
+                                    <Card key={p} id={p} />
+                                ))
+                            }
                         </div>
                     </div>
-
                 </div>
             </div>
 
 
             <div className={styles.right}>
                 {owner && <CreatePost />}
-
                 {
-                    posts.map(post => (
-                        <>
-                            <PostCard key={post._id} post={post} loading={loading} />
-                        </>
-                    ))
+                    posts.length === 0 && <span style={{
+                        fontSize: '3rem',
+                        width: '100%',
+                        display: 'grid',
+                        placeItems: 'center'
+                    }}>No Posts </span>
                 }
+                <>
+                    {
+                        posts.map(post => (
+                            <>
+                                <PostCard key={post._id} post={post} loading={loading} />
+                            </>
+                        ))
+                    }
+                </>
 
             </div>
             {showEditDetailsModal && <EditDetailsModal setShowEditDetailsModal={setShowEditDetailsModal} />}

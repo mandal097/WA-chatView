@@ -15,7 +15,7 @@ const Feed = () => {
         const getPosts = async () => {
             try {
                 setLoading(true)
-                const res = await axios.get('/post/get-all-posts', {
+                const res = await axios.get('/post/get-feed-posts', {
                     headers: {
                         token: `Bearer ${localStorage.getItem('token')}`
                     }

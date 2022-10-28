@@ -1,4 +1,4 @@
-import { SendOutlined } from '@ant-design/icons';
+import { LoadingOutlined, SendOutlined } from '@ant-design/icons';
 import React, { useState } from 'react'
 import { useRef } from 'react';
 import { useSelector } from 'react-redux';
@@ -11,11 +11,12 @@ import axios from '../../../config/axios';
 import { toast, ToastContainer } from 'react-toastify';
 import { format } from 'timeago.js';
 
-const PostModal = ({ setShowPostModal, post,comments }) => {
+const PostModal = ({ setShowPostModal, post, comments, type }) => {
     const { currentUser } = useSelector(state => state.user);
     const inputRef = useRef(null)
     const [commentText, setCommentText] = useState('');
-    const [placeholder , setPlaceholder] = useState(`comment as ${currentUser?.name}`)
+    const [placeholder, setPlaceholder] = useState(`comment as ${currentUser?.name}`);
+    const [posting, setPosting] = useState(false);
 
     const focusInput = () => {
         inputRef.current.focus()
@@ -28,26 +29,30 @@ const PostModal = ({ setShowPostModal, post,comments }) => {
             return toast.error('Please write something')
         }
         try {
+            setPosting(true);
             const res = await axios.post(`/comment/${post?._id}`, { commentText: commentText }, {
                 headers: {
                     token: `Bearer ${localStorage.getItem('token')}`
                 }
             })
-            console.log(res.data);
+            // console.log(res.data);
             if (res.data.status === 'err') {
                 toast.error(res.data.message)
+                setPosting(false);
             }
             if (res.data.status === 'success') {
                 toast.success(res.data.message);
                 setCommentText('');
+                setPosting(false);
             }
         } catch (error) {
             toast.error('something went wrong')
+            setPosting(false);
         }
     }
 
-  
 
+console.log(post);
 
     return (
         <Modal
@@ -63,7 +68,10 @@ const PostModal = ({ setShowPostModal, post,comments }) => {
             <ToastContainer className='toaster' />
             <div className={styles.post_modal}>
                 <div className={styles.img}>
-                    <img src={post?.mediaUrl} alt="" />
+                    {type === 'video'
+                        ?  <video src={post.mediaUrl} alt="post" controls autoPlay/>
+                        : <img src={post?.mediaUrl} alt="" />
+                    }
                 </div>
                 <div className={styles.right}>
 
@@ -79,12 +87,12 @@ const PostModal = ({ setShowPostModal, post,comments }) => {
                     <div className={`${styles.comments_div} ${'custom_scroll'}`}>
                         {
                             comments?.map(comment => (
-                                <Comment 
-                                key={comment._id} 
-                                details={comment} 
-                                setPlaceholder={setPlaceholder}
-                                inputRef={inputRef}
-                                post={post}
+                                <Comment
+                                    key={comment._id}
+                                    details={comment}
+                                    setPlaceholder={setPlaceholder}
+                                    inputRef={inputRef}
+                                    post={post}
                                 />
                             ))
                         }
@@ -124,7 +132,11 @@ const PostModal = ({ setShowPostModal, post,comments }) => {
                             placeholder={`${placeholder}`}
                             onChange={(e) => setCommentText(e.target.value)}
                         />
-                        <button onClick={postComment}><SendOutlined /></button>
+                        {
+                            !posting
+                                ? <button onClick={postComment}><SendOutlined /></button>
+                                : <button ><LoadingOutlined /></button>
+                        }
                     </div>
 
                 </div>

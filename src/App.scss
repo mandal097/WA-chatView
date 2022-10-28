@@ -47,6 +47,10 @@ input {
   right: 1rem;
 }
 
+.pop {
+  animation: pop 400ms linear 1;
+}
+
 .custom_scroll {
   &::-webkit-scrollbar {
     width: 0.6rem;
@@ -62,8 +66,28 @@ input {
   }
 }
 
+
+
+@keyframes pop {
+  25% {
+    transform: scale(1.5);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+
 @media screen and (max-width: 1200px) {
   .container {
     width: 95%;
   }
 }
+

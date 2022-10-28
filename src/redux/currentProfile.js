@@ -15,7 +15,7 @@ const userSlice = createSlice({
         },
         setActiveFriend: (state, action) => {
             state.activeFriend = action.payload
-        }
+        },
     },
 });
 

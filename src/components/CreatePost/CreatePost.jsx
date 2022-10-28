@@ -6,6 +6,7 @@ import CreatePostModal from '../_Modals/CreatePostModal/CreatePostModal';
 
 const CreatePost = () => {
     const [showModal, setShowModal] = useState(false);
+    const [mediaType, setMediaType] = useState('image')
 
     return (
         <div className={styles.create_post}>
@@ -14,17 +15,27 @@ const CreatePost = () => {
                 <div className={styles.whats_new} onClick={() => setShowModal(true)}>What's in your mind?</div>
             </div>
             <div className={styles.bottom}>
-                <div className={styles.upload_option} onClick={() => setShowModal(true)} >
+                <div className={styles.upload_option} onClick={() => {
+                    setMediaType('image')
+                    setShowModal(true)
+                }} >
                     <CameraFilled className={styles.icon} style={{ color: 'lightgreen' }} />Photo
                 </div>
-                <div className={styles.upload_option} onClick={() => setShowModal(true)} >
+                <div className={styles.upload_option} onClick={() => {
+                    setMediaType('video')
+                    setShowModal(true)
+                }} >
                     <VideoCameraFilled className={styles.icon} style={{ color: 'coral' }} />Video
                 </div>
                 {/* <div className={styles.upload_option}>
                     <CameraFilled className={styles.icon} />Photo
                 </div> */}
             </div>
-            {showModal && <CreatePostModal setShowModal={setShowModal} />}
+            {showModal &&
+                <CreatePostModal
+                    setShowModal={setShowModal}
+                    mediaType={mediaType}
+                />}
         </div>
     )
 }

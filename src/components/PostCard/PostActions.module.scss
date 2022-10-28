@@ -18,7 +18,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    // border: 1px solid red;
     .icon {
       font-size: 3.3rem;
       cursor: pointer;
@@ -26,6 +25,13 @@
         color: var(--bgLighter);
       }
     }
+    .heart {
+      color: red;
+      &:hover {
+        color: rgb(216, 12, 12);
+      }
+    }
+
     &:nth-child(3) {
       transform: rotate(-25deg) translateY(-0.3rem);
       padding-left: 0.3rem;

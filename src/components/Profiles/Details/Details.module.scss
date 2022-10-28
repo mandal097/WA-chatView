@@ -15,7 +15,10 @@ ul {
     .fields {
       display: flex;
       align-items: center;
-      font-size: 1.5rem;
+      span{
+        font-size: 1.5rem;
+        width:auto;
+      }
       p {
         font-size: 1.5rem;
         margin-left: 0.6rem;

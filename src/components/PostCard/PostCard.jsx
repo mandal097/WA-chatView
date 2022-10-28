@@ -5,6 +5,7 @@ import { useState } from 'react';
 import TaggedUser from '../_Modals/TaggedUsersModal/TaggedUser';
 import Loading from '../Loading/Loading';
 import {
+    LoadingOutlined,
     // HeartFilled,
     // HeartOutlined,
     // MessageOutlined,
@@ -27,6 +28,7 @@ const PostCard = ({ post, loading }) => {
     const [showPostModal, setShowPostModal] = useState(false);
     const [commentText, setCommentText] = useState('');
     const [comments, setComments] = useState([]);
+    const [posting, setPosting] = useState(false)
 
     const inputRef = useRef()
 
@@ -36,6 +38,7 @@ const PostCard = ({ post, loading }) => {
             return toast.error('Please write something')
         }
         try {
+            setPosting(true);
             const res = await axios.post(`/comment/${post?._id}`, { commentText: commentText }, {
                 headers: {
                     token: `Bearer ${localStorage.getItem('token')}`
@@ -44,13 +47,16 @@ const PostCard = ({ post, loading }) => {
             console.log(res.data);
             if (res.data.status === 'err') {
                 toast.error(res.data.message)
+                setPosting(false);
             }
             if (res.data.status === 'success') {
                 toast.success(res.data.message);
                 setCommentText('');
+                setPosting(false);
             }
         } catch (error) {
             toast.error('something went wrong')
+            setPosting(false);
         }
     }
 
@@ -71,18 +77,18 @@ const PostCard = ({ post, loading }) => {
     useEffect(() => {
         const fetchComments = async () => {
             // try {
-                const res = await axios.get(`/comment/${post?._id}`, {
-                    headers: {
-                        token: `Bearer ${localStorage.getItem('token')}`
-                    }
-                })
-                // console.log(res.data);
-                if (res.data.status === 'err') {
-                    toast.error(res.data.message)
+            const res = await axios.get(`/comment/${post?._id}`, {
+                headers: {
+                    token: `Bearer ${localStorage.getItem('token')}`
                 }
-                if (res.data.status === 'success') {
-                    setComments(res.data.data);
-                }
+            })
+            // console.log(res.data);
+            if (res.data.status === 'err') {
+                toast.error(res.data.message)
+            }
+            if (res.data.status === 'success') {
+                setComments(res.data.data);
+            }
 
             // } catch (error) {
             //     toast.error('something went wrong')
@@ -115,30 +121,36 @@ const PostCard = ({ post, loading }) => {
                 </div>
                 <div className={styles.more}><MoreOutlined className={styles.icon} /></div>
             </div>
-            <div className={styles.image}>
-                <img src={post.mediaUrl} alt="post" />
-            </div>
+            {post.mediaType === 'video'
+                ? <div className={styles.video}>
+                    <video src={post.mediaUrl} alt="post" controls />
+                </div>
+                : <div className={styles.image}>
+                    <img src={post.mediaUrl} alt="post" />
+                </div>
+            }
             <div className={styles.bottom}>
 
                 {/* ------------------------ */}
 
                 <PostActions
                     type='postCard'
+                    post={post}
                     onClick={focusInput} />
                 {/* ------------------------------ */}
 
                 <div className={styles.post_captions}>
-                    <span>{post.userId?.name}</span>
-                    <p>{post.text}</p>
-                    <div
-                        onClick={() => setShowPostModal(true)}
-                    >more</div>
+                    <p>
+                        <span>{post.userId?.name}</span>
+                        {post.text}
+                        {/* <div >Read less...</div> */}
+                    </p>
                 </div>
 
                 {
                     comments.length > 0 &&
                     <div className={styles.counters}>
-                        <small onClick={() => setShowPostModal(true)}> view {comments.length > 1 ? "all" : ""} {comments?.length} comment{comments.length > 1 &&"'s"}</small>
+                        <small onClick={() => setShowPostModal(true)}> view {comments.length > 1 ? "all" : ""} {comments?.length} comment{comments.length > 1 && "'s"}</small>
                     </div>
                 }
 
@@ -159,7 +171,11 @@ const PostCard = ({ post, loading }) => {
                         placeholder={`comment as ${currentUser?.name}`}
                         onChange={(e) => setCommentText(e.target.value)}
                     />
-                    <button onClick={postComment}><SendOutlined /></button>
+                    {
+                        !posting
+                            ? <button onClick={postComment}><SendOutlined /></button>
+                            : <button ><LoadingOutlined /></button>
+                    }
                 </div>
             </div>
             {
@@ -168,6 +184,7 @@ const PostCard = ({ post, loading }) => {
                     setShowPostModal={setShowPostModal}
                     post={post}
                     comments={comments}
+                    type={post.mediaType}
                 />
             }
         </div>

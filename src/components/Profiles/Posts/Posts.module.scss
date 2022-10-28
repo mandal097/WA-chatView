@@ -65,6 +65,14 @@
             justify-content: flex-end;
             gap: 1rem;
             margin-top: 1rem ;
+            div{
+              font-size: 1.3rem;
+              background-color: var(--bgLight);
+              border-radius: 0.4rem;
+              padding: 0 1rem;
+              display: flex;
+              align-items: center;
+            }
             button {
               background-color: var(--bgLight);
               &:hover {
@@ -91,10 +99,10 @@
           }
           .link {
             text-decoration: none;
-            color: blue;
+            color: var(--btnLight);
             padding: 01rem 1rem;
             border-radius: 1rem;
-            font-size: 1.7rem;
+            font-size: 1.5rem;
             &:hover {
               background-color: var(--bgLight);
             }
@@ -134,10 +142,10 @@
           }
           .link {
             text-decoration: none;
-            color: blue;
+            color: var(--btnLight);
             padding: 01rem 1rem;
             border-radius: 1rem;
-            font-size: 1.7rem;
+            font-size: 1.5rem;
             &:hover {
               background-color: var(--bgLight);
             }
@@ -157,14 +165,16 @@
             height: auto;
             margin: 0.5rem;
             cursor: pointer;
+            text-decoration: none;
             img {
               height: 9rem;
               width: 100%;
               object-fit: cover;
               border-radius: 0.6rem;
             }
-            span {
+            p {
               font-size: 1.4rem;
+              text-align: center;
               color: var(--textSoft);
               font-weight: 500;
               letter-spacing: 0.4px;

@@ -69,9 +69,14 @@ const Profile = () => {
     const [active, setActive] = useState('posts');
     const [owner, setOwner] = useState(false)
     const location = useLocation()
-    const id = location.pathname.split('/')[2]
+    const id = location.pathname.split('/')[2];
+    const activeNav = location.pathname.split('/')[3];
     const dispatch = useDispatch();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        setActive(String(activeNav))
+    }, [activeNav])
 
     useEffect(() => {
         if (showEditProfileModal === true) {
@@ -99,6 +104,7 @@ const Profile = () => {
                     token: `Bearer ${localStorage.getItem('token')}`
                 }
             })
+            // console.log(res.data.data);
             if (res.data.status === 'err') {
                 toast.error(res.data.message)
                 setLoading(false)
@@ -275,7 +281,7 @@ const Profile = () => {
                                                     <button style={{
                                                         backgroundColor: 'var(--btnLight)'
                                                     }}
-                                                    onClick={startChat}
+                                                        onClick={startChat}
                                                     >
                                                         <WechatOutlined className={styles.icon} />Message
                                                     </button>
@@ -283,6 +289,7 @@ const Profile = () => {
                                             }
                                         </div>
                                     </div>
+                                    <div className={styles.bio}>{currentProfileDetails?.bio ? currentProfileDetails?.bio : owner ? 'Update your bio' : 'No Bio'}</div>
                                 </div>
                             </div>
                             <div className={styles.navs}>

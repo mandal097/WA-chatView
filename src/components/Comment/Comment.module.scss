@@ -81,9 +81,6 @@
             color: red;
           }
         }
-        .pop {
-          animation: pop 400ms linear 1;
-        }
       }
       .input {
         margin-top: 0.3rem;
@@ -126,20 +123,5 @@
         }
       }
     }
-  }
-}
-
-@keyframes pop {
-  25% {
-    transform: scale(1.5);
-  }
-  50% {
-    transform: scale(1);
-  }
-  75% {
-    transform: scale(1.5);
-  }
-  100% {
-    transform: scale(1);
   }
 }

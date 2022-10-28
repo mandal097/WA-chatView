@@ -15,10 +15,9 @@ import Profile from './pages/Profile/Profile';
 import Posts from './components/Profiles/Posts/Posts';
 import About from './components/Profiles/About/About';
 import Friends from './components/Profiles/Friends/Friends';
-import Videos from './components/Profiles/Videos/Videos.jsx';
-import Photos from './components/Profiles/Photos/Photos';
 import Welcome from './pages/Welcome/Welcome';
 import FriendsPage from './pages/FriendsPage/FriendsPage';
+import ProfileMedias from './components/Profiles/ProfileMedias/ProfileMedias';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
@@ -47,8 +46,8 @@ const App = () => {
               <Route path='' element={<Posts />} />
               <Route path='about' element={<About />} />
               <Route path='friends' element={<Friends />} />
-              <Route path='videos' element={<Videos />} />
-              <Route path='photos' element={<Photos />} />
+              <Route path='photos' element={<ProfileMedias type='image' />} />
+              <Route path='videos' element={<ProfileMedias type='video' />} />
             </Route>
 
             <Route path='friends' element={<FriendsPage/>}/>

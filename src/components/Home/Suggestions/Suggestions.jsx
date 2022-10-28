@@ -25,6 +25,9 @@ const Card = ({ user, onClick }) => {
       if (res.data.status === 'err') {
         toast.error(res.data.message)
       }
+      if (res.data.status === 'success') {
+        toast.success(res.data.message)
+      }
     } catch (error) {
       toast.error('something went wrong')
 
