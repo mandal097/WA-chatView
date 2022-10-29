@@ -1,17 +1,72 @@
 import React, { useState } from 'react';
 import styles from './EditProfileModal.module.scss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import EditDetailsModal from '../EditDetailsModal/EditDetailsModal';
 import Details from '../../Profiles/Details/Details';
 import Modal from '../ModalLayout';
+import { toast, ToastContainer } from 'react-toastify';
+import axios from '../../../config/axios';
+import Loading from '../../Loading/Loading';
+import { updateBio, updateProfilePic } from '../../../redux/userRedux';
+import { useUpload } from '../../../hooks/useUpload';
 
 const EditProfileModal = ({ setShowEditProfileModal }) => {
     const { currentUser } = useSelector(state => state.user);
     const [showEditDetailsModal, setShowEditDetailsModal] = useState(false);
     const [showBioInput, setShowBioInput] = useState(false);
     const [profile, setProfile] = useState('');
-    const [coverImg, setCoverImg] = useState('');
     const [bioText, setBioText] = useState('');
+    const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch();
+    const { uploadPerc, url } = useUpload(profile);
+
+    const updateprofileImg = async (e, param) => {
+        e.preventDefault();
+        try {
+            setLoading(true);
+            const res = await axios.put(`/user/update-profile`, {
+                profilePic: url ? url : currentUser?.profilePic,
+            }, {
+                headers: {
+                    token: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            console.log(res.data);
+            if (res.data.status === 'success') {
+                toast.success(res.data.message);
+                dispatch(updateProfilePic({ profilePic: url }))
+                setLoading(false);
+            }
+        } catch (error) {
+            setLoading(true);
+            toast.error('something went wrong')
+        }
+    }
+
+    const updatebio = async (e, param) => {
+        e.preventDefault();
+        try {
+            setLoading(true);
+            const res = await axios.put(`/user/update-profile`, {
+                bio: bioText ? bioText : currentUser?.bioText
+            }, {
+                headers: {
+                    token: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            console.log(res.data);
+            if (res.data.status === 'success') {
+                toast.success(res.data.message);
+                dispatch(updateBio({ bio: bioText }))
+                setLoading(false);
+            }
+        } catch (error) {
+            setLoading(true);
+            toast.error('something went wrong')
+        }
+    }
+
+
     return (
         <Modal
             overflow='scroll'
@@ -22,6 +77,7 @@ const EditProfileModal = ({ setShowEditProfileModal }) => {
             head='Edit profile'
             onClick={() => setShowEditProfileModal(false)}
         >
+            <ToastContainer className='toaster' />
             <div className={`${styles.update_sections} ${styles.profile_section}`}>
                 <div className={styles.update_options}>
                     <span>Profile picture</span>
@@ -41,30 +97,9 @@ const EditProfileModal = ({ setShowEditProfileModal }) => {
                             : <img src={currentUser.profilePic} alt="profile pictures" />
                     }
                 </div>
-                {profile && <button>Update profile picture</button>}
-            </div>
-
-            <div className={`${styles.update_sections} ${styles.cover_section}`}>
-                <div className={styles.update_options}>
-                    <span>Cover photo</span>
-                    <label htmlFor='coverImg' className={styles.edit}>{coverImg ? 'change' : 'Edit'}</label>
-                    <input
-                        style={{ display: 'none' }}
-                        type="file"
-                        accept='image/*'
-                        id="coverImg"
-                        onChange={(e) => setCoverImg(e.target.files[0])}
-                    />
-                </div>
-                <div className={styles.img}>
-                    {
-                        coverImg
-                            ? <img src={URL.createObjectURL(coverImg)} alt="profile pictures" />
-                            : <img src={currentUser.profilePic} alt="profile pictures" />
-                    }
-
-                </div>
-                {coverImg && <button>Update cover image</button>}
+                {profile && uploadPerc === 100 && <button onClick={updateprofileImg}>{loading ? <Loading /> : 'Update profile picture'}</button>}
+                {uploadPerc < 99 && uploadPerc > 0 &&
+                    <button >{'uploading ' + uploadPerc + '%'}  </button>}
             </div>
 
             <div className={`${styles.update_sections} ${styles.bio_section}`}>
@@ -83,8 +118,12 @@ const EditProfileModal = ({ setShowEditProfileModal }) => {
                             placeholder='write something about yourself...'
                         ></textarea>
                         <div className={styles.btns}>
+                            <button style={{ cursor: 'default' }}>{50 - bioText?.length} characters</button>
                             <button onClick={() => setShowBioInput(!showBioInput)}>Cancel</button>
-                            <button disabled={!bioText} style={{ cursor: !bioText ? 'not-allowed' : 'pointer' }}>Save</button>
+                            <button
+                                onClick={updatebio}
+                                disabled={!bioText}
+                                style={{ cursor: !bioText ? 'not-allowed' : 'pointer' }}>{loading ? <Loading /> : 'Save'}</button>
                         </div>
                     </div>}
             </div>

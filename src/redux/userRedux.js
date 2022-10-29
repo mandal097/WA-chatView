@@ -54,7 +54,13 @@ const userSlice = createSlice({
         },
         updateBio:(state,action)=>{
             state.currentUser.bio = action.payload.bio
-        }
+        },
+        updateProfilePic:(state,action)=>{
+            state.currentUser.profilePic = action.payload.profilePic
+        },
+        updateCover:(state,action)=>{
+            state.currentUser.coverImg = action.payload.coverImg
+        },
     },
 });
 
@@ -66,6 +72,8 @@ export const {
     followFriend,
     unFollowFriend,
     updateDetails,
-    updateBio
+    updateBio,
+    updateProfilePic,
+    updateCover
 } = userSlice.actions;
 export default userSlice.reducer

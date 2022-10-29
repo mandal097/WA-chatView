@@ -109,7 +109,7 @@ const PostCard = ({ post, loading }) => {
                 </div>
                 <div className={styles.details}>
                     <Link to={`/profile/${post?.userId._id}`} className={`${styles.link} ${styles.name_link}`}>{post.userId?.name}</Link>
-                    <small>is with</small> {' '}
+                    <small>  {post.tags?.length > 0 && 'is with'}</small> {' '}
                     {post.tags?.slice(0, 3).map(tag => (
                         <Link to={`/profile/${tag._id}`} className={styles.link}>{tag.name}</Link>
                     ))}

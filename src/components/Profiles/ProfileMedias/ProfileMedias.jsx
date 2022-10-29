@@ -196,11 +196,11 @@ const ProfileMedias = ({ type }) => {
           <div className={`${styles.filter} ${active === 'mine' && styles.active}`} onClick={filterMyPhotos}>
             {
               isFriendsProfile ? currentProfile.name?.split(' ')[0] +
-                `${type === 'video' ? "'s videos" : "s' photos"}`
+                `${type === 'video' ? "'s videos" : "'s photos"}`
                 : `${type !== 'video' ? "Your photo's" : "Your video's"}`
             }
           </div>
-          <div className={`${styles.filter} ${active === 'friends' && styles.active}`} onClick={filterFriendsPhotos}>Friends {type === 'video' ? "Videos" : "Photos"}</div>
+          <div className={`${styles.filter} ${active === 'friends' && styles.active}`} onClick={filterFriendsPhotos}>Friends {type === 'video' ? "videos" : "photos"}</div>
         </div>
 
         <div className={styles.photos_div} style={{

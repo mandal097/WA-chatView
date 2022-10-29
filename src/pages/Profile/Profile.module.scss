@@ -31,18 +31,29 @@
         position: absolute;
         right: 2rem;
         bottom: 1rem;
-        font-size: 1.6rem;
-        background-color: var(--textSoft);
-        padding: 0.5rem 1rem;
-        border-radius: 0.5rem;
-        cursor: pointer;
-        font-weight: 500;
         display: flex;
-        align-items: center;
         gap: 1rem;
-        .icon {
-          font-size: 2.5rem;
-          color: black;
+        .edit_cover_btns {
+          font-size: 1.6rem;
+          background-color: var(--textSoft);
+          padding: 0.5rem 1rem;
+          border-radius: 0.5rem;
+          cursor: pointer;
+          font-weight: 500;
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          .icon {
+            font-size: 2.5rem;
+            color: black;
+          }
+        }
+        .edit_cover_button {
+          font-weight: 600;
+          background-color: var(--btnLight);
+          &:hover {
+            background-color: var(--btn);
+          }
         }
       }
     }

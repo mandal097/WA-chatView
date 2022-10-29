@@ -79,10 +79,10 @@ const Posts = () => {
                         token: `Bearer ${localStorage.getItem('token')}`
                     }
                 })
-                // setPosts(res.data.data)
-                const arr = res.data.data;
-                const filter = arr.filter(ele => ele.mediaType !== 'video')
-                setPosts(filter)
+                setPosts(res.data.data)
+                // const arr = res.data.data;
+                // const filter = arr.filter(ele => ele.mediaType !== 'video')
+                // setPosts(filter)
                 setLoading(false)
             } catch (error) {
                 console.log('something went wrong');
@@ -177,7 +177,7 @@ const Posts = () => {
                         </div>
                         <div className={styles.friends_count}>
                             {currentProfile?.followers?.length}{' '}
-                            Friend{currentProfile?.followers?.length === 1 ? '' : "'s"}
+                            Follower{currentProfile?.followers?.length === 1 ? '' : "'s"}
                         </div>
                         <div className={styles.followers_}>
                             {

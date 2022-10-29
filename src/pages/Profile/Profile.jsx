@@ -18,9 +18,10 @@ import axios from '../../config/axios';
 import EditProfileModal from '../../components/_Modals/EditProfileModal/EditProfileModal';
 import Loading from '../../components/Loading/Loading';
 import { currentProfileState, setActiveFriend } from '../../redux/currentProfile';
-import { followFriend, unFollowFriend } from '../../redux/userRedux';
+import { followFriend, unFollowFriend, updateCover } from '../../redux/userRedux';
 import { useCallback } from 'react';
 import { setCurrentChat } from '../../redux/chatRedux';
+import { useUpload } from '../../hooks/useUpload';
 
 const UserBadge = ({ id }) => {
     const [details, setDetails] = useState({});
@@ -65,6 +66,8 @@ const Profile = () => {
     const { currentUser } = useSelector(state => state.user);
     const [currentProfileDetails, setCurrentProfileDetails] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [coverImg, setCoverImg] = useState('');
+    const [uploading, setUploading] = useState(false)
     const [showEditProfileModal, setShowEditProfileModal] = useState(false);
     const [active, setActive] = useState('posts');
     const [owner, setOwner] = useState(false)
@@ -73,6 +76,7 @@ const Profile = () => {
     const activeNav = location.pathname.split('/')[3];
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { uploadPerc, url } = useUpload(coverImg)
 
     useEffect(() => {
         setActive(String(activeNav))
@@ -192,6 +196,29 @@ const Profile = () => {
     }
 
 
+    const updateCoverImg = async (e, param) => {
+        e.preventDefault();
+        try {
+            setUploading(true);
+            const res = await axios.put(`/user/update-profile`, {
+                coverImg: url ? url : currentUser?.coverImg,
+            }, {
+                headers: {
+                    token: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            if (res.data.status === 'success') {
+                toast.success(res.data.message);
+                setUploading(false);
+                dispatch(updateCover({ coverImg: url }))
+                window.location.reload()
+            }
+        } catch (error) {
+            toast.error('something went wrong')
+            setUploading(false);
+        }
+    }
+
 
     // if (loading) return <Loading font='15rem' color='white' />
     return (
@@ -202,10 +229,28 @@ const Profile = () => {
                     <div className={styles.profile_container}>
                         <ToastContainer className='toaster' />
                         <div className={styles.profile}>
+                            <input
+                                style={{ display: 'none' }}
+                                type="file"
+                                accept='image/*'
+                                id="coverImg"
+                                onChange={(e) => setCoverImg(e.target.files[0])}
+                            />
                             <div className={styles.cover_img}>
-                                <img src="https://scontent.fdel27-4.fna.fbcdn.net/v/t1.6435-9/100527609_1077588095956610_3980996785706369024_n.jpg?stp=dst-jpg_p180x540&_nc_cat=102&ccb=1-7&_nc_sid=e3f864&_nc_ohc=jgl8Y1QaPm0AX8WGkmY&_nc_ht=scontent.fdel27-4.fna&oh=00_AT-NiNCq2VXbKrf1BpcUUvqR3-1X3SDULsBEMNZzN92dcw&oe=636E3982" alt="coverImg" />
+                                {
+                                    coverImg
+                                        ? <img src={URL.createObjectURL(coverImg)} alt="profile pictures" />
+                                        : <img src={currentProfileDetails?.coverImg} alt="profile pictures" />
+                                }
                                 {owner &&
-                                    <div className={styles.edit_cover}><CameraFilled className={styles.icon} />Edit Cover Photo</div>
+                                    <div className={styles.edit_cover}>
+                                        {coverImg && uploadPerc === 100 && <button className={`${styles.edit_cover_btns} ${styles.edit_cover_button}`} onClick={updateCoverImg}>{uploading ? <Loading /> : 'Update cover image'}</button>}
+
+                                        {uploadPerc < 99 && uploadPerc > 0 &&
+                                            <button className={`${styles.edit_cover_btns} ${styles.edit_cover_button}`} >{'uploading ' + uploadPerc + '%'}  </button>}
+
+                                        <label htmlFor='coverImg' className={styles.edit_cover_btns}><CameraFilled className={styles.icon} />Edit Cover Photo</label>
+                                    </div>
                                 }
                             </div>
                             <div className={styles.details}>
