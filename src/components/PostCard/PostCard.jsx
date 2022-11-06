@@ -136,6 +136,7 @@ const PostCard = ({ post, loading }) => {
                 <PostActions
                     type='postCard'
                     post={post}
+                    showModal={()=>setShowPostModal(true)}
                     onClick={focusInput} />
                 {/* ------------------------------ */}
 

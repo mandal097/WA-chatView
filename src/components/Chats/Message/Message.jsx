@@ -13,7 +13,7 @@ const Message = ({ message }) => {
         scrollRef?.current?.scrollIntoView({ behavior: 'smooth' })
     }, [message]);
 
-    const own = Object.values(message.sender).includes(currentUser?._id);
+    const own = Object.values(message?.sender).includes(currentUser?._id);
     return (
         <div className={`${styles.message} ${own && styles.own}`} ref={scrollRef}>
             <div className={styles.img}>

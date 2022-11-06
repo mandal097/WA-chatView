@@ -18,6 +18,7 @@ import Friends from './components/Profiles/Friends/Friends';
 import Welcome from './pages/Welcome/Welcome';
 import FriendsPage from './pages/FriendsPage/FriendsPage';
 import ProfileMedias from './components/Profiles/ProfileMedias/ProfileMedias';
+import Watch from './pages/Watch/Watch';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
@@ -51,6 +52,8 @@ const App = () => {
             </Route>
 
             <Route path='friends' element={<FriendsPage/>}/>
+            
+            <Route path='watch' element={<Watch/>}/>
 
           </Route>
         </Routes>

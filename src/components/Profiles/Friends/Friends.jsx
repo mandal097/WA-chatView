@@ -1,13 +1,15 @@
 import React from 'react';
 import styles from './Friends.module.scss';
-import { SearchOutlined } from '@ant-design/icons';
+// import { SearchOutlined } from '@ant-design/icons';
 import FriendList from './FriendList/FriendList';
 import { useDispatch, useSelector } from 'react-redux';
 import { setActiveFriend } from '../../../redux/currentProfile';
+import { useNavigate } from 'react-router-dom';
 
 const Friends = () => {
   const { activeFriend } = useSelector(state => state.profile);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
 
   return (
@@ -15,11 +17,11 @@ const Friends = () => {
       <div className={styles.header}>
         <h3>Friends</h3>
         <div className={styles.right}>
-          <div className={styles.search_box}>
+          {/* <div className={styles.search_box}>
             <SearchOutlined className={styles.icon} />
             <input type="text" placeholder='search' />
-          </div>
-          <button>Find friends</button>
+          </div> */}
+          <button onClick={()=>navigate('/friends')}>Find friends</button>
         </div>
       </div>
       <div className={styles.navs}>

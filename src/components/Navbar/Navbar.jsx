@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styles from './Navbar.module.scss';
 import {
     SearchOutlined,
@@ -25,6 +25,8 @@ const Navbar = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [showFriendsList, setShowFriendsList] = useState('');
+    const [active, setActive] = useState('feeds')
+    const navRef = useRef()
 
 
 
@@ -35,12 +37,13 @@ const Navbar = () => {
         dispatch(removeMembers());
         dispatch(setCurrentChatInitial())
         navigate('/login');
+    };
 
-    }
+
 
     return (
-        <>
-            <nav className={styles.navbar}>
+        <nav>
+            <div className={styles.navbar} ref={navRef}>
                 <div className={styles.logo} onClick={() => navigate('/')}>
                     <GlobalOutlined className='icon' />
                 </div>
@@ -52,13 +55,27 @@ const Navbar = () => {
                         >
                             <div className={styles.icon}><SearchOutlined /></div>
                         </div>
+
                         <div className={styles.middle}>
                             <button
-                                onClick={() => navigate('/home')}
-                                className={styles.items}><HomeOutlined /></button>
-                            <button className={styles.items}><DesktopOutlined /></button>
-                            <button className={styles.items}><UsergroupDeleteOutlined /></button>
+                                onClick={() => {
+                                    setActive('feeds')
+                                    navigate('/home');
+                                }}
+                                className={`${styles.items} ${active==='feeds' && styles.active}`}><HomeOutlined /></button>
+                            <button  className={`${styles.items} ${active==='watch' && styles.active}`}
+                                onClick={() => {
+                                    setActive('watch')
+                                    navigate('/watch')
+                                }}
+                            ><DesktopOutlined /></button>
+                            <button  className={`${styles.items} ${active==='groups' && styles.active}`}
+                                onClick={() => {
+                                    setActive('groups')
+                                }}
+                            ><UsergroupDeleteOutlined /></button>
                         </div>
+
                         <div className={styles.toolkit}>
                             <div className={styles.auth_actions}>
                                 <button
@@ -88,14 +105,14 @@ const Navbar = () => {
                         </button>
                     </div>
                 }
-            </nav>
+            </div>
             {showFriendsList &&
                 <FriendsList
                     setShowFriendsList={setShowFriendsList}
                     showFriendsList={showFriendsList}
                 />
             }
-        </>
+        </nav>
     )
 }
 

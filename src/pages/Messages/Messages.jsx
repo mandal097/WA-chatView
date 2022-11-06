@@ -122,9 +122,9 @@ const Message = () => {
                 <p>Lorem, ipsum dolor sit amet consecteturoluptatibus consequuntur alias iusto quasi dolores? Vel.</p>
               </div>
               <div className={styles.actions}>
-                <button><VideoCameraOutlined /></button>
-                <button><PhoneOutlined /></button>
-                <button><SearchOutlined /></button>
+                {/* <button><VideoCameraOutlined /></button>
+                <button><PhoneOutlined /></button> */}
+                {/* <button><SearchOutlined /></button> */}
                 <button><MoreOutlined /></button>
               </div>
             </div>

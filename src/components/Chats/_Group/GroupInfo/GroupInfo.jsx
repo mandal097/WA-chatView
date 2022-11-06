@@ -242,6 +242,7 @@ const ChatInfo = ({ setShowInfo }) => {
                         ))
                     }
                     <div style={{ backgroundColor: 'var(--bg)', height: '0.7rem' }}></div>
+                    
                     <div className={styles.actions} onClick={() => removeUser(currentUser._id, 'exit-group')}>
                         <div className={styles._icon}>
                             <ExportOutlined className={styles.icon} /></div>

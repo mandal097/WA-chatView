@@ -6,7 +6,8 @@ import {
     MessageOutlined,
     BookOutlined,
     SendOutlined,
-    HeartFilled
+    HeartFilled,
+    FolderViewOutlined
 } from '@ant-design/icons';
 import { toast } from 'react-toastify';
 import axios from '../../config/axios';
@@ -14,12 +15,12 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import LikeModal from '../_Modals/LikesModal/LikeModal';
 
-const PostActions = ({ onClick, post }) => {
+const PostActions = ({ onClick, post, showModal }) => {
     const { currentUser } = useSelector(state => state.user)
     const [liked, setLiked] = useState(post?.likes?.includes(currentUser._id));
     const [likes, setLikes] = useState(post?.likes?.length ? post?.likes?.length : 0);
     const [clicked, setClicked] = useState(false);
-    const [showLikesModal , setShowLikesModal] = useState(false)
+    const [showLikesModal, setShowLikesModal] = useState(false)
 
 
 
@@ -66,12 +67,15 @@ const PostActions = ({ onClick, post }) => {
                     <div className={`${styles.icons} ${clicked && 'pop'}`} onClick={likeDislikePost}>
                         {
                             liked
-                                ? <HeartFilled className={`${styles.icon} ${liked && styles.heart}`}  />
-                                : <HeartOutlined className={`${styles.icon} ${liked && styles.heart}`}  />
+                                ? <HeartFilled className={`${styles.icon} ${liked && styles.heart}`} />
+                                : <HeartOutlined className={`${styles.icon} ${liked && styles.heart}`} />
                         }
                     </div>
                     <div className={styles.icons} onClick={onClick}>
                         <MessageOutlined className={styles.icon} />
+                    </div>
+                    <div className={styles.icons} onClick={showModal}>
+                        <FolderViewOutlined className={styles.icon} />
                     </div>
                     <div className={styles.icons}>
                         <SendOutlined className={styles.icon} />
@@ -84,7 +88,7 @@ const PostActions = ({ onClick, post }) => {
                 </div>
             </div>
 
-            <div className={styles.counters} onClick={()=>setShowLikesModal(true)}>
+            <div className={styles.counters} onClick={() => setShowLikesModal(true)}>
                 <small>{likes} likes</small>
             </div>
             {

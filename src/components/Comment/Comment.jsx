@@ -132,6 +132,7 @@ const Comment = ({ details, post }) => {
             }
             if (res.data.status === 'success') {
                 toast.success(res.data.message);
+                // setReplies(prev => [...prev, res.data.data])
                 setReplyText('');
                 setPosting(false);
             }
@@ -143,8 +144,6 @@ const Comment = ({ details, post }) => {
 
     useEffect(() => {
         const fetchComments = async () => {
-            // try {
-            // const res = await axios.get(`/comment/replies?postId=${post?._id}&parentCommentId=${details?._id}`, {
             const res = await axios.get(`/comment/replies/${details?._id}`, {
                 headers: {
                     token: `Bearer ${localStorage.getItem('token')}`
@@ -165,7 +164,6 @@ const Comment = ({ details, post }) => {
         fetchComments()
     }, [details, post])
 
-    console.log(replies);
 
     return (
         <>

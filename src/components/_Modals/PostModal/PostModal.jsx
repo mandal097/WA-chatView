@@ -59,7 +59,7 @@ console.log(post);
             width='80vw'
             height='max-content'
             margin='3rem 0'
-            zIndex='100'
+            zIndex='100000'
             head='♥ Sasta Facebook ♥'
             p_bottom={0}
             gap={0}

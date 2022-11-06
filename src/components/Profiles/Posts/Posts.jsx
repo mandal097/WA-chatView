@@ -45,6 +45,7 @@ const Posts = () => {
     const [showBioInput, setShowBioInput] = useState(false);
     const [owner, setOwner] = useState(false);
     const [posts, setPosts] = useState([]);
+    const [filterPosts, setFilterPosts] = useState([]);
     const bioRef = useRef();
     const location = useLocation();
     const id = location.pathname.split('/')[2]
@@ -80,9 +81,9 @@ const Posts = () => {
                     }
                 })
                 setPosts(res.data.data)
-                // const arr = res.data.data;
-                // const filter = arr.filter(ele => ele.mediaType !== 'video')
-                // setPosts(filter)
+                const arr = res.data.data;
+                const filter = arr.filter(ele => ele.mediaType !== 'video')
+                setFilterPosts(filter)
                 setLoading(false)
             } catch (error) {
                 console.log('something went wrong');
@@ -159,7 +160,7 @@ const Posts = () => {
                         </div>
                         <div className={styles.photos_}>
                             {
-                                posts?.map(post => (
+                                filterPosts?.map(post => (
                                     <div key={post._id}>
                                         <img src={post.mediaUrl} alt="post" />
                                     </div>

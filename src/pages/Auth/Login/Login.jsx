@@ -33,7 +33,7 @@ const Login = () => {
         localStorage.setItem('token', res.data.token);
         dispatch(login(res.data.data))
         setTimeout(() => {
-          navigate('/messenger')
+          navigate('/')
         }, 1000);
       }
       if (res.data.status === 'err') {

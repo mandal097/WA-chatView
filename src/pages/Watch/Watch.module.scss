@@ -1,0 +1,71 @@
+.reel_page {
+  display: flex;
+  justify-content: space-between;
+  font-size: 2rem;
+  color: var(--text);
+  height: auto;
+  .sidebar {
+    width: 400px;
+    border-right: 1px solid var(--border);
+    height: calc(100vh - 5.5rem);
+    position: sticky;
+    top: 5.5rem;
+    background-color: var(--bgDark);
+    padding: 1rem;
+    .filters {
+      width: 100%;
+      height: 5.5rem;
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 0.5rem;
+      cursor: pointer;
+      margin-bottom: 1rem;
+      .icon_ {
+        width: 4.5rem;
+        height: 4.5rem;
+        border-radius: 50%;
+        background-color: var(--bgLight);
+        display: grid;
+        place-items: center;
+        .icon {
+          font-size: 3rem;
+          color: var(--text);
+        }
+      }
+      span {
+        font-size: 1.5rem;
+        font-weight: 500;
+      }
+      &:hover {
+        background-color: var(--bgLight);
+        .icon_ {
+          background-color: var(--bgLighter);
+        }
+      }
+    }
+    .active {
+      background-color: var(--bgLight);
+      .icon_ {
+        background-color: var(--btnLight);
+      }
+      &:hover {
+        background-color: var(--bgLight);
+        .icon_ {
+          background-color: var(--btnLight);
+        }
+      }
+    }
+  }
+  .body {
+    flex: 1;
+    height: auto;
+    padding: 1rem;
+    .body_wrapper {
+      width: 75rem;
+      height: auto;
+      margin: 0 auto;
+    }
+  }
+}

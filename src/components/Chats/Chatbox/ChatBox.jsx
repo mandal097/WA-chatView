@@ -19,7 +19,32 @@ const ChatBox = () => {
     const [newMessage, setNewMessage] = useState('');
     const [loading, setLoading] = useState(false)
     const [messages, setMessages] = useState([]);
+    const [arrivalMessage, setArrivalMessage] = useState({});
     const socket = useRef()
+
+
+    useEffect(() => {
+        socket.current = socketInit();
+            socket.current.on('getMessage', (data) => {
+                console.log(data);
+                setArrivalMessage({
+                    sender: data.sender?._id,
+                    content: data.content,
+                    createdAt: Date.now()
+                })
+            })
+    }, []);
+
+    useEffect(() => {
+        socket.current.emit('addUsers', currentUser._id)
+    }, [currentUser])
+
+    // socket io
+    useEffect(() => {
+            arrivalMessage &&
+                !Object.values(currentUser)?.includes(String(arrivalMessage.sender?._id)) &&
+                setMessages(prev => [...prev, arrivalMessage])
+    }, [arrivalMessage, currentUser])
 
 
     const sendMessage = async (e) => {
@@ -27,6 +52,12 @@ const ChatBox = () => {
         if (!newMessage) {
             toast.error('Please write a message')
         } else {
+            socket.current.emit('sendMessage', {
+                sender: currentUser._id,
+                receiverId: currentChat._id,
+                content: newMessage
+            })
+
             const token = localStorage.getItem('token')
             const res = await axios.post('/message', {
                 chatId: chatId,
@@ -40,6 +71,7 @@ const ChatBox = () => {
                 toast.error(res.data.message)
             }
             if (res.data.status === 'success') {
+                setMessages([...messages, res.data.data])
                 setNewMessage('');
             }
         }
@@ -55,18 +87,14 @@ const ChatBox = () => {
                 },
             });
             setMessages(res.data.data);
-            setLoading(false)
-            console.log(res.data.data);
+            setLoading(false);
         }
         fetchMessages();
     }, [chatId]);
 
 
-    // socket io
-    useEffect(() => {
-        socket.current = socketInit();
-        socket.current.emit('addUsers', currentUser._id)
-    }, [currentUser])
+
+
 
     if (currentChat === null) return <Default />
     if (loading) return <Loading font='8rem' />
@@ -79,8 +107,8 @@ const ChatBox = () => {
                 <div className={styles.chats}>
                     {messages.length === 0 && <h1 style={{ fontSize: '2rem', textAlign: 'center', marginTop: '5rem' }}>No chats found with this user<br />Start chatting... 🖖🖖🖖 </h1>}
                     {
-                        messages.map(m => (
-                            <Message key={m.id}
+                        messages?.map(m => (
+                            <Message key={m?._id}
                                 message={m}
                             />
                         ))
