@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './CreatePost.module.scss';
-import { CameraFilled, VideoCameraFilled } from '@ant-design/icons';
+import { CameraFilled, VideoCameraAddOutlined, VideoCameraFilled } from '@ant-design/icons';
 import { useState } from 'react';
 import CreatePostModal from '../_Modals/CreatePostModal/CreatePostModal';
 
@@ -22,14 +22,18 @@ const CreatePost = () => {
                     <CameraFilled className={styles.icon} style={{ color: 'lightgreen' }} />Photo
                 </div>
                 <div className={styles.upload_option} onClick={() => {
+                    setMediaType('reels')
+                    setShowModal(true)
+                }} >
+                    <VideoCameraAddOutlined className={styles.icon} style={{ color: 'yellow' }} />Reel
+                </div>
+                <div className={styles.upload_option} onClick={() => {
                     setMediaType('video')
                     setShowModal(true)
                 }} >
                     <VideoCameraFilled className={styles.icon} style={{ color: 'coral' }} />Video
                 </div>
-                {/* <div className={styles.upload_option}>
-                    <CameraFilled className={styles.icon} />Photo
-                </div> */}
+
             </div>
             {showModal &&
                 <CreatePostModal

@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from './PostActions.module.scss';
 import {
-    // HeartFilled,
     HeartOutlined,
     MessageOutlined,
     BookOutlined,
     SendOutlined,
     HeartFilled,
-    FolderViewOutlined
+    FolderViewOutlined,
+    BookFilled
 } from '@ant-design/icons';
 import { toast } from 'react-toastify';
 import axios from '../../config/axios';
@@ -18,11 +18,10 @@ import LikeModal from '../_Modals/LikesModal/LikeModal';
 const PostActions = ({ onClick, post, showModal }) => {
     const { currentUser } = useSelector(state => state.user)
     const [liked, setLiked] = useState(post?.likes?.includes(currentUser._id));
+    const [saved, setSaved] = useState(post?.saved?.includes(currentUser._id));
     const [likes, setLikes] = useState(post?.likes?.length ? post?.likes?.length : 0);
     const [clicked, setClicked] = useState(false);
     const [showLikesModal, setShowLikesModal] = useState(false)
-
-
 
     const likeDislikePost = async () => {
         switch (liked) {
@@ -47,17 +46,45 @@ const PostActions = ({ onClick, post, showModal }) => {
                     token: `Bearer ${localStorage.getItem('token')}`
                 }
             })
-            console.log(res.data);
+            // console.log(res.data);
             if (res.data.status === 'err') {
                 toast.error(res.data.message)
             }
-            // if (res.data.status === 'success') {
-            //     toast.success(res.data.message);
-            // }
         } catch (error) {
             toast.error('something went wrong')
         }
     }
+
+    const saveUnsavePost = async () => {
+        switch (saved) {
+            case true:
+                setSaved(false);
+                break;
+            case false:
+                setSaved(true);
+                break;
+            default:
+                setSaved(false)
+        }
+        try {
+            const res = await axios.put(`/post/save/${post?._id}`, {}, {
+                headers: {
+                    token: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            console.log(res.data);
+            if (res.data.status === 'err') {
+                toast.error(res.data.message)
+            }
+            if (res.data.status === 'success') {
+                toast.success(res.data.message);
+                console.log(res.data.data);
+            }
+        } catch (error) {
+            toast.error('something went wrong')
+        }
+    }
+
 
 
     return (
@@ -82,8 +109,12 @@ const PostActions = ({ onClick, post, showModal }) => {
                     </div>
                 </div>
                 <div className={styles.right}>
-                    <div className={styles.icons}>
-                        <BookOutlined className={styles.icon} />
+                    <div className={styles.icons} onClick={saveUnsavePost}>
+                        {
+                            saved
+                                ? <BookFilled className={styles.icon} />
+                                : <BookOutlined className={styles.icon} />
+                        }
                     </div>
                 </div>
             </div>

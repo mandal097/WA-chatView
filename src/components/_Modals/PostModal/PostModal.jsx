@@ -68,9 +68,9 @@ console.log(post);
             <ToastContainer className='toaster' />
             <div className={styles.post_modal}>
                 <div className={styles.img}>
-                    {type === 'video'
-                        ?  <video src={post.mediaUrl} alt="post" controls autoPlay/>
-                        : <img src={post?.mediaUrl} alt="" />
+                    {type === 'image'
+                        ? <img src={post?.mediaUrl} alt="" />
+                        :  <video src={post.mediaUrl} alt="post" controls autoPlay/>
                     }
                 </div>
                 <div className={styles.right}>

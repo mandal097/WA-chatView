@@ -121,12 +121,12 @@ const PostCard = ({ post, loading }) => {
                 </div>
                 <div className={styles.more}><MoreOutlined className={styles.icon} /></div>
             </div>
-            {post.mediaType === 'video'
-                ? <div className={styles.video}>
-                    <video src={post.mediaUrl} alt="post" controls />
-                </div>
-                : <div className={styles.image}>
+            {post.mediaType === 'image'
+                ? <div className={styles.image}>
                     <img src={post.mediaUrl} alt="post" />
+                </div>
+                : <div className={styles.video}>
+                    <video src={post.mediaUrl} alt="post" controls />
                 </div>
             }
             <div className={styles.bottom}>
@@ -136,7 +136,7 @@ const PostCard = ({ post, loading }) => {
                 <PostActions
                     type='postCard'
                     post={post}
-                    showModal={()=>setShowPostModal(true)}
+                    showModal={() => setShowPostModal(true)}
                     onClick={focusInput} />
                 {/* ------------------------------ */}
 

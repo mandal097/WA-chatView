@@ -26,8 +26,7 @@ const CreatePostModal = ({ setShowModal, mediaType }) => {
             setActive(true)
         }
     }, [media, text, uploadPerc])
-
-
+console.log(mediaType);
     const createPost = async (e) => {
         e.preventDefault();
         if (!media && !text) {
@@ -98,7 +97,7 @@ const CreatePostModal = ({ setShowModal, mediaType }) => {
 
 
                             {
-                                mediaType === 'video'
+                                mediaType !== 'image'
                                     ?
                                     <>
                                         <div className={styles.inputs}>
@@ -120,7 +119,7 @@ const CreatePostModal = ({ setShowModal, mediaType }) => {
                                             />
                                             <div className={styles.perc}> {uploadPerc > 0 && "Uploading" + uploadPerc + "%"}</div>
                                             <label htmlFor='video' className={styles.add_media}>Change</label>
-                                            <div className={styles.add_media} onClick={() => setShowTag(true)}>Tag Friends 👨🏾‍🤝‍👨🏾</div>
+                                            <div className={styles.add_media} onClick={() => setShowTag(true)}> {members?.length ? members?.length + ' Tagged friends' : 'Tag friends 👨🏾‍🤝‍👨🏾'} </div>
                                         </div>
                                     </>
                                     :

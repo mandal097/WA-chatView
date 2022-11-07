@@ -12,22 +12,24 @@ import {
     LogoutOutlined,
     LoginOutlined
 } from '@ant-design/icons';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../redux/userRedux';
 import { removeMembers } from '../../redux/AddToGroup';
 import { setCurrentChatInitial } from '../../redux/chatRedux';
 import { useState } from 'react';
 import FriendsList from '../FriendsList/FriendsList';
+import { useEffect } from 'react';
 
 const Navbar = () => {
     const user = useSelector((state) => state.user.currentUser);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [showFriendsList, setShowFriendsList] = useState('');
-    const [active, setActive] = useState('feeds')
+    const [active, setActive] = useState('')
     const navRef = useRef()
-
+    const location = useLocation();
+    const path = location.pathname.split('/')[1]
 
 
     const logoutUser = () => {
@@ -39,7 +41,9 @@ const Navbar = () => {
         navigate('/login');
     };
 
-
+    useEffect(() => {
+        setActive(path)
+    }, [path])
 
     return (
         <nav>
@@ -59,17 +63,17 @@ const Navbar = () => {
                         <div className={styles.middle}>
                             <button
                                 onClick={() => {
-                                    setActive('feeds')
+                                    setActive('home')
                                     navigate('/home');
                                 }}
-                                className={`${styles.items} ${active==='feeds' && styles.active}`}><HomeOutlined /></button>
-                            <button  className={`${styles.items} ${active==='watch' && styles.active}`}
+                                className={`${styles.items} ${active === 'home' && styles.active}`}><HomeOutlined /></button>
+                            <button className={`${styles.items} ${active === 'watch' && styles.active}`}
                                 onClick={() => {
                                     setActive('watch')
                                     navigate('/watch')
                                 }}
                             ><DesktopOutlined /></button>
-                            <button  className={`${styles.items} ${active==='groups' && styles.active}`}
+                            <button className={`${styles.items} ${active === 'groups' && styles.active}`}
                                 onClick={() => {
                                     setActive('groups')
                                 }}
