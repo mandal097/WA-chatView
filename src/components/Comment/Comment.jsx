@@ -149,7 +149,7 @@ const Comment = ({ details, post }) => {
                     token: `Bearer ${localStorage.getItem('token')}`
                 }
             })
-            console.log(res.data);
+            // console.log(res.data);
             if (res.data.status === 'err') {
                 toast.error(res.data.message)
             }

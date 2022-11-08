@@ -28,8 +28,9 @@ const PostCard = ({ post, loading }) => {
     const [showPostModal, setShowPostModal] = useState(false);
     const [commentText, setCommentText] = useState('');
     const [comments, setComments] = useState([]);
-    const [posting, setPosting] = useState(false)
+    const [posting, setPosting] = useState(false);
 
+    const vidRef = useRef()
     const inputRef = useRef()
 
     const postComment = async (e) => {
@@ -126,7 +127,7 @@ const PostCard = ({ post, loading }) => {
                     <img src={post.mediaUrl} alt="post" />
                 </div>
                 : <div className={styles.video}>
-                    <video src={post.mediaUrl} alt="post" controls />
+                    <video src={post.mediaUrl} alt="post" controls ref={vidRef} />
                 </div>
             }
             <div className={styles.bottom}>
@@ -137,6 +138,7 @@ const PostCard = ({ post, loading }) => {
                     type='postCard'
                     post={post}
                     showModal={() => setShowPostModal(true)}
+                    vidRef={vidRef}
                     onClick={focusInput} />
                 {/* ------------------------------ */}
 
@@ -151,7 +153,11 @@ const PostCard = ({ post, loading }) => {
                 {
                     comments.length > 0 &&
                     <div className={styles.counters}>
-                        <small onClick={() => setShowPostModal(true)}> view {comments.length > 1 ? "all" : ""} {comments?.length} comment{comments.length > 1 && "'s"}</small>
+                        <small onClick={() => {
+                            vidRef.current.pause()
+                            setShowPostModal(true)
+                        }}
+                        > view {comments.length > 1 ? "all" : ""} {comments?.length} comment{comments.length > 1 && "'s"}</small>
                     </div>
                 }
 
@@ -186,6 +192,7 @@ const PostCard = ({ post, loading }) => {
                     post={post}
                     comments={comments}
                     type={post.mediaType}
+                    vidRef={vidRef}
                 />
             }
         </div>

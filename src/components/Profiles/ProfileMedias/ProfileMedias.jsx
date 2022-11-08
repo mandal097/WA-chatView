@@ -103,7 +103,8 @@ const ProfileMedias = ({ type }) => {
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [isFriendsProfile, setIsFriendsProfile] = useState(true)
   const path = useLocation()
-  const currentProfileId = path.pathname.split('/')[2]
+  const currentProfileId = path.pathname.split('/')[2];
+  console.log(type);
 
 
   useEffect(() => {
@@ -189,7 +190,7 @@ const ProfileMedias = ({ type }) => {
 
         <div className={styles.head}>
           <h3>{type === 'video' ? "Videos" : "Photos"}</h3>
-          <button>Add Photo/Video</button>
+          <button>Add  {type === 'video' ? "Video" : "Photo"}</button>
         </div>
 
         <div className={styles.filter_options}>

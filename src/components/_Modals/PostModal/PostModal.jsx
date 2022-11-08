@@ -11,7 +11,7 @@ import axios from '../../../config/axios';
 import { toast, ToastContainer } from 'react-toastify';
 import { format } from 'timeago.js';
 
-const PostModal = ({ setShowPostModal, post, comments, type }) => {
+const PostModal = ({ setShowPostModal, post, comments, type, vidRef }) => {
     const { currentUser } = useSelector(state => state.user);
     const inputRef = useRef(null)
     const [commentText, setCommentText] = useState('');
@@ -52,7 +52,7 @@ const PostModal = ({ setShowPostModal, post, comments, type }) => {
     }
 
 
-console.log(post);
+    // console.log(post);
 
     return (
         <Modal
@@ -63,14 +63,17 @@ console.log(post);
             head='♥ Sasta Facebook ♥'
             p_bottom={0}
             gap={0}
-            onClick={() => setShowPostModal(false)}
+            onClick={() => {
+                vidRef.current.play()
+                setShowPostModal(false)
+            }}
         >
             <ToastContainer className='toaster' />
             <div className={styles.post_modal}>
                 <div className={styles.img}>
                     {type === 'image'
                         ? <img src={post?.mediaUrl} alt="" />
-                        :  <video src={post.mediaUrl} alt="post" controls autoPlay/>
+                        : <video src={post.mediaUrl} alt="post" controls autoPlay />
                     }
                 </div>
                 <div className={styles.right}>

@@ -1,95 +1,148 @@
 .friends {
-  width: 900px;
-  margin: 2rem auto;
-  border-radius: 1rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 2rem;
+  color: var(--text);
   height: auto;
-  padding: 1rem 2rem;
-  border: 1px solid var(--border);
-  h3 {
-    font-size: 1.8rem;
-    color: var(--textSoft);
-    font-weight: 500;
-    border-bottom: 1px solid var(--error);
-    padding-bottom: 1rem;
-  }
-  .friends_div {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    height: auto;
-    .card {
-      border: 1px solid var(--border);
-      width: 24%;
-      height: auto;
-      margin-top: 1.4rem;
+  .side_bar {
+    width: 38rem;
+    border-right: 1px solid var(--border);
+    height: calc(100vh - 5.5rem);
+    position: sticky;
+    top: 5.5rem;
+    background-color: var(--bgDark);
+    padding: 1rem;
+    .filters {
+      width: 100%;
+      height: 5.5rem;
       border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 0.5rem;
       cursor: pointer;
-      .img {
-        width: 100%;
-        height: 20rem;
-        overflow: hidden;
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          border-top-right-radius: 1rem;
-          border-top-left-radius: 1rem;
+      margin-bottom: 1rem;
+      .icon_ {
+        width: 4.5rem;
+        height: 4.5rem;
+        border-radius: 50%;
+        background-color: var(--bgLight);
+        display: grid;
+        place-items: center;
+        .icon {
+          font-size: 3rem;
+          color: var(--text);
         }
       }
-      .details {
-        display: flex;
-        flex-direction: column;
-        color: var(--text);
-        margin: 0.5rem 0 1.2rem 0;
-        padding: 0 1rem;
-        .name {
-          font-size: 1.6rem;
-          font-weight: 500;
-          text-transform: capitalize;
-          margin: 0.2rem 0;
-          color: var(--successLight);
+      span {
+        font-size: 1.5rem;
+        font-weight: 500;
+      }
+      &:hover {
+        background-color: var(--bgLight);
+        .icon_ {
+          background-color: var(--bgLighter);
         }
-        .connections {
-          margin-top: 0.3rem;
-          span {
-            font-size: 1.2rem;
-            cursor: pointer;
-            &:nth-child(2) {
-              margin-left: 1rem;
-            }
-            &:hover {
-              color: var(--btn);
-              text-decoration: underline;
-            }
-          }
-        }
-        button {
-          width: 100%;
-          font-size: 1.5rem;
-          color: var(--text);
-          background-color: var(--bgLight);
-          border-radius: 0.5rem;
-          cursor: pointer;
-          padding: 0.5rem 1rem;
-          margin-top: 1rem;
-          &:hover {
-            background-color: var(--bgLighter);
-          }
-        }
-        .followBtn {
-          background-color: var(--btn);
-          &:hover {
-            background-color: var(--btnLight);
-          }
+      }
+    }
+    .active {
+      background-color: var(--bgLight);
+      .icon_ {
+        background-color: var(--btnLight);
+      }
+      &:hover {
+        background-color: var(--bgLight);
+        .icon_ {
+          background-color: var(--btnLight);
         }
       }
     }
   }
-}
+  h3 {
+    font-size: 1.8rem;
+    color: var(--textSoft);
+    font-weight: 500;
+    text-transform: capitalize;
+    padding-bottom: 1rem;
+  }
 
-@media screen and (max-width: 900px) {
-  .friends {
-    width: 95%;
+  .body {
+    flex: 1;
+    height: auto;
+    padding: 2rem;
+    .friends_div {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      height: auto;
+      .card {
+        border: 1px solid var(--border);
+        width:23%;
+        height: auto;
+        margin-top: 1.4rem;
+        border-radius: 1rem;
+        cursor: pointer;
+        .img {
+          width: 100%;
+          height: 20rem;
+          overflow: hidden;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-top-right-radius: 1rem;
+            border-top-left-radius: 1rem;
+          }
+        }
+        .details {
+          display: flex;
+          flex-direction: column;
+          color: var(--text);
+          margin: 0.5rem 0 1.2rem 0;
+          padding: 0 1rem;
+          .name {
+            font-size: 1.6rem;
+            font-weight: 500;
+            text-transform: capitalize;
+            margin: 0.2rem 0;
+            color: var(--successLight);
+          }
+          .connections {
+            margin-top: 0.3rem;
+            span {
+              font-size: 1.2rem;
+              cursor: pointer;
+              &:nth-child(2) {
+                margin-left: 1rem;
+              }
+              &:hover {
+                color: var(--btn);
+                text-decoration: underline;
+              }
+            }
+          }
+          button {
+            width: 100%;
+            font-size: 1.5rem;
+            color: var(--text);
+            background-color: var(--bgLight);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            margin-top: 1rem;
+            &:hover {
+              background-color: var(--bgLighter);
+            }
+          }
+          .followBtn {
+            background-color: var(--btn);
+            &:hover {
+              background-color: var(--btnLight);
+            }
+          }
+        }
+      }
+    }
   }
 }

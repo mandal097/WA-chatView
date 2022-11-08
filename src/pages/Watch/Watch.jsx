@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './Watch.module.scss';
 import axios from '../../config/axios';
 import PostCard from '../../components/PostCard/PostCard';
-import { BookFilled, VideoCameraAddOutlined, VideoCameraFilled, VideoCameraOutlined } from '@ant-design/icons';
+import { BookFilled, FileImageFilled, PlayCircleFilled, VideoCameraFilled } from '@ant-design/icons';
 import Loading from '../../components/Loading/Loading';
 import { useSelector } from 'react-redux';
 
@@ -40,16 +40,25 @@ const Watch = () => {
   const filterSavedVideos = () => {
     const filter = videos?.filter(video => video?.saved.includes(currentUser._id));
     setFilterVideos(filter);
-  }
+  };
+
   const filterSavedReels = () => {
     const filterVid = postVid.filter(ele => ele.mediaType === 'reels')
     const filter = filterVid?.filter(video => video?.saved.includes(currentUser._id));
     setFilterVideos(filter);
-  }
+  };
+
   const filterAllReels = () => {
     const filterVid = postVid.filter(ele => ele.mediaType === 'reels')
     setFilterVideos(filterVid);
-  }
+  };
+
+  const filterSavedPosts = () => {
+    const filterVid = postVid.filter(ele => ele.mediaType === 'image')
+    const filter = filterVid?.filter(video => video?.saved.includes(currentUser._id));
+    setFilterVideos(filter);
+  };
+
   return (
     <div className={styles.reel_page}>
       <div className={styles.sidebar}>
@@ -79,9 +88,9 @@ const Watch = () => {
         }}
           className={`${styles.filters} ${active === 'all_reels' && styles.active}`}>
           <div className={styles.icon_}>
-            <VideoCameraOutlined className={styles.icon} />
+            <PlayCircleFilled className={styles.icon} />
           </div>
-          <span>All Reels</span>
+          <span> Reels</span>
         </div>
 
         <div onClick={() => {
@@ -90,9 +99,20 @@ const Watch = () => {
         }}
           className={`${styles.filters} ${active === 'saved_reels' && styles.active}`}>
           <div className={styles.icon_}>
-            <VideoCameraAddOutlined className={styles.icon} />
+            <BookFilled className={styles.icon} />
           </div>
           <span>Saved reels</span>
+        </div>
+
+        <div onClick={() => {
+          filterSavedPosts()
+          setActive('saved_posts')
+        }}
+          className={`${styles.filters} ${active === 'saved_posts' && styles.active}`}>
+          <div className={styles.icon_}>
+            <FileImageFilled className={styles.icon} />
+          </div>
+          <span>Saved posts</span>
         </div>
 
       </div>
@@ -102,34 +122,27 @@ const Watch = () => {
         }
         <div className={styles.body_wrapper}>
           {
-            active === 'home' &&
-            videos?.map((post => (
-              <PostCard key={post?._id} post={post} loading={loading} />
-            )))
+            active === 'home' ?
+              <>
+                {
+                  videos?.map((post => (
+                    <PostCard key={post?._id} post={post} loading={loading} />
+                  )))
+                }
+              </> :
+              <>
+                {
+                  filterVideos?.map((post => (
+                    <PostCard key={post?._id} post={post} loading={loading} />
+                  )))
+                }
+              </>
           }
           {
-            active === 'saved' &&
-            filterVideos?.map((post => (
-              <PostCard key={post?._id} post={post} loading={loading} />
-            )))
+            !videos && !loading && <h2>No {active} founds...</h2>
           }
           {
-            active === 'all_reels' &&
-            filterVideos?.map((post => (
-              <PostCard key={post?._id} post={post} loading={loading} />
-            )))
-          }
-          {
-            active === 'saved_reels' &&
-            filterVideos?.map((post => (
-              <PostCard key={post?._id} post={post} loading={loading} />
-            )))
-          }
-          {
-            !videos && !loading && <h2>No posts founds...</h2>
-          }
-          {
-            filterVideos.length ===0 &&  <h2 style={{fontSize:'3rem'}}>No posts founds...</h2>
+            filterVideos.length === 0 && <h2 style={{ fontSize: '3rem' }}>No {active} founds...</h2>
           }
         </div>
       </div>
