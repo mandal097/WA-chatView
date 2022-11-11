@@ -65,6 +65,7 @@ const UserBadge = ({ id }) => {
 const Profile = () => {
     const { currentUser } = useSelector(state => state.user);
     const [currentProfileDetails, setCurrentProfileDetails] = useState([]);
+    const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [coverImg, setCoverImg] = useState('');
     const [uploading, setUploading] = useState(false)
@@ -187,7 +188,7 @@ const Profile = () => {
         });
 
 
-        console.log(res.data.data);
+        // console.log(res.data.data);
         const filter = res.data.data[0]?.users.find((c) => c._id !== currentUser._id);
         dispatch(setCurrentChat({ currentChat: filter, chatId: res.data.data[0]._id }));
         setTimeout(() => {
@@ -217,7 +218,27 @@ const Profile = () => {
             toast.error('something went wrong')
             setUploading(false);
         }
-    }
+    };
+
+
+    useEffect(() => {
+        const getPosts = async () => {
+            try {
+                const res = await axios.get(`/post/my-posts/${id}`, {
+                    headers: {
+                        token: `Bearer ${localStorage.getItem('token')}`
+                    }
+                })
+                setPosts(res.data.data)
+            } catch (error) {
+                console.log('something went wrong');
+                setLoading(false)
+            }
+        }
+        getPosts()
+    }, [id])
+
+
 
 
     // if (loading) return <Loading font='15rem' color='white' />
@@ -260,6 +281,19 @@ const Profile = () => {
                                 <div className={styles.profile_details}>
                                     <h3 className={styles.name}>{currentProfileDetails.name}</h3>
                                     <div className={styles.connections}>
+                                        <Link
+                                            to={`/profile/${id}`}
+                                            className={styles.link}
+                                            onClick={() => {
+                                                setActive('posts')
+                                                const scroll = document.getElementById('posts')
+                                                if (scroll) {
+                                                    scroll.scrollIntoView({ behavior: 'smooth' })
+                                                }
+                                            }
+                                            }
+                                        >
+                                            <span>{posts?.length ? posts.length : 0}</span> posts</Link>
                                         <Link
                                             to={`/profile/${id}/friends`}
                                             className={styles.link}

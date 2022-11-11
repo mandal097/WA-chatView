@@ -121,7 +121,7 @@ const Posts = () => {
         }
     }
     return (
-        <div className={styles.posts}>
+        <div className={styles.posts} id='posts'>
             <ToastContainer className='toaster' />
             <div className={styles.left}>
                 <div className={`${styles.left_wrapper} ${'custom_scroll'}`}>

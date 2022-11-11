@@ -96,30 +96,26 @@ const FriendsPage = () => {
               }
             </>
           }
-          {loading
-            ? <Loading font='10rem' color='white' />
-            : <>
-              {
-                currentUser && active === 'followings' &&
-                currentUser?.followings?.map((id) => (
-                  <Card key={id} friendId={id} />
-                ))
-              }
-            </>
+          {<>
+            {
+              currentUser && active === 'followings' &&
+              currentUser?.followings?.map((id) => (
+                <Card key={id} friendId={id} />
+              ))
+            }
+          </>
           }
-          {loading
-            ? <Loading font='10rem' color='white' />
-            : <>
-              {
-                currentUser && active === 'followers' &&
-                currentUser?.followers?.map((id) => (
-                  <Card key={id} friendId={id} />
-                ))
-              }
-            </>
+          {<>
+            {
+              currentUser && active === 'followers' &&
+              currentUser?.followers?.map((id) => (
+                <Card key={id} friendId={id} />
+              ))
+            }
+          </>
           }
         </div>
-      
+
       </div>
     </div>
   )

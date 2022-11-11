@@ -72,10 +72,11 @@ const Navbar = () => {
                                     setActive('watch')
                                     navigate('/watch')
                                 }}
-                            ><DesktopOutlined /></button>
+                                ><DesktopOutlined /></button>
                             <button className={`${styles.items} ${active === 'groups' && styles.active}`}
                                 onClick={() => {
                                     setActive('groups')
+                                    navigate('/groups')
                                 }}
                             ><UsergroupDeleteOutlined /></button>
                         </div>

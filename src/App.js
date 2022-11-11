@@ -19,6 +19,7 @@ import Welcome from './pages/Welcome/Welcome';
 import FriendsPage from './pages/FriendsPage/FriendsPage';
 import ProfileMedias from './components/Profiles/ProfileMedias/ProfileMedias';
 import Watch from './pages/Watch/Watch';
+import Groups from './pages/Groups/Groups';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
@@ -29,9 +30,13 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path='/'>
-            <Route index element={user ?<Navigate to='home'/>:<Welcome />} />
+            <Route index element={user ? <Navigate to='home' /> : <Welcome />} />
+
+            <Route path='home' element={<Home />} />
+
+
             {/* ---------------------authentication routes -------------------------------*/}
-            <Route path='login' element={user ? <Navigate to={`/profile/${user._id}`}/> : <Login />} />
+            <Route path='login' element={user ? <Navigate to={`/profile/${user._id}`} /> : <Login />} />
             <Route path='register' element={<Register />} />
             <Route path='reset-password' element={<ResetPassword />} />
             <Route path='send-otp' element={<SendOtp />} />
@@ -39,8 +44,6 @@ const App = () => {
 
             {/* --------------------------------------messenger routes --------------------*/}
             <Route path='messenger' element={user ? <Messages /> : <Navigate to='/login' />} />
-
-            <Route path='home' element={<Home />} />
 
             {/* ----------------------profile routes --------------------------------*/}
             <Route path='profile/:id/*' element={user ? <Profile /> : <Navigate to='/login' />} >
@@ -51,9 +54,13 @@ const App = () => {
               <Route path='videos' element={<ProfileMedias type='video' />} />
             </Route>
 
-            <Route path='friends' element={<FriendsPage/>}/>
+            <Route path='friends' element={<FriendsPage />} />
+
+            <Route path='watch' element={<Watch />} />
+
+            {/* ----------------------groups routes --------------------------------*/}
+            <Route path='groups' element={<Groups />} />
             
-            <Route path='watch' element={<Watch/>}/>
 
           </Route>
         </Routes>

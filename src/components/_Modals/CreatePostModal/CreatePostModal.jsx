@@ -26,7 +26,7 @@ const CreatePostModal = ({ setShowModal, mediaType }) => {
             setActive(true)
         }
     }, [media, text, uploadPerc])
-console.log(mediaType);
+    console.log(mediaType);
     const createPost = async (e) => {
         e.preventDefault();
         if (!media && !text) {
@@ -104,6 +104,7 @@ console.log(mediaType);
                                             {
                                                 uploadPerc === 100 &&
                                                 <textarea placeholder="Write something for it..."
+                                                    className='textarea'
                                                     value={text}
                                                     onChange={(e) => setText(e.target.value)}></textarea>
                                             }
@@ -125,12 +126,14 @@ console.log(mediaType);
                                     :
 
                                     <>
-                                        {
-                                            uploadPerc === 100 &&
-                                            <textarea placeholder="Write something for it..."
-                                                value={text}
-                                                onChange={(e) => setText(e.target.value)}></textarea>
-                                        }
+                                        <div className={styles.inputs}>
+                                            {
+                                                uploadPerc === 100 &&
+                                                <textarea placeholder="Write something for it..."
+                                                    value={text}
+                                                    onChange={(e) => setText(e.target.value)}></textarea>
+                                            }
+                                        </div>
                                         <div className={styles.media}>
                                             {media
                                                 ? <img src={URL.createObjectURL(media)} alt="" />

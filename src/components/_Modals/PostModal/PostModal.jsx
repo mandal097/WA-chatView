@@ -1,7 +1,7 @@
 import { LoadingOutlined, SendOutlined } from '@ant-design/icons';
 import React, { useState } from 'react'
 import { useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Comment from '../../Comment/Comment';
 import PostActions from '../../PostCard/PostActions';
@@ -10,6 +10,7 @@ import styles from './PostModal.module.scss';
 import axios from '../../../config/axios';
 import { toast, ToastContainer } from 'react-toastify';
 import { format } from 'timeago.js';
+import { followFriend, unFollowFriend } from '../../../redux/userRedux';
 
 const PostModal = ({ setShowPostModal, post, comments, type, vidRef }) => {
     const { currentUser } = useSelector(state => state.user);
@@ -17,6 +18,8 @@ const PostModal = ({ setShowPostModal, post, comments, type, vidRef }) => {
     const [commentText, setCommentText] = useState('');
     const [placeholder, setPlaceholder] = useState(`comment as ${currentUser?.name}`);
     const [posting, setPosting] = useState(false);
+    const dispatch = useDispatch()
+
 
     const focusInput = () => {
         inputRef.current.focus()
@@ -49,7 +52,52 @@ const PostModal = ({ setShowPostModal, post, comments, type, vidRef }) => {
             toast.error('something went wrong')
             setPosting(false);
         }
+    };
+
+
+
+    const followUsers = async (e) => {
+        e.preventDefault()
+        dispatch(followFriend(post.userId._id))
+        try {
+            const res = await axios.put('/user/connections/follow', { friendId: post.userId._id }, {
+                headers: {
+                    token: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            if (res.data.status === 'err') {
+                toast.error(res.data.message)
+            }
+            // if (res.data.status === 'success') {
+            //     toast.success(res.data.message)
+            //     console.log(res.data);
+            // }
+        } catch (error) {
+            toast.error('something went wrong')
+
+        }
     }
+
+    const unFollowUsers = async (e) => {
+        e.preventDefault()
+        dispatch(unFollowFriend(post.userId?._id));
+        try {
+            const res = await axios.put('/user/connections/unfollow', { friendId: post.userId._id }, {
+                headers: {
+                    token: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            if (res.data.status === 'err') {
+                toast.error(res.data.message)
+            }
+            // if (res.data.status === 'success') {
+            //     toast.success(res.data.message)
+            // }
+        } catch (error) {
+            toast.error('something went wrong')
+        }
+    };
+
 
 
     // console.log(post);
@@ -64,7 +112,7 @@ const PostModal = ({ setShowPostModal, post, comments, type, vidRef }) => {
             p_bottom={0}
             gap={0}
             onClick={() => {
-                vidRef.current.play()
+                vidRef.current?.play()
                 setShowPostModal(false)
             }}
         >
@@ -83,8 +131,16 @@ const PostModal = ({ setShowPostModal, post, comments, type, vidRef }) => {
                             <img src={post?.userId?.profilePic} alt="" />
                         </div>
                         <Link to={`/profile/${currentUser?._id}`} className={styles.link}>{post?.userId?.name}</Link>
-                        <button>Follow</button>
-                        {/* <button>Following</button> */}
+                        {
+                            post?.userId._id === currentUser._id ?
+                                "" :
+                                <>
+                                    {currentUser.followings.includes(post?.userId._id)
+                                        ? <button onClick={unFollowUsers}>Following</button>
+                                        : <button onClick={followUsers}>Follow</button>
+                                    }
+                                </>
+                        }
                     </div>
 
                     <div className={`${styles.comments_div} ${'custom_scroll'}`}>

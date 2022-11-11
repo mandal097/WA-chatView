@@ -1,0 +1,69 @@
+.sidebar {
+  width: 38rem;
+  border-right: 1px solid var(--border);
+  height: calc(100vh - 5.5rem);
+  position: sticky;
+  top: 5.5rem;
+  background-color: var(--bgDark);
+  padding: 1rem;
+  .top {
+    position: sticky;
+    top: 5.5rem;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    .heading {
+      height: 2.5rem;
+      span {
+        font-size: 2rem;
+        font-weight: bold;
+        color: var(--text);
+      }
+    }
+    .search_box {
+      height: 3.7rem;
+      //   background-color: var(--bgDark);
+      margin: 1rem 0;
+      border-radius: 5rem;
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+      gap: 1rem;
+      border: 1px solid var(--bgLighter);
+      .icon {
+        font-size: 3rem;
+        color: var(--textSoft);
+      }
+      input {
+        height: 100%;
+        flex: 1;
+        color: var(--text);
+        font-size: 1.5rem;
+      }
+    }
+    .create_group_btn {
+      margin-bottom: 1rem;
+      padding: 1rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      color: var(--text);
+      gap: 0.5rem;
+      background-color: var(--btn);
+      border-radius: 1rem;
+      .icon {
+        font-size: 2.7rem;
+      }
+      &:hover {
+        background-color: var(--btnLight);
+      }
+    }
+  }
+  .bottom {
+    height: calc(100% - 13rem);
+    overflow-y: scroll;
+  }
+}

@@ -139,10 +139,10 @@ const Watch = () => {
               </>
           }
           {
-            !videos && !loading && <h2>No {active} founds...</h2>
+            !videos && !loading && active !=='home' &&<h2>No {active} founds...</h2>
           }
           {
-            filterVideos.length === 0 && <h2 style={{ fontSize: '3rem' }}>No {active} founds...</h2>
+            filterVideos.length === 0 && active !=='home' &&<h2 style={{ fontSize: '3rem' }}>No {active} founds...</h2>
           }
         </div>
       </div>

@@ -101,7 +101,7 @@ const PostActions = ({ onClick, post, showModal,vidRef }) => {
                         <MessageOutlined className={styles.icon} />
                     </div>
                     <div className={styles.icons} onClick={()=>{
-                        vidRef.current.pause()
+                        vidRef.current?.pause()
                         showModal()
                         }}>
                         <FolderViewOutlined className={styles.icon} />

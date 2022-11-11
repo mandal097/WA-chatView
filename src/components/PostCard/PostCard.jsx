@@ -154,7 +154,7 @@ const PostCard = ({ post, loading }) => {
                     comments.length > 0 &&
                     <div className={styles.counters}>
                         <small onClick={() => {
-                            vidRef.current.pause()
+                            vidRef.current?.pause()
                             setShowPostModal(true)
                         }}
                         > view {comments.length > 1 ? "all" : ""} {comments?.length} comment{comments.length > 1 && "'s"}</small>
