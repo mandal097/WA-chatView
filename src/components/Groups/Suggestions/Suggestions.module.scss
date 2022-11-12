@@ -1,0 +1,50 @@
+.suggestions {
+  width: 100%;
+  height: auto;
+  .groups_ {
+    .top {
+      margin: 1rem;
+      display: flex;
+      justify-content: space-between;
+      .left {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+        span {
+          font-size: 2rem;
+          font-weight: 500;
+          color: var(--text);
+        }
+        p {
+          font-size: 1.6rem;
+          color: var(--textSoft);
+        }
+      }
+      .right {
+        .link {
+          font-size: 1.7rem;
+          border-radius: 0.4rem;
+          padding: 0.5rem 1rem;
+          text-decoration: none;
+          color: var(--btnLight);
+          &:hover {
+            background-color: var(--bgLight);
+          }
+        }
+      }
+    }
+    .group_lists {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      .card {
+        margin: 1rem;
+      }
+    }
+    &:nth-child(1) {
+      border-bottom: 1px solid var(--bgLight);
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+    }
+  }
+}

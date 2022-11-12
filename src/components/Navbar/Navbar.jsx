@@ -76,7 +76,7 @@ const Navbar = () => {
                             <button className={`${styles.items} ${active === 'groups' && styles.active}`}
                                 onClick={() => {
                                     setActive('groups')
-                                    navigate('/groups')
+                                    navigate('/groups/feed')
                                 }}
                             ><UsergroupDeleteOutlined /></button>
                         </div>

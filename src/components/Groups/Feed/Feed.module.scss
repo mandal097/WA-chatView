@@ -1,0 +1,56 @@
+.feeds {
+  display: flex;
+  // gap: 4rem;
+  justify-content: space-between;
+  .feed_posts {
+    width: 58%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    h2 {
+      font-size: 3rem;
+      color: var(--error);
+    }
+  }
+  .friends_groups {
+    width: 38%;
+    height: fit-content;
+    position: sticky;
+    top: 8rem;
+    background-color: var(--bgDark);
+    border-radius: 1rem;
+    padding:2rem;
+    padding-top: 1rem;
+    .top {
+      margin: 1rem 0;
+      display: flex;
+      justify-content: space-between;
+      .left {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+        span{
+          font-size: 1.7rem;
+          font-weight: 500;
+          color: var(--text);
+        }
+        p{
+          font-size: 1.4rem;
+          color: var(--textSoft);
+        }
+      }
+      .right{
+        .link{
+          font-size: 1.7rem;
+          border-radius: 0.4rem;
+          padding: 0.5rem 1rem;
+          text-decoration: none;
+          color: var(--btnLight);
+          &:hover{
+            background-color: var(--bgLight);
+          }
+        }
+      }
+    }
+  }
+}

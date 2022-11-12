@@ -20,6 +20,8 @@ import FriendsPage from './pages/FriendsPage/FriendsPage';
 import ProfileMedias from './components/Profiles/ProfileMedias/ProfileMedias';
 import Watch from './pages/Watch/Watch';
 import Groups from './pages/Groups/Groups';
+import Feed from './components/Groups/Feed/Feed';
+import Suggestions from './components/Groups/Suggestions/Suggestions';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
@@ -59,8 +61,11 @@ const App = () => {
             <Route path='watch' element={<Watch />} />
 
             {/* ----------------------groups routes --------------------------------*/}
-            <Route path='groups' element={<Groups />} />
-            
+            <Route path='groups/*' element={<Groups />}>
+              <Route index path='feed' element={<Feed />} />
+              <Route index path='discover' element={<Suggestions />} />
+            </Route>
+
 
           </Route>
         </Routes>

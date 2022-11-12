@@ -1,0 +1,54 @@
+.group_card {
+  width: 100%;
+  height: auto;
+  color: var(--text);
+  border-radius: 1rem;
+  border: 1px solid var(--bgLighter);
+  overflow: hidden;
+  background-color: var(--bg);
+  .img {
+    width: 100%;
+    height: 18rem;
+    overflow: hidden;
+    cursor: pointer;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 200ms linear;
+    }
+    &:hover {
+      img {
+        transform: scale(1.1);
+      }
+    }
+  }
+  .details {
+    padding: 0.2rem 0.6rem;
+    padding-bottom: 1rem;
+    height: 6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .link {
+      font-size: 1.8rem;
+      text-decoration: none;
+      color: var(--text);
+      &:hover {
+        text-decoration: underline;
+        color: var(--textSoft);
+        cursor: pointer;
+        font-weight: 100;
+      }
+    }
+    .counters {
+      display: flex;
+      gap: 1rem;
+      .counts {
+        font-weight: 100;
+        font-size: 1.4rem;
+        color: var(--textSoft);
+      }
+    }
+  }
+}
