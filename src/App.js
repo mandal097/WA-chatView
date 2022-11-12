@@ -22,6 +22,8 @@ import Watch from './pages/Watch/Watch';
 import Groups from './pages/Groups/Groups';
 import Feed from './components/Groups/Feed/Feed';
 import Suggestions from './components/Groups/Suggestions/Suggestions';
+import View from './components/Groups/View/View';
+import Discussion from './components/Groups/Discussion/Discussion';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
@@ -63,7 +65,10 @@ const App = () => {
             {/* ----------------------groups routes --------------------------------*/}
             <Route path='groups/*' element={<Groups />}>
               <Route index path='feed' element={<Feed />} />
-              <Route index path='discover' element={<Suggestions />} />
+              <Route path='discover' element={<Suggestions />} />
+              <Route path=':id/*' element={<View />} >
+                <Route index path='' element={<Discussion />} />
+              </Route>
             </Route>
 
 

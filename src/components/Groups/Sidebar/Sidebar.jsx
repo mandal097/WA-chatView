@@ -5,14 +5,14 @@ import { Link, useLocation } from 'react-router-dom';
 
 const Card = () => {
     return (
-        <div className={styles.card}>
+        <Link className={styles.card} to='09876'>
             <div className={styles.img}>
                 <img src="https://media.istockphoto.com/id/1358014313/photo/group-of-elementary-students-having-computer-class-with-their-teacher-in-the-classroom.jpg?b=1&s=170667a&w=0&k=20&c=_UfKmwUAFyylJkXm75hsnM9bPRajhoK_RT5t6VWMovo=" alt="img" />
             </div>
             <div className={styles.details}>
-                <span>SB FlexiFunnels DOer's Community lexiFunnels DOer'ss DOer's Community</span>
+                <span>SB FlexiFunnels DOer's Community </span>
             </div>
-        </div>
+        </Link>
     )
 }
 
