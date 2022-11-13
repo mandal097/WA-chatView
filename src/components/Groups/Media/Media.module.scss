@@ -1,0 +1,106 @@
+.media {
+  background-color: var(--bgDark);
+  width: 94%;
+  margin: 2rem auto;
+  padding: 1rem;
+  border-radius: 1rem;
+  .head {
+    display: flex;
+    gap: 1rem;
+    height: auto;
+    align-items: center;
+    h2 {
+      font-weight: 500;
+      font-size: 2rem;
+    }
+    .btns {
+      justify-content: flex-end;
+      display: flex;
+      gap: 1rem;
+      margin-left: auto;
+      button {
+        font-size: 1.5rem;
+        color: var(--successLight);
+        border-radius: 0.5rem;
+        padding: 1rem 2rem;
+        font-weight: 300;
+        &:hover {
+          background-color: var(--bgLight);
+        }
+      }
+    }
+  }
+  .navs {
+    height: 5rem;
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    .nav_items {
+      height: 85%;
+      width: 10rem;
+      display: grid;
+      place-items: center;
+      position: relative;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      cursor: pointer;
+      &:hover {
+        background-color: var(--bgLight);
+      }
+    }
+    .active_nav {
+      &::after {
+        content: "";
+        position: absolute;
+        height: 3px;
+        width: 100%;
+        border-bottom: 2px solid var(--btnLight);
+        bottom: -4px;
+      }
+    }
+  }
+  .medias {
+    height: auto;
+    margin: 2rem 0 0rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    .card {
+      height: 18rem;
+      width: 18rem;
+      background-color: var(--bg);
+      margin: 1rem;
+      position: relative;
+      img,
+      video {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+      &:hover {
+        img,
+        video {
+          border: 1px solid var(--bgLighter);
+          padding: 0.1rem;
+        }
+      }
+    }
+    .actions {
+      position: absolute;
+      top: 0.3rem;
+      right: 0.3rem;
+      border-radius: 50%;
+      width: 3rem;
+      height: 3rem;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: grid;
+      place-items: center;
+      .icon {
+        font-size: 2.6rem;
+        color: var(--text);
+      }
+    }
+  }
+}

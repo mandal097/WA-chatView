@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   .left {
-      width: 60%;
+    width: 60%;
   }
   .about {
     width: 38%;
@@ -22,6 +22,14 @@
       margin: 0.5rem 0;
       color: var(--textSoft);
     }
+    .link {
+      font-size: 1.5rem;
+      color: var(--text);
+      text-decoration: none;
+      &:hover {
+        color: var(--btn);
+      }
+    }
     .privacy_desc {
       .desc {
         display: flex;
@@ -34,8 +42,8 @@
           }
         }
         .right_ {
-            h6 {
-                display: flex;
+          h6 {
+            display: flex;
             align-items: center;
             font-size: 1.6rem;
             font-weight: 500;
@@ -55,4 +63,3 @@
     }
   }
 }
-

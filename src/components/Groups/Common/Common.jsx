@@ -1,25 +1,52 @@
 import React, { useEffect, useState } from 'react';
 import CreatePost from '../../CreatePost/CreatePost';
-import styles from './Discussion.module.scss';
+import styles from './Common.module.scss';
 import axios from '../../../config/axios';
-// import Loading from '../../Loading/Loading';
+import Loading from '../../Loading/Loading';
 import PostCard from '../../PostCard/PostCard';
 import { EyeFilled, LockFilled } from '@ant-design/icons';
+import { useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Desc from '../Desc/Desc';
 
-const Discussion = () => {
+const Common = ({ type }) => {
+    const { currentUser } = useSelector(state => state.user)
     const [loading, setLoading] = useState(false);
     const [posts, setPosts] = useState([]);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const groupId = location.pathname.split('/')[2]
 
     useEffect(() => {
         const getPosts = async () => {
             try {
-                setLoading(true)
-                const res = await axios.get('/post/get-feed-posts', {
-                    headers: {
-                        token: `Bearer ${localStorage.getItem('token')}`
-                    }
-                })
-                setPosts(res.data.data)
+                setLoading(true);
+                if (type === 'featured') {
+                    const res = await axios.get(`/post/my-posts/${currentUser?._id}`, {
+                        headers: {
+                            token: `Bearer ${localStorage.getItem('token')}`
+                        }
+                    })
+                    setPosts(res.data.data)
+                }
+                if (type === 'discussion') {
+                    const res = await axios.get('/post/get-feed-posts', {
+                        headers: {
+                            token: `Bearer ${localStorage.getItem('token')}`
+                        }
+                    })
+                    setPosts(res.data.data)
+                }
+                if (type === 'videos') {
+                    const res = await axios.get('/post/get-feed-posts', {
+                        headers: {
+                            token: `Bearer ${localStorage.getItem('token')}`
+                        }
+                    })
+                    const arr = (res.data.data)
+                    const filter = arr.filter(ele => ele.mediaType === 'video')
+                    setPosts(filter)
+                }
                 setLoading(false)
             } catch (error) {
                 console.log('something went wrong');
@@ -27,13 +54,13 @@ const Discussion = () => {
             }
         }
         getPosts()
-    }, [])
+    }, [type, currentUser])
 
-    // if (loading) return <Loading font='10rem' color='white' />
+    if (loading) return <Loading font='10rem' color='white' />
     return (
         <div className={styles.discussion}>
             <div className={styles.left}>
-                <CreatePost />
+                {type === 'discussion' && <CreatePost />}
                 <div className={styles.posts}>
                     {
                         posts?.map((post => (
@@ -48,6 +75,7 @@ const Discussion = () => {
             <div className={styles.about}>
                 <h3>About</h3>
                 <p>This is a DOer's community.</p>
+                <Desc />
 
                 <div className={styles.privacy_desc}>
                     <div className={styles.desc}>
@@ -69,11 +97,11 @@ const Discussion = () => {
                         </div>
                     </div>
                 </div>
-                
-                <button>Learn More</button>
+
+                <button onClick={() => navigate(`/groups/${groupId}/about`)}>Learn More</button>
             </div>
         </div>
     )
 }
 
-export default Discussion
+export default Common

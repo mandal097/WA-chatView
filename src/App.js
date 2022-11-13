@@ -23,7 +23,12 @@ import Groups from './pages/Groups/Groups';
 import Feed from './components/Groups/Feed/Feed';
 import Suggestions from './components/Groups/Suggestions/Suggestions';
 import View from './components/Groups/View/View';
-import Discussion from './components/Groups/Discussion/Discussion';
+import Common from './components/Groups/Common/Common';
+import Members from './components/Groups/Members/Members';
+import Media from './components/Groups/Media/Media';
+import Files from './components/Groups/Files/Files';
+import MarketPlace from './pages/MarketPlace/MarketPlace';
+import AboutGroup from './components/Groups/About/About';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
@@ -63,11 +68,21 @@ const App = () => {
             <Route path='watch' element={<Watch />} />
 
             {/* ----------------------groups routes --------------------------------*/}
+            <Route path='marketplace' element={<MarketPlace />} />
+
+
+            {/* ----------------------groups routes --------------------------------*/}
             <Route path='groups/*' element={<Groups />}>
               <Route index path='feed' element={<Feed />} />
               <Route path='discover' element={<Suggestions />} />
               <Route path=':id/*' element={<View />} >
-                <Route index path='' element={<Discussion />} />
+                <Route index path='' element={<Common type='discussion' />} />
+                <Route path='featured' element={<Common type='featured' />} />
+                <Route path='videos' element={<Common type='videos' />} />
+                <Route path='about' element={<AboutGroup />} />
+                <Route path='members' element={<Members />} />
+                <Route path='media' element={<Media />} />
+                <Route path='files' element={<Files />} />
               </Route>
             </Route>
 

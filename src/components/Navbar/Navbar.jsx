@@ -10,7 +10,8 @@ import {
     UserAddOutlined,
     GlobalOutlined,
     LogoutOutlined,
-    LoginOutlined
+    LoginOutlined,
+    ShopOutlined
 } from '@ant-design/icons';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -72,7 +73,13 @@ const Navbar = () => {
                                     setActive('watch')
                                     navigate('/watch')
                                 }}
-                                ><DesktopOutlined /></button>
+                            ><DesktopOutlined /></button>
+                            <button className={`${styles.items} ${active === 'marketplace' && styles.active}`}
+                                onClick={() => {
+                                    setActive('marketplace')
+                                    navigate('/marketplace')
+                                }}
+                            ><ShopOutlined /></button>
                             <button className={`${styles.items} ${active === 'groups' && styles.active}`}
                                 onClick={() => {
                                     setActive('groups')

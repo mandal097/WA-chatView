@@ -112,8 +112,8 @@ const PostModal = ({ setShowPostModal, post, comments, type, vidRef }) => {
             p_bottom={0}
             gap={0}
             onClick={() => {
-                vidRef.current?.play()
                 setShowPostModal(false)
+                vidRef.current?.play()
             }}
         >
             <ToastContainer className='toaster' />

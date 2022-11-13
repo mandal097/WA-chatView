@@ -148,7 +148,7 @@ const Replies = ({ replyDetails }) => {
                     <div className={styles.comment_details}>
                         <div className={styles.users}>
                             <Link to={`/profile/${replyDetails?.userId?._id}`} className={styles.link}>{(replyDetails?.userId?.name).split(' ')[0]}</Link>
-                            {''} <small style={{ fontSize: '1.2rem' }}>replied to</small>  {' '}
+                            {''} <small style={{ fontSize: '1.2rem',color:'var(--text)'}}>replied to</small>  {' '}
                             <Link to={`/profile/${replyDetails?.repliedTo?._id}`} className={styles.link}>{(replyDetails?.repliedTo?.name).split(' ')[0]}</Link>
                         </div>
                         <p>{replyDetails?.commentText}</p>

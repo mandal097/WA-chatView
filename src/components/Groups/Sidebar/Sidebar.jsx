@@ -25,6 +25,7 @@ const Sidebar = () => {
     useEffect(() => {
         setActive(activeState)
     }, [activeState])
+
     return (
         <div className={styles.sidebar}>
             <div className={styles.top}>

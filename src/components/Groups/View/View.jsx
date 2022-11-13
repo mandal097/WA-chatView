@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import styles from './View.module.scss';
-import { DownOutlined, LockOutlined, PlusOutlined, UpOutlined, UsergroupAddOutlined } from '@ant-design/icons';
-import { Link, Outlet } from 'react-router-dom';
+import { DownOutlined, GlobalOutlined, LockOutlined, PlusOutlined, UpOutlined, UsergroupAddOutlined } from '@ant-design/icons';
+import { Link, Outlet, useLocation } from 'react-router-dom';
+import GroupCard from '../GroupCard/GroupCard';
 
 const View = () => {
-    const [active, setActive] = useState('discussion');
+    const [active, setActive] = useState('');
     const [scrolled, setScrolled] = useState(false);
-    const [clicked, setClicked] = useState(false)
+    const [clicked, setClicked] = useState(false);
+    const [showRelatedGroup, setShowRelatedGroup] = useState(false)
+
+    const location = useLocation();
+    const activeState = location.pathname.split('/')[3];
+
+    useEffect(() => {
+        activeState === undefined ? setActive('discussion') : setActive(activeState)
+    }, [activeState])
 
     useEffect(() => {
         const isScroll = () => {
@@ -27,12 +36,15 @@ const View = () => {
         switch (clicked) {
             case true:
                 setClicked(false);
+                setShowRelatedGroup(false);
                 break;
             case false:
                 setClicked(true);
+                setShowRelatedGroup(true);
                 break;
             default:
                 setClicked(false);
+                setShowRelatedGroup(false);
                 break;
         }
     }
@@ -47,10 +59,19 @@ const View = () => {
             <div className={`${styles.actions} ${scrolled && styles.scrolled}`}>
                 <div className={styles.badges}>
                     {scrolled ?
-                        <h3>SB FlexiFunnels DOer's Community</h3>
-                      :  <h3>user must have to add in future</h3>
+                        // <h3>SB FlexiFunnels DOer's Community</h3>
+                        <div className={styles.card}>
+                            <div className={styles.img}>
+                                <img src="https://media.istockphoto.com/id/1358014313/photo/group-of-elementary-students-having-computer-class-with-their-teacher-in-the-classroom.jpg?b=1&s=170667a&w=0&k=20&c=_UfKmwUAFyylJkXm75hsnM9bPRajhoK_RT5t6VWMovo=" alt="img" />
+                            </div>
+                            <div className={styles.details}>
+                                <span>SB FlexiFunnels DOer's Community </span>
+                            </div>
+                        </div>
+                        : <h3>user must have to add in future</h3>
                     }
                 </div>
+
                 <div className={styles.btns}>
                     <button><UsergroupAddOutlined className={styles.icon} /> Joined</button>
                     <button ><PlusOutlined className={styles.icon} />Invite</button>
@@ -61,7 +82,37 @@ const View = () => {
                         }
                     </button>
                 </div>
+
             </div>
+
+            {showRelatedGroup &&
+                <div className={styles.related_group}>
+                    <div className={styles.head}>
+                        <h2>Related Groups</h2>
+                        <Link className={styles.link} to='/groups/discover'>Discover more groups</Link>
+                    </div>
+                    <div className={styles.groups}>
+                        <div className={styles.default}>
+                            <GlobalOutlined className={styles.icon}/>
+                            <span>No recommendations to show</span>
+                            <Link className={styles.link} to='/groups/discover'>Explore Groups</Link>
+                        </div>
+                        {/* <>
+                            <div>
+                                <GroupCard bg='var(--bgDark)' />
+                            </div>
+                            <div>
+                                <GroupCard bg='var(--bgDark)' />
+                            </div>
+                            <div>
+                                <GroupCard bg='var(--bgDark)' />
+                            </div>
+                            <div>
+                                <GroupCard bg='var(--bgDark)' />
+                            </div>
+                        </> */}
+                    </div>
+                </div>}
 
             <div className={styles.navs}>
                 <Link to={`/groups/234`} className={`${styles.nav_items}  ${active === 'discussion' && styles.active_nav}`} onClick={() => setActive('discussion')}>

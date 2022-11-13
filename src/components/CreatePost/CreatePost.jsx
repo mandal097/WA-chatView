@@ -3,15 +3,17 @@ import styles from './CreatePost.module.scss';
 import { CameraFilled, VideoCameraAddOutlined, VideoCameraFilled } from '@ant-design/icons';
 import { useState } from 'react';
 import CreatePostModal from '../_Modals/CreatePostModal/CreatePostModal';
+import { useSelector } from 'react-redux';
 
 const CreatePost = () => {
     const [showModal, setShowModal] = useState(false);
     const [mediaType, setMediaType] = useState('image')
+    const {currentUser} = useSelector(state =>state.user)
 
     return (
         <div className={styles.create_post}>
             <div className={styles.top}>
-                <img src="https://scontent.fdel27-2.fna.fbcdn.net/v/t1.6435-9/56649304_774018922980197_3401248377671778304_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=Rk-DgYTjclIAX_S4vy2&_nc_ht=scontent.fdel27-2.fna&oh=00_AT9eSCDgEQoj87gX4Easc5gX55BljC8ZloWsghBThq7HJA&oe=636F8453" alt="image_" />
+                <img src={currentUser?.profilePic} alt="image_" />
                 <div className={styles.whats_new} onClick={() => setShowModal(true)}>What's in your mind?</div>
             </div>
             <div className={styles.bottom}>

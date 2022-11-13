@@ -14,18 +14,18 @@ const Suggestions = () => {
                         <p>Groups that people in your area are in</p>
                     </div>
                     <div className={styles.right}>
-                        <Link className={styles.link} to='discover'>See all</Link>
+                        <Link className={styles.link} to='/groups/discover'>See all</Link>
                     </div>
                 </div>
                 <div className={styles.group_lists}>\
                     <div className={styles.card}>
-                        <GroupCard bg='var(--bgLight)'/>
+                        <GroupCard bg='var(--bgDark)'/>
                     </div>
                     <div className={styles.card}>
-                        <GroupCard bg='var(--bgLight)'/>
+                        <GroupCard bg='var(--bgDark)'/>
                     </div>
                     <div className={styles.card}>
-                        <GroupCard bg='var(--bgLight)'/>
+                        <GroupCard bg='var(--bgDark)'/>
                     </div>
                 </div>
             </div>
@@ -40,68 +40,41 @@ const Suggestions = () => {
                     </div> */}
                 </div>
                 <div className={styles.group_lists}>\
-                    <div className={styles.card}>
-                        <GroupCard bg='var(--bgLight)'/>
+                <div className={styles.card}>
+                        <GroupCard bg='var(--bgDark)'/>
                     </div>
                     <div className={styles.card}>
-                        <GroupCard bg='var(--bgLight)'/>
+                        <GroupCard bg='var(--bgDark)'/>
                     </div>
                     <div className={styles.card}>
-                        <GroupCard bg='var(--bgLight)'/>
+                        <GroupCard bg='var(--bgDark)'/>
                     </div>
                     <div className={styles.card}>
-                        <GroupCard bg='var(--bgLight)'/>
+                        <GroupCard bg='var(--bgDark)'/>
                     </div>
                     <div className={styles.card}>
-                        <GroupCard bg='var(--bgLight)'/>
+                        <GroupCard bg='var(--bgDark)'/>
                     </div>
                     <div className={styles.card}>
-                        <GroupCard bg='var(--bgLight)'/>
+                        <GroupCard bg='var(--bgDark)'/>
                     </div>
                     <div className={styles.card}>
-                        <GroupCard bg='var(--bgLight)'/>
+                        <GroupCard bg='var(--bgDark)'/>
                     </div>
                     <div className={styles.card}>
-                        <GroupCard bg='var(--bgLight)'/>
+                        <GroupCard bg='var(--bgDark)'/>
                     </div>
                     <div className={styles.card}>
-                        <GroupCard bg='var(--bgLight)'/>
+                        <GroupCard bg='var(--bgDark)'/>
                     </div>
                     <div className={styles.card}>
-                        <GroupCard bg='var(--bgLight)'/>
+                        <GroupCard bg='var(--bgDark)'/>
                     </div>
                     <div className={styles.card}>
-                        <GroupCard bg='var(--bgLight)'/>
+                        <GroupCard bg='var(--bgDark)'/>
                     </div>
                     <div className={styles.card}>
-                        <GroupCard bg='var(--bgLight)'/>
-                    </div>
-                    <div className={styles.card}>
-                        <GroupCard bg='var(--bgLight)'/>
-                    </div>
-                    <div className={styles.card}>
-                        <GroupCard bg='var(--bgLight)'/>
-                    </div>
-                    <div className={styles.card}>
-                        <GroupCard bg='var(--bgLight)'/>
-                    </div>
-                    <div className={styles.card}>
-                        <GroupCard bg='var(--bgLight)'/>
-                    </div>
-                    <div className={styles.card}>
-                        <GroupCard bg='var(--bgLight)'/>
-                    </div>
-                    <div className={styles.card}>
-                        <GroupCard bg='var(--bgLight)'/>
-                    </div>
-                    <div className={styles.card}>
-                        <GroupCard bg='var(--bgLight)'/>
-                    </div>
-                    <div className={styles.card}>
-                        <GroupCard bg='var(--bgLight)'/>
-                    </div>
-                    <div className={styles.card}>
-                        <GroupCard bg='var(--bgLight)'/>
+                        <GroupCard bg='var(--bgDark)'/>
                     </div>
                 </div>
             </div>
