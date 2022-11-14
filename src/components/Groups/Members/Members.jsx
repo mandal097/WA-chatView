@@ -1,10 +1,10 @@
-import { SearchOutlined } from '@ant-design/icons';
 import React from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Card from './Card';
 import styles from './Members.module.scss';
+import { SearchOutlined } from '@ant-design/icons';
 
 const Members = () => {
   const { currentUser } = useSelector(state => state.user);
@@ -54,8 +54,9 @@ const Members = () => {
                 <Card key={id} id={id} />
               ))
             }
+
           </div>
-          
+
         </div>}
 
     </div>

@@ -32,6 +32,7 @@
       align-items: center;
       padding: 0 1rem;
       gap: 1rem;
+      position: relative;
       border: 1px solid var(--bgLighter);
       .icon {
         font-size: 3rem;
@@ -42,6 +43,30 @@
         flex: 1;
         color: var(--text);
         font-size: 1.5rem;
+      }
+    }
+    .search_item {
+      position: absolute;
+      top: 3.8rem;
+      left: 0;
+      background-color: var(--bgLight);
+      height: 5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      padding: 1rem;
+      font-size: 1.5rem;
+      font-weight: 100;
+      cursor: pointer;
+      border-radius: 1rem;
+      span {
+        color: var(--btnLight);
+        font-weight: bold;
+        font-size: 1.6rem;
+      }
+      .icon {
+        font-size: 4rem;
       }
     }
   }
@@ -146,14 +171,14 @@
           }
         }
         .details {
-            width: calc(100% - 10rem);
+          width: calc(100% - 10rem);
           span {
             font-size: 1.5rem;
             color: var(--successLight);
           }
         }
-        &:hover{
-            background-color: var(--bgLight);
+        &:hover {
+          background-color: var(--bgLight);
         }
       }
     }

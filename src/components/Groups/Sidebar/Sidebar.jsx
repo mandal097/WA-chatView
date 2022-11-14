@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Sidebar.module.scss';
-import { CompassFilled, LayoutFilled, PlusOutlined, SearchOutlined } from '@ant-design/icons';
-import { Link, useLocation } from 'react-router-dom';
+import { ClockCircleOutlined, CompassFilled, LayoutFilled, PlusOutlined, SearchOutlined } from '@ant-design/icons';
+import { createSearchParams, Link, useLocation, useNavigate } from 'react-router-dom';
+import { useRef } from 'react';
 
 const Card = () => {
+
     return (
         <Link className={styles.card} to='09876'>
             <div className={styles.img}>
@@ -21,10 +23,36 @@ const Sidebar = () => {
     const [active, setActive] = useState('');
     const location = useLocation();
     const activeState = location.pathname.split('/')[2];
+    const [searchTerm, setSearchTerm] = useState('')
+    const navigate = useNavigate();
+    const listRef = useRef();
+
+
+    useEffect(() => {
+        const checkClick = (e) => {
+            if (searchTerm && !listRef.current.contains(e.target)) {
+                setSearchTerm('')
+            }
+        }
+        document.addEventListener('mousedown', checkClick);
+        return () => {
+            document.removeEventListener('mousedown', checkClick);
+        }
+    }, [searchTerm, setSearchTerm]);
 
     useEffect(() => {
         setActive(activeState)
     }, [activeState])
+
+    const navigateToSearch = () => {
+        navigate({
+            pathname: `/groups/search/`,
+        search:`${createSearchParams({ 'q': searchTerm })}`
+        })
+        setSearchTerm('')
+    }
+
+ 
 
     return (
         <div className={styles.sidebar}>
@@ -34,7 +62,19 @@ const Sidebar = () => {
                 </div>
                 <div className={styles.search_box}>
                     <SearchOutlined className={styles.icon} />
-                    <input type="search" placeholder='search groups...' />
+                    <input
+                        type="search"
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        value={searchTerm}
+                        placeholder='search groups...'
+                    />
+                    {
+                        searchTerm &&
+                        <div className={styles.search_item} onClick={navigateToSearch} ref={listRef}>
+                            <ClockCircleOutlined className={styles.icon} />
+                            search for <span>{searchTerm}</span>
+                        </div>
+                    }
                 </div>
             </div>
             <div className={`${styles.bottom} ${'custom_scroll'}`}>

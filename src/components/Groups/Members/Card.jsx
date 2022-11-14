@@ -41,7 +41,7 @@ const Card = ({ id }) => {
         fetchUser();
     }, [id])
 
-    console.log(user);
+    // console.log(user);
 
     const followUsers = async (e) => {
         e.preventDefault()

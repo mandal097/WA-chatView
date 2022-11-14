@@ -29,6 +29,7 @@ import Media from './components/Groups/Media/Media';
 import Files from './components/Groups/Files/Files';
 import MarketPlace from './pages/MarketPlace/MarketPlace';
 import AboutGroup from './components/Groups/About/About';
+import GroupList from './components/Groups/GroupList/GroupList';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
@@ -75,6 +76,8 @@ const App = () => {
             <Route path='groups/*' element={<Groups />}>
               <Route index path='feed' element={<Feed />} />
               <Route path='discover' element={<Suggestions />} />
+              <Route path='search' element={<GroupList type='searched'/>} />
+              {/* <Route path='search/:searchTerm/all' element={<GroupList type='all' />} /> */}
               <Route path=':id/*' element={<View />} >
                 <Route index path='' element={<Common type='discussion' />} />
                 <Route path='featured' element={<Common type='featured' />} />
