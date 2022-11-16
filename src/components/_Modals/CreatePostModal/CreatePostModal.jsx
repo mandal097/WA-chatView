@@ -7,7 +7,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import axios from '../../../config/axios';
 import { useUpload } from '../../../hooks/useUpload';
 import { useEffect } from 'react';
-import Tags from './Tags';
+import Tags from '../SelectUser/Tags';
 import { removeMembers } from '../../../redux/AddToGroup'
 
 const CreatePostModal = ({ setShowModal, mediaType }) => {
@@ -26,7 +26,8 @@ const CreatePostModal = ({ setShowModal, mediaType }) => {
             setActive(true)
         }
     }, [media, text, uploadPerc])
-    console.log(mediaType);
+    // console.log(mediaType);
+
     const createPost = async (e) => {
         e.preventDefault();
         if (!media && !text) {

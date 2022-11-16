@@ -3,16 +3,17 @@ import styles from './Sidebar.module.scss';
 import { ClockCircleOutlined, CompassFilled, LayoutFilled, PlusOutlined, SearchOutlined } from '@ant-design/icons';
 import { createSearchParams, Link, useLocation, useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
+import { toast } from 'react-toastify';
+import axios from '../../../config/axios';
 
-const Card = () => {
-
+const Card = ({details}) => {
     return (
-        <Link className={styles.card} to='09876'>
+        <Link className={styles.card} to={`/groups/${details?._id}`}>
             <div className={styles.img}>
-                <img src="https://media.istockphoto.com/id/1358014313/photo/group-of-elementary-students-having-computer-class-with-their-teacher-in-the-classroom.jpg?b=1&s=170667a&w=0&k=20&c=_UfKmwUAFyylJkXm75hsnM9bPRajhoK_RT5t6VWMovo=" alt="img" />
+                <img src={details.groupCoverImg}alt="img" />
             </div>
             <div className={styles.details}>
-                <span>SB FlexiFunnels DOer's Community </span>
+                <span>{details?.groupName} </span>
             </div>
         </Link>
     )
@@ -24,6 +25,7 @@ const Sidebar = () => {
     const location = useLocation();
     const activeState = location.pathname.split('/')[2];
     const [searchTerm, setSearchTerm] = useState('')
+    const [groups, setGroups] = useState([]);
     const navigate = useNavigate();
     const listRef = useRef();
 
@@ -47,12 +49,33 @@ const Sidebar = () => {
     const navigateToSearch = () => {
         navigate({
             pathname: `/groups/search/`,
-        search:`${createSearchParams({ 'q': searchTerm })}`
+            search: `${createSearchParams({ 'q': searchTerm })}`
         })
         setSearchTerm('')
     }
 
- 
+    useEffect(() => {
+        const fetchGroups = async () => {
+            const res = await axios.get(`/groups`, {
+                headers: {
+                    token: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            // console.log(res.data.data);
+            if (res.data.status === 'err') {
+                toast.error(res.data.message)
+            }
+            if (res.data.status === 'success') {
+                toast.error(res.data.message);
+                setGroups(res.data.data)
+            }
+            console.log(res.data.data);
+        }
+        fetchGroups()
+    }, [])
+
+    console.log(groups);
+
 
     return (
         <div className={styles.sidebar}>
@@ -95,24 +118,18 @@ const Sidebar = () => {
                     <span>Discover</span>
                 </Link>
 
-                <button className={styles.create_group_btn}>
+                <button className={styles.create_group_btn} onClick={() => navigate('/group/create')}>
                     <PlusOutlined className={styles.icon} />
                     <span>Create New Group</span>
                 </button>
 
                 <div className={styles.group_list}>
                     <h2>Groups you've joined</h2>
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
+                    {
+                        groups.map((group) => (
+                            <Card key={group._id} details={group}/>
+                        ))
+                    }
                 </div>
             </div>
         </div>

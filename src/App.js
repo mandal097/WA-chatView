@@ -30,6 +30,7 @@ import Files from './components/Groups/Files/Files';
 import MarketPlace from './pages/MarketPlace/MarketPlace';
 import AboutGroup from './components/Groups/About/About';
 import GroupList from './components/Groups/GroupList/GroupList';
+import CreateGroup from './pages/CreateGroup/CreateGroup';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
@@ -76,7 +77,7 @@ const App = () => {
             <Route path='groups/*' element={<Groups />}>
               <Route index path='feed' element={<Feed />} />
               <Route path='discover' element={<Suggestions />} />
-              <Route path='search' element={<GroupList type='searched'/>} />
+              <Route path='search' element={<GroupList type='searched' />} />
               {/* <Route path='search/:searchTerm/all' element={<GroupList type='all' />} /> */}
               <Route path=':id/*' element={<View />} >
                 <Route index path='' element={<Common type='discussion' />} />
@@ -89,7 +90,8 @@ const App = () => {
               </Route>
             </Route>
 
-
+            {/* ----------------------group creatiion --------------------------------*/}
+            <Route path='group/create' element={<CreateGroup />} />  {/* for creating groups */}
           </Route>
         </Routes>
       </BrowserRouter>

@@ -3,21 +3,9 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Desc from '../Desc/Desc';
+import PrivacyStat from '../PrivacyStat/PrivacyStat';
 import styles from './About.module.scss';
 
-const PrivacyStat = ({ span, p, icon }) => {
-    return (
-        <div className={styles.privacy_stat}>
-            <div className={styles.icon_}>
-                {icon}
-            </div>
-            <div className={styles.stat}>
-                <span>{span}</span>
-                <p>{p}</p>
-            </div>
-        </div>
-    )
-}
 
 const AboutGroup = () => {
     const { currentUser } = useSelector(state => state.user);

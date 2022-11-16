@@ -18,29 +18,9 @@
       font-size: 1.8rem;
       color: var(--successLight);
     }
-    .privacy_stat {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-      margin: 1rem 0;
-      .icon_ {
-        padding-top: 2px;
-        .icon {
-          color: var(--text);
-          font-size: 2.3rem;
-        }
-      }
-      .stat {
-        span {
-          font-size: 1.7rem;
-          color: var(--text);
-          font-weight: 400;
-        }
-        p {
-          font-size: 1.4rem;
-          color: var(--textSoft);
-        }
-      }
+    .icon {
+      color: var(--text);
+      font-size: 2.3rem;
     }
     .user_ {
       padding: 1rem 0;

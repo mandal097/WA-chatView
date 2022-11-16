@@ -45,7 +45,7 @@ const SelectedUser = ({ m }) => {
 }
 
 
-const Tags = ({ setShowTag }) => {
+const Tags = ({ setShowTag, btn }) => {
     const { members } = useSelector(state => state.group);
     const [users, setUsers] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
@@ -92,7 +92,7 @@ const Tags = ({ setShowTag }) => {
             width='50rem'
             height='80vh'
             margin='6rem 0'
-            zIndex='100'
+            zIndex='10001'
             head='Select friends'
             onClick={() => {
                 dispatch(removeMembers())
@@ -126,12 +126,14 @@ const Tags = ({ setShowTag }) => {
                 {
                     members.length !== 0 &&
                     <div className={styles.add_user_btn} onClick={() => setShowTag(false)}>
-                        <span>Tag them</span>
+                        <span> {btn === undefined && "Tag "} {btn === "add" && "Add "}  them</span>
                         <ArrowRightOutlined className={styles.icon} />
                     </div>
                 }
 
-                <div className={`${styles.users_list} ${'custom_scroll'}`}>
+                <div className={`${styles.users_list} ${'custom_scroll'}`}
+                    style={{ height: members.length >= 0 ? 'calc(80vh - 25.8rem)' : 'calc(80vh - 15.8rem)' }}
+                >
                     {
                         loading
                             ? <Loading />

@@ -1,0 +1,25 @@
+.privacy_stat {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    margin: 1rem 0;
+    .icon_ {
+      padding-top: 2px;
+      color: var(--text);
+      .icons {
+        color: var(--text);
+        font-size: 2.6rem;
+      }
+    }
+    .stat {
+      span {
+        font-size: 1.7rem;
+        color: var(--text);
+        font-weight: 400;
+      }
+      p {
+        font-size: 1.4rem;
+        color: var(--textSoft);
+      }
+    }
+  }

@@ -1,0 +1,129 @@
+.create_group {
+  display: flex;
+  .sidebar {
+    width: 38rem;
+    z-index: 1000;
+    top: 10rem;
+    bottom: 0;
+    position: sticky;
+    height: 100vh;
+    border-right: 1px solid var(--border);
+    background-color: var(--bgDark);
+    color: var(--text);
+    padding: 0 1rem;
+    .close {
+      background-color: var(--bgDark);
+      font-size: 3rem;
+      padding: 1rem 0;
+      button {
+        width: 4rem;
+        height: 4rem;
+        background-color: var(--bg);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        &:hover {
+          background-color: var(--bgLight);
+        }
+      }
+      .icon {
+        font-size: 3.5rem;
+        color: white;
+      }
+    }
+    h1 {
+      font-size: 2.4rem;
+      color: var(--text);
+      font-weight: 500;
+      margin-bottom: 2rem;
+    }
+    .admin_card {
+      display: flex;
+      gap: 1rem;
+      margin: 1rem 0;
+      .img {
+        width: 4rem;
+        height: 4rem;
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+      }
+      .name {
+        display: flex;
+        flex-direction: column;
+        span {
+          font-size: 1.6rem;
+          font-weight: 500;
+          color: var(--text);
+        }
+        small {
+          font-size: 1.3rem;
+          color: var(--textSoft);
+        }
+      }
+    }
+    .inputs {
+      height: 50rem;
+      margin-top: 2rem;
+      .input {
+        margin: 0.5rem 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        label {
+          font-size: 1.4rem;
+          margin-top: 1rem;
+        }
+        input,
+        select,
+        button {
+          width: 100%;
+          font-size: 1.6rem;
+          border: 1px solid var(--border);
+          color: var(--text);
+          padding: 1rem;
+        }
+        option {
+          color: var(--text);
+          background-color: var(--bgDark);
+          font-size: 1.6rem;
+        }
+        button {
+          margin: 2rem 0;
+        }
+        p{
+          font-size: 1.3rem;
+          color: var(--textSoft);
+        }
+      }
+      .create_btn {
+        margin: 2rem 0;
+        background-color: var(--btn);
+        width: 100%;
+        font-size: 1.6rem;
+        color: var(--text);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        &:hover{
+          background-color: var(--btnLight);
+        }
+      }
+      .btn_disabled{
+        background-color: var(--bgLight);
+        cursor: not-allowed;
+        &:hover{
+          background-color: var(--bgLighter);
+        }
+      }
+    }
+  }
+  .body {
+    padding: 4rem 2rem;
+    flex: 1;
+    margin: 0 auto;
+    height: 100%;
+  }
+}

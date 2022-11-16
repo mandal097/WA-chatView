@@ -1,5 +1,6 @@
 .wrap {
   height: calc(80vh - 5rem);
+  z-index: 1001;
   .search {
     margin: 1rem 0;
     height: 4rem;
@@ -85,7 +86,7 @@
   .users_list {
     margin: 1rem 0;
     // border: 1px solid red;
-    height: calc(80vh - 24rem);
+    // height: calc(80vh - 25.8rem);
     overflow-y: scroll;
     .user {
       width: 100%;

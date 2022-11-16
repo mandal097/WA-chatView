@@ -2,15 +2,21 @@ import React, { useEffect, useState } from 'react';
 import styles from './View.module.scss';
 import { DownOutlined, GlobalOutlined, LockOutlined, PlusOutlined, UpOutlined, UsergroupAddOutlined } from '@ant-design/icons';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import GroupCard from '../GroupCard/GroupCard';
+// import GroupCard from '../GroupCard/GroupCard';
+import axios from '../../../config/axios';
+import { toast } from 'react-toastify';
+import Loading from '../../Loading/Loading';
 
 const View = () => {
     const [active, setActive] = useState('');
     const [scrolled, setScrolled] = useState(false);
     const [clicked, setClicked] = useState(false);
     const [showRelatedGroup, setShowRelatedGroup] = useState(false)
+    const [loading, setLoading] = useState(false)
+    const [groupDetails, setGroupDetails] = useState({});
 
     const location = useLocation();
+    const groupId = location.pathname.split('/')[2]
     const activeState = location.pathname.split('/')[3];
 
     useEffect(() => {
@@ -49,13 +55,36 @@ const View = () => {
         }
     }
 
+    useEffect(() => {
+        const fetchGroupDetails = async () => {
+            const res = await axios.get(`/groups/${groupId}`, {
+                headers: {
+                    token: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            // console.log(res.data.data);
+            if (res.data.status === 'err') {
+                toast.error(res.data.message)
+                setLoading(false)
+            }
+            if (res.data.status === 'success') {
+                toast.error(res.data.message);
+                setGroupDetails(res.data.data)
+                setLoading(false);
+            }
+            // console.log(res.data.data);
+        }
+        fetchGroupDetails()
+    }, [groupId])
+
+    if (loading) return <Loading font='15rem' color='white' />
     return (
         <div className={styles.view}>
             <div className={styles.group_cover}>
-                <img src="https://media.istockphoto.com/id/1358014313/photo/group-of-elementary-students-having-computer-class-with-their-teacher-in-the-classroom.jpg?b=1&s=170667a&w=0&k=20&c=_UfKmwUAFyylJkXm75hsnM9bPRajhoK_RT5t6VWMovo=" alt="" />
+                <img src={groupDetails?.groupCoverImg} alt="" />
             </div>
-            <div className={styles.group_name}>SB FlexiFunnels DOer's Community</div>
-            <div className={styles.counter}><LockOutlined className={styles.icon} /> Private group · <span>88.6k</span> members</div>
+            <div className={styles.group_name}>{groupDetails?.groupName}</div>
+            <div className={styles.counter}><LockOutlined className={styles.icon} />{groupDetails?.isPrivate} group · <span>{groupDetails?.members?.length}</span> member{groupDetails?.members?.length > 1 ? "'s" : ''}</div>
             <div className={`${styles.actions} ${scrolled && styles.scrolled}`}>
                 <div className={styles.badges}>
                     {scrolled ?
@@ -65,7 +94,7 @@ const View = () => {
                                 <img src="https://media.istockphoto.com/id/1358014313/photo/group-of-elementary-students-having-computer-class-with-their-teacher-in-the-classroom.jpg?b=1&s=170667a&w=0&k=20&c=_UfKmwUAFyylJkXm75hsnM9bPRajhoK_RT5t6VWMovo=" alt="img" />
                             </div>
                             <div className={styles.details}>
-                                <span>SB FlexiFunnels DOer's Community </span>
+                                <span>{groupDetails?.groupName} </span>
                             </div>
                         </div>
                         : <h3>user must have to add in future</h3>
@@ -93,7 +122,7 @@ const View = () => {
                     </div>
                     <div className={styles.groups}>
                         <div className={styles.default}>
-                            <GlobalOutlined className={styles.icon}/>
+                            <GlobalOutlined className={styles.icon} />
                             <span>No recommendations to show</span>
                             <Link className={styles.link} to='/groups/discover'>Explore Groups</Link>
                         </div>
@@ -115,22 +144,22 @@ const View = () => {
                 </div>}
 
             <div className={styles.navs}>
-                <Link to={`/groups/234`} className={`${styles.nav_items}  ${active === 'discussion' && styles.active_nav}`} onClick={() => setActive('discussion')}>
+                <Link to={`/groups/${groupId}`} className={`${styles.nav_items}  ${active === 'discussion' && styles.active_nav}`} onClick={() => setActive('discussion')}>
                     <span className='link'>Discussion</span>
                 </Link>
-                <Link to={`/groups/234/featured`} className={`${styles.nav_items}  ${active === 'featured' && styles.active_nav}`} onClick={() => setActive('featured')}>
+                <Link to={`/groups/${groupId}/featured`} className={`${styles.nav_items}  ${active === 'featured' && styles.active_nav}`} onClick={() => setActive('featured')}>
                     <span className='link'>Featured</span>
                 </Link>
-                <Link to={`/groups/234/videos`} className={`${styles.nav_items}  ${active === 'videos' && styles.active_nav}`} onClick={() => setActive('videos')}>
+                <Link to={`/groups/${groupId}/videos`} className={`${styles.nav_items}  ${active === 'videos' && styles.active_nav}`} onClick={() => setActive('videos')}>
                     <span className='link'>Videos</span>
                 </Link>
-                <Link to={`/groups/234/members`} className={`${styles.nav_items}  ${active === 'members' && styles.active_nav}`} onClick={() => setActive('members')}>
+                <Link to={`/groups/${groupId}/members`} className={`${styles.nav_items}  ${active === 'members' && styles.active_nav}`} onClick={() => setActive('members')}>
                     <span className='link'>Members</span>
                 </Link>
-                <Link to={`/groups/234/media`} className={`${styles.nav_items}  ${active === 'media' && styles.active_nav}`} onClick={() => setActive('media')}>
+                <Link to={`/groups/${groupId}/media`} className={`${styles.nav_items}  ${active === 'media' && styles.active_nav}`} onClick={() => setActive('media')}>
                     <span className='link'>Media</span>
                 </Link>
-                <Link to={`/groups/234/files`} className={`${styles.nav_items}  ${active === 'files' && styles.active_nav}`} onClick={() => setActive('files')}>
+                <Link to={`/groups/${groupId}/files`} className={`${styles.nav_items}  ${active === 'files' && styles.active_nav}`} onClick={() => setActive('files')}>
                     <span className='link'>Files</span>
                 </Link>
             </div>

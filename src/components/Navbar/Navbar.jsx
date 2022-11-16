@@ -31,6 +31,8 @@ const Navbar = () => {
     const navRef = useRef()
     const location = useLocation();
     const path = location.pathname.split('/')[1]
+    const isGroupCreate = location.pathname.split('/')[2]
+    console.log(isGroupCreate);
 
 
     const logoutUser = () => {
@@ -45,23 +47,23 @@ const Navbar = () => {
     useEffect(() => {
         setActive(path)
     }, [path])
-
+    if (isGroupCreate === 'create') return null
     return (
         <nav>
-            <div className={styles.navbar} ref={navRef}>
+            <div className={styles.navbar} ref={navRef} style={{ borderBottom: isGroupCreate === 'create' && 'none', backgroundColor: isGroupCreate === 'create' && 'var(--bgDark)' }}>
                 <div className={styles.logo} onClick={() => navigate('/')}>
                     <GlobalOutlined className='icon' />
                 </div>
                 {
                     user &&
                     <>
-                        <div className={styles.search_box}
+                        {isGroupCreate !== 'create' && <div className={styles.search_box}
                             onClick={() => setShowFriendsList(!showFriendsList)}
                         >
                             <div className={styles.icon}><SearchOutlined /></div>
-                        </div>
+                        </div>}
 
-                        <div className={styles.middle}>
+                        {isGroupCreate !== 'create' && <div className={styles.middle}>
                             <button
                                 onClick={() => {
                                     setActive('home')
@@ -86,15 +88,15 @@ const Navbar = () => {
                                     navigate('/groups/feed')
                                 }}
                             ><UsergroupDeleteOutlined /></button>
-                        </div>
+                        </div>}
 
                         <div className={styles.toolkit}>
-                            <div className={styles.auth_actions}>
+                            {isGroupCreate !== 'create' && <div className={styles.auth_actions}>
                                 <button
                                     onClick={logoutUser}>
                                     <LogoutOutlined className={styles.icon} /><span>Logout</span>
                                 </button>
-                            </div>
+                            </div>}
                             <button className={styles.tools} onClick={() => navigate('/messenger')}><MessageFilled /></button>
                             <button className={styles.tools}><BellFilled /></button>
                             <button className={styles.tools} onClick={() => navigate(`/profile/${user?._id}`)}>

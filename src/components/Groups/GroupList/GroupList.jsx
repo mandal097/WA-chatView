@@ -6,7 +6,7 @@ import styles from './GroupList.module.scss';
 
 const Card = ({ count }) => {
     const { currentUser } = useSelector(state => state.user)
-    console.log(count);
+    // console.log(count);
     return (
         <div className={styles.card_}>
             <div className={styles.card} style={{ alignItems: count === 'all' ? 'flex-start' : 'center' }}>
