@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import Dummy from '../../components/Groups/_GroupCreation/DummyPage/Dummy';
+import Dummy from '../../components/Groups/_GroupCreatorAdmin/DummyPage/Dummy';
 import Tags from '../../components/_Modals/SelectUser/Tags';
 import { removeMembers } from '../../redux/AddToGroup';
 import styles from './CreateGroup.module.scss';

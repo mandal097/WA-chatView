@@ -5,12 +5,13 @@ import { createSearchParams, Link, useLocation, useNavigate } from 'react-router
 import { useRef } from 'react';
 import { toast } from 'react-toastify';
 import axios from '../../../config/axios';
+import Loading from '../../Loading/Loading';
 
-const Card = ({details}) => {
+const Card = ({ details }) => {
     return (
         <Link className={styles.card} to={`/groups/${details?._id}`}>
             <div className={styles.img}>
-                <img src={details.groupCoverImg}alt="img" />
+                <img src={details.groupCoverImg} alt="img" />
             </div>
             <div className={styles.details}>
                 <span>{details?.groupName} </span>
@@ -28,6 +29,7 @@ const Sidebar = () => {
     const [groups, setGroups] = useState([]);
     const navigate = useNavigate();
     const listRef = useRef();
+    const [loading, setLoading] = useState(false);
 
 
     useEffect(() => {
@@ -56,6 +58,7 @@ const Sidebar = () => {
 
     useEffect(() => {
         const fetchGroups = async () => {
+            setLoading(true)
             const res = await axios.get(`/groups`, {
                 headers: {
                     token: `Bearer ${localStorage.getItem('token')}`
@@ -69,12 +72,13 @@ const Sidebar = () => {
                 toast.error(res.data.message);
                 setGroups(res.data.data)
             }
+            setLoading(false)
             console.log(res.data.data);
         }
         fetchGroups()
     }, [])
 
-    console.log(groups);
+    // console.log(groups);
 
 
     return (
@@ -126,8 +130,11 @@ const Sidebar = () => {
                 <div className={styles.group_list}>
                     <h2>Groups you've joined</h2>
                     {
+                        loading && <Loading font='10rem' color='white'/>
+                    }
+                    {
                         groups.map((group) => (
-                            <Card key={group._id} details={group}/>
+                            <Card key={group._id} details={group} />
                         ))
                     }
                 </div>

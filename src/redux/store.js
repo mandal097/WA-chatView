@@ -3,6 +3,7 @@ import userRedux from "./userRedux";
 import chatRedux from "./chatRedux";
 import groupRedux from "./AddToGroup";
 import currentProfile from "./currentProfile";
+import currentGroup from "./currentGroup";
 
 
 import {
@@ -27,8 +28,9 @@ const persistConfig = {
 const rootReducer = combineReducers({
     user: userRedux,
     chat: chatRedux,
-    group: groupRedux,
-    profile: currentProfile
+    group: groupRedux, //for chats groups 😅
+    profile: currentProfile,
+    currentGroup:currentGroup
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

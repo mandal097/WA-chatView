@@ -73,6 +73,7 @@ const Common = ({ type }) => {
                     }
                 </div>
             </div>
+
             <div className={styles.about}>
                 <h3>About</h3>
                 <p>This is a DOer's community.</p>

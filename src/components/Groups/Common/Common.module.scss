@@ -5,45 +5,45 @@
   .left {
     width: 60%;
   }
-  .about {
-    width: 38%;
-    height: fit-content;
-    background-color: var(--bgDark);
-    border-radius: 1rem;
-    padding: 1.2rem;
-    position: sticky;
-    top: 12rem;
-    h3 {
-      font-size: 2.1rem;
-      font-weight: 500;
-    }
-    p {
-      font-size: 1.41rem;
-      margin: 0.5rem 0;
-      color: var(--textSoft);
-    }
-    .icon {
-      color: var(--text);
-      font-size: 2.3rem;
-    }
-    .link {
-      font-size: 1.5rem;
-      color: var(--text);
-      text-decoration: none;
-      &:hover {
-        color: var(--btn);
+    .about {
+      height: fit-content;
+      background-color: var(--bgDark);
+      border-radius: 1rem;
+      padding: 1.2rem;
+      width: 38%;
+      position: sticky;
+      top: 12rem;
+      h3 {
+        font-size: 2.1rem;
+        font-weight: 500;
       }
-    }
+      p {
+        font-size: 1.41rem;
+        margin: 0.5rem 0;
+        color: var(--textSoft);
+      }
+      .icon {
+        color: var(--text);
+        font-size: 2.3rem;
+      }
+      .link {
+        font-size: 1.5rem;
+        color: var(--text);
+        text-decoration: none;
+        &:hover {
+          color: var(--btn);
+        }
+      }
 
-    button {
-      font-size: 1.5rem;
-      background-color: var(--bgLight);
-      width: 100%;
-      padding: 1rem;
-      border-radius: 0.7rem;
-      &:hover {
-        background-color: var(--bgLighter);
+      button {
+        font-size: 1.5rem;
+        background-color: var(--bgLight);
+        width: 100%;
+        padding: 1rem;
+        border-radius: 0.7rem;
+        &:hover {
+          background-color: var(--bgLighter);
+        }
       }
     }
   }
-}

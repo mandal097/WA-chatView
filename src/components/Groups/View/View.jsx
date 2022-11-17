@@ -6,6 +6,8 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 import axios from '../../../config/axios';
 import { toast } from 'react-toastify';
 import Loading from '../../Loading/Loading';
+import { useDispatch } from 'react-redux';
+import { setCurrentGroup } from '../../../redux/currentGroup';
 
 const View = () => {
     const [active, setActive] = useState('');
@@ -16,6 +18,7 @@ const View = () => {
     const [groupDetails, setGroupDetails] = useState({});
 
     const location = useLocation();
+    const dispatch = useDispatch();
     const groupId = location.pathname.split('/')[2]
     const activeState = location.pathname.split('/')[3];
 
@@ -70,12 +73,13 @@ const View = () => {
             if (res.data.status === 'success') {
                 toast.error(res.data.message);
                 setGroupDetails(res.data.data)
+                dispatch(setCurrentGroup(res.data.data))
                 setLoading(false);
             }
             // console.log(res.data.data);
         }
         fetchGroupDetails()
-    }, [groupId])
+    }, [groupId, dispatch])
 
     if (loading) return <Loading font='15rem' color='white' />
     return (
@@ -91,7 +95,7 @@ const View = () => {
                         // <h3>SB FlexiFunnels DOer's Community</h3>
                         <div className={styles.card}>
                             <div className={styles.img}>
-                                <img src="https://media.istockphoto.com/id/1358014313/photo/group-of-elementary-students-having-computer-class-with-their-teacher-in-the-classroom.jpg?b=1&s=170667a&w=0&k=20&c=_UfKmwUAFyylJkXm75hsnM9bPRajhoK_RT5t6VWMovo=" alt="img" />
+                                <img src={groupDetails?.groupCoverImg} alt="" />
                             </div>
                             <div className={styles.details}>
                                 <span>{groupDetails?.groupName} </span>

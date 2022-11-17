@@ -31,6 +31,7 @@ import MarketPlace from './pages/MarketPlace/MarketPlace';
 import AboutGroup from './components/Groups/About/About';
 import GroupList from './components/Groups/GroupList/GroupList';
 import CreateGroup from './pages/CreateGroup/CreateGroup';
+import Test from './components/Groups/_GroupCreatorAdmin/Test/Test';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
@@ -72,6 +73,8 @@ const App = () => {
             {/* ----------------------groups routes --------------------------------*/}
             <Route path='marketplace' element={<MarketPlace />} />
 
+            {/* ----------------------group creatiion --------------------------------*/}
+            <Route path='group/create' element={<CreateGroup />} />  {/* for creating groups */}
 
             {/* ----------------------groups routes --------------------------------*/}
             <Route path='groups/*' element={<Groups />}>
@@ -87,11 +90,11 @@ const App = () => {
                 <Route path='members' element={<Members />} />
                 <Route path='media' element={<Media />} />
                 <Route path='files' element={<Files />} />
+                {/* admin access routes for groups */}
+                <Route path='overview' element={<Test />} />
               </Route>
             </Route>
 
-            {/* ----------------------group creatiion --------------------------------*/}
-            <Route path='group/create' element={<CreateGroup />} />  {/* for creating groups */}
           </Route>
         </Routes>
       </BrowserRouter>

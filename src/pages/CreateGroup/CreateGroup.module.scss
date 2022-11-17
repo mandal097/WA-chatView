@@ -1,9 +1,10 @@
 .create_group {
   display: flex;
+  height: 100vh;
   .sidebar {
     width: 38rem;
     z-index: 1000;
-    top: 10rem;
+    // top: 10rem;
     bottom: 0;
     position: sticky;
     height: 100vh;
