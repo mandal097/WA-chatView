@@ -20,7 +20,10 @@ button {
   justify-content: center;
 }
 
-input,select,option {
+input,
+select,
+option,
+textarea {
   border: none;
   background-color: transparent;
   outline: none;
@@ -66,8 +69,6 @@ input,select,option {
   }
 }
 
-
-
 @keyframes pop {
   25% {
     transform: scale(1.5);
@@ -83,11 +84,8 @@ input,select,option {
   }
 }
 
-
-
 @media screen and (max-width: 1200px) {
   .container {
     width: 95%;
   }
 }
-

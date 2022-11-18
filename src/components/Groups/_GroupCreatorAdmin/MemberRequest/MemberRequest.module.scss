@@ -1,0 +1,111 @@
+.member_request {
+  color: var(--text);
+  .wrapper {
+    width: 90%;
+    margin: 0 auto;
+    height: 100%;
+    padding: 2rem 1rem;
+  }
+  .top {
+    height: fit-content;
+    background-color: var(--bgDark);
+    position: sticky;
+    top: 5.5rem;
+    h1 {
+      font-size: 2.5rem;
+      color: var(--textSoft);
+    }
+    .search_box {
+      margin: 1rem 0;
+      height: 4rem;
+      display: flex;
+      gap: 1rem;
+      .search {
+        flex: 1;
+        height: 100%;
+        border-radius: 5rem;
+        background-color: var(--bgLight);
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        gap: 1rem;
+        .icon {
+          font-size: 3rem;
+        }
+        input {
+          flex: 1;
+          height: 100%;
+          color: var(--text);
+          font-size: 1.5rem;
+        }
+      }
+      .sort_btn {
+        height: 100%;
+        border-radius: 1rem;
+        padding: 0 1rem;
+        background-color: var(--bgLight);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        gap: 1rem;
+        position: relative;
+        cursor: pointer;
+        span {
+          font-size: 1.4rem;
+          text-transform: capitalize;
+        }
+        .icon {
+          font-size: 3rem;
+        }
+      }
+      .sort_ {
+        position: absolute;
+        bottom: -11rem;
+        width: 20rem;
+        height: fit-content;
+        background-color: var(--bgLight);
+        border-radius: 0.5rem;
+        padding: 1rem;
+        .filter {
+          padding: 1rem;
+          font-size: 1.3rem;
+          margin: 0.2rem 0;
+          border-radius: 0.5rem;
+          cursor: pointer;
+          display: flex;
+          justify-content: space-between;
+          .icon_ {
+            font-size: 2.3rem;
+            color: var(--btnLight);
+          }
+          &:hover {
+            background-color: var(--bgLighter);
+          }
+        }
+        .filter_active {
+          background-color: var(--bgLighter);
+        }
+      }
+    }
+  }
+  .bottom {
+    .no_requests {
+      padding: 5rem;
+      font-size: 10rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      .icon {
+        font-size: 20rem;
+        color: var(--btn);
+      }
+      span{
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: var(--bgLighter);
+      }
+    }
+  }
+}

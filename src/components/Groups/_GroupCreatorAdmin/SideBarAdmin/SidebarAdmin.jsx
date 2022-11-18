@@ -118,21 +118,21 @@ const SidebarAdmin = () => {
                         </Link>
 
                         <Link
-                        to={`/groups/${currentGroup?._id}/overview`}
+                        to={`/groups/${currentGroup?._id}/member-requests`}
                          className={`${styles.card} ${activeCard === 'm_request' && styles.active_card}`}
                             onClick={() => setActiveCard('m_request')}>
                             <div className={styles.left}>
                                 <UserAddOutlined className={styles.icon} />
                             </div>
                             <div className={styles.right}>
-                                <span>Member Request</span>
+                                <span>Member Requests</span>
                             </div>
                         </Link>
 
                         <Link
-                        to={`/groups/${currentGroup?._id}/overview`}
-                         className={`${styles.card} ${activeCard === 'g_rules' && styles.active_card}`}
-                            onClick={() => setActiveCard('g_rules')}>
+                        to={`/groups/${currentGroup?._id}/manage-rules`}
+                         className={`${styles.card} ${activeCard === 'manage-rules' && styles.active_card}`}
+                            onClick={() => setActiveCard('manage-rules')}>
                             <div className={styles.left}>
                                 <ReadOutlined className={styles.icon} />
                             </div>

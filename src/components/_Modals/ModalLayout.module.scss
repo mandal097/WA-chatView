@@ -29,6 +29,10 @@
       background-color: var(--bgLight);
       padding: 0.5rem;
       cursor: pointer;
+      width: 3rem;
+      height: 3rem;
+      display: grid;
+      place-items: center;
       .icon {
         font-size: 3rem;
         color: var(--text);

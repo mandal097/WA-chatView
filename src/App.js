@@ -32,6 +32,8 @@ import AboutGroup from './components/Groups/About/About';
 import GroupList from './components/Groups/GroupList/GroupList';
 import CreateGroup from './pages/CreateGroup/CreateGroup';
 import Test from './components/Groups/_GroupCreatorAdmin/Test/Test';
+import MemberRequest from './components/Groups/_GroupCreatorAdmin/MemberRequest/MemberRequest';
+import Rules from './components/Groups/_GroupCreatorAdmin/Rules/Rules';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
@@ -91,6 +93,8 @@ const App = () => {
                 <Route path='media' element={<Media />} />
                 <Route path='files' element={<Files />} />
                 {/* admin access routes for groups */}
+                <Route path='member-requests' element={<MemberRequest />} />
+                <Route path='manage-rules' element={<Rules />} />
                 <Route path='overview' element={<Test />} />
               </Route>
             </Route>

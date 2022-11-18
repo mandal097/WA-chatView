@@ -13,14 +13,26 @@ const Groups = () => {
     const [isAdmin, setIsAdmin] = useState(false);
     const location = useLocation();
     const path = location.pathname.split('/')[2];
-
+    const activeState = location.pathname.split('/')[3];
+    const [showActions, setShowActions] = useState(false)
 
     useEffect(() => {
         const check = currentGroup?.admins.includes(String(currentUser?._id))
         setIsAdmin(check);
 
     }, [currentGroup, currentUser]);
-    
+
+    useEffect(() => {
+        const check = currentGroup?.admins.includes(String(currentUser?._id))
+        if (check && activeState !== undefined) {
+            setShowActions(true);
+        }
+        if (check && activeState === undefined) {
+            setShowActions(false);
+        }
+    }, [currentGroup, currentUser, activeState]);
+
+
     return (
         <div className={styles.groups}>
             <div>
@@ -40,7 +52,7 @@ const Groups = () => {
                     !isAdmin && path === String(currentGroup?._id) && <Sidebar />
                 }
             </div>
-            <div className={styles.body}>
+            <div className={styles.body} style={{ padding: showActions && 0 }}>
                 <Outlet />
             </div>
         </div>

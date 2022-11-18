@@ -1,0 +1,73 @@
+.wrapper {
+  color: var(--text);
+  padding: 0 1rem;
+  .top {
+    h2 {
+      font-size: 2rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+    .example_rules {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      button {
+        font-size: 1.5rem;
+        background-color: var(--bgLight);
+        padding: 1rem 3rem;
+        border-radius: 5rem;
+        // margin: 0.5rem 0rem;
+        &:hover {
+          background-color: var(--bgLighter);
+        }
+      }
+    }
+  }
+  .form {
+    margin-top: 2rem;
+    h2 {
+      font-size: 2rem;
+      font-weight: 400;
+    }
+    input,
+    textarea {
+      width: 100%;
+      border-radius: 0.5rem;
+      color: var(--text);
+      font-size: 1.5rem;
+      margin: 1rem 0;
+      background-color: transparent;
+      border: 1px solid var(--border);
+      padding: 1rem;
+      resize: none;
+    }
+    .btns {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1.5rem;
+      button {
+        font-size: 1.5rem;
+        padding: 0.8rem 1rem;
+        background-color: var(--btn);
+        border-radius: 0.5rem;
+        &:hover{
+            background-color: var(--btnLight);
+        }
+        &:first-child {
+          background-color: transparent;
+          color: var(--btnLight);
+        }
+        &:first-child:hover {
+          background-color: var(--bgLight);
+        }
+      }
+      .disable_btn{
+        cursor: not-allowed;
+        background-color: var(--bgLight);
+        &:hover{
+            background-color: var(--bgLight);
+        }
+      }
+    }
+  }
+}
