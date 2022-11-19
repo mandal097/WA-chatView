@@ -11,14 +11,21 @@ import {
     VideoCameraOutlined
 } from '@ant-design/icons';
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './SidebarAdmin.module.scss';
 
 const SidebarAdmin = () => {
     const [active, setActive] = useState('manage');
     const { currentGroup } = useSelector(state => state.currentGroup);
     const [activeCard, setActiveCard] = useState('c_home');
+    const location = useLocation();
+    const path = location.pathname.split('/')[3]
+
+    useEffect(() => {
+        setActiveCard(path)
+    }, [path])
 
     return (
         <div className={styles.SidebarAdmin}>
@@ -48,9 +55,9 @@ const SidebarAdmin = () => {
                     <div style={{ borderBottom: active === 'manage' && '1px solid var(--border)' }}>
 
                         <Link
-                        to={`/groups/${currentGroup?._id}`}
-                         className={`${styles.card} ${activeCard === 'c_home' && styles.active_card}`}
-                            onClick={() => setActiveCard('c_home')}>
+                            to={`/groups/${currentGroup?._id}`}
+                            className={`${styles.card} ${activeCard === undefined && styles.active_card}`}
+                            onClick={() => setActiveCard(undefined)}>
                             <div className={styles.left}>
                                 <HomeOutlined className={styles.icon} />
                             </div>
@@ -63,8 +70,8 @@ const SidebarAdmin = () => {
                                 ?
 
                                 <Link
-                                to={`/groups/${currentGroup?._id}/overview`}
-                                 className={`${styles.card} ${activeCard === 'overview' && styles.active_card}`}
+                                    to={`/groups/${currentGroup?._id}/overview`}
+                                    className={`${styles.card} ${activeCard === 'overview' && styles.active_card}`}
                                     onClick={() => setActiveCard('overview')}>
                                     <div className={styles.left}>
                                         <AreaChartOutlined className={styles.icon} />
@@ -76,8 +83,8 @@ const SidebarAdmin = () => {
                                 :
                                 <>
                                     <Link
-                                    to={`/groups/${currentGroup?._id}/overview`}
-                                     className={`${styles.card} ${activeCard === 'rooms' && styles.active_card}`}
+                                        to={`/groups/${currentGroup?._id}/overview`}
+                                        className={`${styles.card} ${activeCard === 'rooms' && styles.active_card}`}
                                         onClick={() => setActiveCard('rooms')}>
                                         <div className={styles.left}>
                                             <VideoCameraOutlined className={styles.icon} />
@@ -87,8 +94,8 @@ const SidebarAdmin = () => {
                                         </div>
                                     </Link>
                                     <Link
-                                    to={`/groups/${currentGroup?._id}/overview`}
-                                     className={`${styles.card} ${activeCard === 'events' && styles.active_card}`}
+                                        to={`/groups/${currentGroup?._id}/overview`}
+                                        className={`${styles.card} ${activeCard === 'events' && styles.active_card}`}
                                         onClick={() => setActiveCard('events')}>
                                         <div className={styles.left}>
                                             <CalendarOutlined className={styles.icon} />
@@ -106,8 +113,8 @@ const SidebarAdmin = () => {
                             <span>Admin Tools</span>
                         </div>
                         <Link
-                        to={`/groups/${currentGroup?._id}/overview`}
-                         className={`${styles.card} ${activeCard === 'admin_assist' && styles.active_card}`}
+                            to={`/groups/${currentGroup?._id}/overview`}
+                            className={`${styles.card} ${activeCard === 'admin_assist' && styles.active_card}`}
                             onClick={() => setActiveCard('admin_assist')}>
                             <div className={styles.left}>
                                 <CrownOutlined className={styles.icon} />
@@ -118,8 +125,8 @@ const SidebarAdmin = () => {
                         </Link>
 
                         <Link
-                        to={`/groups/${currentGroup?._id}/member-requests`}
-                         className={`${styles.card} ${activeCard === 'm_request' && styles.active_card}`}
+                            to={`/groups/${currentGroup?._id}/member-requests`}
+                            className={`${styles.card} ${activeCard === 'm_request' && styles.active_card}`}
                             onClick={() => setActiveCard('m_request')}>
                             <div className={styles.left}>
                                 <UserAddOutlined className={styles.icon} />
@@ -130,8 +137,8 @@ const SidebarAdmin = () => {
                         </Link>
 
                         <Link
-                        to={`/groups/${currentGroup?._id}/manage-rules`}
-                         className={`${styles.card} ${activeCard === 'manage-rules' && styles.active_card}`}
+                            to={`/groups/${currentGroup?._id}/manage-rules`}
+                            className={`${styles.card} ${activeCard === 'manage-rules' && styles.active_card}`}
                             onClick={() => setActiveCard('manage-rules')}>
                             <div className={styles.left}>
                                 <ReadOutlined className={styles.icon} />
@@ -142,8 +149,8 @@ const SidebarAdmin = () => {
                         </Link>
 
                         <Link
-                        to={`/groups/${currentGroup?._id}/overview`}
-                         className={`${styles.card} ${activeCard === 'pending_post' && styles.active_card}`}
+                            to={`/groups/${currentGroup?._id}/overview`}
+                            className={`${styles.card} ${activeCard === 'pending_post' && styles.active_card}`}
                             onClick={() => setActiveCard('pending_post')}>
                             <div className={styles.left}>
                                 <AppstoreAddOutlined className={styles.icon} />
@@ -154,8 +161,8 @@ const SidebarAdmin = () => {
                         </Link>
 
                         <Link
-                        to={`/groups/${currentGroup?._id}/overview`}
-                         className={`${styles.card} ${activeCard === 'activity_log' && styles.active_card}`}
+                            to={`/groups/${currentGroup?._id}/overview`}
+                            className={`${styles.card} ${activeCard === 'activity_log' && styles.active_card}`}
                             onClick={() => setActiveCard('activity_log')}>
                             <div className={styles.left}>
                                 <RadarChartOutlined className={styles.icon} />
@@ -166,9 +173,9 @@ const SidebarAdmin = () => {
                         </Link>
 
                         <Link
-                        to={`/groups/${currentGroup?._id}/overview`}
-                         className={`${styles.card} ${activeCard === 'setting' && styles.active_card}`}
-                            onClick={() => setActiveCard('setting')}>
+                            to={`/groups/${currentGroup?._id}/edit`}
+                            className={`${styles.card} ${activeCard === 'edit' && styles.active_card}`}
+                            onClick={() => setActiveCard('edit')}>
                             <div className={styles.left}>
                                 <SettingOutlined className={styles.icon} />
                             </div>

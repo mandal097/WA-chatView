@@ -73,7 +73,7 @@ const EditProfileModal = ({ setShowEditProfileModal }) => {
             width='70rem'
             height='max-content'
             margin='6rem 0'
-            zIndex='100'
+            zIndex='10001'
             head='Edit profile'
             onClick={() => setShowEditProfileModal(false)}
         >

@@ -2,7 +2,6 @@
   font-size: 10rem;
   .wrapper {
     width: 65%;
-    // border: 1px solid red;
     margin: 2rem auto;
     color: var(--text);
     margin-top: 5rem;
@@ -33,7 +32,7 @@
       background-color: var(--bgDark);
       height: auto;
       border-radius: 0.6rem;
-      padding:  2rem;
+      padding: 2rem;
       margin-top: 1.5rem;
       .card {
         height: auto;
@@ -42,19 +41,42 @@
         border-bottom: 1px solid var(--border);
         margin-bottom: 1rem;
         padding: 1rem 0;
+        position: relative;
         .icon {
           font-size: 3rem;
         }
-        span{
-            font-size: 1.6rem;
+        span {
+          font-size: 1.6rem;
         }
-        p{
-            font-size: 1.3rem;
-            color: var(--textSoft);
-            margin-top: 0.5rem;
+        p {
+          font-size: 1.3rem;
+          color: var(--textSoft);
+          margin-top: 0.5rem;
         }
-        &:last-child{
-            border-bottom: none;
+        &:last-child {
+          border-bottom: none;
+        }
+        .actions {
+          // border: 1px solid red;
+          position: absolute;
+          width: auto;
+          height: 2rem;
+          top: 0.5rem;
+          right: 0rem;
+          display: flex;
+          gap: 2rem;
+          button {
+              color: var(--successLight);
+            .icon {
+              font-size: 2rem;
+            }
+            &:last-child {
+              color: var(--error);
+            }
+            &:hover{
+                transform:scale(1.3);
+            }
+          }
         }
       }
     }

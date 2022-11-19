@@ -1,0 +1,159 @@
+.edit {
+  .wrapper {
+    width: 50%;
+    font-size: 10rem;
+    margin: 3rem auto;
+    color: var(--text);
+    .section {
+      background-color: var(--bgDark);
+      border-radius: 1rem;
+      height: auto;
+      padding: 1.5rem 1rem;
+      h1 {
+        font-size: 2rem;
+        color: var(--textSoft);
+      }
+      .btns {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: flex-end;
+        button {
+          padding: 0.7rem 2rem;
+          border-radius: 0.4rem;
+          background-color: var(--btn);
+          &:hover {
+            background-color: var(--btnLight);
+          }
+          &:nth-child(1) {
+            color: var(--btn);
+            font-weight: bold;
+            background-color: transparent;
+            &:hover {
+              background-color: var(--bgLight);
+            }
+          }
+        }
+        .disabled {
+          background-color: var(--bgLight);
+          cursor: not-allowed;
+          &:hover {
+            background-color: var(--bgLighter);
+          }
+        }
+      }
+      .edit_field {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--border);
+        margin: 1.5rem 0;
+        div {
+          display: flex;
+          flex-direction: column;
+          padding-bottom: 1rem;
+          span {
+            color: var(--text);
+            font-size: 1.7rem;
+          }
+          small {
+            color: var(--textSoft);
+            font-weight: 100;
+            font-size: 1.3rem;
+            text-transform: capitalize;
+          }
+        }
+        .icon_ {
+          cursor: pointer;
+          .icon {
+            font-size: 3.5rem;
+          }
+        }
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+      .inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        border-bottom: 1px solid var(--border);
+        padding: 1rem 0;
+        input,
+        textarea {
+          font-size: 1.5rem;
+          border: 1px solid var(--border);
+          padding: 1rem;
+          border-radius: 0.5rem;
+          color: var(--text);
+          resize: none;
+        }
+      }
+
+      .radios {
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 1rem;
+        .radio {
+          display: flex;
+          align-items: center;
+          padding: 1rem;
+          border-radius: 0.5rem;
+          gap: 1rem;
+          cursor: pointer;
+          margin: 0.5rem 0;
+          &:hover {
+            background-color: var(--bgLight);
+            .icon_ {
+              background-color: var(--bgDark);
+            }
+          }
+          .icon_ {
+            width: 3.5rem;
+            height: 3.5rem;
+            background-color: var(--bgLight);
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            .icon {
+              font-size: 3.5rem;
+            }
+          }
+          .type {
+            span {
+              font-size: 1.8rem;
+              font-weight: 500;
+            }
+            p {
+              font-size: 1.3rem;
+              color: var(--textSoft);
+            }
+          }
+          .state {
+            width: 1.6rem;
+            height: 1.6rem;
+            border-radius: 50%;
+            border: 1px solid var(--bgLighter);
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            div {
+              width: 1rem;
+              height: 1rem;
+              background-color: var(--btn);
+              border-radius: 50%;
+            }
+          }
+        }
+        .radio_active {
+          background-color: var(--bgLight);
+          .icon_ {
+            background-color: var(--bgDark);
+          }
+        }
+        &:last-child {
+          border: none;
+        }
+      }
+    }
+  }
+}

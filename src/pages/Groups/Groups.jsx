@@ -27,11 +27,12 @@ const Groups = () => {
         if (check && activeState !== undefined) {
             setShowActions(true);
         }
-        if (check && activeState === undefined) {
+        const routes = [undefined, 'about', 'featured', 'videos', 'members', 'media', 'files']
+        const dblCheck = routes.includes(activeState)
+        if (dblCheck) {
             setShowActions(false);
         }
     }, [currentGroup, currentUser, activeState]);
-
 
     return (
         <div className={styles.groups}>

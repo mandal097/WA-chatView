@@ -7,6 +7,7 @@ import PrivacyStat from '../PrivacyStat/PrivacyStat';
 import styles from './About.module.scss';
 import { format } from 'timeago.js';
 import axios from '../../../config/axios';
+import Rules from '../_GroupCreatorAdmin/Rules/Rules';
 
 const Card = () => {
     const { currentGroup } = useSelector(state => state.currentGroup);
@@ -58,7 +59,7 @@ const AboutGroup = () => {
                     token: `Bearer ${localStorage.getItem('token')}`
                 }
             })
-            console.log(res.data.data);
+            // console.log(res.data.data);
             setAdmin(res.data.data)
         }
         fetchAdmin()
@@ -132,6 +133,7 @@ const AboutGroup = () => {
                     icon={<ClockCircleFilled className={styles.icon} />}
                 />
             </div>
+            <Rules width='100%' col='var(--successLight)'/>
         </div>
     )
 }

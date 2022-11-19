@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './View.module.scss';
-import { DownOutlined, GlobalOutlined, LockOutlined, PlusOutlined, UpOutlined, UsergroupAddOutlined } from '@ant-design/icons';
+import { DownOutlined, QqOutlined, LockOutlined, PlusOutlined, UpOutlined, UsergroupAddOutlined } from '@ant-design/icons';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 // import GroupCard from '../GroupCard/GroupCard';
 import axios from '../../../config/axios';
@@ -36,7 +36,10 @@ const View = () => {
         if (check && activeState !== undefined) {
             setIsAdmin(true);
         }
-        if (check && activeState === undefined) {
+        const routes = [undefined , 'about','featured','videos','members','media','files']
+        const dblCheck = routes.includes(activeState)
+        // if (check && activeState === undefined) {
+        if (dblCheck) {
             setIsAdmin(false);
         }
     }, [currentGroup, currentUser, activeState]);
@@ -144,7 +147,7 @@ const View = () => {
                             </div>
                             <div className={styles.groups}>
                                 <div className={styles.default}>
-                                    <GlobalOutlined className={styles.icon} />
+                                    <QqOutlined className={styles.icon}/>
                                     <span>No recommendations to show</span>
                                     <Link className={styles.link} to='/groups/discover'>Explore Groups</Link>
                                 </div>
