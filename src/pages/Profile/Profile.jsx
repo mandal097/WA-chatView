@@ -197,7 +197,7 @@ const Profile = () => {
     }
 
 
-    const updateCoverImg = async (e, param) => {
+    const updateCoverImg = async (e) => {
         e.preventDefault();
         try {
             setUploading(true);

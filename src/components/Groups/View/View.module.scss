@@ -4,11 +4,41 @@
   .group_cover {
     width: 100%;
     height: 30rem;
+    position: relative;
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       border-radius: 1rem;
+    }
+    .edit_cover {
+      position: absolute;
+      right: 2rem;
+      bottom: 1rem;
+      display: flex;
+      gap: 1rem;
+      .edit_cover_btns {
+        font-size: 1.6rem;
+        background-color: var(--successLight);
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        .icon {
+          font-size: 2.5rem;
+          color: black;
+        }
+      }
+      .edit_cover_button {
+        font-weight: 600;
+        background-color: var(--error);
+        &:hover {
+          background-color: var(--error);
+        }
+      }
     }
   }
   .group_name {
@@ -160,21 +190,21 @@
         align-items: center;
         width: 100%;
         gap: 1.5rem;
-        .icon{
+        .icon {
           font-size: 10rem;
           color: var(--btn);
         }
         span {
           font-size: 2.6rem;
         }
-        .link{
+        .link {
           padding: 1rem 3rem;
           font-size: 1.5rem;
-          border-radius: 0.5rem;;
+          border-radius: 0.5rem;
           text-decoration: none;
           color: var(--text);
           background-color: var(--btn);
-          &:hover{
+          &:hover {
             background-color: var(--btnLight);
           }
           // color: ;

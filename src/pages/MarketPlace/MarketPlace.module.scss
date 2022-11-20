@@ -1,4 +1,8 @@
-.market_place{
-    font-size: 4rem;
-    color: var(--text);
-}
+.marketplace {
+    display: flex;
+    .body {
+      padding: 1rem 1rem;
+      flex: 1;
+    }
+  }
+  

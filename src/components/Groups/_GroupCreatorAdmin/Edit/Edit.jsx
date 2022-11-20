@@ -3,6 +3,7 @@ import styles from './Edit.module.scss';
 import EditNameDesc from './EditNameDesc';
 import EditPrivacy from './EditPrivacy';
 import EditVisibility from './EditVisibility';
+import LocationSelector from './LocationSelector';
 
 const Edit = () => {
 
@@ -15,6 +16,7 @@ const Edit = () => {
                     <EditNameDesc />
                     <EditPrivacy />
                     <EditVisibility />
+                    <LocationSelector />
 
                 </div>
             </div>

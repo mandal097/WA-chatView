@@ -17,6 +17,7 @@
         display: flex;
         gap: 1.5rem;
         justify-content: flex-end;
+        margin-top: 1rem;
         button {
           padding: 0.7rem 2rem;
           border-radius: 0.4rem;
@@ -75,9 +76,12 @@
       .inputs {
         display: flex;
         flex-direction: column;
-        gap: 2rem;
         border-bottom: 1px solid var(--border);
         padding: 1rem 0;
+        label {
+          font-size: 1.4rem;
+          margin: 0.3rem 0;
+        }
         input,
         textarea {
           font-size: 1.5rem;
@@ -86,6 +90,7 @@
           border-radius: 0.5rem;
           color: var(--text);
           resize: none;
+          margin-bottom: 1rem;
         }
       }
 
@@ -152,6 +157,28 @@
         }
         &:last-child {
           border: none;
+        }
+      }
+
+      .location {
+        display: flex;
+        flex-direction: column;
+        input {
+          font-size: 1.5rem;
+          border: 1px solid var(--border);
+          padding: 1rem;
+          border-radius: 0.5rem;
+          color: var(--text);
+          resize: none;
+          margin-bottom: 1rem;
+        }
+        .selection_ {
+          border: 1px solid var(--border);
+          height: 16rem;
+          overflow-y: scroll;
+          border-top-left-radius: 0.5rem;
+          border-bottom-left-radius: 0.5rem;
+          padding: 0.5rem;
         }
       }
     }

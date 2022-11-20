@@ -35,6 +35,11 @@ import Test from './components/Groups/_GroupCreatorAdmin/Test/Test';
 import MemberRequest from './components/Groups/_GroupCreatorAdmin/MemberRequest/MemberRequest';
 import Rules from './components/Groups/_GroupCreatorAdmin/Rules/Rules';
 import Edit from './components/Groups/_GroupCreatorAdmin/Edit/Edit';
+import Browse from './components/MarkePlace/Browse/Browse';
+import Inbox from './components/MarkePlace/Inbox/Inbox';
+import Buying from './components/MarkePlace/Buying/Buying';
+import Selling from './components/MarkePlace/Admin/Selling/Selling';
+import Category from './components/MarkePlace/Category/Category';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
@@ -73,9 +78,6 @@ const App = () => {
 
             <Route path='watch' element={<Watch />} />
 
-            {/* ----------------------groups routes --------------------------------*/}
-            <Route path='marketplace' element={<MarketPlace />} />
-
             {/* ----------------------group creatiion --------------------------------*/}
             <Route path='group/create' element={<CreateGroup />} />  {/* for creating groups */}
 
@@ -99,6 +101,16 @@ const App = () => {
                 <Route path='edit' element={<Edit />} />
                 <Route path='overview' element={<Test />} />
               </Route>
+            </Route>
+
+            {/* ----------------------marketplace routes --------------------------------*/}
+            <Route path='marketplace/*' element={<MarketPlace />} >
+              <Route index path='' element={<Browse />} />
+              <Route path='inbox' element={<Inbox />} />
+              <Route path='you/buying' element={<Buying />} />
+              <Route path='category/:cat' element={<Category />} />
+
+              <Route path='you/selling' element={<Selling />} /> {/* for admins who wants to sell*/}
             </Route>
 
           </Route>

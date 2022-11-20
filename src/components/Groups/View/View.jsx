@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import styles from './View.module.scss';
-import { DownOutlined, QqOutlined, LockOutlined, PlusOutlined, UpOutlined, UsergroupAddOutlined } from '@ant-design/icons';
+import { DownOutlined, QqOutlined, LockOutlined, PlusOutlined, UpOutlined, UsergroupAddOutlined, CameraFilled } from '@ant-design/icons';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 // import GroupCard from '../GroupCard/GroupCard';
 import axios from '../../../config/axios';
 import { toast } from 'react-toastify';
 import Loading from '../../Loading/Loading';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentGroup } from '../../../redux/currentGroup';
+import { setCurrentGroup, updateGroupCoverImg } from '../../../redux/currentGroup';
+import { useUpload } from '../../../hooks/useUpload';
 
 const View = () => {
     const { currentGroup } = useSelector(state => state.currentGroup);
@@ -18,12 +19,16 @@ const View = () => {
     const [showRelatedGroup, setShowRelatedGroup] = useState(false)
     const [loading, setLoading] = useState(false)
     const [groupDetails, setGroupDetails] = useState({});
+    const [coverImg, setCoverImg] = useState('');
+    const [uploading, setUploading] = useState(false);
 
     const location = useLocation();
     const dispatch = useDispatch();
     const groupId = location.pathname.split('/')[2]
     const activeState = location.pathname.split('/')[3];
     const [isAdmin, setIsAdmin] = useState(false);
+
+    const { uploadPerc, url } = useUpload(coverImg)
 
     useEffect(() => {
         activeState === undefined ? setActive('discussion') : setActive(activeState)
@@ -36,7 +41,7 @@ const View = () => {
         if (check && activeState !== undefined) {
             setIsAdmin(true);
         }
-        const routes = [undefined , 'about','featured','videos','members','media','files']
+        const routes = [undefined, 'about', 'featured', 'videos', 'members', 'media', 'files']
         const dblCheck = routes.includes(activeState)
         // if (check && activeState === undefined) {
         if (dblCheck) {
@@ -97,7 +102,29 @@ const View = () => {
             // console.log(res.data.data);
         }
         fetchGroupDetails()
-    }, [groupId, dispatch])
+    }, [groupId, dispatch]);
+
+    const updateCoverImg = async () => {
+        try {
+            setUploading(true);
+            const res = await axios.put(`/groups/update/${currentGroup?._id}`, {
+                groupCoverImg: url ? url : currentGroup?.groupCoverImg,
+            }, {
+                headers: {
+                    token: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            if (res.data.status === 'success') {
+                toast.success(res.data.message);
+                setUploading(false);
+                dispatch(updateGroupCoverImg(url))
+                window.location.reload()
+            }
+        } catch (error) {
+            toast.error('something went wrong')
+            setUploading(false);
+        }
+    }
 
     if (loading) return <Loading font='15rem' color='white' />
 
@@ -106,7 +133,24 @@ const View = () => {
             {!isAdmin ?
                 <div className={styles.view}>
                     <div className={styles.group_cover}>
-                        <img src={groupDetails?.groupCoverImg} alt="" />
+                        {coverImg
+                            ? <img src={URL.createObjectURL(coverImg)} alt="profile pictures" />
+                            : <img src={groupDetails?.groupCoverImg} alt="profile pictures" />}
+                        {currentGroup?.admins.includes(String(currentUser?._id)) && <div className={styles.edit_cover}>
+                            {coverImg && uploadPerc === 100 && <button className={`${styles.edit_cover_btns} ${styles.edit_cover_button}`} onClick={updateCoverImg}>{uploading ? <Loading />  : 'Update cover image'}</button>}
+
+                            {uploadPerc < 99 && uploadPerc > 0 &&
+                                <button className={`${styles.edit_cover_btns} ${styles.edit_cover_button}`} >{'uploading ' + uploadPerc + '%'}  </button>}
+
+                            <label htmlFor='coverImg' className={styles.edit_cover_btns}><CameraFilled className={styles.icon} />Edit Cover Photo</label>
+                        </div>}
+                        <input
+                            style={{ display: 'none' }}
+                            type="file"
+                            accept='image/*'
+                            id="coverImg"
+                            onChange={(e) => setCoverImg(e.target.files[0])}
+                        />
                     </div>
                     <div className={styles.group_name}>{groupDetails?.groupName}</div>
                     <div className={styles.counter}><LockOutlined className={styles.icon} />{groupDetails?.isPrivate} group · <span>{groupDetails?.members?.length}</span> member{groupDetails?.members?.length > 1 ? "'s" : ''}</div>
@@ -147,7 +191,7 @@ const View = () => {
                             </div>
                             <div className={styles.groups}>
                                 <div className={styles.default}>
-                                    <QqOutlined className={styles.icon}/>
+                                    <QqOutlined className={styles.icon} />
                                     <span>No recommendations to show</span>
                                     <Link className={styles.link} to='/groups/discover'>Explore Groups</Link>
                                 </div>
