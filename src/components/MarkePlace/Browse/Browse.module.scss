@@ -1,0 +1,38 @@
+.browse {
+  padding: 1rem;
+  .section_ {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--bgLighter);
+    &:last-child{
+        border: none;
+    }
+    .top {
+      display: flex;
+      justify-content: space-between;
+      margin: 1rem 0;
+      span {
+        font-size: 2.3rem;
+        font-weight: 500;
+        color: var(--text);
+      }
+      button {
+        font-size: 1.7rem;
+        border-radius: 0.4rem;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        color: var(--btnLight);
+        &:hover {
+          background-color: var(--bgLight);
+        }
+      }
+    }
+    .section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      .span {
+        font-size: 2rem;
+      }
+    }
+  }
+}

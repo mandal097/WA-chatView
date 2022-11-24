@@ -56,14 +56,13 @@ const Navbar = () => {
                 </div>
                 {
                     user &&
-                    <>
-                        {isGroupCreate !== 'create' && <div className={styles.search_box}
-                            onClick={() => setShowFriendsList(!showFriendsList)}
-                        >
-                            <div className={styles.icon}><SearchOutlined /></div>
-                        </div>}
+                    <><div className={styles.search_box}
+                        onClick={() => setShowFriendsList(!showFriendsList)}
+                    >
+                        <div className={styles.icon}><SearchOutlined /></div>
+                    </div>
 
-                        {isGroupCreate !== 'create' && <div className={styles.middle}>
+                        <div className={styles.middle}>
                             <button
                                 onClick={() => {
                                     setActive('home')
@@ -88,15 +87,15 @@ const Navbar = () => {
                                     navigate('/groups/feed')
                                 }}
                             ><UsergroupDeleteOutlined /></button>
-                        </div>}
+                        </div>
 
                         <div className={styles.toolkit}>
-                            {isGroupCreate !== 'create' && <div className={styles.auth_actions}>
+                       <div className={styles.auth_actions}>
                                 <button
                                     onClick={logoutUser}>
                                     <LogoutOutlined className={styles.icon} /><span>Logout</span>
                                 </button>
-                            </div>}
+                            </div>
                             <button className={styles.tools} onClick={() => navigate('/messenger')}><MessageFilled /></button>
                             <button className={styles.tools}><BellFilled /></button>
                             <button className={styles.tools} onClick={() => navigate(`/profile/${user?._id}`)}>

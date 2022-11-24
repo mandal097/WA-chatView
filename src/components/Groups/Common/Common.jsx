@@ -4,14 +4,15 @@ import styles from './Common.module.scss';
 import axios from '../../../config/axios';
 import Loading from '../../Loading/Loading';
 import PostCard from '../../PostCard/PostCard';
-import { EyeFilled, GlobalOutlined, LockFilled } from '@ant-design/icons';
+import { EyeFilled, EyeInvisibleFilled, GlobalOutlined, LockFilled } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Desc from '../Desc/Desc';
 import PrivacyStat from '../PrivacyStat/PrivacyStat';
 
 const Common = ({ type }) => {
-    const { currentUser } = useSelector(state => state.user)
+    const { currentUser } = useSelector(state => state.user);
+    const { currentGroup } = useSelector(state => state.currentGroup)
     const [loading, setLoading] = useState(false);
     const [posts, setPosts] = useState([]);
     const navigate = useNavigate();
@@ -78,21 +79,28 @@ const Common = ({ type }) => {
                 <h3>About</h3>
                 <p>This is a DOer's community.</p>
                 <Desc />
-                <PrivacyStat
-                    span='Public'
-                    p="Anyone can see group content and who follows the group."
-                    icon={<GlobalOutlined className={styles.icon} />}
-                />
-                <PrivacyStat
-                    span='Private'
-                    p="Anyone can see group content and who follows the group."
-                    icon={<LockFilled className={styles.icon} />}
-                />
-                <PrivacyStat
-                    span='Visible'
-                    p="Anyone can find this group."
-                    icon={<EyeFilled className={styles.icon} />}
-                />
+                {currentGroup?.isPrivate === 'public'
+                    ? <PrivacyStat
+                        span='Public'
+                        p="Anyone can see group content and who follows the group."
+                        icon={<GlobalOutlined className={styles.icon} />}
+                    />
+                    : <PrivacyStat
+                        span='Private'
+                        p="Only members can see who's in the group and what they post.."
+                        icon={<LockFilled className={styles.icon} />}
+                    />}
+                {currentGroup?.visibility==='visible'
+                    ? <PrivacyStat
+                        span='Visible'
+                        p="Anyone can find this group."
+                        icon={<EyeFilled className={styles.icon} />}
+                    />
+                    : <PrivacyStat
+                        span='Hidden'
+                        p="Only members can find this group."
+                        icon={<EyeInvisibleFilled className={styles.icon} />}
+                    />}
                 <button onClick={() => navigate(`/groups/${groupId}/about`)}>Learn More</button>
             </div>
         </div>

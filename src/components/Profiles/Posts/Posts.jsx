@@ -195,7 +195,7 @@ const Posts = () => {
             <div className={styles.right}>
                 {owner && <CreatePost />}
                 {
-                    posts.length === 0 && <span style={{
+                    posts?.length === 0 && <span style={{
                         fontSize: '3rem',
                         width: '100%',
                         display: 'grid',
@@ -204,7 +204,7 @@ const Posts = () => {
                 }
                 <>
                     {
-                        posts.map(post => (
+                        posts?.map(post => (
                             <>
                                 <PostCard key={post._id} post={post} loading={loading} />
                             </>

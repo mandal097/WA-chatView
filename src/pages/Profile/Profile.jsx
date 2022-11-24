@@ -293,7 +293,7 @@ const Profile = () => {
                                             }
                                             }
                                         >
-                                            <span>{posts?.length ? posts.length : 0}</span> posts</Link>
+                                            <span>{posts?.length ? posts?.length : 0}</span> posts</Link>
                                         <Link
                                             to={`/profile/${id}/friends`}
                                             className={styles.link}

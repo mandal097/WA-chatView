@@ -40,6 +40,8 @@ import Inbox from './components/MarkePlace/Inbox/Inbox';
 import Buying from './components/MarkePlace/Buying/Buying';
 import Selling from './components/MarkePlace/Admin/Selling/Selling';
 import Category from './components/MarkePlace/Category/Category';
+import ProductPage from './components/MarkePlace/ProductPage/ProductPage';
+import CreateMarketPlaceProduct from './pages/MarketPlace/CreateProduct';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
@@ -109,6 +111,9 @@ const App = () => {
               <Route path='inbox' element={<Inbox />} />
               <Route path='you/buying' element={<Buying />} />
               <Route path='category/:cat' element={<Category />} />
+
+              <Route path='create' element={<CreateMarketPlaceProduct />} />
+              <Route path='item/:id' element={<ProductPage />} />
 
               <Route path='you/selling' element={<Selling />} /> {/* for admins who wants to sell*/}
             </Route>

@@ -6,18 +6,20 @@ import {
     HeartFilled,
     MobileOutlined,
     PlusOutlined,
-    ScheduleFilled,
+    RightOutlined,
+    // ScheduleFilled,
     SearchOutlined,
     ShopFilled,
-    ShoppingFilled,
+    // ShoppingFilled,
     SkinFilled,
     TagsFilled
 } from '@ant-design/icons';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
     const [active, setActive] = useState('');
     const location = useLocation();
+    const navigate = useNavigate()
     const activeState = location.pathname.split('/')[2];
     const activeStateYou = location.pathname.split('/')[3];
 
@@ -52,6 +54,8 @@ const Sidebar = () => {
         }
 
     }, [activeState, activeStateYou])
+    if (activeState === 'item') return null;
+    if (activeState === 'create') return null;
     return (
         <div className={styles.sidebar}>
             <div className={styles.top}>
@@ -82,7 +86,7 @@ const Sidebar = () => {
                     <span>Browse all</span>
                 </Link>
 
-                <Link onClick={() => setActive('inbox')} to='inbox'
+                {/* <Link onClick={() => setActive('inbox')} to='inbox'
                     className={`${styles.links} ${active === 'inbox' && styles.active}`}>
                     <div className={styles.icon_}>
                         <ScheduleFilled className={styles.icon} />
@@ -96,7 +100,10 @@ const Sidebar = () => {
                         <ShoppingFilled className={styles.icon} />
                     </div>
                     <span>Buying</span>
-                </Link>
+                    <div style={{ marginLeft: 'auto', marginRight: '1rem' }}>
+                        <RightOutlined className={styles.icon} />
+                    </div>
+                </Link> */}
 
                 <Link onClick={() => setActive('selling')} to='you/selling'
                     className={`${styles.links} ${active === 'selling' && styles.active}`}>
@@ -104,9 +111,13 @@ const Sidebar = () => {
                         <TagsFilled className={styles.icon} />
                     </div>
                     <span>Selling</span>
+                    <div style={{ marginLeft: 'auto', marginRight: '1rem' }}>
+                        <RightOutlined className={styles.icon} />
+                    </div>
                 </Link>
 
-                <button className={styles.create_group_btn}>
+                <button className={styles.create_group_btn}
+                    onClick={() => navigate('create')}>
                     <PlusOutlined className={styles.icon} />
                     <span>Create new listing</span>
                 </button>
