@@ -41,11 +41,11 @@
       .left {
         flex: 1;
         background-color: var(--bgLight);
-    img{
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
         .dummy {
           width: 100%;
           height: 100%;
@@ -110,8 +110,9 @@
           }
         }
         p {
-          font-size: 1.5rem;
+          font-size: 1.6rem;
           color: var(--textSoft);
+          font-weight: 100;
         }
         .seller_info {
           margin-top: auto;

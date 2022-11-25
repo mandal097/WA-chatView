@@ -50,7 +50,7 @@ const PreviewProduct = (
                                 <span>{location}</span>
                             </div>}
                         </div>
-                        <p style={{ marginTop: '2rem' }}>{desc ? desc : 'Description will appear here'}</p>
+                        <p style={{ margin: '2rem 0' }}>{desc ? desc : 'Description will appear here'}</p>
                         <div className={styles.seller_info}>
                             <div className={styles.head}>
                                 <span>Seller Information</span>

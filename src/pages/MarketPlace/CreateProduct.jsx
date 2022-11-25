@@ -1,11 +1,11 @@
-import { CloseOutlined, FileImageFilled } from '@ant-design/icons';
+import { CloseOutlined, FileImageFilled, PlusOutlined } from '@ant-design/icons';
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styles from './CreateProduct.module.scss';
-// import axios from '../../config/axios';
+import axios from '../../config/axios';
 import { toast, ToastContainer } from 'react-toastify';
 import Loading from '../../components/Loading/Loading';
 import PreviewProduct from '../../components/MarkePlace/Admin/PreviewProduct/PreviewProduct';
@@ -40,34 +40,41 @@ const CreateMarketPlaceProduct = () => {
 
     const createGroup = async (e) => {
         e.preventDefault();
-        if (!productName) {
-            toast.error('Please write group name')
+        if (!photo && !productName && price && !condition && !category && !tags && !location && !desc) {
+            toast.error('All fields are required')
         }
         setLoading(true)
         try {
-            // const token = localStorage.getItem('token')
-            // const res = await axios.post('/groups/create', {
-            //     productName: productName,
-            //     isPrivate: privacy,
-            //     visbility: category
-            // },
-            //     {
-            //         headers: {
-            //             token: `Bearer ${token}`
-            //         }
-            //     })
-            // if (res.data.status === 'err') {
-            //     setLoading(false)
-            //     toast.error(res.data.message)
-            // }
-            // if (res.data.status === 'success') {
-            //     setLoading(false);
-            //     toast.success(res.data.message);
-            //     setTimeout(() => {
-            //         navigate(`/groups/${res.data.data?._id}`)
-            //     }, 500);
-            // }
-            // console.log(res.data);
+          
+            const token = localStorage.getItem('token')
+            const res = await axios.post('/market-place/create-product', {
+                sellerId: currentUser?._id,
+                photo:'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dCUyMHNoaXJ0c3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
+                productName,
+                price,
+                condition,
+                category,
+                tags,
+                location,
+                desc,
+            },
+                {
+                    headers: {
+                        token: `Bearer ${token}`
+                    }
+                })
+            if (res.data.status === 'err') {
+                setLoading(false)
+                toast.error(res.data.message)
+            }
+            if (res.data.status === 'success') {
+                setLoading(false);
+                toast.success(res.data.message);
+                setTimeout(() => {
+                    window.location.reload()
+                }, 500);
+            }
+            console.log(res.data);
         } catch (error) {
             setLoading(false);
             console.log('lll');
@@ -131,6 +138,7 @@ const CreateMarketPlaceProduct = () => {
                         <label htmlFor="">Product name:</label>
                         <input
                             type="text"
+                            value={productName}
                             placeholder='Product Name'
                             onChange={(e) => setProductName(e.target.value)}
                         />
@@ -140,6 +148,7 @@ const CreateMarketPlaceProduct = () => {
                         <label htmlFor="">Price:</label>
                         <input
                             type="text"
+                            value={price}
                             placeholder='Price'
                             onChange={(e) => setPrice(e.target.value)}
                         />
@@ -172,15 +181,18 @@ const CreateMarketPlaceProduct = () => {
                         <label htmlFor="">Tags:</label>
                         <input
                             type="text"
+                            value={tags}
                             placeholder='Relevent tags for the product'
                             onChange={(e) => setTags(e.target.value)}
                         />
+                        <PlusOutlined className={styles.icon} />
                     </div>
 
                     <div className={styles.input}>
                         <label htmlFor="">Address:</label>
                         <input
                             type="text"
+                            value={location}
                             placeholder='Location i.e., New delhi'
                             onChange={(e) => setLocation(e.target.value)}
                         />
@@ -188,7 +200,8 @@ const CreateMarketPlaceProduct = () => {
                     <div className={styles.input}>
                         <label htmlFor="">Description:</label>
                         <textarea
-                            placeholder='Location i.e., New delhi'
+                            placeholder='Add relavent product description'
+                            value={desc}
                             onChange={(e) => setDesc(e.target.value)}
                         ></textarea>
                     </div>
