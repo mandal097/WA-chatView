@@ -70,7 +70,6 @@ const Profile = () => {
     const [coverImg, setCoverImg] = useState('');
     const [uploading, setUploading] = useState(false)
     const [showEditProfileModal, setShowEditProfileModal] = useState(false);
-    const [active, setActive] = useState('posts');
     const [owner, setOwner] = useState(false)
     const location = useLocation()
     const id = location.pathname.split('/')[2];
@@ -78,9 +77,10 @@ const Profile = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { uploadPerc, url } = useUpload(coverImg)
+    const [active, setActive] = useState(activeNav);
 
     useEffect(() => {
-        setActive(String(activeNav))
+        setActive(activeNav)
     }, [activeNav])
 
     useEffect(() => {
@@ -387,9 +387,10 @@ const Profile = () => {
                                 <Link to={`/profile/${currentProfileDetails._id}/friends`} className={`${styles.nav_items}  ${active === 'friends' && styles.active_nav}`} onClick={() => setActive('friends')}>
                                     <span className='link'>Friends</span>
                                 </Link>
-                                {/* <Link to='#' className={`${styles.nav_items}  ${active === 'more' && styles.active_nav}`} onClick={() => setActive('more')}>
-                            <span className='link'>More</span>
-                        </Link> */}
+                                <Link to={`/profile/${currentProfileDetails._id}/commerce`} className={`${styles.nav_items}  ${active === 'commerce' && styles.active_nav}`} onClick={() => setActive('commerce')}>
+                                    <span className='link'>Commerce</span>
+                                </Link>
+                               
                             </div>
                         </div>
                     </div>

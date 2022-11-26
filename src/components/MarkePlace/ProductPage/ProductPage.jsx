@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './ProductPage.module.scss';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Browse from '../Browse/Browse'
 import {
     BookFilled,
@@ -27,6 +27,7 @@ const ProductPage = () => {
     const [product, setProduct] = useState({});
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
+    const [sending, setSending] = useState(false);
     const [owner, setOwner] = useState(false);
 
     const back = () => {
@@ -70,6 +71,7 @@ const ProductPage = () => {
     }, [currentUser, product])
 
     const sendMessage = async (param) => {
+        setSending(true)
         const res = await axios.post('/chats/create-chat', {
             userId: product?.sellerId?._id
         }, {
@@ -77,6 +79,9 @@ const ProductPage = () => {
                 token: `Bearer ${localStorage.getItem('token')}`
             }
         });
+
+        const filter = res.data.data[0]?.users.find((c) => c._id !== currentUser._id);
+        dispatch(setCurrentChat({ currentChat: filter, chatId: res.data.data[0]._id }));
 
         if (res.data.status === 'success' && param === 'message') {
             const resPostMessage = await axios.post('/message', {
@@ -89,15 +94,12 @@ const ProductPage = () => {
             })
             if (resPostMessage.data.status === 'err') {
                 toast.error(res.data.message)
+                setSending(false)
             }
         }
-
-        // console.log(res.data.data);
-        const filter = res.data.data[0]?.users.find((c) => c._id !== currentUser._id);
-        dispatch(setCurrentChat({ currentChat: filter, chatId: res.data.data[0]._id }));
         setTimeout(() => {
             navigate('/messenger');
-        }, 1000);
+        }, 100);
     }
 
 
@@ -119,7 +121,17 @@ const ProductPage = () => {
                         <span>₹ {product?.price}</span>
                         <small>Listed 2 weeks ago in Delhi, DL</small>
                         <div className={styles.actions_btn}>
-                            {!owner && <button> <MessageFilled className={styles.icon} onClick={() => sendMessage('creat-chat')} />Message</button>}
+                            {!owner &&
+                                <button onClick={() => sendMessage('create-chat')}>
+                                    {sending
+                                        ? 'Wait...'
+                                        : <>
+                                            <MessageFilled className={styles.icon} />
+                                            Message
+                                        </>
+                                    }
+                                </button>
+                            }
                             <button> <BookFilled className={styles.icon} /></button>
                             <button> <ShareAltOutlined className={styles.icon} /></button>
                             <button> <MoreOutlined className={styles.icon} /></button>
@@ -146,7 +158,10 @@ const ProductPage = () => {
                             <div className={styles.head}>
                                 <MessageFilled className={styles.icon} />
                                 {!owner ?
-                                    <span>Send seller a message</span>
+                                    <>
+                                        <span>Send seller a message</span>
+                                        <Link to={`/profile/${product?.sellerId?._id}/commerce`} className={styles.link}>View seller profile</Link>
+                                    </>
                                     : <span>You list this product</span>}
                             </div>
                             {!owner && <input
@@ -154,14 +169,18 @@ const ProductPage = () => {
                                 value={message}
                                 onChange={(e) => setMessage(e.target.value)}
                             />}
-                            {!owner && <button
-                                onClick={() => sendMessage('message')}>Send</button>
+                            {!owner &&
+                                <button onClick={() => sendMessage('message')}>
+                                    {sending ?
+                                        'Sending...'
+                                        : 'Send'}
+                                </button>
                             }
                         </div>
                     </div>
                 </div>}
             <Browse />
-        </div>
+        </div >
     )
 }
 

@@ -42,6 +42,7 @@ import Selling from './components/MarkePlace/Admin/Selling/Selling';
 import Category from './components/MarkePlace/Category/Category';
 import ProductPage from './components/MarkePlace/ProductPage/ProductPage';
 import CreateMarketPlaceProduct from './pages/MarketPlace/CreateProduct';
+import Commerce from './components/Profiles/Commerce/Commerce';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
@@ -74,6 +75,7 @@ const App = () => {
               <Route path='friends' element={<Friends />} />
               <Route path='photos' element={<ProfileMedias type='image' />} />
               <Route path='videos' element={<ProfileMedias type='video' />} />
+              <Route path='commerce' element={<Commerce />} />
             </Route>
 
             <Route path='friends' element={<FriendsPage />} />
