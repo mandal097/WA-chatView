@@ -4,16 +4,47 @@ import ProductCard from '../ProductCard/ProductCard';
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import axios from '../../../config/axios';
+import { toast } from 'react-toastify';
+import Loading from '../../Loading/Loading';
 
 const Browse = () => {
   const sectionRef = useRef();
-  const [width, setWidth] = useState(Number)
+  const [width, setWidth] = useState(Number);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     // console.log(sectionRef);
     const totalWidth = sectionRef.current.clientWidth;
     const cardWidth = totalWidth / 3;
     setWidth(cardWidth - 10)
+  }, [])
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        const res = await axios.get('/market-place/all-products', {
+          headers: {
+            token: `Bearer ${localStorage.getItem('token')}`
+          }
+        })
+        if (res.data.status === 'err') {
+          toast.error(res.data.message);
+          setLoading(false);
+        }
+        if (res.data.status === 'success') {
+          setProducts(res.data.data)
+          // console.log(res.data.data);
+          setLoading(false);
+        }
+      } catch (error) {
+        setLoading(false);
+        toast.error('Something went wrong')
+      }
+    }
+    fetchProducts()
   }, [])
 
   return (
@@ -23,41 +54,21 @@ const Browse = () => {
           <span>Today's Pick</span>
         </div>
         <div className={styles.section} ref={sectionRef}>
-          <ProductCard
-            width={width}
-            img="https://scontent.fdel27-5.fna.fbcdn.net/v/t45.5328-4/311616868_5398726520236106_1534929263663625609_n.jpg?stp=c0.26.261.261a_dst-jpg_p261x260&_nc_cat=103&ccb=1-7&_nc_sid=c48759&_nc_ohc=e_BdMgOaTEsAX-UHQKt&_nc_ht=scontent.fdel27-5.fna&oh=00_AfBmM26ZqSRc5UZj-FJiYfQmPbVXjNtWEsQ89ypuLrzi5w&oe=637FCAA5"
-            name='Leather jacket - Heavy Quality Furr Inside'
-            price='1944'
-            location='New Delhi ,DL'
-          />
-          <ProductCard
-            width={width}
-            img="https://scontent.fdel27-1.fna.fbcdn.net/v/t45.5328-4/315862544_5441077522669489_4785131158853255480_n.jpg?stp=c0.43.261.261a_dst-jpg_p261x260&_nc_cat=101&ccb=1-7&_nc_sid=c48759&_nc_ohc=Ua2WvzFV_acAX8NoiJD&_nc_ht=scontent.fdel27-1.fna&oh=00_AfASy1dTOUdcWFUkovusQfEO41L_RdPEgRxquOCWMSMfQw&oe=638040E5"
-            name='iPhone pro high master copy 2022 edition'
-            price='12,999'
-            location='New Delhi ,DL'
-          />
-          <ProductCard
-            width={width}
-            img="https://scontent.fdel27-5.fna.fbcdn.net/v/t45.5328-4/311616868_5398726520236106_1534929263663625609_n.jpg?stp=c0.26.261.261a_dst-jpg_p261x260&_nc_cat=103&ccb=1-7&_nc_sid=c48759&_nc_ohc=e_BdMgOaTEsAX-UHQKt&_nc_ht=scontent.fdel27-5.fna&oh=00_AfBmM26ZqSRc5UZj-FJiYfQmPbVXjNtWEsQ89ypuLrzi5w&oe=637FCAA5"
-            name='Leather jacket - Heavy Quality Furr Inside'
-            price='1944'
-            location='New Delhi ,DL'
-          />
-          <ProductCard
-            width={width}
-            img="https://scontent.fdel27-1.fna.fbcdn.net/v/t45.5328-4/315862544_5441077522669489_4785131158853255480_n.jpg?stp=c0.43.261.261a_dst-jpg_p261x260&_nc_cat=101&ccb=1-7&_nc_sid=c48759&_nc_ohc=Ua2WvzFV_acAX8NoiJD&_nc_ht=scontent.fdel27-1.fna&oh=00_AfASy1dTOUdcWFUkovusQfEO41L_RdPEgRxquOCWMSMfQw&oe=638040E5"
-            name='iPhone pro high master copy 2022 edition'
-            price='12,999'
-            location='New Delhi ,DL'
-          />
-          <ProductCard
-            width={width}
-            img="https://scontent.fdel27-1.fna.fbcdn.net/v/t45.5328-4/315862544_5441077522669489_4785131158853255480_n.jpg?stp=c0.43.261.261a_dst-jpg_p261x260&_nc_cat=101&ccb=1-7&_nc_sid=c48759&_nc_ohc=Ua2WvzFV_acAX8NoiJD&_nc_ht=scontent.fdel27-1.fna&oh=00_AfASy1dTOUdcWFUkovusQfEO41L_RdPEgRxquOCWMSMfQw&oe=638040E5"
-            name='iPhone pro high master copy 2022 edition'
-            price='12,999'
-            location='New Delhi ,DL'
-          />
+          {
+            loading && <Loading font='15rem' color='var(--text)' />
+          }
+          {
+            products?.map(product => (
+              <ProductCard
+                key={product._id}
+                width={width}
+                product={product}
+              />
+            ))
+          }
+
+          {products.length === 0 && <h1>No Listed products</h1>}
+
         </div>
       </div>
       <div className={styles.section_}>
@@ -66,28 +77,20 @@ const Browse = () => {
           <button>See all</button>
         </div>
         <div className={styles.section} ref={sectionRef}>
-          <ProductCard
-            width={width}
-            img="https://scontent.fdel27-5.fna.fbcdn.net/v/t45.5328-4/311616868_5398726520236106_1534929263663625609_n.jpg?stp=c0.26.261.261a_dst-jpg_p261x260&_nc_cat=103&ccb=1-7&_nc_sid=c48759&_nc_ohc=e_BdMgOaTEsAX-UHQKt&_nc_ht=scontent.fdel27-5.fna&oh=00_AfBmM26ZqSRc5UZj-FJiYfQmPbVXjNtWEsQ89ypuLrzi5w&oe=637FCAA5"
-            name='Leather jacket - Heavy Quality Furr Inside'
-            price='1944'
-            location='New Delhi ,DL'
-          />
-        
-          <ProductCard
-            width={width}
-            img="https://scontent.fdel27-5.fna.fbcdn.net/v/t45.5328-4/311616868_5398726520236106_1534929263663625609_n.jpg?stp=c0.26.261.261a_dst-jpg_p261x260&_nc_cat=103&ccb=1-7&_nc_sid=c48759&_nc_ohc=e_BdMgOaTEsAX-UHQKt&_nc_ht=scontent.fdel27-5.fna&oh=00_AfBmM26ZqSRc5UZj-FJiYfQmPbVXjNtWEsQ89ypuLrzi5w&oe=637FCAA5"
-            name='Leather jacket - Heavy Quality Furr Inside'
-            price='1944'
-            location='New Delhi ,DL'
-          />
-          <ProductCard
-            width={width}
-            img="https://scontent.fdel27-5.fna.fbcdn.net/v/t45.5328-4/311616868_5398726520236106_1534929263663625609_n.jpg?stp=c0.26.261.261a_dst-jpg_p261x260&_nc_cat=103&ccb=1-7&_nc_sid=c48759&_nc_ohc=e_BdMgOaTEsAX-UHQKt&_nc_ht=scontent.fdel27-5.fna&oh=00_AfBmM26ZqSRc5UZj-FJiYfQmPbVXjNtWEsQ89ypuLrzi5w&oe=637FCAA5"
-            name='Leather jacket - Heavy Quality Furr Inside'
-            price='1944'
-            location='New Delhi ,DL'
-          />
+          {
+            loading && <Loading font='15rem' color='var(--text)' />
+          }
+          {
+            products?.map(product => (
+              <ProductCard
+                key={product._id}
+                width={width}
+                product={product}
+              />
+            ))
+          }
+
+          {products.length === 0 && <h1>No Listed products</h1>}
         </div>
       </div>
     </div>

@@ -9,6 +9,7 @@ import axios from '../../config/axios';
 import { toast, ToastContainer } from 'react-toastify';
 import Loading from '../../components/Loading/Loading';
 import PreviewProduct from '../../components/MarkePlace/Admin/PreviewProduct/PreviewProduct';
+// import { useUpload } from '../../hooks/useUpload';
 
 const CreateMarketPlaceProduct = () => {
     const { currentUser } = useSelector(state => state.user);
@@ -20,7 +21,8 @@ const CreateMarketPlaceProduct = () => {
     const [location, setLocation] = useState('');
     const [condition, setCondition] = useState('');
     const [category, setCategory] = useState('');
-    const [desc, setDesc] = useState('')
+    const [desc, setDesc] = useState('');
+    // const { uploadPerc, url } = useUpload(photo);
 
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
@@ -45,11 +47,12 @@ const CreateMarketPlaceProduct = () => {
         }
         setLoading(true)
         try {
-          
+
             const token = localStorage.getItem('token')
             const res = await axios.post('/market-place/create-product', {
                 sellerId: currentUser?._id,
-                photo:'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dCUyMHNoaXJ0c3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
+                photo: 'https://m.media-amazon.com/images/I/41AuNH5gB0L._SX300_SY300_QL70_FMwebp_.jpg',
+                // photo: url,
                 productName,
                 price,
                 condition,
@@ -172,6 +175,7 @@ const CreateMarketPlaceProduct = () => {
                             <option value='electronic'>Electronics</option>
                             <option value='books'>Books</option>
                             <option value='furniture'>Furniture</option>
+                            <option value='accessories'>Accessories</option>
                             <option value='sports-accessories'>Sports Accessories</option>
                             <option value='miscellaneous'>Miscellaneous</option>
                         </select>
@@ -208,6 +212,10 @@ const CreateMarketPlaceProduct = () => {
 
                     <p style={{ fontSize: '1.3rem' }}>Marketplace items are public and can be seen by anyone on or off WeeChat. Items such as animals, drugs, weapons, counterfeits and other items that infringe intellectual property aren't allowed on Marketplace.</p>
 
+                    {/* {photo && <h1 style={{ fontSize: '1.5rem', marginTop: '1rem' }}>
+                        Image {uploadPerc ===100 ? "uploaded":'uploading'} 
+                        <span style={{ color: "var(--error)", fontSize: '1.5rem' }}>{' '}{uploadPerc} %</span>
+                    </h1>} */}
                     <button
                         onClick={createGroup}
                         disabled={disable}

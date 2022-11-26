@@ -2,19 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './ProductCard.module.scss';
 
-const ProductCard = ({ price, name, img, location, width }) => {
+const ProductCard = ({product, width }) => {
     return (
         <Link 
-        to={`/marketplace/item/${name}`}
+        to={`/marketplace/item/${product?._id}`}
         className={styles.product_card}
          style={{ width: `${width}px` }}>
             <div className={styles.img}>
-                <img src={img} alt="product_image" />
+                <img src={product?.photo} alt="product_image" />
             </div>
             <div className={styles.details}>
-                <span>₹ {price}</span>
-                <p>{name}</p>
-                <small>{location}</small>
+                <span>₹ {product?.price}</span>
+                <p>{product?.productName}</p>
+                <small>{product?.location}</small>
             </div>
         </Link>
     )
