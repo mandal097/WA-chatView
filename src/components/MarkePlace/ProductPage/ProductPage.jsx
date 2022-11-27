@@ -150,8 +150,12 @@ const ProductPage = () => {
                                 <span>Location</span>
                                 <span>{product?.location}</span>
                             </div>
+                            <div className={styles.details_field}>
+                                <span>Status</span>
+                                <span>{product?.status}</span>
+                            </div>
                         </div>
-
+                        <h2 style={{fontSize:'1.8rem'}}>Description :</h2>
                         <p style={{ fontSize: '1.5rem', textAlign: 'justify' }}>{product?.desc}</p>
 
                         <div className={styles.contact}>

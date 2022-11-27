@@ -1,18 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './Sidebar.module.scss'
 import {
-    CarFilled,
     ClockCircleOutlined,
-    HeartFilled,
+    CustomerServiceOutlined,
     MobileOutlined,
+    NodeCollapseOutlined,
     PlusOutlined,
+    ReadOutlined,
     RightOutlined,
-    // ScheduleFilled,
     SearchOutlined,
     ShopFilled,
-    // ShoppingFilled,
     SkinFilled,
-    TagsFilled
+    TagsFilled,
+    ToolOutlined,
+    TrophyOutlined,
+    WomanOutlined
 } from '@ant-design/icons';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
@@ -124,23 +126,23 @@ const Sidebar = () => {
 
                 <div className={styles.group_list} style={{ gap: '0.5rem' }}>
                     <h2>Common Categories</h2>
-                    <Link to='category/clothes'
-                        onClick={() => setActive('clothes')}
+                    <Link to='category/mens-clothing'
+                        onClick={() => setActive('mens-clothing')}
                         style={{ margin: '0' }}
-                        className={`${styles.links}  ${active === 'clothes' && styles.active}`}>
+                        className={`${styles.links}  ${active === 'mens-clothing' && styles.active}`}>
                         <div className={styles.icon_}>
                             <SkinFilled className={styles.icon} />
                         </div>
-                        <span>Clothes</span>
+                        <span>Men's clothing & shoes</span>
                     </Link>
-                    <Link to='category/vehicles'
-                        onClick={() => setActive('vehicles')}
+                    <Link to='category/womens-clothing'
+                        onClick={() => setActive('womens-clothing')}
                         style={{ margin: '0' }}
-                        className={`${styles.links}  ${active === 'vehicles' && styles.active}`}>
+                        className={`${styles.links}  ${active === 'womens-clothing' && styles.active}`}>
                         <div className={styles.icon_}>
-                            <CarFilled className={styles.icon} />
+                            <WomanOutlined className={styles.icon} />
                         </div>
-                        <span>Vehicles</span>
+                        <span>Women's clothing & shoes</span>
                     </Link>
 
                     <Link to='category/electronics'
@@ -153,14 +155,54 @@ const Sidebar = () => {
                         <span>Electronics</span>
                     </Link>
 
-                    <Link to='category/family'
-                        onClick={() => setActive('family')}
+                    <Link to='category/books'
+                        onClick={() => setActive('books')}
                         style={{ margin: '0' }}
-                        className={`${styles.links}  ${active === 'family' && styles.active}`}>
+                        className={`${styles.links}  ${active === 'books' && styles.active}`}>
                         <div className={styles.icon_}>
-                            <HeartFilled className={styles.icon} />
+                            <ReadOutlined className={styles.icon} />
                         </div>
-                        <span>Family</span>
+                        <span>Books</span>
+                    </Link>
+
+                    <Link to='category/furniture'
+                        onClick={() => setActive('furniture')}
+                        style={{ margin: '0' }}
+                        className={`${styles.links}  ${active === 'furniture' && styles.active}`}>
+                        <div className={styles.icon_}>
+                            <ToolOutlined className={styles.icon} />
+                        </div>
+                        <span>Furniture</span>
+                    </Link>
+
+                    <Link to='category/accessories'
+                        onClick={() => setActive('accessories')}
+                        style={{ margin: '0' }}
+                        className={`${styles.links}  ${active === 'accessories' && styles.active}`}>
+                        <div className={styles.icon_}>
+                            <CustomerServiceOutlined className={styles.icon} />
+                        </div>
+                        <span>Accessories</span>
+                    </Link>
+
+                    <Link to='category/sports-accessories'
+                        onClick={() => setActive('sports-accessories')}
+                        style={{ margin: '0' }}
+                        className={`${styles.links}  ${active === 'sports-accessories' && styles.active}`}>
+                        <div className={styles.icon_}>
+                            <TrophyOutlined className={styles.icon} />
+                        </div>
+                        <span>Sports Accessories</span>
+                    </Link>
+
+                    <Link to='category/miscellaneous'
+                        onClick={() => setActive('miscellaneous')}
+                        style={{ margin: '0' }}
+                        className={`${styles.links}  ${active === 'miscellaneous' && styles.active}`}>
+                        <div className={styles.icon_}>
+                            <NodeCollapseOutlined className={styles.icon} />
+                        </div>
+                        <span>Miscellaneous</span>
                     </Link>
                 </div>
             </div>

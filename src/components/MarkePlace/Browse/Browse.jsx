@@ -17,8 +17,9 @@ const Browse = () => {
   useEffect(() => {
     // console.log(sectionRef);
     const totalWidth = sectionRef.current.clientWidth;
+    // const cardWidth = totalWidth / 3;
     const cardWidth = totalWidth / 3;
-    setWidth(cardWidth - 10)
+    setWidth(cardWidth - 14)
   }, [])
 
   useEffect(() => {

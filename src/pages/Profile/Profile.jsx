@@ -77,7 +77,7 @@ const Profile = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { uploadPerc, url } = useUpload(coverImg)
-    const [active, setActive] = useState(activeNav);
+    const [active, setActive] = useState('');
 
     useEffect(() => {
         setActive(activeNav)

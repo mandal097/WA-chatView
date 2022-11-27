@@ -51,7 +51,7 @@ const CreateMarketPlaceProduct = () => {
             const token = localStorage.getItem('token')
             const res = await axios.post('/market-place/create-product', {
                 sellerId: currentUser?._id,
-                photo: 'https://m.media-amazon.com/images/I/41AuNH5gB0L._SX300_SY300_QL70_FMwebp_.jpg',
+                photo: 'https://m.media-amazon.com/images/I/51ECxntio6L._SX351_BO1,204,203,200_.jpg',
                 // photo: url,
                 productName,
                 price,

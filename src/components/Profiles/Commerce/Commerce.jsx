@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import Loading from '../../Loading/Loading';
 import styles from './Commerce.module.scss';
 import axios from '../../../config/axios';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const Product = ({ loading, product }) => {
@@ -11,12 +11,12 @@ const Product = ({ loading, product }) => {
 
     return (
         <>
-            <div className={styles.img}>
+            <Link to={`/marketplace/item/${product?._id}`} className={styles.img}>
                 {loading
                     ? <Loading font='6rem' color='white' />
                     : <img src={product?.photo} alt="profilepicture" />
                 }
-            </div>
+            </Link>
         </>
     )
 }
@@ -36,7 +36,7 @@ const Commerce = () => {
         const fetchProducts = async () => {
             try {
                 setLoading(true);
-                const res = await axios.get('/market-place/all-products', {
+                const res = await axios.get(`/market-place/get-my-products/${profileId}`, {
                     headers: {
                         token: `Bearer ${localStorage.getItem('token')}`
                     }
@@ -56,7 +56,7 @@ const Commerce = () => {
             }
         }
         fetchProducts()
-    }, []);
+    }, [profileId]);
 
     useEffect(() => {
         if (String(profileId) === String(currentUser?._id)) {

@@ -14,28 +14,104 @@ import axios from '../../../../config/axios';
 import { toast } from 'react-toastify';
 import { format } from 'timeago.js';
 import Loading from '../../../Loading/Loading';
+import ActionPopup from './Actions';
+import DeletePop from './DeletePop';
 
 
 const CardList = ({ cardStyle, width, product }) => {
+  const [showActionPopup, setShowActionPopup] = useState(false);
+  const [showDeletePop, setShowDeletePop] = useState(false);
+  const [chars, setChars] = useState(20);
+  const [color, setColor] = useState('green');
+  const actionRef = useRef();
+  const [left, setLeft] = useState(0);
+  const [top, setTop] = useState(0);
+  const [positionBefore, setPositionBefore] = useState('top');
+
+  useEffect(() => {
+    if (product?.status === 'in-stock') {
+      setColor('green')
+    }
+    if (product?.status === 'out-of-stock') {
+      setColor('red')
+    }
+    if (product?.status === 'sold') {
+      setColor('grey')
+    }
+  }, [product]);
+
+  useEffect(() => {
+    if (cardStyle === 'list') {
+      setChars(40)
+    } else {
+      setChars(20)
+    }
+  }, [cardStyle])
+
+  const showActions = () => {
+    const positionLeft = actionRef.current.getBoundingClientRect().left;
+    const positionTop = actionRef.current.getBoundingClientRect().top;
+    setLeft(positionLeft);
+    if (positionTop >= 500) {
+      setTop(positionTop - 165);
+      setPositionBefore('bottom');
+    } else {
+      setTop(positionTop)
+      setPositionBefore('top');
+    }
+    setShowActionPopup(true);
+  };
+
+
   return (
-    <div className={`${styles.card_list} ${cardStyle === 'grid' && styles.card_list_grid}`} >
-      <div className={styles.actions}>
-        <DashOutlined className={styles.icon} />
-      </div>
-      <div className={`${styles.img} ${cardStyle === 'grid' && styles.img_grid}`}
-        style={{
-          width: cardStyle === 'grid' && width,
-          height: cardStyle === 'grid' && width
-        }}
-      >
-        <img src={product?.photo} alt="" />
-      </div>
-      <div className={styles.details} style={{width: cardStyle === 'grid' && width}}>
-        <span>{product?.productName?.slice(0,20)}</span>
-        <small>₹ {product?.price}</small>
-        <small>{product?.status} • product listed {format(product.createdAt)}</small>
-      </div>
-    </div >
+    <>
+      <div
+        style={{ position: 'relative' }}
+        className={`${styles.card_list} ${cardStyle === 'grid' && styles.card_list_grid}`} >
+        <div className={styles.actions} ref={actionRef} onClick={showActions}>
+          <DashOutlined className={styles.icon} />
+        </div>
+        <div className={`${styles.img} ${cardStyle === 'grid' && styles.img_grid}`}
+          style={{
+            width: cardStyle === 'grid' && width,
+            height: cardStyle === 'grid' && width
+          }}
+        >
+          <img src={product?.photo} alt="" />
+        </div>
+        <div className={styles.details} style={{ width: cardStyle === 'grid' && width }}>
+          <span>{product?.productName?.slice(0, chars)}</span>
+          <small>₹ {product?.price}</small>
+          <span style={{
+            width: '0.7rem',
+            height: '0.7rem',
+            borderRadius: '50%',
+            marginTop: '0.3rem',
+            backgroundColor: color,
+          }}></span>
+          <small>{product?.status} • product listed {format(product.createdAt)}</small>
+        </div>
+      </div >
+      {
+        showActionPopup &&
+        <ActionPopup
+          showActionPopup={showActionPopup}
+          setShowActionPopup={setShowActionPopup}
+          setShowDeletePop={setShowDeletePop}
+          positionBefore={positionBefore}
+          product={product}
+          left={left}
+          top={top}
+        />
+      }
+      {showDeletePop &&
+        <DeletePop
+          setShowDeletePop={setShowDeletePop}
+          showDeletePop={showDeletePop}
+          product={product}
+        />
+      }
+    </>
   )
 }
 
@@ -51,17 +127,19 @@ const Selling = () => {
   const navigate = useNavigate();
   const cardsRef = useRef();
 
+
   useEffect(() => {
     const totalWidth = cardsRef.current.clientWidth;
     const cardWidth = totalWidth / 2;
     setWidth(cardWidth - 40)
-  }, [])
+  }, []);
+
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const res = await axios.get('/market-place/all-products', {
+        const res = await axios.get(`/market-place/get-my-products/${currentUser?._id}`, {
           headers: {
             token: `Bearer ${localStorage.getItem('token')}`
           }
@@ -72,7 +150,7 @@ const Selling = () => {
         }
         if (res.data.status === 'success') {
           setProducts(res.data.data)
-          console.log(res.data.data);
+          // console.log(res.data.data);
           setLoading(false);
         }
       } catch (error) {
@@ -81,7 +159,7 @@ const Selling = () => {
       }
     }
     fetchProducts()
-  }, [])
+  }, [currentUser])
 
   return (
     <div className={styles.selling}>
@@ -106,6 +184,21 @@ const Selling = () => {
               onClick={() => setCardStyle('grid')}>
               <TableOutlined className={styles.icon} />
             </div>
+          </div>
+        </div>
+
+        <div className={styles.indicator}>
+          <div className={styles.indicator_}>
+            <div className={styles.color} style={{ backgroundColor: 'green' }}></div>
+            <span>In Stock</span>
+          </div>
+          <div className={styles.indicator_}>
+            <div className={styles.color} style={{ backgroundColor: 'red' }}></div>
+            <span>Out Of Stock</span>
+          </div>
+          <div className={styles.indicator_}>
+            <div className={styles.color} style={{ backgroundColor: 'grey' }}></div>
+            <span>Sold</span>
           </div>
         </div>
 
