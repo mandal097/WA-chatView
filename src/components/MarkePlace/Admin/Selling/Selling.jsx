@@ -16,9 +16,10 @@ import { format } from 'timeago.js';
 import Loading from '../../../Loading/Loading';
 import ActionPopup from './Actions';
 import DeletePop from './DeletePop';
+// import EditProductModal from '../../../_Modals/EditMarketPlaceProductModal/EditProductModal';
 
 
-const CardList = ({ cardStyle, width, product }) => {
+const CardList = ({ cardStyle, width, product,showEditModal, setShowEditModal}) => {
   const [showActionPopup, setShowActionPopup] = useState(false);
   const [showDeletePop, setShowDeletePop] = useState(false);
   const [chars, setChars] = useState(20);
@@ -99,6 +100,7 @@ const CardList = ({ cardStyle, width, product }) => {
           setShowActionPopup={setShowActionPopup}
           setShowDeletePop={setShowDeletePop}
           positionBefore={positionBefore}
+          setShowEditModal={setShowEditModal}
           product={product}
           left={left}
           top={top}
@@ -111,6 +113,7 @@ const CardList = ({ cardStyle, width, product }) => {
           product={product}
         />
       }
+
     </>
   )
 }
@@ -133,7 +136,6 @@ const Selling = () => {
     const cardWidth = totalWidth / 2;
     setWidth(cardWidth - 40)
   }, []);
-
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -162,9 +164,8 @@ const Selling = () => {
   }, [currentUser])
 
   return (
-    <div className={styles.selling}>
+    <div className={styles.selling} >
       <div className={styles.body}>
-
         <div className={styles.search_box}>
           <h1>Your listings</h1>
           <div className={styles.search}>
@@ -202,7 +203,10 @@ const Selling = () => {
           </div>
         </div>
 
-        <div className={styles.cards} ref={cardsRef} style={{ justifyContent: cardStyle === 'grid' && 'center' }}>
+        <div 
+        className={styles.cards}
+         ref={cardsRef} 
+         style={{ justifyContent: cardStyle === 'grid' && 'center' }}>
           {
             loading && <Loading font='15rem' color='var(--text)' />
           }

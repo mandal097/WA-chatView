@@ -1,20 +1,24 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './Actions.module.scss';
 import { DeleteFilled, EditFilled, EyeFilled } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
+import EditProductModal from '../../../_Modals/EditMarketPlaceProductModal/EditProductModal';
 // import axios from '../../../../config/axios';
 // import { toast, ToastContainer } from 'react-toastify';
 
 const ActionPopup = (
-    { left,
-        top,
+    {
+        left,
         setShowActionPopup,
-        showActionPopup,
-        product,
         setShowDeletePop,
+        showActionPopup,
+        // setShowEditModal,
+        top,
+        product,
+        setProductId,
         positionBefore
     }) => {
-
+    const [showEditModal, setShowEditModal] = useState(false);
     const actionPopupRef = useRef();
     const navigate = useNavigate();
 
@@ -24,13 +28,22 @@ const ActionPopup = (
                 setShowActionPopup(false)
             }
         }
-        document.addEventListener('mousedown', checkClick);
+        if (showEditModal === true) {
+            document.removeEventListener('mousedown', checkClick);
+            document.body.style.overflowY = 'hidden'
+        }
+        else {
+            document.addEventListener('mousedown', checkClick);
+            document.body.style.overflowY = 'scroll'
+        }
 
         return () => {
             document.removeEventListener('mousedown', checkClick);
         }
-    }, [showActionPopup, setShowActionPopup, actionPopupRef]);
-    
+    }, [showActionPopup, setShowActionPopup, actionPopupRef, showEditModal]);
+
+
+
     return (
         <>
             {/* <ToastContainer className='toaster' /> */}
@@ -47,7 +60,10 @@ const ActionPopup = (
                 >
                     <ul>
                         <li>
-                            <button >
+                            <button onClick={() => {
+                                setShowEditModal(true)
+                            }}>
+
                                 <EditFilled className={styles.icon} />
                                 <span>Edit</span>
                             </button>
@@ -67,7 +83,14 @@ const ActionPopup = (
                     </ul>
                 </div>
             </div>
-
+            {
+                showEditModal &&
+                <EditProductModal
+                    setShowEditModal={setShowEditModal}
+                    product={product}
+                // updateProductId={productId}
+                />
+            }
         </>
     )
 }

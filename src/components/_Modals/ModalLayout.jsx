@@ -15,6 +15,7 @@ const Modal = (
         p_bottom,
         gap }
 ) => {
+    
     return (
         <div className={styles.modal_layout} style={{ overflowY: overflow, zIndex: zIndex, alignItems: center }} >
             <div className={styles.body} style={{ width: width, margin: margin, height: height, gap: gap, padding: p_bottom }}>
