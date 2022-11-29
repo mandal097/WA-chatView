@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './ProductPage.module.scss';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import Browse from '../Browse/Browse'
 import {
     BookFilled,
     CloseOutlined,
@@ -16,6 +15,7 @@ import axios from '../../../config/axios';
 import Loading from '../../Loading/Loading';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentChat } from '../../../redux/chatRedux';
+import { format } from 'timeago.js';
 
 const ProductPage = () => {
     const { currentUser } = useSelector(state => state.user);
@@ -29,10 +29,22 @@ const ProductPage = () => {
     const [message, setMessage] = useState('');
     const [sending, setSending] = useState(false);
     const [owner, setOwner] = useState(false);
+    const [bg, setBg] = useState('');
+    const [showDesc, setShowDesc] = useState(false)
 
     const back = () => {
         navigate(-1)
     };
+
+    useEffect(() => {
+        if (product?.status === 'in-stock') {
+            setBg('green')
+        } else if (product?.status === 'out-of-stock') {
+            setBg('red')
+        } else if (product?.status === 'sold') {
+            setBg('gray')
+        }
+    }, [product])
 
 
     useEffect(() => {
@@ -50,7 +62,7 @@ const ProductPage = () => {
                 }
                 if (res.data.status === 'success') {
                     setProduct(res.data.data)
-                    setMessage(`Hi ${res.data.data?.sellerId.name.split(' ')[0]}, is this still available?`)
+                    setMessage(`Hi ${res.data.data?.sellerId.name.split(' ')[0]}, is this still available? \n `)
                     console.log(res.data.data);
                     setLoading(false);
                 }
@@ -86,7 +98,7 @@ const ProductPage = () => {
         if (res.data.status === 'success' && param === 'message') {
             const resPostMessage = await axios.post('/message', {
                 chatId: res.data.data[0]._id,
-                content: message
+                content: message + window.location
             }, {
                 headers: {
                     token: `Bearer ${localStorage.getItem('token')}`
@@ -119,7 +131,16 @@ const ProductPage = () => {
                     <div className={styles.right}>
                         <h1>{product?.productName}</h1>
                         <span>₹ {product?.price}</span>
-                        <small>Listed 2 weeks ago in Delhi, DL</small>
+                        <small>Listed {format(product?.createdAt)} in {product?.location}</small>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                            <div style={{
+                                width: '1rem',
+                                height: '1rem',
+                                borderRadius: '50%',
+                                backgroundColor: bg
+                            }}></div>
+                            <small>{product?.status}</small>
+                        </div>
                         <div className={styles.actions_btn}>
                             {!owner &&
                                 <button onClick={() => sendMessage('create-chat')}>
@@ -155,8 +176,17 @@ const ProductPage = () => {
                                 <span>{product?.status}</span>
                             </div>
                         </div>
-                        <h2 style={{fontSize:'1.8rem'}}>Description :</h2>
-                        <p style={{ fontSize: '1.5rem', textAlign: 'justify' }}>{product?.desc}</p>
+                        <h2 style={{ fontSize: '1.8rem' }}>Description :</h2>
+                        {showDesc ?
+                            <>
+                                <p style={{ fontSize: '1.5rem', textAlign: 'justify' }}>{product?.desc}</p>
+                                <span className={styles.more} onClick={() => setShowDesc(!showDesc)}>Read less...</span>
+                            </>
+                            : <>
+                                <p style={{ fontSize: '1.5rem', textAlign: 'justify' }} className={styles.desc}>{product?.desc}</p>
+                                <span className={styles.more} onClick={() => setShowDesc(!showDesc)}>Read more...</span>
+                            </>
+                        }
 
                         <div className={styles.contact}>
                             <div className={styles.head}>
@@ -183,7 +213,6 @@ const ProductPage = () => {
                         </div>
                     </div>
                 </div>}
-            <Browse />
         </div >
     )
 }

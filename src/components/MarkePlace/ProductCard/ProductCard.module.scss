@@ -8,7 +8,6 @@
   margin: 1rem 0;
   .img {
     width: auto;
-    height: 35rem;
     overflow: hidden;
     &:hover {
       img {
@@ -25,13 +24,22 @@
     padding: 1rem;
     span {
       font-size: 1.8rem;
+      color: var(--text);
+      font-weight: 500;
     }
     p {
       font-size: 1.4rem;
       color: var(--textSoft);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* number of lines to show */
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
     }
     small {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
+      font-weight: 500;
     }
   }
 }

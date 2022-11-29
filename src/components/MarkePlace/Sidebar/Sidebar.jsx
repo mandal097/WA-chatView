@@ -126,29 +126,29 @@ const Sidebar = () => {
 
                 <div className={styles.group_list} style={{ gap: '0.5rem' }}>
                     <h2>Common Categories</h2>
-                    <Link to='category/mens-clothing'
-                        onClick={() => setActive('mens-clothing')}
+                    <Link to='category/mens-clothing-shoes'
+                        onClick={() => setActive('mens-clothing-shoes')}
                         style={{ margin: '0' }}
-                        className={`${styles.links}  ${active === 'mens-clothing' && styles.active}`}>
+                        className={`${styles.links}  ${active === 'mens-clothing-shoes' && styles.active}`}>
                         <div className={styles.icon_}>
                             <SkinFilled className={styles.icon} />
                         </div>
                         <span>Men's clothing & shoes</span>
                     </Link>
-                    <Link to='category/womens-clothing'
-                        onClick={() => setActive('womens-clothing')}
+                    <Link to='category/womens-clothing-shoes'
+                        onClick={() => setActive('womens-clothing-shoes')}
                         style={{ margin: '0' }}
-                        className={`${styles.links}  ${active === 'womens-clothing' && styles.active}`}>
+                        className={`${styles.links}  ${active === 'womens-clothing-shoes' && styles.active}`}>
                         <div className={styles.icon_}>
                             <WomanOutlined className={styles.icon} />
                         </div>
                         <span>Women's clothing & shoes</span>
                     </Link>
 
-                    <Link to='category/electronics'
-                        onClick={() => setActive('electronics')}
+                    <Link to='category/electronic'
+                        onClick={() => setActive('electronic')}
                         style={{ margin: '0' }}
-                        className={`${styles.links}  ${active === 'electronics' && styles.active}`}>
+                        className={`${styles.links}  ${active === 'electronic' && styles.active}`}>
                         <div className={styles.icon_}>
                             <MobileOutlined className={styles.icon} />
                         </div>

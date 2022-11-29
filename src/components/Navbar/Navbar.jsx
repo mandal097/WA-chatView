@@ -47,7 +47,8 @@ const Navbar = () => {
     useEffect(() => {
         setActive(path)
     }, [path])
-    if (isGroupCreate === 'create') return null
+    if (isGroupCreate === 'create') return null;
+    if (path === 'messenger') return null;
     return (
         <nav>
             <div className={styles.navbar} ref={navRef} style={{ borderBottom: isGroupCreate === 'create' && 'none', backgroundColor: isGroupCreate === 'create' && 'var(--bgDark)' }}>

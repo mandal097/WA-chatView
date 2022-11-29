@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
-  DashOutlined,
+  MoreOutlined,
   PlusOutlined,
   SearchOutlined,
   TableOutlined,
@@ -19,10 +19,9 @@ import DeletePop from './DeletePop';
 // import EditProductModal from '../../../_Modals/EditMarketPlaceProductModal/EditProductModal';
 
 
-const CardList = ({ cardStyle, width, product,showEditModal, setShowEditModal}) => {
+const CardList = ({ cardStyle, width, product, showEditModal, setShowEditModal }) => {
   const [showActionPopup, setShowActionPopup] = useState(false);
   const [showDeletePop, setShowDeletePop] = useState(false);
-  const [chars, setChars] = useState(20);
   const [color, setColor] = useState('green');
   const actionRef = useRef();
   const [left, setLeft] = useState(0);
@@ -41,13 +40,6 @@ const CardList = ({ cardStyle, width, product,showEditModal, setShowEditModal}) 
     }
   }, [product]);
 
-  useEffect(() => {
-    if (cardStyle === 'list') {
-      setChars(40)
-    } else {
-      setChars(20)
-    }
-  }, [cardStyle])
 
   const showActions = () => {
     const positionLeft = actionRef.current.getBoundingClientRect().left;
@@ -70,7 +62,7 @@ const CardList = ({ cardStyle, width, product,showEditModal, setShowEditModal}) 
         style={{ position: 'relative' }}
         className={`${styles.card_list} ${cardStyle === 'grid' && styles.card_list_grid}`} >
         <div className={styles.actions} ref={actionRef} onClick={showActions}>
-          <DashOutlined className={styles.icon} />
+          <MoreOutlined className={styles.icon} />
         </div>
         <div className={`${styles.img} ${cardStyle === 'grid' && styles.img_grid}`}
           style={{
@@ -81,7 +73,7 @@ const CardList = ({ cardStyle, width, product,showEditModal, setShowEditModal}) 
           <img src={product?.photo} alt="" />
         </div>
         <div className={styles.details} style={{ width: cardStyle === 'grid' && width }}>
-          <span>{product?.productName?.slice(0, chars)}</span>
+          <span>{product?.productName}</span>
           <small>₹ {product?.price}</small>
           <span style={{
             width: '0.7rem',
@@ -125,8 +117,12 @@ const Selling = () => {
   const { currentUser } = useSelector(state => state.user);
   const [cardStyle, setCardStyle] = useState('list');
   const [width, setWidth] = useState(Number);
-  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false)
+  const [searchTerm, setSearchTerm] = useState('');
+  const [products, setProducts] = useState([]);
+  const [searchedProduct, setSearchedProducts] = useState([]);
+  const [mapedProduct, setMapedProduct] = useState([]);
+  const [checked, setChecked] = useState('')
   const navigate = useNavigate();
   const cardsRef = useRef();
 
@@ -161,18 +157,52 @@ const Selling = () => {
       }
     }
     fetchProducts()
-  }, [currentUser])
+  }, [currentUser]);
+
+  useEffect(() => {
+    const filter = products.filter((product) => {
+      if (searchTerm === '') {
+        return false
+      }
+      else if (product?.productName.toLowerCase().includes(searchTerm.toLowerCase())) {
+        return product
+      }
+      return false;
+    })
+    setSearchedProducts(filter)
+  }, [products, searchTerm])
+
+  useEffect(() => {
+    if (searchTerm === '') {
+      setMapedProduct(products)
+    }
+    else {
+      setMapedProduct(searchedProduct)
+    }
+    if (checked !== '') {
+      const filter = products.filter((product) => product.status === checked);
+      setMapedProduct(filter)
+    }
+  }, [searchTerm, products, searchedProduct, checked, mapedProduct]);
+
+
+
 
   return (
     <div className={styles.selling} >
       <div className={styles.body}>
         <div className={styles.search_box}>
           <h1>Your listings</h1>
-          <div className={styles.search}>
+          <div className={styles.search}
+          //  onClick={()=>setChecked('')}
+           >
             <SearchOutlined className={styles.icon} />
             <input
               type="text"
-              placeholder='Search your listings' />
+              placeholder='Search your listings by name...'
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
           </div>
           <div className={styles.change_view}>
             <div
@@ -190,28 +220,36 @@ const Selling = () => {
 
         <div className={styles.indicator}>
           <div className={styles.indicator_}>
+            <div className={styles.color} style={{ backgroundColor: 'hotpink' }}></div>
+            <span>All</span>
+            <input checked={checked === ''} type="checkbox" name="stock" value='' onChange={(e) => setChecked(e.target.value)} />
+          </div>
+          <div className={styles.indicator_}>
             <div className={styles.color} style={{ backgroundColor: 'green' }}></div>
             <span>In Stock</span>
+            <input checked={checked === 'in-stock'} type="checkbox" name="stock" value='in-stock' onChange={(e) => setChecked(e.target.value)} />
           </div>
           <div className={styles.indicator_}>
             <div className={styles.color} style={{ backgroundColor: 'red' }}></div>
             <span>Out Of Stock</span>
+            <input checked={checked === 'out-of-stock'} type="checkbox" name="stock" value='out-of-stock' onChange={(e) => setChecked(e.target.value)} />
           </div>
           <div className={styles.indicator_}>
             <div className={styles.color} style={{ backgroundColor: 'grey' }}></div>
             <span>Sold</span>
+            <input checked={checked === 'sold'} type="checkbox" name="stock" value='sold' onChange={(e) => setChecked(e.target.value)} />
           </div>
         </div>
 
-        <div 
-        className={styles.cards}
-         ref={cardsRef} 
-         style={{ justifyContent: cardStyle === 'grid' && 'center' }}>
+        <div
+          className={styles.cards}
+          ref={cardsRef}
+          style={{ justifyContent: cardStyle === 'grid' && 'center' }}>
           {
             loading && <Loading font='15rem' color='var(--text)' />
           }
           {
-            products?.map(product => (
+            mapedProduct?.map(product => (
               <CardList
                 key={product._id}
                 cardStyle={cardStyle}
@@ -221,7 +259,7 @@ const Selling = () => {
             ))
           }
 
-          {products.length === 0 && <h1>No Listed products</h1>}
+          {mapedProduct.length === 0 && <h1 style={{ fontWeight: '400', color: 'var(--error)', marginTop: '2rem' }}>No Listed products found</h1>}
 
         </div>
       </div>

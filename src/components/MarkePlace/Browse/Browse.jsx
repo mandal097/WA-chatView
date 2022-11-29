@@ -7,18 +7,19 @@ import { useState } from 'react';
 import axios from '../../../config/axios';
 import { toast } from 'react-toastify';
 import Loading from '../../Loading/Loading';
+import { useLocation } from 'react-router-dom';
 
 const Browse = () => {
   const sectionRef = useRef();
   const [width, setWidth] = useState(Number);
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const location = useLocation();
+  const category = location.pathname.split('/')[3]
 
   useEffect(() => {
-    // console.log(sectionRef);
     const totalWidth = sectionRef.current.clientWidth;
-    // const cardWidth = totalWidth / 3;
-    const cardWidth = totalWidth / 3;
+    const cardWidth = totalWidth / 5;
     setWidth(cardWidth - 14)
   }, [])
 
@@ -26,11 +27,22 @@ const Browse = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const res = await axios.get('/market-place/all-products', {
-          headers: {
-            token: `Bearer ${localStorage.getItem('token')}`
-          }
-        })
+        // const res = await axios.get(`/market-place/products/electronic`,{
+        //   headers: {
+        //     token: `Bearer ${localStorage.getItem('token')}`
+        //   }
+        // })
+        const res = category === undefined ?
+          await axios.get(`/market-place/all-products`, {
+            headers: {
+              token: `Bearer ${localStorage.getItem('token')}`
+            }
+          })
+          : await axios.get(`/market-place/products/${category}`, {
+            headers: {
+              token: `Bearer ${localStorage.getItem('token')}`
+            }
+          })
         if (res.data.status === 'err') {
           toast.error(res.data.message);
           setLoading(false);
@@ -46,13 +58,14 @@ const Browse = () => {
       }
     }
     fetchProducts()
-  }, [])
+  }, [category])
 
   return (
     <div className={styles.browse}>
       <div className={styles.section_}>
         <div className={styles.top}>
-          <span>Today's Pick</span>
+          {!category? <span>All Products</span>
+            : <span>{category?.replace(/-/g, " ").replace(/ /g, " ")}</span>}
         </div>
         <div className={styles.section} ref={sectionRef}>
           {
@@ -68,30 +81,8 @@ const Browse = () => {
             ))
           }
 
-          {products.length === 0 && <h1>No Listed products</h1>}
+          {products.length === 0 && <h1 style={{ fontSize: '2rem', color: 'var(--text)' }}>No Listed products</h1>}
 
-        </div>
-      </div>
-      <div className={styles.section_}>
-        <div className={styles.top}>
-          <span>Men's clothing & shoes</span>
-          <button>See all</button>
-        </div>
-        <div className={styles.section} ref={sectionRef}>
-          {
-            loading && <Loading font='15rem' color='var(--text)' />
-          }
-          {
-            products?.map(product => (
-              <ProductCard
-                key={product._id}
-                width={width}
-                product={product}
-              />
-            ))
-          }
-
-          {products.length === 0 && <h1>No Listed products</h1>}
         </div>
       </div>
     </div>

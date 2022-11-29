@@ -28,8 +28,8 @@
     gap: 1rem;
     .left {
       width: 60%;
-      height: 58rem;
       display: flex;
+      height: 58rem;
       align-items: center;
       justify-content: center;
       .img {
@@ -100,6 +100,22 @@
           span {
             font-size: 1.5rem;
           }
+        }
+      }
+      .desc {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1; /* number of lines to show */
+        line-clamp: 1;
+        -webkit-box-orient: vertical;
+      }
+      .more{
+        color: var(--btn);
+        cursor: pointer;
+        font-size: 1.4rem;
+        &:hover{
+          color: var(--btnLight);
         }
       }
       .contact {

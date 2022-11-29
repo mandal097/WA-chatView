@@ -19,12 +19,13 @@
     }
   }
   .new_message {
-    width: auto;
+    width: auto calc(100% - 4rem);
     height: auto;
     border-radius: 1rem 1rem 1rem 0;
     background-color: var(--bgChat);
     position: relative;
-    .name{
+    word-wrap: break-word;
+    .name {
       font-size: 1.3rem;
       text-transform: capitalize;
       font-weight: 500;

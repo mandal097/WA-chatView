@@ -39,7 +39,6 @@ import Browse from './components/MarkePlace/Browse/Browse';
 import Inbox from './components/MarkePlace/Inbox/Inbox';
 import Buying from './components/MarkePlace/Buying/Buying';
 import Selling from './components/MarkePlace/Admin/Selling/Selling';
-import Category from './components/MarkePlace/Category/Category';
 import ProductPage from './components/MarkePlace/ProductPage/ProductPage';
 import CreateMarketPlaceProduct from './pages/MarketPlace/CreateProduct';
 import Commerce from './components/Profiles/Commerce/Commerce';
@@ -112,7 +111,7 @@ const App = () => {
               <Route index path='' element={<Browse />} />
               <Route path='inbox' element={<Inbox />} />
               <Route path='you/buying' element={<Buying />} />
-              <Route path='category/:cat' element={<Category />} />
+              <Route path='category/:cat' element={<Browse />} />{/*fileterd by categories*/}
 
               <Route path='create' element={<CreateMarketPlaceProduct />} />
               <Route path='item/:id' element={<ProductPage />} />

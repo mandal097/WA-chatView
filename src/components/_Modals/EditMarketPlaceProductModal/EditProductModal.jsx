@@ -27,6 +27,7 @@ const Fields = ({ label, field, product }) => {
     const [condition, setCondition] = useState(field);
     const [category, setCategory] = useState(field);
     const [desc, setDesc] = useState(field);
+    const [status, setStatus] = useState(field)
 
 
 
@@ -58,7 +59,7 @@ const Fields = ({ label, field, product }) => {
                 setLoading(false);
             }
             if (res.data.status === 'success') {
-                toast.success(res.data.message)
+                toast.success(`${res.data.message} \n Refresh page to show changes`)
                 setLoading(false);
             }
         } catch (error) {
@@ -73,6 +74,9 @@ const Fields = ({ label, field, product }) => {
         }
         if (label === 'Price') {
             requestUpdate({ price: price })
+        }
+        if (label === 'Stock') {
+            requestUpdate({ status: status })
         }
         if (label === 'Condition') {
             requestUpdate({ condition: condition })
@@ -145,6 +149,13 @@ const Fields = ({ label, field, product }) => {
                             <option value="used-fair" selected>Used – fair</option>
                         </select>
                     }
+                    {label === 'Stock' &&
+                        <select name="" id="" value={status} onChange={(e) => setStatus(e.target.value)}>
+                            <option value="in-stock">In stock</option>
+                            <option value="out-of-stock">Out of stock</option>
+                            <option value="sold" selected>Sold</option>
+                        </select>
+                    }
                     <div className={styles.btns}>
                         <button onClick={handleInputSections}>Cancel</button>
                         <button onClick={update}>{loading ? 'Updating...' : 'Update'}</button>
@@ -165,7 +176,7 @@ const EditProductModal = ({ setShowEditModal, product }) => {
     return (
         <Modal
             overflow='scroll'
-            width='70rem'
+            width='65rem'
             height='fit-content'
             margin='6rem 0'
             zIndex='10001'
@@ -186,6 +197,11 @@ const EditProductModal = ({ setShowEditModal, product }) => {
                     product={product}
                     label='Price'
                     field={product.price}
+                />
+                <Fields
+                    product={product}
+                    label='Stock'
+                    field={product.status}
                 />
                 <Fields
                     product={product}

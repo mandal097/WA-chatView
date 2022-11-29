@@ -1,4 +1,4 @@
-.browse {
+.category {
   padding: 1rem;
   .section_ {
     margin-bottom: 2rem;
@@ -16,16 +16,16 @@
         color: var(--text);
         text-transform: capitalize;
       }
-      // button {
-      //   font-size: 1.7rem;
-      //   border-radius: 0.4rem;
-      //   padding: 0.5rem 1rem;
-      //   text-decoration: none;
-      //   color: var(--btnLight);
-      //   &:hover {
-      //     background-color: var(--bgLight);
-      //   }
-      // }
+      button {
+        font-size: 1.7rem;
+        border-radius: 0.4rem;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        color: var(--btnLight);
+        &:hover {
+          background-color: var(--bgLight);
+        }
+      }
     }
     .section {
       display: flex;

@@ -9,8 +9,9 @@ import {
   MoreOutlined,
   SearchOutlined,
   TeamOutlined,
-  VideoCameraOutlined,
-  PhoneOutlined,
+  ArrowLeftOutlined,
+  // VideoCameraOutlined,
+  // PhoneOutlined,
   // DownOutlined
 } from '@ant-design/icons';
 import { useSelector, useDispatch } from 'react-redux';
@@ -18,7 +19,7 @@ import AddToGroup from '../../components/Chats/_Group/_GroupCreations/AddToGroup
 import { setCurrentChatInitial } from '../../redux/chatRedux';
 import GroupList from '../../components/Chats/_Group/GroupList/GroupList';
 import GroupInfo from '../../components/Chats/_Group/GroupInfo/GroupInfo';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const Message = () => {
@@ -30,6 +31,7 @@ const Message = () => {
   const { currentChat } = useSelector((state) => state.chat);
   const { currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
@@ -50,6 +52,11 @@ const Message = () => {
 
         <div className={styles.left_header}>
           <div className={styles.left_header_wrapper}>
+            <button 
+            onClick={()=>navigate(-1)}
+            style={{fontSize:'5rem',color:'var(--text)'}}>
+              <ArrowLeftOutlined />
+            </button>
             <Link to={`/profile/${currentUser._id}`} className={styles.profile}>
               <img src={currentUser?.profilePic} alt="" />
             </Link>

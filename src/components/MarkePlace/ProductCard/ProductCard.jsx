@@ -8,7 +8,7 @@ const ProductCard = ({product, width }) => {
         to={`/marketplace/item/${product?._id}`}
         className={styles.product_card}
          style={{ width: `${width}px` }}>
-            <div className={styles.img}>
+            <div className={styles.img} style={{ height: `${width}px`}}>
                 <img src={product?.photo} alt="product_image" />
             </div>
             <div className={styles.details}>
