@@ -22,44 +22,7 @@ import { followFriend, unFollowFriend, updateCover } from '../../redux/userRedux
 import { useCallback } from 'react';
 import { setCurrentChat } from '../../redux/chatRedux';
 import { useUpload } from '../../hooks/useUpload';
-
-const UserBadge = ({ id }) => {
-    const [details, setDetails] = useState({});
-    const [loading, setLoading] = useState(false)
-
-    useEffect(() => {
-        const fetchDetails = async () => {
-            try {
-                setLoading(true)
-                const res = await axios.get(`/user/get-profile/${id}`, {
-                    headers: {
-                        token: `Bearer ${localStorage.getItem('token')}`
-                    }
-                })
-                if (res.data.status === 'success') {
-                    setDetails(res.data.data)
-                    setLoading(false)
-                }
-
-            } catch (error) {
-                toast.error('Something went wrong')
-                setLoading(false)
-            }
-
-        }
-        fetchDetails()
-    }, [id])
-    return (
-        <Link to={`/profile/${id}`} className={styles.list_item}>
-            {loading ? <Loading font='3rem' color='white' />
-                : <>
-                    <img src={details.profilePic} alt="friends pictures" />
-                    <div className={styles.bagde_name}>{details.name}</div>
-                </>
-            }
-        </Link>
-    )
-}
+import UserBadge from '../../components/UserBadge/UserBadge';
 
 
 const Profile = () => {
@@ -324,14 +287,8 @@ const Profile = () => {
                                             <span>{currentProfileDetails.followings?.length ? currentProfileDetails.followings.length : 0}</span> followings</Link>
                                     </div>
                                     <div className={styles.user_actions}>
-                                        <div className={styles.connections_list}>
-                                            {
-                                                currentProfileDetails.followers?.map(follower => (
-                                                    <UserBadge key={follower} id={follower} />
-                                                ))
-                                            }
-
-                                        </div>
+                                        <UserBadge array={currentProfileDetails?.followers} />
+                                       
                                         <div className={styles.actions}>
                                             {owner
                                                 ? <>
@@ -390,7 +347,7 @@ const Profile = () => {
                                 <Link to={`/profile/${currentProfileDetails._id}/commerce`} className={`${styles.nav_items}  ${active === 'commerce' && styles.active_nav}`} onClick={() => setActive('commerce')}>
                                     <span className='link'>Commerce</span>
                                 </Link>
-                               
+
                             </div>
                         </div>
                     </div>

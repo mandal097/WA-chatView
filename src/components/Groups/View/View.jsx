@@ -9,6 +9,7 @@ import Loading from '../../Loading/Loading';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentGroup, updateGroupCoverImg } from '../../../redux/currentGroup';
 import { useUpload } from '../../../hooks/useUpload';
+import UserBadge from '../../UserBadge/UserBadge';
 
 const View = () => {
     const { currentGroup } = useSelector(state => state.currentGroup);
@@ -137,7 +138,7 @@ const View = () => {
                             ? <img src={URL.createObjectURL(coverImg)} alt="profile pictures" />
                             : <img src={groupDetails?.groupCoverImg} alt="profile pictures" />}
                         {currentGroup?.admins.includes(String(currentUser?._id)) && <div className={styles.edit_cover}>
-                            {coverImg && uploadPerc === 100 && <button className={`${styles.edit_cover_btns} ${styles.edit_cover_button}`} onClick={updateCoverImg}>{uploading ? <Loading />  : 'Update cover image'}</button>}
+                            {coverImg && uploadPerc === 100 && <button className={`${styles.edit_cover_btns} ${styles.edit_cover_button}`} onClick={updateCoverImg}>{uploading ? <Loading /> : 'Update cover image'}</button>}
 
                             {uploadPerc < 99 && uploadPerc > 0 &&
                                 <button className={`${styles.edit_cover_btns} ${styles.edit_cover_button}`} >{'uploading ' + uploadPerc + '%'}  </button>}
@@ -166,7 +167,10 @@ const View = () => {
                                         <span>{groupDetails?.groupName} </span>
                                     </div>
                                 </div>
-                                : <h3>user must have to add in future</h3>
+                                :
+                                //  <h3>user must have to add in future</h3>
+                                <UserBadge array={currentGroup?.members}/>
+
                             }
                         </div>
 

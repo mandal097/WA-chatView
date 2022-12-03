@@ -2,7 +2,7 @@ import React from 'react'
 
 const Test = () => {
   return (
-    <div style={{fontSize:'4rem'}}>Work on progress 😎😎 <br />staty tuned</div>
+    <div style={{fontSize:'4rem',color:'whitesmoke',margin:'3rem'}}>WE ARE WORKING ON THIS PAGE...</div>
   )
 }
 

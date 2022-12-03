@@ -200,6 +200,7 @@ const Selling = () => {
               type="text"
               placeholder='Search your listings by name...'
               value={searchTerm}
+              // onFocus={()=>setChecked('')}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
@@ -258,7 +259,7 @@ const Selling = () => {
             ))
           }
 
-          {mapedProduct.length === 0 && <h1 style={{ fontWeight: '400', color: 'var(--error)', marginTop: '2rem' }}>No Listed products found</h1>}
+          {mapedProduct?.length === 0  && <h1 style={{ fontWeight: '400', color: 'var(--error)', marginTop: '2rem' }}>No Listed products found</h1>}
 
         </div>
       </div>

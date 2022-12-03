@@ -23,6 +23,12 @@
       display: flex;
       gap: 1rem;
       position: relative;
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--text);
+      &:hover{
+        transform: scale(1.04);
+      }
       .img {
         max-width: 10rem;
         min-width: 10rem;

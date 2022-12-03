@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import styles from './Search.module.scss';
 import axios from '../../../config/axios';
@@ -23,7 +23,7 @@ const Card = ({ product }) => {
   }, [product]);
 
   return (
-    <div className={styles.card}>
+    <Link className={styles.card} to={`/marketplace/item/${product?._id}`}>
       <div className={styles.img}>
         <img src={product?.photo} alt="" />
       </div>
@@ -31,15 +31,16 @@ const Card = ({ product }) => {
         <span>{product?.productName}</span>
         <small>₹ {product?.price}</small>
         <span style={{
-          width: '0.7rem',
-          height: '0.7rem',
+          width: '0.8rem',
+          height: '0.8rem',
           borderRadius: '50%',
-          marginTop: '0.3rem',
+          // marginTop: '1rem',
           backgroundColor: color,
+          margin: '0.6rem 0'
         }}></span>
-        <small>{product?.status} • product listed {format(product.createdAt)}</small>
+        <small >{product?.status} • product listed {format(product.createdAt)}</small>
       </div>
-    </div >
+    </Link>
   )
 }
 
@@ -99,7 +100,7 @@ const SearchMarketPlace = () => {
       <div className={styles.heading}>
         {searchedProducts.length >= 1
           ? <h3>You searched for : <span>{query}</span></h3>
-          : <h3 >No products found for <span style={{color:'var(--error)'}}>{query}</span></h3>}
+          : <h3 >No products found for <span style={{ color: 'var(--error)' }}>{query}</span></h3>}
       </div>
 
       {searchedProducts.length >= 1 && <div className={styles.section} style={{ borderBottom: '1px solid var(--border)' }}>
