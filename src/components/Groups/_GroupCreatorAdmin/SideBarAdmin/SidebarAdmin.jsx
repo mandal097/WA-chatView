@@ -161,9 +161,9 @@ const SidebarAdmin = () => {
                         </Link>
 
                         <Link
-                            to={`/groups/${currentGroup?._id}/overview`}
-                            className={`${styles.card} ${activeCard === 'activity_log' && styles.active_card}`}
-                            onClick={() => setActiveCard('activity_log')}>
+                            to={`/groups/${currentGroup?._id}/activity-log`}
+                            className={`${styles.card} ${activeCard === 'activity-log' && styles.active_card}`}
+                            onClick={() => setActiveCard('activity-log')}>
                             <div className={styles.left}>
                                 <RadarChartOutlined className={styles.icon} />
                             </div>

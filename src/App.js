@@ -43,6 +43,7 @@ import ProductPage from './components/MarkePlace/ProductPage/ProductPage';
 import CreateMarketPlaceProduct from './pages/MarketPlace/CreateProduct';
 import Commerce from './components/Profiles/Commerce/Commerce';
 import SearchMarketPlace from './components/MarkePlace/Search/SearchMarketPlace';
+import ActivityLog from './components/Groups/_GroupCreatorAdmin/ActivityLog/ActivityLog';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
@@ -103,6 +104,7 @@ const App = () => {
                 <Route path='member-requests' element={<MemberRequest />} />
                 <Route path='manage-rules' element={<Rules />} />
                 <Route path='edit' element={<Edit />} />
+                <Route path='activity-log' element={<ActivityLog />} />
                 <Route path='overview' element={<Test />} />
               </Route>
             </Route>
