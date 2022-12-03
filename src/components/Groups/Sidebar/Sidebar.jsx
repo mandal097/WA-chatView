@@ -51,7 +51,7 @@ const Sidebar = () => {
     const navigateToSearch = () => {
         navigate({
             pathname: `/groups/search/`,
-            search: `${createSearchParams({ 'q': searchTerm })}`
+            search: `${createSearchParams({ 'q': searchTerm, count: 2})}`
         })
         setSearchTerm('')
     }
@@ -130,7 +130,7 @@ const Sidebar = () => {
                 <div className={styles.group_list}>
                     <h2>Groups you've joined</h2>
                     {
-                        loading && <Loading font='10rem' color='white'/>
+                        loading && <Loading font='10rem' color='white' />
                     }
                     {
                         groups.map((group) => (

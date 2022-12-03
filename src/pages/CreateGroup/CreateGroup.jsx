@@ -65,6 +65,7 @@ const CreateGroup = () => {
                 setLoading(false);
                 toast.success(res.data.message);
                 setTimeout(() => {
+                    dispatch(removeMembers());
                     navigate(`/groups/${res.data.data?._id}`)
                 }, 500);
             }

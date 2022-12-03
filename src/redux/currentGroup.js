@@ -26,7 +26,7 @@ const userSlice = createSlice({
             state.currentGroup.groupCoverImg = action.payload
         },
         updateLocation: (state, action) => {
-            state.currentGroup.location.name = action.payload.name
+            state.currentGroup.location = action.payload
         },
     },
 });

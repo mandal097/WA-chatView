@@ -1,20 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useSearchParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import styles from './GroupList.module.scss';
+import axios from '../../../config/axios';
+import Loading from '../../Loading/Loading';
 
 
-const Card = ({ count }) => {
+const Card = ({ count, group }) => {
     const { currentUser } = useSelector(state => state.user)
     // console.log(count);
     return (
         <div className={styles.card_}>
             <div className={styles.card} style={{ alignItems: count === 'all' ? 'flex-start' : 'center' }}>
                 <div className={styles.img}>
-                    <img src="https://media.istockphoto.com/id/1358014313/photo/group-of-elementary-students-having-computer-class-with-their-teacher-in-the-classroom.jpg?b=1&s=170667a&w=0&k=20&c=_UfKmwUAFyylJkXm75hsnM9bPRajhoK_RT5t6VWMovo=" alt="img" />
+                    <img src={group?.groupCoverImg} alt="img" />
                 </div>
                 <div className={styles.details}>
-                    <Link className={styles.link}>SB FlexiFunnels DOer's Community </Link>
+                    <Link className={styles.link} to={`/groups/${group?._id}`}>{group?.groupName}</Link>
                     <div className={styles.counters}>
                         <p>Public · 64K followers · 10+ posts a day · 126 followers</p>
                     </div>
@@ -35,29 +38,64 @@ const Card = ({ count }) => {
     )
 }
 const GroupList = () => {
-    const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
     const [searchParams, setSearchParams] = useSearchParams();
     const searchQuery = searchParams.get('q');
     const count = searchParams.get('count');
-    console.log(searchQuery);
+    const [groups, setGroups] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const handleQuery = () => {
-        setSearchParams({ 'q': searchQuery, 'count': 'all' })
-    }
+        setSearchParams({ 'q': searchQuery, 'count': 'all' });
+
+    };
+
+    useEffect(() => {
+        let length;
+        if (count === 'all') {
+            length = 0;
+        } else {
+            length = count
+        }
+        const fetchGroups = async () => {
+            setLoading(true)
+            // const res = await axios.get(`/groups`, {
+            const res = await axios.get(`/groups/search?q=${searchQuery}&count=${length}`, {
+                headers: {
+                    token: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            // console.log(res.data.data);
+            if (res.data.status === 'err') {
+                toast.error(res.data.message)
+            }
+            if (res.data.status === 'success') {
+                toast.error(res.data.message);
+                setGroups(res.data.data)
+            }
+            setLoading(false)
+            console.log(res.data.data);
+        }
+        fetchGroups()
+    }, [searchQuery, count])
+
     return (
         <div className={styles.group_list} style={{ backgroundColor: count === 'all' ? 'var(--bgLight)' : 'var(--bgDark)' }}>
             <h2 style={{ color: count === 'all' ? 'var(--text)' : 'var(--textSoft)' }}>Groups</h2>
+
             {
-                count === 'all' ?
-                    arr.map(group => (
-                        <Card key={group} count={count} />
-                    )) :
-                    arr.slice(0, 2).map(group => (
-                        <Card key={group} count={count} />
-                    ))
+                loading && <Loading font='10rem' color='white' />
             }
             {
-                count !== 'all' &&
+                groups.map(group => (
+                    <Card key={group?._id} count={count} group={group} />
+                ))
+            }
+            {
+                groups.length === 0 && <h1 style={{ fontSize: '2rem', color: 'var(--text)' }}>No groups found for : {searchQuery}</h1>
+
+            }
+            {
+                count !== 'all' && groups.length !== 0 &&
                 <button className={styles.button} onClick={() => {
                     handleQuery()
                 }}>See All</button>

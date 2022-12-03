@@ -31,7 +31,7 @@ const LocationSelector = () => {
 
 
     const update = async () => {
-        if (country.name === currentGroup?.location?.name) {
+        if (country?.name === currentGroup?.location?.name) {
             toast.error('Already exists')
         }
         try {
@@ -137,7 +137,7 @@ const LocationSelector = () => {
                                     </div>
                                     <div className={styles.state}>
                                         {
-                                            country.name === c.name && <div></div>
+                                            country?.name === c?.name && <div></div>
                                         }
                                     </div>
                                 </div>

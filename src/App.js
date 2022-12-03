@@ -112,6 +112,7 @@ const App = () => {
               <Route path='inbox' element={<Inbox />} />
               <Route path='you/buying' element={<Buying />} />
               <Route path='category/:cat' element={<Browse />} />{/*fileterd by categories*/}
+              <Route path='search' element={<Browse type='searched' />} />
 
               <Route path='create' element={<CreateMarketPlaceProduct />} />
               <Route path='item/:id' element={<ProductPage />} />

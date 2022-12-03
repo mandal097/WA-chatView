@@ -8,6 +8,7 @@ import { SearchOutlined } from '@ant-design/icons';
 
 const Members = () => {
   const { currentUser } = useSelector(state => state.user);
+  const { currentGroup } = useSelector(state => state.currentGroup);
   const [searchTerm, setSearchTerm] = useState('');
   return (
     <div className={styles.members}>
@@ -33,7 +34,7 @@ const Members = () => {
             <h3>Searched Members</h3>
           </div>
           {
-            currentUser.followings?.map(id => (
+            currentGroup.members?.map(id => (
               <Card key={id} id={id} />
             ))
           }
@@ -50,7 +51,7 @@ const Members = () => {
               <h3>Friends in common <span>88564</span></h3>
             </div>
             {
-              currentUser.followings?.map(id => (
+              currentGroup.members?.map(id => (
                 <Card key={id} id={id} />
               ))
             }

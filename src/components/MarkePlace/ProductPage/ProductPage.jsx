@@ -179,7 +179,7 @@ const ProductPage = () => {
                         <h2 style={{ fontSize: '1.8rem' }}>Description :</h2>
                         {showDesc ?
                             <>
-                                <p style={{ fontSize: '1.5rem', textAlign: 'justify' }}>{product?.desc}</p>
+                                <p style={{ fontSize: '1.5rem', textAlign: 'justify',fontWeight:'100'}}>{product?.desc}</p>
                                 <span className={styles.more} onClick={() => setShowDesc(!showDesc)}>Read less...</span>
                             </>
                             : <>

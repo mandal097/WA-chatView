@@ -32,7 +32,7 @@ const Navbar = () => {
     const location = useLocation();
     const path = location.pathname.split('/')[1]
     const isGroupCreate = location.pathname.split('/')[2]
-    console.log(isGroupCreate);
+    // console.log(isGroupCreate);
 
 
     const logoutUser = () => {
@@ -46,7 +46,9 @@ const Navbar = () => {
 
     useEffect(() => {
         setActive(path)
-    }, [path])
+    }, [path]);
+
+
     if (isGroupCreate === 'create') return null;
     if (path === 'messenger') return null;
     return (

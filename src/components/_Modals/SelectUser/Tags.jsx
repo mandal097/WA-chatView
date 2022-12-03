@@ -90,7 +90,7 @@ const Tags = ({ setShowTag, btn }) => {
     return (
         <Modal
             width='50rem'
-            height='80vh'
+            height='83vh'
             margin='6rem 0'
             zIndex='10001'
             head='Select friends'

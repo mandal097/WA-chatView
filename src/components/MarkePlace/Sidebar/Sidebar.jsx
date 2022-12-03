@@ -16,7 +16,7 @@ import {
     TrophyOutlined,
     WomanOutlined
 } from '@ant-design/icons';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { createSearchParams, Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
     const [active, setActive] = useState('');
@@ -55,7 +55,17 @@ const Sidebar = () => {
             setActive('')
         }
 
-    }, [activeState, activeStateYou])
+    }, [activeState, activeStateYou]);
+
+    const navigateToSearch = () => {
+        navigate({
+            pathname: `/marketplace/search/`,
+            search: `${createSearchParams({ 'q': searchTerm })}`
+        })
+        setSearchTerm('')
+    }
+
+
     if (activeState === 'item') return null;
     if (activeState === 'create') return null;
     return (
@@ -72,9 +82,10 @@ const Sidebar = () => {
                         value={searchTerm}
                         placeholder='search marketplace...'
                     />
-                    {searchTerm && <div className={styles.search_item} ref={listRef}>
+                    {searchTerm && <div className={styles.search_item} ref={listRef} onClick={navigateToSearch}>
                         <ClockCircleOutlined className={styles.icon} />
-                        search for <span>{searchTerm}</span>
+                        search for
+                            <span>{searchTerm}</span>
                     </div>}
                 </div>
             </div>
@@ -87,25 +98,6 @@ const Sidebar = () => {
                     </div>
                     <span>Browse all</span>
                 </Link>
-
-                {/* <Link onClick={() => setActive('inbox')} to='inbox'
-                    className={`${styles.links} ${active === 'inbox' && styles.active}`}>
-                    <div className={styles.icon_}>
-                        <ScheduleFilled className={styles.icon} />
-                    </div>
-                    <span>Inbox</span>
-                </Link>
-
-                <Link onClick={() => setActive('buying')} to='you/buying'
-                    className={`${styles.links} ${active === 'buying' && styles.active}`}>
-                    <div className={styles.icon_}>
-                        <ShoppingFilled className={styles.icon} />
-                    </div>
-                    <span>Buying</span>
-                    <div style={{ marginLeft: 'auto', marginRight: '1rem' }}>
-                        <RightOutlined className={styles.icon} />
-                    </div>
-                </Link> */}
 
                 <Link onClick={() => setActive('selling')} to='you/selling'
                     className={`${styles.links} ${active === 'selling' && styles.active}`}>

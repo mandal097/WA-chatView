@@ -17,7 +17,6 @@ const Edit = () => {
                     <EditPrivacy />
                     <EditVisibility />
                     <LocationSelector />
-
                 </div>
             </div>
         </div>
