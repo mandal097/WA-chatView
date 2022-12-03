@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Card.module.scss';
 import {
     UserAddOutlined,
@@ -10,38 +10,11 @@ import axios from '../../../config/axios'
 import { toast, ToastContainer } from 'react-toastify';
 import { setCurrentChat } from '../../../redux/chatRedux';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 
-const Card = ({ id }) => {
+const Card = ({ id, user }) => {
     const { currentUser } = useSelector(state => state.user);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [user, setUser] = useState({});
-
-    useEffect(() => {
-        const fetchUser = async () => {
-            try {
-
-                const res = await axios.get(`/user/get-profile/${id}`, {
-                    headers: {
-                        token: `Bearer ${localStorage.getItem('token')}`
-                    }
-                });
-                if (res.data.status === 'err') {
-                    toast.error(res.data.message)
-                    // setLoading(false)
-                }
-                if (res.data.status === 'success') {
-                    setUser(res.data.data)
-                }
-            } catch (error) {
-                toast.error('Something went wrong')
-            }
-        }
-        fetchUser();
-    }, [id])
-
-    // console.log(user);
 
     const followUsers = async (e) => {
         e.preventDefault()

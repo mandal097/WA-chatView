@@ -27,9 +27,11 @@ const Sidebar = () => {
     const activeState = location.pathname.split('/')[2];
     const [searchTerm, setSearchTerm] = useState('')
     const [groups, setGroups] = useState([]);
+    const [joinedGroups, setJoinedGroups] = useState([]);
     const navigate = useNavigate();
     const listRef = useRef();
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);  //loading while fetching list of manageble groups
+    const [load, setLoad] = useState(false)  //loading while fetching list of joined groups
 
 
     useEffect(() => {
@@ -51,7 +53,7 @@ const Sidebar = () => {
     const navigateToSearch = () => {
         navigate({
             pathname: `/groups/search/`,
-            search: `${createSearchParams({ 'q': searchTerm, count: 2})}`
+            search: `${createSearchParams({ 'q': searchTerm, count: 2 })}`
         })
         setSearchTerm('')
     }
@@ -59,7 +61,7 @@ const Sidebar = () => {
     useEffect(() => {
         const fetchGroups = async () => {
             setLoading(true)
-            const res = await axios.get(`/groups`, {
+            const res = await axios.get(`/groups/my`, {
                 headers: {
                     token: `Bearer ${localStorage.getItem('token')}`
                 }
@@ -73,7 +75,29 @@ const Sidebar = () => {
                 setGroups(res.data.data)
             }
             setLoading(false)
-            console.log(res.data.data);
+            // console.log(res.data.data);
+        }
+        fetchGroups()
+    }, []);
+
+    useEffect(() => {
+        const fetchGroups = async () => {
+            setLoad(true)
+            const res = await axios.get(`/joined-groups`, {
+                headers: {
+                    token: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            // console.log(res.data.data);
+            if (res.data.status === 'err') {
+                toast.error(res.data.message)
+            }
+            if (res.data.status === 'success') {
+                toast.success(res.data.message);
+                setJoinedGroups(res.data.data)
+            }
+            setLoad(false)
+            // console.log(res.data);
         }
         fetchGroups()
     }, [])
@@ -128,14 +152,33 @@ const Sidebar = () => {
                 </button>
 
                 <div className={styles.group_list}>
-                    <h2>Groups you've joined</h2>
+                    <h2>Groups you manage</h2>
                     {
                         loading && <Loading font='10rem' color='white' />
                     }
                     {
-                        groups.map((group) => (
+                        groups?.map((group) => (
                             <Card key={group._id} details={group} />
                         ))
+                    }
+                    {
+                        groups?.length === 0 && <h1 style={{ fontSize: '2rem', color: 'var(--error)',fontWeight:'200'}}>Your groups are show here</h1>
+                    }
+                </div>
+
+                <div className={styles.group_list}>
+                    <h2>Groups you've joined</h2>
+                    {
+                        load && <Loading font='10rem' color='white' />
+                    }
+                    {
+                        joinedGroups?.map((group) => (
+                            <Card key={group._id} details={group} />
+                        ))
+                    }
+                    {
+                        joinedGroups?.length === 0 && <h1 style={{ fontSize: '2rem', color: 'var(--text)' }}>Groups you joined shown here</h1>
+
                     }
                 </div>
             </div>

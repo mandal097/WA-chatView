@@ -16,7 +16,6 @@ import { format } from 'timeago.js';
 import Loading from '../../../Loading/Loading';
 import ActionPopup from './Actions';
 import DeletePop from './DeletePop';
-// import EditProductModal from '../../../_Modals/EditMarketPlaceProductModal/EditProductModal';
 
 
 const CardList = ({ cardStyle, width, product, showEditModal, setShowEditModal }) => {

@@ -42,6 +42,7 @@ import Selling from './components/MarkePlace/Admin/Selling/Selling';
 import ProductPage from './components/MarkePlace/ProductPage/ProductPage';
 import CreateMarketPlaceProduct from './pages/MarketPlace/CreateProduct';
 import Commerce from './components/Profiles/Commerce/Commerce';
+import SearchMarketPlace from './components/MarkePlace/Search/SearchMarketPlace';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
@@ -112,7 +113,7 @@ const App = () => {
               <Route path='inbox' element={<Inbox />} />
               <Route path='you/buying' element={<Buying />} />
               <Route path='category/:cat' element={<Browse />} />{/*fileterd by categories*/}
-              <Route path='search' element={<Browse type='searched' />} />
+              <Route path='search' element={<SearchMarketPlace />} />
 
               <Route path='create' element={<CreateMarketPlaceProduct />} />
               <Route path='item/:id' element={<ProductPage />} />
