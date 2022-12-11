@@ -9,6 +9,7 @@ import axios from '../../../../config/axios';
 import { toast, ToastContainer } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import Loading from '../../../Loading/Loading';
+import { groupActivityLogs } from '../../../../helpers/groupActivities';
 
 
 const Card = ({ rules, index, col, adminAcess, show }) => {
@@ -27,6 +28,7 @@ const Card = ({ rules, index, col, adminAcess, show }) => {
             }
             if (res.data.status === 'success') {
                 toast.success(res.data.message);
+                groupActivityLogs(rules?.groupId, `delete a rule.`)
             }
         } catch (error) {
             toast.error('Something went  wrong')

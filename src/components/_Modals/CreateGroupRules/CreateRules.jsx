@@ -8,6 +8,7 @@ import { data } from './exampleRules';
 import axios from '../../../config/axios';
 import { useSelector } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
+import { groupActivityLogs } from '../../../helpers/groupActivities';
 
 
 const CreateRules = ({ setShow, ruleList, tTitle, tDesc, isForUpdation, rules }) => {
@@ -73,7 +74,8 @@ const CreateRules = ({ setShow, ruleList, tTitle, tDesc, isForUpdation, rules })
                 }
                 setLoading(false)
                 ruleList.push(updateRules);
-                toast.success(res.data.message)
+                toast.success(res.data.message);
+                groupActivityLogs(currentGroup?._id,`created a new rule.`)
                 setShow(false)
             }
             setLoading(false)

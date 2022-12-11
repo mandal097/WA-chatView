@@ -6,6 +6,7 @@ import axios from '../../../../config/axios';
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../../Loading/Loading';
 import { updateNameDesc } from '../../../../redux/currentGroup';
+import { groupActivityLogs } from '../../../../helpers/groupActivities';
 
 
 const EditNameDesc = () => {
@@ -48,7 +49,9 @@ const EditNameDesc = () => {
                 dispatch(updateNameDesc({
                     groupName: groupName,
                     desc: desc
-                }))
+                }));
+
+                groupActivityLogs(currentGroup?._id , `Change group name or desc.`)
                 setLoading(false);
             }
             setLoading(false);

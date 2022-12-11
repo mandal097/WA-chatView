@@ -6,6 +6,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import axios from '../../../../config/axios';
 import { updatePrivacy } from '../../../../redux/currentGroup';
 import Loading from '../../../Loading/Loading';
+import { groupActivityLogs } from '../../../../helpers/groupActivities';
 
 
 
@@ -44,7 +45,8 @@ const EditPrivacy = () => {
             }
             if (res.data.status === 'success') {
                 toast.success(res.data.message);
-                dispatch(updatePrivacy(selected))
+                dispatch(updatePrivacy(selected));
+                groupActivityLogs(currentGroup?._id , `Change group privacy to ${selected}.`)
                 setLoading(false);
             }
             setLoading(false);

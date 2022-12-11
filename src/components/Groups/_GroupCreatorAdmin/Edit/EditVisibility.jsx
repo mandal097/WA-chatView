@@ -6,6 +6,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import axios from '../../../../config/axios';
 import { updateVisibility } from '../../../../redux/currentGroup';
 import Loading from '../../../Loading/Loading';
+import { groupActivityLogs } from '../../../../helpers/groupActivities';
 
 
 const EditVisibility = () => {
@@ -43,7 +44,8 @@ const EditVisibility = () => {
             }
             if (res.data.status === 'success') {
                 toast.success(res.data.message);
-                dispatch(updateVisibility(selected))
+                dispatch(updateVisibility(selected));
+                groupActivityLogs(currentGroup?._id, `Change group visibility to ${selected}.`)
                 setLoading(false);
             }
             setLoading(false);

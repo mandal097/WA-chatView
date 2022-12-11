@@ -27,8 +27,8 @@
       display: flex;
       gap: 2rem;
       .img {
-        width: 4.5rem;
-        height: 4.5rem;
+        width: 4rem;
+        height: 4rem;
         img {
           width: 100%;
           height: 100%;
@@ -77,14 +77,14 @@
         }
       }
       button {
-        height: 4rem;
+        height: 3.5rem;
         width: 30%;
         font-size: 1.5rem;
         background-color: var(--bgLight);
         color: var(--text);
         margin-left: auto;
         margin-right: 2rem;
-        border-radius: 1rem;
+        border-radius: 0.4rem;
         &:hover {
           background-color: var(--bgLighter);
         }

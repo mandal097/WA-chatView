@@ -8,6 +8,7 @@ import Loading from '../../../Loading/Loading';
 import { Country, } from 'country-state-city'
 import { updateLocation } from '../../../../redux/currentGroup';
 import Map from './Map';
+import { groupActivityLogs } from '../../../../helpers/groupActivities';
 
 
 const LocationSelector = () => {
@@ -49,7 +50,8 @@ const LocationSelector = () => {
             }
             if (res.data.status === 'success') {
                 toast.success(res.data.message);
-                dispatch(updateLocation(country))
+                dispatch(updateLocation(country));
+                groupActivityLogs(currentGroup?._id, `changed the group location to ${country.name}.`)
                 setLoading(false);
             }
             setLoading(false);
@@ -82,8 +84,6 @@ const LocationSelector = () => {
     }, [inputCountry, countryList])
 
 
-    console.log(country);
-
 
     return (
         <>
@@ -102,7 +102,7 @@ const LocationSelector = () => {
 
             {show && <div className={styles.radios}>
 
-                <Map country={currentGroup?.location}/>
+                <Map country={currentGroup?.location} />
 
                 <div className={styles.location}>
                     <input

@@ -11,6 +11,7 @@ import styles from './CreateGroup.module.scss';
 import axios from '../../config/axios';
 import { toast, ToastContainer } from 'react-toastify';
 import Loading from '../../components/Loading/Loading';
+import { groupActivityLogs } from '../../helpers/groupActivities';
 
 const CreateGroup = () => {
     const { currentUser } = useSelector(state => state.user);
@@ -64,6 +65,7 @@ const CreateGroup = () => {
             if (res.data.status === 'success') {
                 setLoading(false);
                 toast.success(res.data.message);
+                groupActivityLogs(res.data.data?._id , `created the group.`)
                 setTimeout(() => {
                     dispatch(removeMembers());
                     navigate(`/groups/${res.data.data?._id}`)
