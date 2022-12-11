@@ -37,7 +37,7 @@ const NewConverstations = ({ setNewConverstations,searchTerm}) => {
             return false;
         });
         setSearchedUsers(search);
-        console.log(search);
+        // console.log(search);
     }, [searchTerm, allUser])
 
     

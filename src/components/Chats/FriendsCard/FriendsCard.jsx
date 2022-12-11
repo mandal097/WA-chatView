@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import axios from '../../../config/axios';
 import { ToastContainer, toast } from 'react-toastify';
+import {capitalizeFirstLetter} from '../../../helpers/strings';
 
 const NewConvCard = ({ conv, type, newUser, setNewConverstations }) => {
   const dispatch = useDispatch();
@@ -54,7 +55,7 @@ const NewConvCard = ({ conv, type, newUser, setNewConverstations }) => {
             <div className={styles.img}>
               <img src={details?.profilePic} alt='profile pic' />
             </div>
-            <span className={styles.name}>{details?.name}</span>
+            <span className={styles.name}>{capitalizeFirstLetter(details?.name)}</span>
           </div>
         ) : (
           <div className={styles.chat_card} onClick={startNewChat}>
@@ -62,7 +63,7 @@ const NewConvCard = ({ conv, type, newUser, setNewConverstations }) => {
               <img src={newUser?.profilePic} alt='profile pic' />
             </div>
 
-            <span className={styles.name}>{newUser?.name}</span>
+            <span className={styles.name}>{capitalizeFirstLetter(newUser?.name)}</span>
           </div>
         )
       }

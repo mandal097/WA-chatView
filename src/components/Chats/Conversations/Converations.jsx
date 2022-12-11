@@ -45,6 +45,12 @@ const Converations = ({ searchTerm }) => {
                     <ChatsCard key={conv._id} conv={conv} type='existedChat' />
                 ))
             }
+            {
+                conversations.length ===0 &&  <h1 style={{ fontSize: '2.3rem', color: 'var(--error)', fontWeight: '200' }}>No chats</h1>
+            }
+            {
+              searchTerm && searchedUsers.length ===0 &&  <h1 style={{ fontSize: '2.3rem', color: 'var(--error)', fontWeight: '200' }}>No chats found</h1>
+            }
         </div>
     )
 }

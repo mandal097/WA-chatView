@@ -242,7 +242,7 @@ const Profile = () => {
                                     <img src={currentProfileDetails?.profilePic} alt="profilImage" />
                                 </div>
                                 <div className={styles.profile_details}>
-                                    <h3 className={styles.name}>{capitalizeFirstLetter(currentProfileDetails.name)}</h3>
+                                    <h3 className={styles.name}>{capitalizeFirstLetter(currentProfileDetails?.name)}</h3>
                                     <div className={styles.connections}>
                                         <Link
                                             to={`/profile/${id}`}
