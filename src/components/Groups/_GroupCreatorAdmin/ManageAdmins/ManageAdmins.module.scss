@@ -1,0 +1,78 @@
+.manage_admins {
+  color: var(--text);
+  .wrapper {
+    width: 90%;
+    margin: 0 auto;
+    height: 100%;
+    padding: 2rem 1rem;
+  }
+  .top {
+    height: fit-content;
+    background-color: var(--bgDark);
+    position: sticky;
+    top: 5.5rem;
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 500;
+      color: var(--textSoft);
+    }
+    .search_box {
+      margin: 1rem 0;
+      height: 4rem;
+      display: flex;
+      gap: 1rem;
+      .search {
+        flex: 1;
+        height: 100%;
+        border-radius: 5rem;
+        background-color: var(--bgLight);
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        gap: 1rem;
+        .icon {
+          font-size: 3rem;
+        }
+        input {
+          flex: 1;
+          height: 100%;
+          color: var(--text);
+          font-size: 1.5rem;
+        }
+      }
+      .sort_btn {
+        height: 100%;
+        border-radius: 1rem;
+        padding: 0 1rem;
+        background-color: var(--bgLight);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        gap: 1rem;
+        position: relative;
+        cursor: pointer;
+        span {
+          font-size: 1.4rem;
+          text-transform: capitalize;
+        }
+        .icon {
+          font-size: 3rem;
+        }
+      }
+    }
+  }
+  .bottom {
+    h2 {
+      font-size: 2rem;
+      font-weight: 400;
+      padding: 0.3rem 0;
+      color: var(--error);
+    }
+    width: 86%;
+    margin: 2rem auto;
+    border-radius: 0.5rem;
+    background-color: var(--bgDark);
+    padding: 0 1rem;
+  }
+}

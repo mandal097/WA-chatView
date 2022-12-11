@@ -113,7 +113,7 @@ const SidebarAdmin = () => {
                             <span>Admin Tools</span>
                         </div>
                         <Link
-                            to={`/groups/${currentGroup?._id}/overview`}
+                            to={`/groups/${currentGroup?._id}/admin_assist`}
                             className={`${styles.card} ${activeCard === 'admin_assist' && styles.active_card}`}
                             onClick={() => setActiveCard('admin_assist')}>
                             <div className={styles.left}>
@@ -161,9 +161,9 @@ const SidebarAdmin = () => {
                         </Link>
 
                         <Link
-                            to={`/groups/${currentGroup?._id}/activity-log`}
-                            className={`${styles.card} ${activeCard === 'activity-log' && styles.active_card}`}
-                            onClick={() => setActiveCard('activity-log')}>
+                            to={`/groups/${currentGroup?._id}/admin_activities`}
+                            className={`${styles.card} ${activeCard === 'admin_activities' && styles.active_card}`}
+                            onClick={() => setActiveCard('admin_activities')}>
                             <div className={styles.left}>
                                 <RadarChartOutlined className={styles.icon} />
                             </div>

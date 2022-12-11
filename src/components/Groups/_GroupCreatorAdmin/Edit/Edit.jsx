@@ -19,7 +19,7 @@ const Edit = () => {
                     <EditPrivacy />
                     <EditVisibility />
                     <LocationSelector />
-                    <Manage type='Manage admins' target='overview' array={currentGroup?.admins}/>
+                    <Manage type='Manage admins' target='admin_assist' array={currentGroup?.admins}/>
                     <Manage type='Manage members' target='member-requests' array={currentGroup?.members}/>
                 </div>
             </div>

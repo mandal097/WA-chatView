@@ -17,11 +17,11 @@ const Manage = ({ type, target, array }) => {
                     <UserBadge array={array} size='2.3rem' show='false' mr='-0.7rem' />
                     </div>
                 </div>
-                <button className={`${styles.manage_btn} ${styles.icon_}`} onClick={() => {
+                <button 
+                className={`${styles.manage_btn} ${styles.icon_}`}
+                 onClick={() => {
                     navigate(`/groups/${groupId}/${target}`)
-                }}>
-                    Manage
-                </button>
+                }}>Manage</button>
             </div>
         </>
     )
