@@ -12,6 +12,7 @@ import {
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import axios from '../../../config/axios';
+import {capitalizeFirstLetter} from '../../../helpers/strings';
 
 const Details = ({ id }) => {
     const { currentUser } = useSelector(state => state.user);
@@ -50,7 +51,7 @@ const Details = ({ id }) => {
             <ul>
                 <li>
                     <div className={styles.icon_}><UserOutlined className={styles.icon} /></div>
-                    <div className={styles.fields}><p>{me ? currentUser.name : currentProfile?.name}</p></div>
+                    <div className={styles.fields}><p>{me ? capitalizeFirstLetter(currentUser.name) : capitalizeFirstLetter(currentProfile?.name)}</p></div>
                 </li>
                 <li>
                     <div className={styles.icon_}><MailFilled className={styles.icon} /></div>

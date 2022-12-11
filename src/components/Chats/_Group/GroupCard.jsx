@@ -1,13 +1,14 @@
 import React from 'react';
 import styles from './GroupCard.module.scss'
 import { useDispatch } from 'react-redux';
-import { setCurrentChat } from '../../../redux/chatRedux';
+import { setCurrentChat } from '../../../redux/chatRedux'; 
+import {capitalizeFirstLetter} from '../../../helpers/strings';
 
 const GroupCard = ({ group }) => {
     const dispatch = useDispatch();
 
     const startChat = () => {
-        dispatch(setCurrentChat({ currentChat: group, chatId:group._id }))
+        dispatch(setCurrentChat({ currentChat: group, chatId: group._id }))
     }
 
     return (
@@ -16,7 +17,7 @@ const GroupCard = ({ group }) => {
                 <div className={styles.img}>
                     <img src={group?.groupAvatar} alt='profile pic' />
                 </div>
-                <span className={styles.name}>{group?.chatName}</span>
+                <span className={styles.name}>{capitalizeFirstLetter(group?.chatName)}</span>
             </div>
         </>
     )

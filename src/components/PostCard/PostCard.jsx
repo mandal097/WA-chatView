@@ -21,6 +21,7 @@ import { useRef } from 'react';
 import PostActions from './PostActions';
 import axios from '../../config/axios';
 import { format } from 'timeago.js';
+import { capitalizeFirstLetter } from '../../helpers/strings';
 
 const PostCard = ({ post, loading }) => {
     const { currentUser } = useSelector(state => state.user);
@@ -109,10 +110,10 @@ const PostCard = ({ post, loading }) => {
                     <img src={post.userId?.profilePic} alt="image_" />
                 </div>
                 <div className={styles.details}>
-                    <Link to={`/profile/${post?.userId._id}`} className={`${styles.link} ${styles.name_link}`}>{post.userId?.name}</Link>
+                    <Link to={`/profile/${post?.userId._id}`} className={`${styles.link} ${styles.name_link}`}>{capitalizeFirstLetter(post.userId?.name)}</Link>
                     <small>  {post.tags?.length > 0 && 'is with'}</small> {' '}
                     {post.tags?.slice(0, 3).map(tag => (
-                        <Link to={`/profile/${tag._id}`} className={styles.link}>{tag.name}</Link>
+                        <Link to={`/profile/${tag._id}`} className={styles.link}>{capitalizeFirstLetter(tag.name)}</Link>
                     ))}
                     {post.tags?.length > 4 &&
                         <div className={styles.more_tags}>
@@ -144,7 +145,7 @@ const PostCard = ({ post, loading }) => {
 
                 <div className={styles.post_captions}>
                     <p>
-                        <span>{post.userId?.name}</span>
+                        <span>{capitalizeFirstLetter(post.userId?.name)}</span>
                         {post.text}
                         {/* <div >Read less...</div> */}
                     </p>
@@ -175,7 +176,7 @@ const PostCard = ({ post, loading }) => {
                         type="text"
                         ref={inputRef}
                         value={commentText}
-                        placeholder={`comment as ${currentUser?.name}`}
+                        placeholder={`comment as ${capitalizeFirstLetter(currentUser?.name)}`}
                         onChange={(e) => setCommentText(e.target.value)}
                     />
                     {

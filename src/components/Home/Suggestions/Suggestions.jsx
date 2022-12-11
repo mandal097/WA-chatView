@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux'
 import { followFriend } from '../../../redux/userRedux';
 import { toast, ToastContainer } from 'react-toastify';
 import Loading from '../../Loading/Loading';
+import {capitalizeFirstLetter} from '../../../helpers/strings'
 
 const Card = ({ user, onClick }) => {
   const dispatch = useDispatch()
@@ -42,7 +43,7 @@ const Card = ({ user, onClick }) => {
         <div className={styles.img} style={{ width: '3.8rem', height: '3.8rem' }}>
           <img src={user?.profilePic} alt="profilepic" />
         </div>
-        <span onClick={onClick}>{user?.name}</span>
+        <span onClick={onClick}>{capitalizeFirstLetter(user?.name)}</span>
         <button onClick={followUsers}>Follow</button>
       </div>
     </>
@@ -103,7 +104,7 @@ const Suggestions = () => {
         <div className={styles.img}>
           <img src={currentUser?.profilePic} alt="profilepic" />
         </div>
-        <span onClick={() => navigate(`/profile/${currentUser?._id}`)}>{currentUser?.name}</span>
+        <span onClick={() => navigate(`/profile/${currentUser?._id}`)}>{capitalizeFirstLetter(currentUser?.name)}</span>
       </div>
 
       <div className={styles.head}>

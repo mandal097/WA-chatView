@@ -23,7 +23,7 @@ import { useCallback } from 'react';
 import { setCurrentChat } from '../../redux/chatRedux';
 import { useUpload } from '../../hooks/useUpload';
 import UserBadge from '../../components/UserBadge/UserBadge';
-
+import {capitalizeFirstLetter} from '../../helpers/strings';
 
 const Profile = () => {
     const { currentUser } = useSelector(state => state.user);
@@ -242,7 +242,7 @@ const Profile = () => {
                                     <img src={currentProfileDetails?.profilePic} alt="profilImage" />
                                 </div>
                                 <div className={styles.profile_details}>
-                                    <h3 className={styles.name}>{currentProfileDetails.name}</h3>
+                                    <h3 className={styles.name}>{capitalizeFirstLetter(currentProfileDetails.name)}</h3>
                                     <div className={styles.connections}>
                                         <Link
                                             to={`/profile/${id}`}

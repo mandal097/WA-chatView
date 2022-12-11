@@ -20,6 +20,7 @@ import { setCurrentChatInitial } from '../../redux/chatRedux';
 import GroupList from '../../components/Chats/_Group/GroupList/GroupList';
 import GroupInfo from '../../components/Chats/_Group/GroupInfo/GroupInfo';
 import { Link, useNavigate } from 'react-router-dom';
+import {capitalizeFirstLetter} from '../../helpers/strings';
 
 
 const Message = () => {
@@ -60,7 +61,7 @@ const Message = () => {
             <Link to={`/profile/${currentUser._id}`} className={styles.profile}>
               <img src={currentUser?.profilePic} alt="" />
             </Link>
-            <h4 style={{ fontSize: '1.4rem' }}>{currentUser.name.split(' ')[0]}</h4>
+            <h4 style={{ fontSize: '1.4rem' }}>{capitalizeFirstLetter(currentUser.name.split(' ')[0])}</h4>
             <div className={styles.actions}>
               <button><HistoryOutlined /></button>
               <button onClick={() => {
@@ -123,7 +124,7 @@ const Message = () => {
               }>
                 <h4 className={styles.chat_name}>{
                   currentChat?.isGroupChat === true ?
-                    currentChat.chatName : currentChat.name
+                  capitalizeFirstLetter(currentChat.chatName) : capitalizeFirstLetter(currentChat.name)
                 }
                 </h4>
                 <p>Lorem, ipsum dolor sit amet consecteturoluptatibus consequuntur alias iusto quasi dolores? Vel.</p>

@@ -23,7 +23,7 @@
     .details {
       flex: 1;
       font-size: 1.6rem;
-      text-transform: capitalize;
+      // text-transform: capitalize;
       small {
         display: inline;
         color: var(--text);
@@ -110,7 +110,7 @@
       height: auto;
       span {
         font-size: 1.3rem;
-        text-transform: capitalize;
+        // text-transform: capitalize;
         color: var(--btnLight);
         cursor: pointer;
         font-weight: bold;
