@@ -89,7 +89,7 @@ const Commerce = () => {
                         ))
                     }
 
-                    {products.length === 0 && <h1>No Listed products</h1>}
+                    {products.length === 0 && <h1  style={{ fontSize: '2.3rem', color: 'var(--error)', fontWeight: '200' }}>No Listed products</h1>}
                 </div>
             </div>
         </div>

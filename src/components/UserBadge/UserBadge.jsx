@@ -4,7 +4,7 @@ import Loading from '../Loading/Loading';
 import styles from './UserBadge.module.scss';
 import axios from '../../config/axios';
 
-const User = ({ id }) => {
+const User = ({ id, size, show ,mr}) => {
     const [details, setDetails] = useState({});
     const [loading, setLoading] = useState(false)
 
@@ -29,11 +29,11 @@ const User = ({ id }) => {
         fetchDetails()
     }, [id])
     return (
-        <Link to={`/profile/${id}`} className={styles.list_item}>
+        <Link to={`/profile/${id}`} className={styles.list_item} style={{ width: size, height: size ,marginRight:mr}}>
             {loading ? <Loading font='3rem' color='white' />
                 : <>
                     <img src={details?.profilePic} alt="friends pictures" />
-                    <div className={styles.bagde_name}>{details.name}</div>
+                    {show === 'true' && <div className={styles.bagde_name}>{details.name}</div>}
                 </>
             }
         </Link>
@@ -41,12 +41,12 @@ const User = ({ id }) => {
 }
 
 
-const UserBadge = ({ array }) => {
+const UserBadge = ({ array, size, show ,mr}) => {
     return (
-        <div className={styles.user_badge}>
+        <div className={styles.user_badge} style={{display:'flex',flexDirection:'row'}}>
             {
                 array?.slice(0, 10).map(element => (
-                    <User key={element} id={element} />
+                    <User key={element} id={element} size={size} show={show} mr={mr} />
                 ))
             }
 

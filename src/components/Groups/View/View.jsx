@@ -168,8 +168,7 @@ const View = () => {
                                     </div>
                                 </div>
                                 :
-                                //  <h3>user must have to add in future</h3>
-                                <UserBadge array={currentGroup?.members}/>
+                                <UserBadge array={currentGroup?.members} show='true' />
 
                             }
                         </div>

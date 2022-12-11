@@ -63,6 +63,16 @@
             text-transform: capitalize;
           }
         }
+        .manage_btn{
+          font-size: 1.5rem;
+          padding: 0.5rem 1rem;
+          background-color: var(--bgLight);
+          border-radius: 0.3rem;
+          align-self: flex-start;
+          &:hover{
+            background-color: var(--bgLighter);
+          }
+        }
         .icon_ {
           cursor: pointer;
           .icon {
@@ -181,6 +191,7 @@
           padding: 0.5rem;
         }
       }
+      
     }
   }
 }

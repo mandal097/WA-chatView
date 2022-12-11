@@ -33,14 +33,14 @@ const Feed = () => {
     if (loading) return <Loading font='10rem' color='white' />
     return (
         <div className={styles.feeds}>
-            <CreatePost/>
+            <CreatePost />
             {
                 posts?.map((post => (
                     <PostCard key={post?._id} post={post} loading={loading} />
                 )))
             }
             {
-                !posts && !loading && <h2>No posts founds...</h2>
+                posts.length === 0 && !loading && <h2  style={{ fontSize: '2.3rem', color: 'var(--error)', fontWeight: '200' }}>follow friends to show there feeds here ☺</h2>
             }
         </div>
     )

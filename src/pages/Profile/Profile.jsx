@@ -287,7 +287,7 @@ const Profile = () => {
                                             <span>{currentProfileDetails.followings?.length ? currentProfileDetails.followings.length : 0}</span> followings</Link>
                                     </div>
                                     <div className={styles.user_actions}>
-                                        <UserBadge array={currentProfileDetails?.followers} />
+                                        <UserBadge array={currentProfileDetails?.followers} show='true'/>
                                        
                                         <div className={styles.actions}>
                                             {owner
