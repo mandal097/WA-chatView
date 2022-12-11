@@ -24,7 +24,7 @@ const Members = () => {
           token: `Bearer ${localStorage.getItem('token')}`
         }
       })
-      // console.log(res.data.data);
+      console.log(res.data.data);
       if (res.data.status === 'err') {
         toast.error(res.data.message)
       }

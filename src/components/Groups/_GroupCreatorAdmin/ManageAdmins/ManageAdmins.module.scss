@@ -64,10 +64,12 @@
   }
   .bottom {
     h2 {
-      font-size: 2rem;
+      font-size: 1.7rem;
       font-weight: 400;
       padding: 0.3rem 0;
-      color: var(--error);
+      color: var(--btnLight);
+      width: fit-content;
+      border-bottom: 1px solid var(--bgLighter);
     }
     width: 86%;
     margin: 2rem auto;

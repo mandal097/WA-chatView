@@ -8,15 +8,18 @@ import Loading from '../../../Loading/Loading';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentChat } from '../../../../redux/chatRedux';
 import { followFriend } from '../../../../redux/userRedux';
-import { DeleteFilled, MessageFilled, UserAddOutlined } from '@ant-design/icons';
+import { DeleteFilled, MessageFilled, PlusOutlined, UserAddOutlined } from '@ant-design/icons';
+import PopUp from './PopUp';
 
 const Card = ({ userId }) => {
     const { currentUser } = useSelector(state => state.user);
     const { currentGroup } = useSelector(state => state.currentGroup);
+    const [loading, setLoading] = useState(false);
+    const [showPop, setShowPop] = useState(false);
+    const [type, setType] = useState('')
     const [user, setUser] = useState({});
     const navigate = useNavigate();
-    const [loading, setLoading] = useState(false);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const fetchDetails = async () => {
@@ -94,9 +97,29 @@ const Card = ({ userId }) => {
                     ? String(user._id) !== String(currentUser._id) && <button onClick={followUsers} > <UserAddOutlined className={styles.icon} /> Follow</button>
                     : <button onClick={startChat}> <MessageFilled className={styles.icon} /> Message</button>
                 }
-                {!currentGroup?.admins.includes(user._id) && <button button className={styles.remove} onClick={startChat}> <DeleteFilled className={styles.icon} /></button>}
+                {!currentGroup?.admins.includes(user._id) &&
+                    <button button style={{ marginLeft: '0' }} onClick={() => {
+                        setType('admin')
+                        setShowPop(true)
+                    }}> <PlusOutlined className={styles.icon} />Invite</button>}
 
+                {!currentGroup?.admins.includes(user._id) &&
+                    <button button
+                        className={styles.remove}
+                        onClick={() => {
+                            setType('delete')
+                            setShowPop(true);
+                        }}> <DeleteFilled className={styles.icon} /></button>}
             </div >
+            {
+                showPop &&
+                <PopUp
+                    showPop={showPop}
+                    setShowPop={setShowPop}
+                    type={type}
+                    user={user}
+                />
+            }
         </>
     )
 }
