@@ -45,6 +45,7 @@ import Commerce from './components/Profiles/Commerce/Commerce';
 import SearchMarketPlace from './components/MarkePlace/Search/SearchMarketPlace';
 import ActivityLog from './components/Groups/_GroupCreatorAdmin/ActivityLog/ActivityLog';
 import ManageAdmins from './components/Groups/_GroupCreatorAdmin/ManageAdmins/ManageAdmins';
+import Error from './pages/Error/Error';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
@@ -54,7 +55,9 @@ const App = () => {
       <BrowserRouter>
         <Navbar />
         <Routes>
+
           <Route path='/'>
+
             <Route index element={user ? <Navigate to='home' /> : <Welcome />} />
 
             <Route path='home' element={<Home />} />
@@ -124,8 +127,11 @@ const App = () => {
 
               <Route path='you/selling' element={<Selling />} /> {/* for admins who wants to sell*/}
             </Route>
-
           </Route>
+          {/* ------------------------error page when routes found------------------ */}
+
+          <Route path='*' element={<Error />} />
+          
         </Routes>
       </BrowserRouter>
     </div>
