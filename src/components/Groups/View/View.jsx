@@ -29,6 +29,8 @@ const View = () => {
     const activeState = location.pathname.split('/')[3];
     const [isAdmin, setIsAdmin] = useState(false);
 
+    const [sending, setSending] = useState(false) // loading purpose for sending request to join member
+
     const { uploadPerc, url } = useUpload(coverImg)
 
     useEffect(() => {
@@ -125,7 +127,32 @@ const View = () => {
             toast.error('something went wrong')
             setUploading(false);
         }
+    };
+
+    const handleRequests = async () => {
+        try {
+            setSending(true);
+            const res = await axios.put(`/groups/member-request/${currentGroup?._id}`, {}, {
+                headers: {
+                    token: `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            if (res.data.status === 'err') {
+                toast.error(res.data.message);
+                setSending(false);
+            }
+            if (res.data.status === 'success') {
+                setSending(false);
+                toast.success(res.data.message);
+                console.log(res.data);
+            }
+        } catch (error) {
+            toast.error('Something went wrong')
+            setSending(false);
+        }
     }
+
+    console.log(currentGroup);
 
     if (loading) return <Loading font='15rem' color='white' />
 
@@ -174,7 +201,18 @@ const View = () => {
                         </div>
 
                         <div className={styles.btns}>
-                            <button><UsergroupAddOutlined className={styles.icon} /> Joined</button>
+
+
+                            {currentGroup?.members?.includes(currentUser?._id)
+                                ?
+                                <button onClick={handleRequests}><UsergroupAddOutlined className={styles.icon}
+                                /> {currentGroup?.members?.includes(currentUser?._id) ? 'Joined' : sending ? 'wait...' : 'Leave group'}</button>
+
+                                : <button onClick={handleRequests}><UsergroupAddOutlined className={styles.icon}
+                                /> {currentGroup?.membersRequests?.includes(currentUser?._id) ? 'Requested' : sending ? 'wait...' : 'Join'}</button>}
+
+
+
                             <button ><PlusOutlined className={styles.icon} />Invite</button>
                             <button onClick={handleArrow}>
                                 {clicked
