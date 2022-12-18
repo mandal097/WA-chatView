@@ -12,6 +12,7 @@ import {
 } from '@ant-design/icons';
 import axios from '../../../../config/axios';
 import Card from './Card';
+import Loading from '../../../Loading/Loading';
 
 const Sort = ({ setActiveFilter, activeFilter }) => {
 
@@ -91,6 +92,8 @@ const MemberRequest = () => {
                         <span>No pending members </span>
                     </div>
                 </div>}
+
+                {loading && <Loading font='10rem' color='var(--text)'/>}
 
                 {
                     groupDetails?.membersRequests?.map(request_member => (

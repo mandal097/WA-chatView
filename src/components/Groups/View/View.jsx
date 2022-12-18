@@ -7,7 +7,7 @@ import axios from '../../../config/axios';
 import { toast } from 'react-toastify';
 import Loading from '../../Loading/Loading';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentGroup, updateGroupCoverImg } from '../../../redux/currentGroup';
+import { pushMemberRequest, setCurrentGroup, updateGroupCoverImg } from '../../../redux/currentGroup';
 import { useUpload } from '../../../hooks/useUpload';
 import UserBadge from '../../UserBadge/UserBadge';
 
@@ -144,6 +144,7 @@ const View = () => {
             if (res.data.status === 'success') {
                 setSending(false);
                 toast.success(res.data.message);
+                dispatch(pushMemberRequest(currentUser?._id))
                 console.log(res.data);
             }
         } catch (error) {

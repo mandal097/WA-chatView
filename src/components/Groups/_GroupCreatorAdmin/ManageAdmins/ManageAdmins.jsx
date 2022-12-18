@@ -29,7 +29,15 @@ const ManageAdmins = () => {
                     ))
                 }
             </div>
-            
+            {currentGroup?.adminsInvited.length !== 0 && <div className={styles.bottom}>
+                <h2>Members invited as admins</h2>
+                {
+                    currentGroup?.adminsInvited?.map((id) => (
+                        <Card key={id} userId={id} requested={true} />
+                    ))
+                }
+            </div>}
+
             <div className={styles.bottom}>
                 <h2>Invite as admin from members of the group</h2>
                 {

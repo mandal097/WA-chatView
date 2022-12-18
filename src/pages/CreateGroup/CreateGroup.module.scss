@@ -1,6 +1,7 @@
 .create_group {
   display: flex;
   height: 100vh;
+overflow: hidden;
   .sidebar {
     width: 38rem;
     z-index: 1000;

@@ -8,10 +8,11 @@ import Loading from '../../../Loading/Loading';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentChat } from '../../../../redux/chatRedux';
 import { followFriend } from '../../../../redux/userRedux';
-import { DeleteFilled, MessageFilled, PlusOutlined, UserAddOutlined } from '@ant-design/icons';
+import { CheckOutlined, DeleteFilled, MessageFilled, PlusOutlined, UserAddOutlined } from '@ant-design/icons';
 import PopUp from './PopUp';
+import { pullAdminInvites } from '../../../../redux/currentGroup';
 
-const Card = ({ userId }) => {
+const Card = ({ userId, requested }) => {
     const { currentUser } = useSelector(state => state.user);
     const { currentGroup } = useSelector(state => state.currentGroup);
     const [loading, setLoading] = useState(false);
@@ -20,6 +21,20 @@ const Card = ({ userId }) => {
     const [user, setUser] = useState({});
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    const [cancelLoad, setCancelLoad] = useState(false); //for showing loading when cancelling invite
+    const [cancelled, setCancelled] = useState(false);  //for cancelled message after cancelling invite
+
+    const [removed, setRemoved] = useState(false) //for showing removed message in button
+    const [invited, setInvited] = useState(false) //for showing invite message in button
+
+    useEffect(() => {
+        if (currentGroup?.adminsInvited.includes(userId)) {
+            setInvited(true)
+        } else {
+            setInvited(false)
+        }
+    }, [currentGroup, userId])
 
     useEffect(() => {
         const fetchDetails = async () => {
@@ -33,7 +48,7 @@ const Card = ({ userId }) => {
                 if (res.data.status === 'success') {
                     setUser(res.data.data)
                     setLoading(false)
-                    console.log(res);
+                    // console.log(res);
                 }
             } catch (error) {
                 setLoading(false)
@@ -43,6 +58,11 @@ const Card = ({ userId }) => {
         fetchDetails()
     }, [userId]);
 
+    useEffect(() => {
+        if (currentGroup?.adminsInvited?.includes(user?._id)) {
+            setInvited(true)
+        }
+    }, [currentGroup, user])
 
 
     const followUsers = async (e) => {
@@ -60,8 +80,7 @@ const Card = ({ userId }) => {
         } catch (error) {
             toast.error('something went wrong')
         }
-    }
-
+    };
 
     const startChat = async () => {
         const res = await axios.post('/chats/create-chat', {
@@ -75,6 +94,35 @@ const Card = ({ userId }) => {
         dispatch(setCurrentChat({ currentChat: filter, chatId: res.data.data[0]._id }));
         if (filter) {
             navigate('/messenger');
+        }
+    }
+
+
+    const cancelInvite = async (e) => {
+        try {
+            setCancelLoad(true);
+            const res = await axios.put(`/groups/handle-admins/cancel-invite/${currentGroup?._id}`, {
+                memberId: userId
+            }, {
+                headers: {
+                    token: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            if (res.data.status === 'err') {
+                toast.success(res.data.message)
+                setCancelLoad(false);
+            }
+            if (res.data.status === 'success') {
+                toast.success(res.data.message);
+                setCancelLoad(false);
+                setCancelled(true);
+                setTimeout(() => {
+                    dispatch(pullAdminInvites(userId))
+                }, 2000);
+            }
+        } catch (error) {
+            toast.error('something went wrong')
+            setCancelLoad(false);
         }
     }
 
@@ -93,30 +141,65 @@ const Card = ({ userId }) => {
                         {user?.name}
                     </span>
                 </div>
-                {!currentUser.followings?.includes(user._id)
-                    ? String(user._id) !== String(currentUser._id) && <button onClick={followUsers} > <UserAddOutlined className={styles.icon} /> Follow</button>
-                    : <button onClick={startChat}> <MessageFilled className={styles.icon} /> Message</button>
-                }
-                {!currentGroup?.admins.includes(user._id) &&
-                    <button button style={{ marginLeft: '0' }} onClick={() => {
-                        setType('admin')
-                        setShowPop(true)
-                    }}> <PlusOutlined className={styles.icon} />Invite</button>}
+                {requested ?
+                    <button onClick={cancelInvite}
+                        style={{ marginLeft: 'auto' }}
+                        className={`${styles.remove} ${cancelLoad && styles.removed_}`}
+                    >
+                        {cancelLoad ? <Loading font='4rem' color='var(--text)' /> :
+                            cancelled ?
+                                <>
+                                    <CheckOutlined className={styles.icon} /> {' Removed'}
+                                </>
+                                :
+                                <>
+                                    <DeleteFilled className={styles.icon} /> {' Cancel'}
+                                </>
+                        }
+                    </button>
+                    : <>
+                        {!currentUser.followings?.includes(user._id)
+                            ? String(user._id) !== String(currentUser._id) && <button onClick={followUsers} > <UserAddOutlined className={styles.icon} /> Follow</button>
+                            : <button onClick={startChat}> <MessageFilled className={styles.icon} /> Message</button>
+                        }
+                        {!currentGroup?.admins.includes(user._id) &&
+                            <button button style={{ marginLeft: '0' }}
+                                className={` ${invited && styles.invited_}`}
+                                onClick={() => {
+                                    setType('admin')
+                                    setShowPop(true)
+                                }}>
+                                {invited
+                                    ? <>
+                                        <CheckOutlined className={styles.icon} />Invited
+                                    </>
+                                    : <>
+                                        <PlusOutlined className={styles.icon} />Invite
+                                    </>
+                                }
+                            </button>}
 
-                {!currentGroup?.admins.includes(user._id) &&
-                    <button button
-                        className={styles.remove}
-                        onClick={() => {
-                            setType('delete')
-                            setShowPop(true);
-                        }}> <DeleteFilled className={styles.icon} /></button>}
+                        {!currentGroup?.admins.includes(user._id) &&
+                            <button button
+                                className={`${styles.remove} ${removed && styles.removed_}`}
+                                onClick={() => {
+                                    setType('delete')
+                                    setShowPop(true);
+                                }}>
+                                {removed ? 'Removed' : <DeleteFilled className={styles.icon} />}
+                            </button>
+                        }
+                    </>}
             </div >
             {
                 showPop &&
                 <PopUp
                     showPop={showPop}
                     setShowPop={setShowPop}
+                    groupId={currentGroup?._id}
                     type={type}
+                    setRemoved={setRemoved}
+                    setInvited={setInvited}
                     user={user}
                 />
             }

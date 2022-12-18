@@ -56,10 +56,22 @@
     background-color: var(--error);
     border-radius: 0.5rem;
     &:hover {
+      color: var(--error);
       background-color: var(--text);
       .icon {
         color: var(--error);
       }
+    }
+  }
+  .invited_ {
+    background-color: var(--btn);
+    &:hover {
+      background-color: var(--btnLight);
+    }
+  }
+  .removed_ {
+    &:hover {
+      color: var(--error);
     }
   }
   &:last-child {

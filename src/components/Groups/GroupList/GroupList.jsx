@@ -1,15 +1,41 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import styles from './GroupList.module.scss';
 import axios from '../../../config/axios';
 import Loading from '../../Loading/Loading';
+import { pushMemberRequest } from '../../../redux/currentGroup';
 
 
 const Card = ({ count, group }) => {
-    const { currentUser } = useSelector(state => state.user)
-    // console.log(count);
+    const { currentUser } = useSelector(state => state.user);
+    const [sending, setSending] = useState(false) // loading purpose for sending request to join member
+    const dispatch = useDispatch();
+
+    const handleRequests = async () => {
+        try {
+            setSending(true);
+            const res = await axios.put(`/groups/member-request/${group?._id}`, {}, {
+                headers: {
+                    token: `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            if (res.data.status === 'err') {
+                toast.error(res.data.message);
+                setSending(false);
+            }
+            if (res.data.status === 'success') {
+                setSending(false);
+                toast.success(res.data.message);
+                dispatch(pushMemberRequest(currentUser?._id))
+                console.log(res.data);
+            }
+        } catch (error) {
+            toast.error('Something went wrong')
+            setSending(false);
+        }
+    }
     return (
         <div className={styles.card_}>
             <div className={styles.card} style={{ alignItems: count === 'all' ? 'flex-start' : 'center' }}>
@@ -31,7 +57,11 @@ const Card = ({ count, group }) => {
                         </div>
                     }
                 </div>
-                <button>Join</button>
+                {group?.members?.includes(currentUser?._id)
+                    ?
+                    <button onClick={handleRequests}> {group?.membersRequests?.includes(currentUser?._id) ? 'Requested' : sending ? 'wait...' : 'Join'}
+                    </button>
+                    : <button> Joined</button>}
             </div>
 
         </div>

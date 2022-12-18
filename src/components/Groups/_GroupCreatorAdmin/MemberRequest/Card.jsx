@@ -1,24 +1,26 @@
 import React from 'react';
 import styles from './Card.module.scss';
 import {
+    CheckCircleOutlined,
+    CheckOutlined,
     DeleteFilled,
     UserAddOutlined
 } from '@ant-design/icons';
-// import { useDispatch, useSelector } from 'react-redux';
 import axios from '../../../../config/axios'
 import { toast, ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Loading from '../../../Loading/Loading';
+import { useDispatch } from 'react-redux';
+import { updateMembers } from '../../../../redux/currentGroup';
 
 const Card = ({ id, user, groupId }) => {
-    // const { currentUser } = useSelector(state => state.user);
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [confirmLoad, setConfirmLoad] = useState(false);
     const [removeLoad, setRemoveLoad] = useState(false);
-    const [confirm , setComfirm] = useState('Confirm');
-    const [remove , setRemove] = useState('Remove')
+    const [confirm, setComfirm] = useState(false);
+    const [remove, setRemove] = useState(false)
 
     const confirmRequest = async () => {
         setConfirmLoad(true);
@@ -37,7 +39,10 @@ const Card = ({ id, user, groupId }) => {
             if (res.data.status === 'success') {
                 toast.success(res.data.message);
                 setConfirmLoad(false);
-                setComfirm('Added')
+                setComfirm(true)
+                setTimeout(() => {
+                    dispatch(updateMembers(id))
+                }, 1000);
             }
             console.log(res);
         } catch (error) {
@@ -62,7 +67,7 @@ const Card = ({ id, user, groupId }) => {
             if (res.data.status === 'success') {
                 toast.success(res.data.message);
                 setRemoveLoad(false);
-                setRemove('Removed')
+                setRemove(true)
             }
         } catch (error) {
             toast.error('Something went wrong');
@@ -85,14 +90,31 @@ const Card = ({ id, user, groupId }) => {
                 <button onClick={confirmRequest}>
                     {confirmLoad ? <Loading font='4rem' color="var(--text)" /> :
                         <>
-                            <UserAddOutlined className={styles.icon} />{confirm}
-                        </>}
+                            {
+                                confirm ?
+                                    <>
+                                        < CheckOutlined className={styles.icon} />Confirmed
+                                    </>
+                                    : <>
+                                        <UserAddOutlined className={styles.icon} />Confirm
+                                    </>
+                            }
+                        </>
+                    }
                 </button>
                 <button onClick={removeRequest}>
                     {removeLoad ? <Loading font='4rem' color="var(--text)" /> :
                         <>
-                            <DeleteFilled className={styles.icon} />{remove}
-                        </>}
+                            {remove ?
+                                <>
+                                    <CheckCircleOutlined className={styles.icon} />Removed
+                                </>
+                                : <>
+                                    <DeleteFilled className={styles.icon} />Remove
+                                </>
+                            }
+                        </>
+                    }
                 </button>
 
             </div >
