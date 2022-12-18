@@ -46,6 +46,7 @@ import SearchMarketPlace from './components/MarkePlace/Search/SearchMarketPlace'
 import ActivityLog from './components/Groups/_GroupCreatorAdmin/ActivityLog/ActivityLog';
 import ManageAdmins from './components/Groups/_GroupCreatorAdmin/ManageAdmins/ManageAdmins';
 import Error from './pages/Error/Error';
+import GroupInvites from './components/Groups/Invites/GroupInvites';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
@@ -95,6 +96,7 @@ const App = () => {
               <Route index path='feed' element={<Feed />} />
               <Route path='discover' element={<Suggestions />} />
               <Route path='search' element={<GroupList type='searched' />} />
+              <Route path='invites' element={<GroupInvites />} />
               {/* <Route path='search/:searchTerm/all' element={<GroupList type='all' />} /> */}
               <Route path=':id/*' element={<View />} >
                 <Route index path='' element={<Common type='discussion' />} />
@@ -131,7 +133,7 @@ const App = () => {
           {/* ------------------------error page when routes found------------------ */}
 
           <Route path='*' element={<Error />} />
-          
+
         </Routes>
       </BrowserRouter>
     </div>

@@ -146,6 +146,14 @@ const Sidebar = () => {
                     <span>Discover</span>
                 </Link>
 
+                <Link onClick={() => setActive('invites')} to='invites'
+                    className={`${styles.links} ${active === 'invites' && styles.active}`}>
+                    <div className={styles.icon_}>
+                        <CompassFilled className={styles.icon} />
+                    </div>
+                    <span>Group Invites</span>
+                </Link>
+
                 <button className={styles.create_group_btn} onClick={() => navigate('/group/create')}>
                     <PlusOutlined className={styles.icon} />
                     <span>Create New Group</span>

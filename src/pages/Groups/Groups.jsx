@@ -47,6 +47,9 @@ const Groups = () => {
                     path === 'discover' && <Sidebar />
                 }
                 {
+                    path === 'invites' && <Sidebar />
+                }
+                {
                     path === 'search' && <Sidebar />
                 }
                 {

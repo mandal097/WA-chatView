@@ -145,7 +145,7 @@ const View = () => {
                 setSending(false);
                 toast.success(res.data.message);
                 dispatch(pushMemberRequest(currentUser?._id))
-                console.log(res.data);
+                // console.log(res.data);
             }
         } catch (error) {
             toast.error('Something went wrong')
@@ -153,7 +153,7 @@ const View = () => {
         }
     }
 
-    console.log(currentGroup);
+    // console.log(currentGroup);
 
     if (loading) return <Loading font='15rem' color='white' />
 

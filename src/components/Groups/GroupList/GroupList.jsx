@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import styles from './GroupList.module.scss';
 import axios from '../../../config/axios';
 import Loading from '../../Loading/Loading';
-import { pushMemberRequest } from '../../../redux/currentGroup';
 
 
 const Card = ({ count, group }) => {
     const { currentUser } = useSelector(state => state.user);
     const [sending, setSending] = useState(false) // loading purpose for sending request to join member
-    const dispatch = useDispatch();
+    const [requested, setRequested] = useState(false);
+
+    useEffect(() => {
+        if (group?.membersRequests?.includes(currentUser?._id)) {
+            setRequested(true);
+        } else {
+            setRequested(false);
+        }
+    }, [group, currentUser])
+
 
     const handleRequests = async () => {
         try {
@@ -27,8 +35,8 @@ const Card = ({ count, group }) => {
             }
             if (res.data.status === 'success') {
                 setSending(false);
+                setRequested(true)
                 toast.success(res.data.message);
-                dispatch(pushMemberRequest(currentUser?._id))
                 console.log(res.data);
             }
         } catch (error) {
@@ -59,9 +67,10 @@ const Card = ({ count, group }) => {
                 </div>
                 {group?.members?.includes(currentUser?._id)
                     ?
-                    <button onClick={handleRequests}> {group?.membersRequests?.includes(currentUser?._id) ? 'Requested' : sending ? 'wait...' : 'Join'}
+                    <button> Joined</button>
+                    : <button onClick={handleRequests}> {requested ? 'Requested' : sending ? 'wait...' : 'Join'}
                     </button>
-                    : <button> Joined</button>}
+                }
             </div>
 
         </div>
@@ -103,7 +112,7 @@ const GroupList = () => {
                 setGroups(res.data.data)
             }
             setLoading(false)
-            console.log(res.data.data);
+            // console.log(res.data.data);
         }
         fetchGroups()
     }, [searchQuery, count])
