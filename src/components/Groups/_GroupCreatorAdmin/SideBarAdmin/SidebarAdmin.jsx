@@ -8,6 +8,7 @@ import {
     ReadOutlined,
     SettingOutlined,
     UserAddOutlined,
+    UserSwitchOutlined,
     VideoCameraOutlined
 } from '@ant-design/icons';
 import React, { useState } from 'react';
@@ -126,13 +127,25 @@ const SidebarAdmin = () => {
 
                         <Link
                             to={`/groups/${currentGroup?._id}/member-requests`}
-                            className={`${styles.card} ${activeCard === 'm_request' && styles.active_card}`}
-                            onClick={() => setActiveCard('m_request')}>
+                            className={`${styles.card} ${activeCard === 'member-requests' && styles.active_card}`}
+                            onClick={() => setActiveCard('member-requests')}>
                             <div className={styles.left}>
                                 <UserAddOutlined className={styles.icon} />
                             </div>
                             <div className={styles.right}>
                                 <span>Member Requests</span>
+                            </div>
+                        </Link>
+
+                        <Link
+                            to={`/groups/${currentGroup?._id}/invite-members`}
+                            className={`${styles.card} ${activeCard === 'invite-members' && styles.active_card}`}
+                            onClick={() => setActiveCard('invite-Members')}>
+                            <div className={styles.left}>
+                                <UserSwitchOutlined className={styles.icon} />
+                            </div>
+                            <div className={styles.right}>
+                                <span>Invite members</span>
                             </div>
                         </Link>
 

@@ -1,0 +1,86 @@
+.invite_members {
+  background-color: var(--bgDark);
+  width: 75rem;
+  font-size: 2rem;
+  margin: 2rem auto;
+  color: var(--text);
+  padding: 1rem;
+  border-radius: 1rem;
+  .top {
+    display: flex;
+    flex-direction: column;
+    .heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      button {
+        font-size: 1.5rem;
+        color: var(--btn);
+        cursor: pointer;
+        border-radius: 0.4rem;
+        padding: 0.5rem;
+        &:hover{
+          background-color: var(--bgLight);
+        }
+      }
+      h3 {
+        font-size: 1.9rem;
+        font-weight: 500;
+      }
+      span {
+        color: var(--textSoft);
+      }
+    }
+    p {
+      font-size: 1.4rem;
+      color: var(--textSoft);
+      .link {
+        text-decoration: none;
+        color: var(--text);
+        font-size: 1.5rem;
+        &:hover {
+          color: var(--textSoft);
+          text-decoration: underline;
+        }
+      }
+    }
+    .search_box {
+      height: 3.7rem;
+      //   background-color: var(--bgDark);
+      margin: 1rem 0;
+      border-radius: 5rem;
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+      gap: 1rem;
+      border: 1px solid var(--bgLighter);
+      .icon {
+        font-size: 3rem;
+        color: var(--textSoft);
+      }
+      input {
+        height: 100%;
+        flex: 1;
+        color: var(--text);
+        font-size: 1.5rem;
+      }
+    }
+  }
+  .section {
+    padding: 1rem 0;
+    min-height: 25rem;
+    border-top: 1px solid var(--border);
+    .heading {
+      display: flex;
+      align-items: center;
+      h3 {
+        font-size: 1.5rem;
+        font-weight: 100;
+      }
+      span {
+        color: var(--textSoft);
+        font-size: 1.2rem;
+      }
+    }
+  }
+}

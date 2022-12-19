@@ -15,16 +15,24 @@ const Card = ({ ele }) => {
     const [accepted, setAccepted] = useState(false)
     const [acceptLoading, setAcceptLoading] = useState(false);
     const [cancelled, setCancelled] = useState(false);
-    const [cancelLoading, setCancelLoading] = useState(false)
+    const [cancelLoading, setCancelLoading] = useState(false);
+
+    // console.log(ele);
 
     const acceptInvite = async () => {
         try {
             setAcceptLoading(true);
-            const res = await axios.put(`/groups/${ele?.groupId?._id}/accept-admin-invite`, {}, {
-                headers: {
-                    token: `Bearer ${localStorage.getItem('token')}`
-                }
-            })
+            const res = ele?.role === 'member_request' ?
+                await axios.put(`/groups/${ele?.groupId?._id}/accept-member-invite`, {}, {
+                    headers: {
+                        token: `Bearer ${localStorage.getItem('token')}`
+                    }
+                }) :
+                await axios.put(`/groups/${ele?.groupId?._id}/accept-admin-invite`, {}, {
+                    headers: {
+                        token: `Bearer ${localStorage.getItem('token')}`
+                    }
+                })
             // console.log(res.data.data);
             if (res.data.status === 'err') {
                 toast.error(res.data.message)

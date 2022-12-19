@@ -41,6 +41,19 @@ const userSlice = createSlice({
         pushAdminInvites: (state, action) => {
             state.currentGroup.adminsInvited.push(action.payload)
         },
+        pullmembersInvites: (state, action) => {
+            if (state.currentGroup.membersInvited.includes(action.payload)) {
+                state.currentGroup.membersInvited.splice(
+                    state.currentGroup.membersInvited.findIndex(
+                        userId => userId === action.payload
+                    ),
+                    1
+                )
+            }
+        },
+        pushMembersInvites: (state, action) => {
+            state.currentGroup.membersInvited.push(action.payload)
+        },
         pushMemberRequest: (state, action) => {
             state.currentGroup.membersRequests.push(action.payload)
         },
@@ -59,6 +72,8 @@ export const { setCurrentGroup,
     pushAdminInvites,
     pullAdminInvites,
     updateMembers,
-    pushMemberRequest
+    pushMemberRequest,
+    pushMembersInvites,
+    pullmembersInvites
 } = userSlice.actions;
 export default userSlice.reducer

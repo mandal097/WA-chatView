@@ -53,6 +53,7 @@ import BrowseProducts from './components/Shop/BrowseProducts/BrowseProducts'
 import Cart from './components/Shop/Cart/Cart'
 import ShopProductPage from './components/Shop/ProductPage/ProductPage.jsx'
 import { useEffect } from 'react';
+import InviteMembers from './components/Groups/_GroupCreatorAdmin/InviteMembers/InviteMembers';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
@@ -127,6 +128,7 @@ const App = () => {
                 {/* admin access routes for groups */}
                 <Route path='admin_assist' element={<ManageAdmins />} />
                 <Route path='member-requests' element={<MemberRequest />} />
+                <Route path='Invite-members' element={<InviteMembers />} />
                 <Route path='manage-rules' element={<Rules />} />
                 <Route path='edit' element={<Edit />} />
                 <Route path='admin_activities' element={<ActivityLog />} />
