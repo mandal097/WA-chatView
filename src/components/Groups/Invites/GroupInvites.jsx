@@ -49,14 +49,21 @@ const Card = ({ ele }) => {
             setAcceptLoading(false);
         }
     };
+
     const cancelInvite = async () => {
         try {
             setCancelLoading(true);
-            const res = await axios.put(`/groups/${ele?.groupId?._id}/cancel-admin-invite`, {}, {
-                headers: {
-                    token: `Bearer ${localStorage.getItem('token')}`
-                }
-            })
+            const res = ele?.role === 'member_request' ?
+                await axios.put(`/groups/${ele?.groupId?._id}/cancel-member-invite`, {}, {
+                    headers: {
+                        token: `Bearer ${localStorage.getItem('token')}`
+                    }
+                }) :
+                await axios.put(`/groups/${ele?.groupId?._id}/cancel-admin-invite`, {}, {
+                    headers: {
+                        token: `Bearer ${localStorage.getItem('token')}`
+                    }
+                })
             // console.log(res.data.data);
             if (res.data.status === 'err') {
                 toast.error(res.data.message)
@@ -92,32 +99,46 @@ const Card = ({ ele }) => {
                     </Link>
                     <p>
                         invite you to be the
-                        {ele?.role === 'admin_request' ? ' admin ' : ' member '}
+                        {ele?.role === 'admin_request' ? ' Admin ' : ' member '}
                         of this group</p>
                 </div>
+
             </div>
-            <div className={styles.btns}>
-                {!accepted ?
-                    <button onClick={acceptInvite}>
-                        {acceptLoading ? <Loading font='4rem' color='var(--text)' /> :
-                            <>
-                                <CheckOutlined className={styles.icon} /> {' Confirm'}
-                            </>}
-                    </button>
-                    : <button onClick={() => toast.error('Already accepted')} className={styles.accepted}><CheckOutlined className={styles.icon} />Accepted</button>
-                }
-                {
-                    !cancelled
-                        ? <button onClick={cancelInvite}>
-                            {cancelLoading ? <Loading font='4rem' color='var(--text)' /> :
+            <div className={styles.btns_}>
+                <div className={styles.btns}>
+                    {!accepted ?
+                        <button onClick={acceptInvite}>
+                            {acceptLoading ? <Loading font='4rem' color='var(--text)' /> :
                                 <>
-                                    <DeleteOutlined className={styles.icon} /> {' Cancel'}
+                                    <CheckOutlined className={styles.icon} /> {' Confirm'}
                                 </>}
                         </button>
-                        : <button className={styles.cancelled}>  <DeleteFilled className={styles.icon} /> {' Cancelled'}</button>
-                }
+                        : <button onClick={() => toast.error('Already accepted')} className={styles.accepted}><CheckOutlined className={styles.icon} />Accepted</button>
+                    }
+                    {
+                        !cancelled
+                            ?
+                            <button onClick={cancelInvite}>
+                                {
+                                    cancelLoading
+                                        ? <Loading font='4rem' color='var(--text)' />
+                                        :
+                                        <>
+                                            <DeleteOutlined className={styles.icon} /> {' Cancel'}
+                                        </>
+                                }
+                            </button>
+                            :
+                            <button className={styles.cancelled}>  <DeleteFilled className={styles.icon} />
+                                {' Cancelled'}
+                            </button>
+                    }
+                </div>
+                <div className={styles.request_type}>
+                    {ele?.role === 'admin_request' ? ' Admin ' : ' Member '} request
+                </div>
             </div>
-        </div>
+        </div >
     )
 }
 

@@ -57,5 +57,14 @@
         background-color: var(--btnLight);
       }
     }
+    .cancel{
+      background-color: var(--error);
+      &:hover{
+        background-color: var(--text);
+        .icon{
+          color: var(--error);
+        }
+      }
+    }
   }
   

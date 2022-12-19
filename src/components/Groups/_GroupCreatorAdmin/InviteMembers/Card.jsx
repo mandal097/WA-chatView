@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './Card.module.scss';
 import { toast, ToastContainer } from 'react-toastify'
 import { useNavigate } from 'react-router-dom';
-import { CheckOutlined, MessageFilled, UserAddOutlined } from '@ant-design/icons';
+import { CheckOutlined, DeleteFilled, MessageFilled, UserAddOutlined } from '@ant-design/icons';
 import axios from '../../../../config/axios';
 import { setCurrentChat } from '../../../../redux/chatRedux';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,8 +14,9 @@ const Card = ({ user, currentGroup }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [inviteLoading, setInviteLoading] = useState(false);
+    const [cancelLoading, setCancelLoading] = useState(false);
 
-    // const [removed, setRemoved] = useState(false) //for showing removed message in button
+    const [removed, setRemoved] = useState(false) //for showing removed message in button
     const [invited, setInvited] = useState(false) //for showing invite message in button
 
     useEffect(() => {
@@ -41,7 +42,7 @@ const Card = ({ user, currentGroup }) => {
         }
     };
 
-    const inviteUserForAdmin = async () => {
+    const inviteUserForMember = async () => {
         try {
             setInviteLoading(true);
             const res = await axios.put(`/groups/handle-members/invite-member/${currentGroup?._id}`, {
@@ -66,6 +67,34 @@ const Card = ({ user, currentGroup }) => {
             setInviteLoading(false);
         }
     };
+    const cancelInviteUserForMember = async () => {
+        try {
+            setCancelLoading(true);
+            const res = await axios.put(`/groups/handle-members/cancel-member-invite/${currentGroup?._id}`, {
+                memberId: user?._id
+            }, {
+                headers: {
+                    token: `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            if (res.data.status === 'err') {
+                toast.error(res.data.message);
+                setCancelLoading(false);
+            }
+            if (res.data.status === 'success') {
+                dispatch(pushMembersInvites(user._id))
+                toast.success(res.data.message);
+                setCancelLoading(false);
+                setRemoved(true);
+                setTimeout(() => {
+                    setInvited(false);
+                }, 300);
+            }
+        } catch (error) {
+            toast.error('Something went wrong')
+            setCancelLoading(false);
+        }
+    };
 
     return (
         <>
@@ -80,7 +109,7 @@ const Card = ({ user, currentGroup }) => {
                     </span>
                 </div>
                 <button onClick={startChat}> <MessageFilled className={styles.icon} /> Message</button>
-                <button onClick={inviteUserForAdmin} className={`${invited && styles.active}`}>
+                <button onClick={inviteUserForMember} className={`${invited && styles.active}`}>
                     {inviteLoading
                         ?
                         <Loading font='4rem' color='var(--text)' />
@@ -95,6 +124,26 @@ const Card = ({ user, currentGroup }) => {
                             </>
                     }
                 </button>
+
+                {
+                    invited &&
+                    <button className={styles.cancel} onClick={cancelInviteUserForMember}>
+                        {cancelLoading
+                            ?
+                            <Loading font='4rem' color='var(--text)' />
+                            :
+                            removed ?
+                                <>
+                                    <CheckOutlined className={styles.icon} />Removed
+                                </>
+                                :
+                                <>
+                                    <DeleteFilled className={styles.icon} />
+                                </>
+                        }
+                    </button>
+                }
+
             </div >
         </>
     )
