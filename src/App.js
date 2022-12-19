@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.scss'
 import Navbar from './components/Navbar/Navbar'
 import Home from './pages/Home/Home';
@@ -47,14 +47,32 @@ import ActivityLog from './components/Groups/_GroupCreatorAdmin/ActivityLog/Acti
 import ManageAdmins from './components/Groups/_GroupCreatorAdmin/ManageAdmins/ManageAdmins';
 import Error from './pages/Error/Error';
 import GroupInvites from './components/Groups/Invites/GroupInvites';
+import Shop from './pages/Shop/Shop';
+import ShopNavbar from './components/Shop/ShopNavbar/ShopNavbar';
+import BrowseProducts from './components/Shop/BrowseProducts/BrowseProducts'
+import Cart from './components/Shop/Cart/Cart'
+import ShopProductPage from './components/Shop/ProductPage/ProductPage.jsx'
+import { useEffect } from 'react';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
+  const [path, setPath] = useState(false);
+  const path_ = window.location.pathname.split('/')[1]
+  useEffect(() => {
+    if (path_ === 'shop') {
+      setPath(true)
+    } else {
+      setPath(false)
+    }
+  }, [path_])
 
   return (
     <div>
       <BrowserRouter>
-        <Navbar />
+        {path ?
+          <ShopNavbar /> :
+          <Navbar />
+        }
         <Routes>
 
           <Route path='/'>
@@ -130,6 +148,13 @@ const App = () => {
               <Route path='you/selling' element={<Selling />} /> {/* for admins who wants to sell*/}
             </Route>
           </Route>
+
+          <Route path='shop/*' element={<Shop />}>
+            <Route index path='' element={<BrowseProducts />} />
+            <Route path='cart' element={<Cart />} />
+            <Route path='product' element={<ShopProductPage />} />
+          </Route>
+
           {/* ------------------------error page when routes found------------------ */}
 
           <Route path='*' element={<Error />} />

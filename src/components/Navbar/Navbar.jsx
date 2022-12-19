@@ -8,7 +8,7 @@ import {
     BellFilled,
     MessageFilled,
     UserAddOutlined,
-    GlobalOutlined,
+    QqOutlined,
     LogoutOutlined,
     LoginOutlined,
     ShopOutlined
@@ -55,7 +55,7 @@ const Navbar = () => {
         <nav>
             <div className={styles.navbar} ref={navRef} style={{ borderBottom: isGroupCreate === 'create' && 'none', backgroundColor: isGroupCreate === 'create' && 'var(--bgDark)' }}>
                 <div className={styles.logo} onClick={() => navigate('/')}>
-                    <GlobalOutlined className='icon' />
+                    <QqOutlined className='icon' />
                 </div>
                 {
                     user &&

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Sidebar.module.scss';
-import { ClockCircleOutlined, CompassFilled, LayoutFilled, PlusOutlined, SearchOutlined } from '@ant-design/icons';
+import { ClockCircleOutlined, CompassFilled, LayoutFilled, PlusOutlined, SearchOutlined, UsergroupAddOutlined } from '@ant-design/icons';
 import { createSearchParams, Link, useLocation, useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
 import { toast } from 'react-toastify';
@@ -149,7 +149,7 @@ const Sidebar = () => {
                 <Link onClick={() => setActive('invites')} to='invites'
                     className={`${styles.links} ${active === 'invites' && styles.active}`}>
                     <div className={styles.icon_}>
-                        <CompassFilled className={styles.icon} />
+                        <UsergroupAddOutlined className={styles.icon} />
                     </div>
                     <span>Group Invites</span>
                 </Link>
