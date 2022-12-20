@@ -53,7 +53,7 @@ const Card = ({ count, group }) => {
                 <div className={styles.details}>
                     <Link className={styles.link} to={`/groups/${group?._id}`}>{group?.groupName}</Link>
                     <div className={styles.counters}>
-                        <p>Public · 64K followers · 10+ posts a day · 126 followers</p>
+                        <p>{group?.isPrivate} · {group?.members?.length} members </p>
                     </div>
                     {
                         count === 'all' &&

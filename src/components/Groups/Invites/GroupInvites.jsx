@@ -103,6 +103,8 @@ const Card = ({ ele }) => {
                         of this group</p>
                 </div>
 
+                <div style={{fontSize:'1.4rem',color:'var(--successLight)',marginTop:'0.4rem'}}>{ele?.time?.slice(0,10)}</div>
+
             </div>
             <div className={styles.btns_}>
                 <div className={styles.btns}>

@@ -11,7 +11,7 @@ import { pushMemberRequest, setCurrentGroup, updateGroupCoverImg } from '../../.
 import { useUpload } from '../../../hooks/useUpload';
 import UserBadge from '../../UserBadge/UserBadge';
 
-const View = () => {
+const View = ({ showGroup }) => {
     const { currentGroup } = useSelector(state => state.currentGroup);
     const { currentUser } = useSelector(state => state.user);
     const [active, setActive] = useState('');
@@ -242,24 +242,30 @@ const View = () => {
                         </div>}
 
                     <div className={styles.navs}>
-                        <Link to={`/groups/${groupId}`} className={`${styles.nav_items}  ${active === 'discussion' && styles.active_nav}`} onClick={() => setActive('discussion')}>
-                            <span className='link'>Discussion</span>
-                        </Link>
-                        <Link to={`/groups/${groupId}/featured`} className={`${styles.nav_items}  ${active === 'featured' && styles.active_nav}`} onClick={() => setActive('featured')}>
-                            <span className='link'>Featured</span>
-                        </Link>
-                        <Link to={`/groups/${groupId}/videos`} className={`${styles.nav_items}  ${active === 'videos' && styles.active_nav}`} onClick={() => setActive('videos')}>
-                            <span className='link'>Videos</span>
-                        </Link>
-                        <Link to={`/groups/${groupId}/members`} className={`${styles.nav_items}  ${active === 'members' && styles.active_nav}`} onClick={() => setActive('members')}>
-                            <span className='link'>Members</span>
-                        </Link>
-                        <Link to={`/groups/${groupId}/media`} className={`${styles.nav_items}  ${active === 'media' && styles.active_nav}`} onClick={() => setActive('media')}>
-                            <span className='link'>Media</span>
-                        </Link>
-                        <Link to={`/groups/${groupId}/files`} className={`${styles.nav_items}  ${active === 'files' && styles.active_nav}`} onClick={() => setActive('files')}>
-                            <span className='link'>Files</span>
-                        </Link>
+                        {showGroup ? <>
+                            <Link to={`/groups/${groupId}`} className={`${styles.nav_items}  ${active === 'discussion' && styles.active_nav}`} onClick={() => setActive('discussion')}>
+                                <span className='link'>Discussion</span>
+                            </Link>
+                            <Link to={`/groups/${groupId}/featured`} className={`${styles.nav_items}  ${active === 'featured' && styles.active_nav}`} onClick={() => setActive('featured')}>
+                                <span className='link'>Featured</span>
+                            </Link>
+                            <Link to={`/groups/${groupId}/videos`} className={`${styles.nav_items}  ${active === 'videos' && styles.active_nav}`} onClick={() => setActive('videos')}>
+                                <span className='link'>Videos</span>
+                            </Link>
+                            <Link to={`/groups/${groupId}/members`} className={`${styles.nav_items}  ${active === 'members' && styles.active_nav}`} onClick={() => setActive('members')}>
+                                <span className='link'>Members</span>
+                            </Link>
+                            <Link to={`/groups/${groupId}/media`} className={`${styles.nav_items}  ${active === 'media' && styles.active_nav}`} onClick={() => setActive('media')}>
+                                <span className='link'>Media</span>
+                            </Link>
+                            <Link to={`/groups/${groupId}/files`} className={`${styles.nav_items}  ${active === 'files' && styles.active_nav}`} onClick={() => setActive('files')}>
+                                <span className='link'>Files</span>
+                            </Link>
+                        </>
+                            : <Link to={`/groups/${groupId}/about`} className={`${styles.nav_items}  ${active === 'about' && styles.active_nav}`} onClick={() => setActive('about')}>
+                                <span className='link'>About</span>
+                            </Link>
+                        }
                     </div>
                     <div className={styles.outlet_}>
                         <Outlet />
