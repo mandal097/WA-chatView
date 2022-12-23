@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './View.module.scss';
-import { DownOutlined, QqOutlined, LockOutlined, PlusOutlined, UpOutlined, UsergroupAddOutlined, CameraFilled } from '@ant-design/icons';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { DownOutlined, QqOutlined, LockOutlined, PlusOutlined, UpOutlined, UsergroupAddOutlined, CameraFilled, ExportOutlined, DeleteFilled } from '@ant-design/icons';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 // import GroupCard from '../GroupCard/GroupCard';
 import axios from '../../../config/axios';
 import { toast } from 'react-toastify';
@@ -10,8 +10,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { pushMemberRequest, setCurrentGroup, updateGroupCoverImg } from '../../../redux/currentGroup';
 import { useUpload } from '../../../hooks/useUpload';
 import UserBadge from '../../UserBadge/UserBadge';
+import ExitPopUp from './ExitPopUp';
+import AboutGroup from '../About/About';
+import DeletePopUP from './DeletePop';
 
-const View = ({ showGroup }) => {
+const View = () => {
     const { currentGroup } = useSelector(state => state.currentGroup);
     const { currentUser } = useSelector(state => state.user);
     const [active, setActive] = useState('');
@@ -22,9 +25,13 @@ const View = ({ showGroup }) => {
     const [groupDetails, setGroupDetails] = useState({});
     const [coverImg, setCoverImg] = useState('');
     const [uploading, setUploading] = useState(false);
+    const [showPop, setShowPop] = useState(false);
+    const [showGroup, setShowGroup] = useState(Boolean)
+    const [showDeletePopUp, setShowDeletePopUp] = useState(false);
 
     const location = useLocation();
     const dispatch = useDispatch();
+    const navigate = useNavigate()
     const groupId = location.pathname.split('/')[2]
     const activeState = location.pathname.split('/')[3];
     const [isAdmin, setIsAdmin] = useState(false);
@@ -37,6 +44,14 @@ const View = ({ showGroup }) => {
         activeState === undefined ? setActive('discussion') : setActive(activeState)
     }, [activeState])
 
+    useEffect(() => {
+        const check = currentGroup?.members?.includes(currentUser?._id)
+        if (currentGroup?.isPrivate && check) {
+            setShowGroup(true)
+        } else {
+            setShowGroup(false);
+        }
+    }, [currentGroup, currentUser]);
 
 
     useEffect(() => {
@@ -214,8 +229,21 @@ const View = ({ showGroup }) => {
 
 
 
-                            <button ><PlusOutlined className={styles.icon} />Invite</button>
-                            <button onClick={handleArrow}>
+                            {
+                                currentGroup?.admins?.includes(currentUser?._id) &&
+                                <button onClick={() => navigate(`/groups/${currentGroup?._id}/invite-members`)} ><PlusOutlined className={styles.icon} />Invite</button>
+                            }
+                            {
+                                currentGroup?.members?.includes(currentUser?._id) &&
+                                <button onClick={() => setShowPop(!showPop)} style={{ padding: '0 1rem' }}><ExportOutlined className={styles.icon} /></button>
+                            }
+                            {
+                                currentGroup?.admins?.includes(currentUser?._id) &&
+                                <button onClick={() => setShowDeletePopUp(!showDeletePopUp)} style={{ padding: '0 1rem' }}>
+                                    <DeleteFilled className={styles.icon} />
+                                </button>
+                            }
+                            <button onClick={handleArrow} style={{ padding: '0 1rem' }}>
                                 {clicked
                                     ? <UpOutlined className={styles.icon} />
                                     : <DownOutlined className={styles.icon} />
@@ -268,12 +296,30 @@ const View = ({ showGroup }) => {
                         }
                     </div>
                     <div className={styles.outlet_}>
-                        <Outlet />
+                        {showGroup ? <Outlet /> : <AboutGroup />}
                     </div>
                 </div> :
                 <div className={styles.outlet_}>
-                    <Outlet />
+                    {showGroup ? <Outlet /> : <AboutGroup />}
                 </div>
+            }
+
+            {
+                showPop &&
+                <ExitPopUp
+                    setShowPop={setShowPop}
+                    showPop={showPop}
+                    user={currentUser}
+                    group={currentGroup}
+                />
+            }
+            {
+                showDeletePopUp &&
+                <DeletePopUP
+                    showDeletePopUp={showDeletePopUp}
+                    setShowDeletePopUp={setShowDeletePopUp}
+                    group={currentGroup}
+                />
             }
 
         </>

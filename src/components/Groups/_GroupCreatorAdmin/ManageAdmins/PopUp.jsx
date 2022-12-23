@@ -5,6 +5,7 @@ import styles from './PopUp.module.scss';
 import axios from '../../../../config/axios';
 import { useDispatch } from 'react-redux';
 import { pullAdminInvites, pushAdminInvites } from '../../../../redux/currentGroup';
+import { groupActivityLogs } from '../../../../helpers/groupActivities';
 
 
 const PopUp = ({ setShowPop, showPop, type, user, groupId, setRemoved, setInvited }) => {
@@ -45,6 +46,7 @@ const PopUp = ({ setShowPop, showPop, type, user, groupId, setRemoved, setInvite
                 dispatch(pushAdminInvites(user._id))
                 toast.success(res.data.message);
                 setLoading(false);
+                groupActivityLogs(groupId, `invites ${user?.name} for admin.`)
                 setTimeout(() => {
                     setShowPop(false);
                 }, 500);
@@ -75,6 +77,7 @@ const PopUp = ({ setShowPop, showPop, type, user, groupId, setRemoved, setInvite
                 setRemoved(true)
                 setLoading(false);
                 dispatch(pullAdminInvites(user?._id))
+                groupActivityLogs(groupId, `remove ${user?.name} from group.`)
                 setTimeout(() => {
                     setShowPop(false);
                 }, 500);

@@ -10,6 +10,7 @@ import axios from '../../../config/axios';
 import { toast, ToastContainer } from 'react-toastify';
 import Loading from '../../Loading/Loading';
 import { Link } from 'react-router-dom'
+// import { groupActivityLogs } from '../../../helpers/groupActivities';
 
 const Card = ({ ele }) => {
     const [accepted, setAccepted] = useState(false)
@@ -36,13 +37,14 @@ const Card = ({ ele }) => {
             // console.log(res.data.data);
             if (res.data.status === 'err') {
                 toast.error(res.data.message)
-                setAcceptLoading(false);
+                setAcceptLoading(false);                
             }
             if (res.data.status === 'success') {
                 toast.success(`${res.data.message} / Refresh page to show changes`);
                 setAcceptLoading(false);
                 setAccepted(true)
-                console.log(res.data);
+                // groupActivityLogs(ele?.groupId?._id, `accepts's request for member`)
+                // console.log(res.data);
             }
         } catch (error) {
             toast.error('Something went wrong')
@@ -73,7 +75,8 @@ const Card = ({ ele }) => {
                 toast.success(`${res.data.message} / Refresh page to show changes`);
                 setCancelLoading(false);
                 setCancelled(true)
-                console.log(res.data);
+                // groupActivityLogs(ele?.groupId?._id, `declines request for member`)
+                // console.log(res.data);
             }
         } catch (error) {
             toast.error('Something went wrong')

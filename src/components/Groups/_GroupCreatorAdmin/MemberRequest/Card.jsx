@@ -13,6 +13,7 @@ import { useState } from 'react';
 import Loading from '../../../Loading/Loading';
 import { useDispatch } from 'react-redux';
 import { updateMembers } from '../../../../redux/currentGroup';
+import { groupActivityLogs } from '../../../../helpers/groupActivities';
 
 const Card = ({ id, user, groupId }) => {
     const dispatch = useDispatch();
@@ -40,6 +41,7 @@ const Card = ({ id, user, groupId }) => {
                 toast.success(res.data.message);
                 setConfirmLoad(false);
                 setComfirm(true)
+                groupActivityLogs(groupId, `accepts ${user?.name}'s request for member`)
                 setTimeout(() => {
                     dispatch(updateMembers(id))
                 }, 1000);
@@ -67,6 +69,7 @@ const Card = ({ id, user, groupId }) => {
             if (res.data.status === 'success') {
                 toast.success(res.data.message);
                 setRemoveLoad(false);
+                groupActivityLogs(groupId, `remove ${user?.name}'s request for member`)
                 setRemove(true)
             }
         } catch (error) {

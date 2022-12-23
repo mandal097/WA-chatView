@@ -13,7 +13,7 @@ const Card = () => {
     const { currentGroup } = useSelector(state => state.currentGroup);
     const [admin, setAdmin] = useState({});
 
-    console.log(currentGroup);
+    // console.log(currentGroup);
 
     useEffect(() => {
         const fetchAdmin = async () => {
@@ -50,7 +50,7 @@ const AboutGroup = () => {
     const navigate = useNavigate();
     const [admin, setAdmin] = useState({});
 
-    console.log(currentGroup);
+    // console.log(currentGroup);
 
     useEffect(() => {
         const fetchAdmin = async () => {

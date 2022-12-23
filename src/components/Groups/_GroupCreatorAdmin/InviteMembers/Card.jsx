@@ -8,6 +8,7 @@ import { setCurrentChat } from '../../../../redux/chatRedux';
 import { useDispatch, useSelector } from 'react-redux';
 import { pushMembersInvites } from '../../../../redux/currentGroup';
 import Loading from '../../../Loading/Loading';
+import { groupActivityLogs } from '../../../../helpers/groupActivities';
 
 const Card = ({ user, currentGroup }) => {
     const { currentUser } = useSelector(state => state.user)
@@ -61,6 +62,7 @@ const Card = ({ user, currentGroup }) => {
                 dispatch(pushMembersInvites(user._id))
                 toast.success(res.data.message);
                 setInviteLoading(false);
+                groupActivityLogs(currentGroup?._id, `invites ${user?.name} for member.`)
             }
         } catch (error) {
             toast.error('Something went wrong')
@@ -86,6 +88,7 @@ const Card = ({ user, currentGroup }) => {
                 toast.success(res.data.message);
                 setCancelLoading(false);
                 setRemoved(true);
+                groupActivityLogs(currentGroup?._id, `remove ${user?.name} from member invite.`)
                 setTimeout(() => {
                     setInvited(false);
                 }, 300);

@@ -57,9 +57,9 @@ import InviteMembers from './components/Groups/_GroupCreatorAdmin/InviteMembers/
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
-  const { currentGroup } = useSelector(state => state.currentGroup);
+  // const { currentGroup } = useSelector(state => state.currentGroup);
   const [path, setPath] = useState(false);
-  const [showGroup, setShowGroup] = useState(Boolean)
+  // const [showGroup, setShowGroup] = useState(Boolean)
   const path_ = window.location.pathname.split('/')[1];
 
   useEffect(() => {
@@ -70,17 +70,17 @@ const App = () => {
     }
   }, [path_]);
 
-  console.log(currentGroup);
-  useEffect(() => {
-    const check = currentGroup?.members?.includes(user?._id)
-    if (currentGroup?.isPrivate && check) {
-      setShowGroup(true)
-    } else {
-      setShowGroup(false);
-    }
-  }, [currentGroup, user]);
+  // console.log(currentGroup);
+  // useEffect(() => {
+  //   const check = currentGroup?.members?.includes(user?._id)
+  //   if (currentGroup?.isPrivate && check) {
+  //     setShowGroup(true)
+  //   } else {
+  //     setShowGroup(false);
+  //   }
+  // }, [currentGroup, user]);
 
-  console.log(showGroup);
+  // console.log(showGroup);
 
 
   // if(!user) return <Welcome/>
@@ -134,14 +134,21 @@ const App = () => {
               <Route path='search' element={<GroupList type='searched' />} />
               <Route path='invites' element={<GroupInvites />} />
               {/* <Route path='search/:searchTerm/all' element={<GroupList type='all' />} /> */}
-              <Route path=':id/*' element={<View showGroup={showGroup} />} >
-                <Route index path='' element={showGroup ? <Common type='discussion' /> : <Navigate to={`/groups/${currentGroup?._id}/about`} />} />
-                <Route path='featured' element={showGroup ? <Common type='featured' /> : <Navigate to={`/groups/${currentGroup?._id}/about`} />} />
-                <Route path='videos' element={showGroup ? <Common type='videos' /> : <Navigate to={`/groups/${currentGroup?._id}/about`} />} />
+              <Route path=':id/*' element={<View  />} >
+                <Route index path='' element={<Common type='discussion' />} />
+                <Route path='featured' element={<Common type='featured' />} />
+                <Route path='videos' element={<Common type='videos' />} />
                 <Route path='about' element={<AboutGroup />} />
-                <Route path='members' element={showGroup ? <Members /> : <Navigate to={`/groups/${currentGroup?._id}/about`} />} />
-                <Route path='media' element={showGroup ? <Media /> : <Navigate to={`/groups/${currentGroup?._id}/about`} />} />
-                <Route path='files' element={showGroup ? <Files /> : <Navigate to={`/groups/${currentGroup?._id}/about`} />} />
+                <Route path='members' element={<Members />} />
+                <Route path='media' element={<Media />} />
+                <Route path='files' element={<Files />} />
+                {/* <Route index path='' element={ <Common type='discussion' /> : <Navigate to={`/groups/${currentGroup?._id}/about`} />} />
+                <Route path='featured' element={ <Common type='featured' /> : <Navigate to={`/groups/${currentGroup?._id}/about`} />} />
+                <Route path='videos' element={ <Common type='videos' /> : <Navigate to={`/groups/${currentGroup?._id}/about`} />} />
+                <Route path='about' element={<AboutGroup />} />
+                <Route path='members' element={ <Members /> : <Navigate to={`/groups/${currentGroup?._id}/about`} />} />
+                <Route path='media' element={ <Media /> : <Navigate to={`/groups/${currentGroup?._id}/about`} />} />
+                <Route path='files' element={ <Files /> : <Navigate to={`/groups/${currentGroup?._id}/about`} />} /> */}
                 {/* admin access routes for groups */}
                 <Route path='admin_assist' element={<ManageAdmins />} />
                 <Route path='member-requests' element={<MemberRequest />} />

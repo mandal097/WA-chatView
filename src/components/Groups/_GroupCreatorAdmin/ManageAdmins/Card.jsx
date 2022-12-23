@@ -11,6 +11,7 @@ import { followFriend } from '../../../../redux/userRedux';
 import { CheckOutlined, DeleteFilled, MessageFilled, PlusOutlined, UserAddOutlined } from '@ant-design/icons';
 import PopUp from './PopUp';
 import { pullAdminInvites } from '../../../../redux/currentGroup';
+import { groupActivityLogs } from '../../../../helpers/groupActivities';
 
 const Card = ({ userId, requested }) => {
     const { currentUser } = useSelector(state => state.user);
@@ -116,6 +117,7 @@ const Card = ({ userId, requested }) => {
                 toast.success(res.data.message);
                 setCancelLoad(false);
                 setCancelled(true);
+                groupActivityLogs(currentGroup?._id, `remove ${user?.name} from admin invite.`)
                 setTimeout(() => {
                     dispatch(pullAdminInvites(userId))
                 }, 2000);

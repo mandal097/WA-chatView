@@ -43,7 +43,9 @@ const Card = ({ count, group }) => {
             toast.error('Something went wrong')
             setSending(false);
         }
-    }
+    };
+
+
     return (
         <div className={styles.card_}>
             <div className={styles.card} style={{ alignItems: count === 'all' ? 'flex-start' : 'center' }}>
