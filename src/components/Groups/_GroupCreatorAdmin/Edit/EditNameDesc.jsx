@@ -51,7 +51,7 @@ const EditNameDesc = () => {
                     desc: desc
                 }));
 
-                groupActivityLogs(currentGroup?._id , `Change group name or desc.`)
+                groupActivityLogs(currentGroup?._id , `Change group name/desc.`)
                 setLoading(false);
             }
             setLoading(false);

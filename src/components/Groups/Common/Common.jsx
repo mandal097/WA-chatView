@@ -77,8 +77,7 @@ const Common = ({ type }) => {
 
             <div className={styles.about}>
                 <h3>About</h3>
-                <p>This is a DOer's community.</p>
-                <Desc />
+                <Desc/>
                 {currentGroup?.isPrivate === 'public'
                     ? <PrivacyStat
                         span='Public'

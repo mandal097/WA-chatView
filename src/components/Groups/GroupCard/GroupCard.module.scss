@@ -31,12 +31,13 @@
     flex-direction: column;
     justify-content: center;
     .link {
-      font-size: 1.6rem;
+      font-size: 1.7rem;
       text-decoration: none;
-      color: var(--text);
+      color: var(--btn);
+      display:inline;
       &:hover {
         text-decoration: underline;
-        color: var(--textSoft);
+        color: var(--btnLight);
         cursor: pointer;
         font-weight: 100;
       }
@@ -46,7 +47,7 @@
       gap: 1rem;
       .counts {
         font-weight: 100;
-        font-size: 1.4rem;
+        font-size: 1.25rem;
         color: var(--textSoft);
       }
     }

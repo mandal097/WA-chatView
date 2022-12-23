@@ -11,7 +11,7 @@ const GroupCard = ({ bg, details }) => {
       <div className={styles.details}>
         <Link className={styles.link}  to={`/groups/${details?._id}`}>{details?.groupName}</Link>
         <div className={styles.counters}>
-          <span className={styles.counts}>12k Members</span>
+          <span className={styles.counts}>{details?.members?.length} Members</span>
           <span className={styles.counts}>2 post a week</span>
         </div>
       </div>
