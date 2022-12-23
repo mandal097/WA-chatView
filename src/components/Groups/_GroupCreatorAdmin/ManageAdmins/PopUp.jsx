@@ -4,11 +4,11 @@ import { capitalizeFirstLetter } from '../../../../helpers/strings';
 import styles from './PopUp.module.scss';
 import axios from '../../../../config/axios';
 import { useDispatch } from 'react-redux';
-import { pullAdminInvites, pushAdminInvites } from '../../../../redux/currentGroup';
+import { pullAdmin, pullAdminInvites, pushAdminInvites } from '../../../../redux/currentGroup';
 import { groupActivityLogs } from '../../../../helpers/groupActivities';
 
 
-const PopUp = ({ setShowPop, showPop, type, user, groupId, setRemoved, setInvited }) => {
+const PopUp = ({ setShowPop, showPop, type, user, groupId, setRemoved }) => {
     const [loading, setLoading] = useState(false);
     const ref = useRef();
     const dispatch = useDispatch();
@@ -86,7 +86,41 @@ const PopUp = ({ setShowPop, showPop, type, user, groupId, setRemoved, setInvite
             toast.error('Something went wrong')
             setLoading(false);
         }
+    };
+
+
+
+    const removeAdmin = async () => {
+        try {
+            setLoading(true);
+            const res = await axios.put(`/groups/remove-admin/${groupId}`, {
+                memberId: user?._id
+            }, {
+                headers: {
+                    token: `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            if (res.data.status === 'err') {
+                toast.error(res.data.message);
+                setLoading(false);
+            }
+            if (res.data.status === 'success') {
+                toast.success(res.data.message);
+                setRemoved(true)
+                setLoading(false);
+                dispatch(pullAdmin(user?._id))
+                groupActivityLogs(groupId, `remove ${user?.name} from admin role.`)
+                setTimeout(() => {
+                    setShowPop(false);
+                }, 500);
+            }
+        } catch (error) {
+            toast.error('Something went wrong')
+            setLoading(false);
+        }
     }
+
+
 
     return (
         <>
@@ -98,22 +132,40 @@ const PopUp = ({ setShowPop, showPop, type, user, groupId, setRemoved, setInvite
                     </div>
                     <span>{capitalizeFirstLetter(user?.name)}</span>
                     {
-                        type === 'delete'
-                            ?
-                            <p>Are you sure you want to remove <span>{capitalizeFirstLetter(user?.name)}</span>  from the group? </p>
-                            :
-                            <p>Are you sure you want to invite <span style={{ color: 'var(--successLight)' }}>{capitalizeFirstLetter(user?.name)}</span> be the admin of this group ?</p>
+                        type === 'delete' &&
+                        <p>Are you sure you want to remove <span>{capitalizeFirstLetter(user?.name)}</span>  from the group? </p>
+                    }
+                    {
+                        type === 'admin' &&
+                        <p>Are you sure you want to invite <span style={{ color: 'var(--successLight)' }}>{capitalizeFirstLetter(user?.name)}</span> be the admin of this group ?</p>
+
+                    }
+                    {
+                        type === 'removeAdmin' &&
+                        <p>Are you sure you want to remove <span style={{ color: 'var(--successLight)' }}>{capitalizeFirstLetter(user?.name)}</span> from admin role?</p>
+
                     }
                     <div className={styles.btns}>
                         <button onClick={() => setShowPop(false)}>Cancel</button>
-                        {type === 'delete'
-                            ? <button onClick={removeFromGroup}>
+                        {
+                            type === 'delete'
+                            && <button onClick={removeFromGroup}>
                                 {loading ? "Deleting..." : 'Delete'}
                             </button>
-                            : <button
+                        }
+                        {
+                            type === 'admin' &&
+                            <button
                                 onClick={inviteAsAdmin}
                                 style={{ width: 'fit-content' }}>{loading ? "Adding..." : 'Invite as admin'}
-                            </button>}
+                            </button>
+                        }
+                        {
+                            type === 'removeAdmin' &&
+                            <button onClick={removeAdmin}>
+                                {loading ? "Removing..." : 'Remove'}
+                            </button>
+                        }
                     </div>
                 </div>
             </div>

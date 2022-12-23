@@ -25,7 +25,7 @@ const ManageAdmins = () => {
                 <h2>Current admins of the group</h2>
                 {
                     currentGroup?.admins?.map((id) => (
-                        <Card key={id} userId={id} />
+                        <Card key={id} userId={id} currentAdmin={true}/>
                     ))
                 }
             </div>
@@ -33,7 +33,7 @@ const ManageAdmins = () => {
                 <h2>Members invited as admins</h2>
                 {
                     currentGroup?.adminsInvited?.map((id) => (
-                        <Card key={id} userId={id} requested={true} />
+                        <Card key={id} userId={id} requested={true}  currentAdmin={false}/>
                     ))
                 }
             </div>}
@@ -42,7 +42,7 @@ const ManageAdmins = () => {
                 <h2>Invite as admin from members of the group</h2>
                 {
                     currentGroup?.members?.map((id) => (
-                        <Card key={id} userId={id} />
+                        <Card key={id} userId={id} currentAdmin={false}/>
                     ))
                 }
             </div>

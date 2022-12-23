@@ -13,7 +13,7 @@ import PopUp from './PopUp';
 import { pullAdminInvites } from '../../../../redux/currentGroup';
 import { groupActivityLogs } from '../../../../helpers/groupActivities';
 
-const Card = ({ userId, requested }) => {
+const Card = ({ userId, requested, currentAdmin }) => {
     const { currentUser } = useSelector(state => state.user);
     const { currentGroup } = useSelector(state => state.currentGroup);
     const [loading, setLoading] = useState(false);
@@ -126,7 +126,7 @@ const Card = ({ userId, requested }) => {
             toast.error('something went wrong')
             setCancelLoad(false);
         }
-    }
+    };
 
 
 
@@ -138,8 +138,10 @@ const Card = ({ userId, requested }) => {
                 <div className={styles.img}>
                     <img src={user?.profilePic} alt="" />
                 </div>
-                <div className={styles.details}>
-                    <span onClick={() => navigate(`/profile/${user._id}`)}>
+                <div style={{ marginRight: 'auto' }} className={styles.details}>
+                    <span
+
+                        onClick={() => navigate(`/profile/${user._id}`)}>
                         {user?.name}
                     </span>
                 </div>
@@ -192,6 +194,20 @@ const Card = ({ userId, requested }) => {
                             </button>
                         }
                     </>}
+
+                {
+                    String(userId) !== String(currentUser?._id) &&
+                    currentGroup?.admins.includes(userId) &&
+                    currentAdmin &&
+                    <button button
+                        className={`${styles.remove} ${removed && styles.removed_}`}
+                        onClick={() => {
+                            setType('removeAdmin')
+                            setShowPop(true)
+                        }}>
+                        {removed ? 'Removed' : <DeleteFilled className={styles.icon} />}
+                    </button>
+                }
             </div >
             {
                 showPop &&

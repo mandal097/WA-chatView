@@ -60,6 +60,18 @@ const userSlice = createSlice({
         updateMembers: (state, action) => {
             state.currentGroup.members.push(action.payload)
         },
+        
+        pullAdmin: (state, action) => {
+            if (state.currentGroup.admins.includes(action.payload)) {
+                state.currentGroup.admins.splice(
+                    state.currentGroup.admins.findIndex(
+                        userId => userId === action.payload
+                    ),
+                    1
+                )
+            }
+        },
+
     },
 });
 
@@ -74,6 +86,7 @@ export const { setCurrentGroup,
     updateMembers,
     pushMemberRequest,
     pushMembersInvites,
-    pullmembersInvites
+    pullmembersInvites,
+    pullAdmin
 } = userSlice.actions;
 export default userSlice.reducer
