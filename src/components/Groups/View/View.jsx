@@ -26,7 +26,7 @@ const View = () => {
     const [coverImg, setCoverImg] = useState('');
     const [uploading, setUploading] = useState(false);
     const [showPop, setShowPop] = useState(false);
-    const [showGroup, setShowGroup] = useState(Boolean)
+    const [showGroup, setShowGroup] = useState(false)
     const [showDeletePopUp, setShowDeletePopUp] = useState(false);
 
     const location = useLocation();
@@ -46,9 +46,17 @@ const View = () => {
 
     useEffect(() => {
         const check = currentGroup?.members?.includes(currentUser?._id)
-        if (currentGroup?.isPrivate && check) {
-            setShowGroup(true)
-        } else {
+        if (currentGroup?.isPrivate === 'private' && check) {
+            setShowGroup(true);
+            // if (check) {
+            //     setShowGroup(true);
+            // } else {
+            //     setShowGroup(false);
+            // }
+        } else if (currentGroup?.isPrivate === 'public') {
+            setShowGroup(true);
+        }
+        else {
             setShowGroup(false);
         }
     }, [currentGroup, currentUser]);
