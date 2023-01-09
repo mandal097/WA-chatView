@@ -84,7 +84,7 @@ const SidebarAdmin = () => {
                                 :
                                 <>
                                     <Link
-                                        to={`/groups/${currentGroup?._id}/overview`}
+                                        to={`/groups/${currentGroup?._id}/test`}
                                         className={`${styles.card} ${activeCard === 'rooms' && styles.active_card}`}
                                         onClick={() => setActiveCard('rooms')}>
                                         <div className={styles.left}>
@@ -95,7 +95,7 @@ const SidebarAdmin = () => {
                                         </div>
                                     </Link>
                                     <Link
-                                        to={`/groups/${currentGroup?._id}/overview`}
+                                        to={`/groups/${currentGroup?._id}/test`}
                                         className={`${styles.card} ${activeCard === 'events' && styles.active_card}`}
                                         onClick={() => setActiveCard('events')}>
                                         <div className={styles.left}>
@@ -162,7 +162,7 @@ const SidebarAdmin = () => {
                         </Link>
 
                         <Link
-                            to={`/groups/${currentGroup?._id}/overview`}
+                            to={`/groups/${currentGroup?._id}/test`}
                             className={`${styles.card} ${activeCard === 'pending_post' && styles.active_card}`}
                             onClick={() => setActiveCard('pending_post')}>
                             <div className={styles.left}>

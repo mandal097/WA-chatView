@@ -54,6 +54,7 @@ import Cart from './components/Shop/Cart/Cart'
 import ShopProductPage from './components/Shop/ProductPage/ProductPage.jsx'
 import { useEffect } from 'react';
 import InviteMembers from './components/Groups/_GroupCreatorAdmin/InviteMembers/InviteMembers';
+import Overview from './components/Groups/_GroupCreatorAdmin/Overview/Overview';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
@@ -156,7 +157,8 @@ const App = () => {
                 <Route path='manage-rules' element={<Rules />} />
                 <Route path='edit' element={<Edit />} />
                 <Route path='admin_activities' element={<ActivityLog />} />
-                <Route path='overview' element={<Test />} />
+                <Route path='overview' element={<Overview />} />
+                <Route path='test' element={<Test />} />
               </Route>
             </Route>
 

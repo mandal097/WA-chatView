@@ -24,7 +24,7 @@ const Common = ({ type }) => {
             try {
                 setLoading(true);
                 if (type === 'featured') {
-                    const res = await axios.get(`/post/my-posts/${currentUser?._id}`, {
+                    const res = await axios.get(`/post/group-posts/${currentGroup?._id}`, {
                         headers: {
                             token: `Bearer ${localStorage.getItem('token')}`
                         }
@@ -32,7 +32,7 @@ const Common = ({ type }) => {
                     setPosts(res.data.data)
                 }
                 if (type === 'discussion') {
-                    const res = await axios.get('/post/get-feed-posts', {
+                    const res = await axios.get(`/post/group-posts/${currentGroup?._id}`, {
                         headers: {
                             token: `Bearer ${localStorage.getItem('token')}`
                         }
@@ -40,7 +40,7 @@ const Common = ({ type }) => {
                     setPosts(res.data.data)
                 }
                 if (type === 'videos') {
-                    const res = await axios.get('/post/get-feed-posts', {
+                    const res = await axios.get(`/post/group-posts/${currentGroup?._id}`, {
                         headers: {
                             token: `Bearer ${localStorage.getItem('token')}`
                         }
@@ -56,13 +56,13 @@ const Common = ({ type }) => {
             }
         }
         getPosts()
-    }, [type, currentUser])
+    }, [type, currentUser,currentGroup])
 
     if (loading) return <Loading font='10rem' color='white' />
     return (
         <div className={styles.discussion}>
             <div className={styles.left}>
-                {type === 'discussion' && <CreatePost />}
+                {type === 'discussion' && <CreatePost isGroupPost={true} />}
                 <div className={styles.posts}>
                     {
                         posts?.map((post => (
@@ -77,7 +77,7 @@ const Common = ({ type }) => {
 
             <div className={styles.about}>
                 <h3>About</h3>
-                <Desc/>
+                <Desc />
                 {currentGroup?.isPrivate === 'public'
                     ? <PrivacyStat
                         span='Public'
@@ -89,7 +89,7 @@ const Common = ({ type }) => {
                         p="Only members can see who's in the group and what they post.."
                         icon={<LockFilled className={styles.icon} />}
                     />}
-                {currentGroup?.visibility==='visible'
+                {currentGroup?.visibility === 'visible'
                     ? <PrivacyStat
                         span='Visible'
                         p="Anyone can find this group."

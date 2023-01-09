@@ -33,7 +33,7 @@ const Feed = () => {
     if (loading) return <Loading font='10rem' color='white' />
     return (
         <div className={styles.feeds}>
-            <CreatePost />
+            <CreatePost isGroupPost={false}/>
             {
                 posts?.map((post => (
                     <PostCard key={post?._id} post={post} loading={loading} />

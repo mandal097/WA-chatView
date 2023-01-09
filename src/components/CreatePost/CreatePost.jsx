@@ -5,7 +5,7 @@ import { useState } from 'react';
 import CreatePostModal from '../_Modals/CreatePostModal/CreatePostModal';
 import { useSelector } from 'react-redux';
 
-const CreatePost = () => {
+const CreatePost = ({isGroupPost}) => {
     const [showModal, setShowModal] = useState(false);
     const [mediaType, setMediaType] = useState('image')
     const {currentUser} = useSelector(state =>state.user)
@@ -41,6 +41,7 @@ const CreatePost = () => {
                 <CreatePostModal
                     setShowModal={setShowModal}
                     mediaType={mediaType}
+                    isGroupPost={isGroupPost}
                 />}
         </div>
     )

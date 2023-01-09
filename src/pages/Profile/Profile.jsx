@@ -23,7 +23,7 @@ import { useCallback } from 'react';
 import { setCurrentChat } from '../../redux/chatRedux';
 import { useUpload } from '../../hooks/useUpload';
 import UserBadge from '../../components/UserBadge/UserBadge';
-import {capitalizeFirstLetter} from '../../helpers/strings';
+import { capitalizeFirstLetter } from '../../helpers/strings';
 
 const Profile = () => {
     const { currentUser } = useSelector(state => state.user);
@@ -287,8 +287,8 @@ const Profile = () => {
                                             <span>{currentProfileDetails.followings?.length ? currentProfileDetails.followings.length : 0}</span> followings</Link>
                                     </div>
                                     <div className={styles.user_actions}>
-                                        <UserBadge array={currentProfileDetails?.followers} show='true'/>
-                                       
+                                        <UserBadge array={currentProfileDetails?.followers} show='true' />
+
                                         <div className={styles.actions}>
                                             {owner
                                                 ? <>

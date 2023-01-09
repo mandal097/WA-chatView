@@ -1,0 +1,73 @@
+.overview {
+  height: auto;
+  width: 90%;
+  margin: 0 auto;
+  .body {
+    width: 100%;
+    height: auto;
+    margin: 2rem 0;
+    background-color: var(--bgDark);
+    border-radius: 0.5rem;
+    padding: 1rem 2rem;
+    h1 {
+      color: var(--textSoft);
+      font-weight: 500;
+      font-size: 2rem;
+    }
+    span {
+      color: var(--bgLighter);
+      font-weight: 100;
+      font-size: 1.6rem;
+    }
+    .flex {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding: 1rem 0;
+      .card {
+        min-width: 30rem;
+        width: 48%;
+        height: auto;
+        display: flex;
+        align-items: center;
+        border-radius: 0.5rem;
+        padding: 0.4rem 1rem;
+        gap: 1rem;
+        &:hover {
+          background-color: var(--bgLight);
+        }
+        .icon_ {
+          .icon {
+            font-size: 4rem;
+            color: var(--error);
+          }
+          .small_icon {
+            font-size: 3rem;
+            color: var(--btnLight);
+          }
+        }
+        .text {
+          display: flex;
+          flex-direction: column;
+          span {
+            color: var(--text);
+            font-size: 1.8rem;
+          }
+          small {
+            font-size: 1.2rem;
+            color: var(--textSoft);
+          }
+        }
+        .count {
+          margin-left: auto;
+          span {
+            font-size: 2rem;
+            color: var(--textSoft);
+          }
+        }
+      }
+    }
+  }
+}

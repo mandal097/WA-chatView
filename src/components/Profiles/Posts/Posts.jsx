@@ -193,7 +193,7 @@ const Posts = () => {
 
 
             <div className={styles.right}>
-                {owner && <CreatePost />}
+                {owner && <CreatePost isGroupPost={false} />}
                 {
                     posts?.length === 0 && <span style={{
                         fontSize: '3rem',

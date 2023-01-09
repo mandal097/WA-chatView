@@ -10,8 +10,9 @@ import { useEffect } from 'react';
 import Tags from '../SelectUser/Tags';
 import { removeMembers } from '../../../redux/AddToGroup'
 
-const CreatePostModal = ({ setShowModal, mediaType }) => {
+const CreatePostModal = ({ setShowModal, mediaType, isGroupPost }) => {
     const { currentUser } = useSelector(state => state.user)
+    const { currentGroup } = useSelector(state => state.currentGroup)
     const { members } = useSelector(state => state.group);
     const [active, setActive] = useState(false);
     const [loading, setLoading] = useState(false)
@@ -26,7 +27,7 @@ const CreatePostModal = ({ setShowModal, mediaType }) => {
             setActive(true)
         }
     }, [media, text, uploadPerc])
-    // console.log(mediaType);
+    console.log(isGroupPost);
 
     const createPost = async (e) => {
         e.preventDefault();
@@ -35,19 +36,29 @@ const CreatePostModal = ({ setShowModal, mediaType }) => {
         }
         setLoading(true)
         try {
-            const token = localStorage.getItem('token')
-            const res = await axios.post('/post/create', {
+            const data = {
                 userId: currentUser._id,
                 mediaUrl: url,
                 tags: members,
                 text,
                 mediaType
-            },
-                {
-                    headers: {
-                        token: `Bearer ${token}`
-                    }
-                })
+            }
+            const token = localStorage.getItem('token')
+            const res = isGroupPost ?
+
+                await axios.post(`/post/create-group-post/${currentGroup?._id}`, data,
+                    {
+                        headers: {
+                            token: `Bearer ${token}`
+                        }
+                    }) :
+                await axios.post('/post/create', data,
+                    {
+                        headers: {
+                            token: `Bearer ${token}`
+                        }
+                    })
+
             if (res.data.status === 'err') {
                 setActive(false);
                 setLoading(false)
