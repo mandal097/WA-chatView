@@ -84,17 +84,12 @@ const PostCard = ({ post, loading }) => {
                     token: `Bearer ${localStorage.getItem('token')}`
                 }
             })
-            // console.log(res.data);
             if (res.data.status === 'err') {
                 toast.error(res.data.message)
             }
             if (res.data.status === 'success') {
                 setComments(res.data.data);
             }
-
-            // } catch (error) {
-            //     toast.error('something went wrong')
-            // }
         }
         fetchComments()
     }, [post]);

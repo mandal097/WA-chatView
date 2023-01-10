@@ -1,0 +1,115 @@
+.pending_posts {
+  height: auto;
+  width: 100%;
+  margin: 0 auto;
+  .top {
+    height: fit-content;
+    background-color: var(--bgDark);
+    position: sticky;
+    top: 5.5rem;
+    padding: 2rem 6rem;
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 500;
+      color: var(--textSoft);
+    }
+    .search_box {
+      flex: 1;
+      height: 4rem;
+      border-radius: 5rem;
+      background-color: var(--bgLight);
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+      gap: 1rem;
+      margin: 1rem 0;
+      .icon {
+        font-size: 3rem;
+      }
+      input {
+        flex: 1;
+        height: 100%;
+        color: var(--text);
+        font-size: 1.5rem;
+      }
+    }
+  }
+  .bottom {
+    height: auto;
+    width: 85%;
+    margin: 2rem auto;
+    .card {
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--border);
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1rem 0;
+      border-radius: 0.4rem;
+      .img {
+        width: 5rem;
+        height: 5rem;
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 0.4rem;
+          object-fit: cover;
+        }
+      }
+      .name {
+        small {
+          font-size: 1.2rem;
+          color: var(--textSoft);
+        }
+        span {
+          font-size: 1.6rem;
+          margin-left: 1rem;
+          color: var(--text);
+        }
+      }
+      .btns {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        button {
+          font-size: 1.5rem;
+          padding: 0.5rem 1rem;
+          border-radius: 0.5rem;
+          background-color: var(--bgLight);
+          cursor: pointer;
+          .icon {
+            font-size: 3rem;
+          }
+          &:hover {
+            background-color: var(--bgLighter);
+          }
+          &:nth-child(1) {
+            background-color: transparent;
+            display: none;
+          }
+          &:nth-child(1):hover {
+          scale: 1.2;
+          }
+          &:nth-child(3) {
+            background-color: var(--error);
+          }
+          &:nth-child(3):hover {
+            background-color: hotpink;
+          }
+        }
+      }
+      &:hover {
+        .btns {
+          button {
+            &:nth-child(1) {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -56,7 +56,10 @@ const GroupList = ({ searchTerm }) => {
         ))
       }
       {
-        groups.length === 0 && <h1 style={{ fontSize: '2.3rem', color: 'var(--error)', fontWeight: '200' }}>No groups found</h1>
+      !searchTerm &&  groups?.length === 0 && <h1 style={{ fontSize: '2.3rem', color: 'var(--error)', fontWeight: '200' }}>No groups found</h1>
+      }
+      {
+      searchTerm &&  searchedUsers?.length === 0 && <h1 style={{ fontSize: '2.3rem', color: 'var(--error)', fontWeight: '200' }}>No groups found for :{searchTerm}</h1>
       }
     </div>
   )

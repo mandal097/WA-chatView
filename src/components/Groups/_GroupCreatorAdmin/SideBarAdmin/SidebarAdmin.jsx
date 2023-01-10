@@ -162,9 +162,9 @@ const SidebarAdmin = () => {
                         </Link>
 
                         <Link
-                            to={`/groups/${currentGroup?._id}/test`}
-                            className={`${styles.card} ${activeCard === 'pending_post' && styles.active_card}`}
-                            onClick={() => setActiveCard('pending_post')}>
+                            to={`/groups/${currentGroup?._id}/pending-posts`}
+                            className={`${styles.card} ${activeCard === 'pending-posts' && styles.active_card}`}
+                            onClick={() => setActiveCard('pending-posts')}>
                             <div className={styles.left}>
                                 <AppstoreAddOutlined className={styles.icon} />
                             </div>

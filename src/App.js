@@ -55,12 +55,11 @@ import ShopProductPage from './components/Shop/ProductPage/ProductPage.jsx'
 import { useEffect } from 'react';
 import InviteMembers from './components/Groups/_GroupCreatorAdmin/InviteMembers/InviteMembers';
 import Overview from './components/Groups/_GroupCreatorAdmin/Overview/Overview';
+import PendingPost from './components/Groups/_GroupCreatorAdmin/PendingPosts/PendingPost';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
-  // const { currentGroup } = useSelector(state => state.currentGroup);
   const [path, setPath] = useState(false);
-  // const [showGroup, setShowGroup] = useState(Boolean)
   const path_ = window.location.pathname.split('/')[1];
 
   useEffect(() => {
@@ -71,20 +70,6 @@ const App = () => {
     }
   }, [path_]);
 
-  // console.log(currentGroup);
-  // useEffect(() => {
-  //   const check = currentGroup?.members?.includes(user?._id)
-  //   if (currentGroup?.isPrivate && check) {
-  //     setShowGroup(true)
-  //   } else {
-  //     setShowGroup(false);
-  //   }
-  // }, [currentGroup, user]);
-
-  // console.log(showGroup);
-
-
-  // if(!user) return <Welcome/>
   return (
     <div>
       <BrowserRouter>
@@ -143,14 +128,6 @@ const App = () => {
                 <Route path='members' element={<Members />} />
                 <Route path='media' element={<Media />} />
                 <Route path='files' element={<Files />} />
-                {/* <Route index path='' element={ <Common type='discussion' /> : <Navigate to={`/groups/${currentGroup?._id}/about`} />} />
-                <Route path='featured' element={ <Common type='featured' /> : <Navigate to={`/groups/${currentGroup?._id}/about`} />} />
-                <Route path='videos' element={ <Common type='videos' /> : <Navigate to={`/groups/${currentGroup?._id}/about`} />} />
-                <Route path='about' element={<AboutGroup />} />
-                <Route path='members' element={ <Members /> : <Navigate to={`/groups/${currentGroup?._id}/about`} />} />
-                <Route path='media' element={ <Media /> : <Navigate to={`/groups/${currentGroup?._id}/about`} />} />
-                <Route path='files' element={ <Files /> : <Navigate to={`/groups/${currentGroup?._id}/about`} />} /> */}
-                {/* admin access routes for groups */}
                 <Route path='admin_assist' element={<ManageAdmins />} />
                 <Route path='member-requests' element={<MemberRequest />} />
                 <Route path='Invite-members' element={<InviteMembers />} />
@@ -158,6 +135,7 @@ const App = () => {
                 <Route path='edit' element={<Edit />} />
                 <Route path='admin_activities' element={<ActivityLog />} />
                 <Route path='overview' element={<Overview />} />
+                <Route path='pending-posts' element={<PendingPost />} />
                 <Route path='test' element={<Test />} />
               </Route>
             </Route>
