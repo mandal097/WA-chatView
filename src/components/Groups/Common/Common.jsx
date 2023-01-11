@@ -57,7 +57,7 @@ const Common = ({ type }) => {
         }
         getPosts()
     }, [type, currentUser,currentGroup])
-
+    
     if (loading) return <Loading font='10rem' color='white' />
     return (
         <div className={styles.discussion}>

@@ -25,6 +25,7 @@ const Feed = () => {
                     }
                 })
                 setPosts(res.data.data)
+                console.log(res.data.data);
                 setLoading(false)
             } catch (error) {
                 console.log('something went wrong');
@@ -33,6 +34,7 @@ const Feed = () => {
         }
         getPosts()
     }, [currentGroup])
+
 
     if (loading) return <Loading font='10rem' color='white' />
     return (

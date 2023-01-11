@@ -4,11 +4,12 @@ import styles from './PendingPosts.module.scss'
 import axios from '../../../../config/axios';
 import { EyeFilled } from '@ant-design/icons';
 import Loading from '../../../Loading/Loading';
+import PostModal from './PostModal';
 
 const Card = ({ id }) => {
     const [loading, setLoading] = useState(false);
     const [post, setPost] = useState([]);
-    // const [showPostModal, setShowPostModal] = useState(false);
+    const [showPostModal, setShowPostModal] = useState(false);
 
     useEffect(() => {
         const getPosts = async () => {
@@ -29,6 +30,8 @@ const Card = ({ id }) => {
         getPosts()
     }, [id])
 
+    // console.log(post);
+
     if (loading) return <Loading color='var(--text)' font='6rem' />
     return (
         <>
@@ -41,15 +44,19 @@ const Card = ({ id }) => {
                     <span>{post?.userId?.name}</span>
                 </div>
                 <div className={styles.btns}>
-                    <button><EyeFilled className={styles.icon} /></button>
+                    <button onClick={() => setShowPostModal(!showPostModal)}>
+                        <EyeFilled className={styles.icon} /></button>
                     <button>Approve</button>
                     <button>Decline</button>
                 </div>
             </div>
-            {/* {
+            {
                 showPostModal &&
-               
-            } */}
+                <PostModal
+                    post={post}
+                    setShowPostModal={setShowPostModal}
+                />
+            }
         </>
     )
 }

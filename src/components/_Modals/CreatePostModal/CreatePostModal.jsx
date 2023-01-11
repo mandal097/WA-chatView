@@ -27,7 +27,7 @@ const CreatePostModal = ({ setShowModal, mediaType, isGroupPost }) => {
             setActive(true)
         }
     }, [media, text, uploadPerc])
-    console.log(isGroupPost);
+    // console.log(isGroupPost);
 
     const createPost = async (e) => {
         e.preventDefault();
@@ -75,7 +75,7 @@ const CreatePostModal = ({ setShowModal, mediaType, isGroupPost }) => {
                 }, 200);
             }
             // console.log(url);
-            console.log(res.data);
+            // console.log(res.data);
         } catch (error) {
             setLoading(false)
             toast.error('something went wrong')
