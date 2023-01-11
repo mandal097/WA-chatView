@@ -89,7 +89,7 @@ const ActivityLog = () => {
                     </>
                 }
                 {
-                    activityList.length === 0 && <h1 style={{ fontSize: '2.3rem', color: 'var(--error)', fontWeight: '200' }}>No activities taken in this group</h1>
+                    activityList?.length === 0 && <h1 style={{ fontSize: '2.3rem', color: 'var(--error)', fontWeight: '200' }}>No activities taken in this group</h1>
                 }
             </div>
         </div>

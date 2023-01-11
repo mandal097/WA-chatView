@@ -5,6 +5,7 @@ import axios from '../../../config/axios';
 import { toast } from 'react-toastify';
 import PostModal from '../../_Modals/PostModal/PostModal';
 import { EditFilled } from '@ant-design/icons';
+import { useSelector } from 'react-redux';
 
 
 const MediaCard = ({ loading, post, active }) => {
@@ -36,9 +37,9 @@ const MediaCard = ({ loading, post, active }) => {
         {
           loading
             ? <Loading font='6rem' color='white' />
-            : active === 'video'
-              ? <video src={post?.mediaUrl} alt="profilepicture" onClick={() => setShowPostModal(true)} />
-              : <img src={post?.mediaUrl} alt="profilepicture" onClick={() => setShowPostModal(true)} />
+            : active === 'image'
+            ? <img src={post?.mediaUrl} alt="profilepicture" onClick={() => setShowPostModal(true)} />
+            : <video src={post?.mediaUrl} alt="profilepicture" onClick={() => setShowPostModal(true)} />
         }
       </div>
       <div className={styles.actions} ref={actionRef} >
@@ -61,6 +62,7 @@ const MediaCard = ({ loading, post, active }) => {
 
 
 const Media = () => {
+  const { currentGroup } = useSelector(state => state.currentGroup);
   const [active, setActive] = useState('image');
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false)
@@ -69,7 +71,8 @@ const Media = () => {
     const fetchPosts = async () => {
       try {
         setLoading(true)
-        const res = await axios.get('/post/get-all-posts', {
+        // const res = await axios.get('/post/get-all-posts', {
+        const res = await axios.get(`/post/group-posts/${currentGroup?._id}`, {
           headers: {
             token: `Bearer ${localStorage.getItem('token')}`
           }
@@ -84,6 +87,10 @@ const Media = () => {
             const filter = arr.filter(ele => ele.mediaType === 'video')
             setPosts(filter)
           }
+          if (active === 'reels') {
+            const filter = arr.filter(ele => ele.mediaType === 'reels')
+            setPosts(filter)
+          }
           if (active === 'image') {
             const filter = arr.filter(ele => ele.mediaType === 'image')
             setPosts(filter)
@@ -96,7 +103,7 @@ const Media = () => {
       }
     }
     fetchPosts()
-  }, [active]);
+  }, [active, currentGroup]);
 
   return (
     <div className={styles.media}>
@@ -116,6 +123,9 @@ const Media = () => {
         </div>
         <div className={`${styles.nav_items}  ${active === 'video' && styles.active_nav}`} onClick={() => setActive('video')}>
           <span className='link'>Videos</span>
+        </div>
+        <div className={`${styles.nav_items}  ${active === 'reels' && styles.active_nav}`} onClick={() => setActive('reels')}>
+          <span className='link'>Reels</span>
         </div>
       </div>
 

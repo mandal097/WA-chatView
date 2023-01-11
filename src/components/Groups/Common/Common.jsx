@@ -56,8 +56,8 @@ const Common = ({ type }) => {
             }
         }
         getPosts()
-    }, [type, currentUser,currentGroup])
-    
+    }, [type, currentUser, currentGroup])
+
     if (loading) return <Loading font='10rem' color='white' />
     return (
         <div className={styles.discussion}>
@@ -70,7 +70,8 @@ const Common = ({ type }) => {
                         )))
                     }
                     {
-                        !posts && !loading && <h2>No posts founds...</h2>
+                        posts?.length === 0 && !loading &&
+                        <h1 style={{ fontSize: '2.3rem', color: 'var(--error)', fontWeight: '200' }}>No posts in this group yet !</h1>
                     }
                 </div>
             </div>

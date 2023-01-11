@@ -120,6 +120,10 @@ const PendingPost = () => {
                         <Card key={id} id={id} groupId={currentGroup?._id} />
                     ))
                 }
+                {
+                    currentGroup?.pendingPost?.length === 0 &&
+                    <h1 style={{ fontSize: '2.3rem', color: 'var(--error)', fontWeight: '200' }}>No pending posts</h1>
+                }
             </div>
         </div>
     )
