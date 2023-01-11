@@ -5,11 +5,15 @@ import axios from '../../../../config/axios';
 import { EyeFilled } from '@ant-design/icons';
 import Loading from '../../../Loading/Loading';
 import PostModal from './PostModal';
+import { toast, ToastContainer } from 'react-toastify';
 
-const Card = ({ id }) => {
+const Card = ({ id, groupId }) => {
     const [loading, setLoading] = useState(false);
     const [post, setPost] = useState([]);
     const [showPostModal, setShowPostModal] = useState(false);
+    const [loadOnClick, setLoadOnClick] = useState(false);
+    const [approved, setApproved] = useState(false);
+    const [declined, setDeclined] = useState(false)
 
     useEffect(() => {
         const getPosts = async () => {
@@ -32,9 +36,41 @@ const Card = ({ id }) => {
 
     // console.log(post);
 
+    const handlePosts = async (params) => {
+        try {
+            setLoadOnClick(true);
+            const res = await axios.put(`/groups/handle-pending-post/${groupId}`, {
+                postId: id,
+                confirmation: params
+            }, {
+                headers: {
+                    token: `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            if (res.data.status === 'err') {
+                toast.error(res.data.message);
+                setLoadOnClick(false);
+            }
+            if (res.data.status === 'success') {
+                toast.success(res.data.message);
+                setLoadOnClick(false);
+                if (params === true) {
+                    setApproved(true)
+                }
+                if (params === false) {
+                    setDeclined(true)
+                }
+            }
+        } catch (error) {
+            toast.error('Something went wrong');
+            setLoadOnClick(false);
+        }
+    }
+
     if (loading) return <Loading color='var(--text)' font='6rem' />
     return (
         <>
+            <ToastContainer className='toaster' />
             <div className={styles.card}>
                 <div className={styles.img}>
                     <img src={post?.userId?.profilePic} alt={post?.userId?.name} />
@@ -45,9 +81,14 @@ const Card = ({ id }) => {
                 </div>
                 <div className={styles.btns}>
                     <button onClick={() => setShowPostModal(!showPostModal)}>
-                        <EyeFilled className={styles.icon} /></button>
-                    <button>Approve</button>
-                    <button>Decline</button>
+                        <EyeFilled className={styles.icon} />
+                    </button>
+                    <button onClick={() => handlePosts(true)} >
+                        {loadOnClick ? 'Approving...' : approved ? 'Approved' : 'Approve'}
+                    </button>
+                    <button onClick={() => handlePosts(false)} >
+                        {loadOnClick ? 'Declining...' : declined ? 'Declined' : 'Decline'}
+                    </button>
                 </div>
             </div>
             {
@@ -70,12 +111,13 @@ const PendingPost = () => {
                 <div className={styles.search_box}>
                     <input type="text" placeholder='Search by name of user' />
                 </div>
+                <div className={styles.refresh} onClick={() => window.location.reload()} >Refresh</div>
             </div>
 
             <div className={styles.bottom}>
                 {
                     currentGroup?.pendingPost?.map(id => (
-                        <Card key={id} id={id} />
+                        <Card key={id} id={id} groupId={currentGroup?._id} />
                     ))
                 }
             </div>

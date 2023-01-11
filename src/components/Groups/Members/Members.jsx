@@ -24,7 +24,7 @@ const Members = () => {
           token: `Bearer ${localStorage.getItem('token')}`
         }
       })
-      console.log(res.data.data);
+      // console.log(res.data.data);
       if (res.data.status === 'err') {
         toast.error(res.data.message)
       }
@@ -33,7 +33,7 @@ const Members = () => {
         setGroupDetails(res.data.data)
       }
       setLoading(false)
-      console.log(res.data.data.members)
+      // console.log(res.data.data.members)
     }
     fetchGroups()
   }, [currentGroup]);

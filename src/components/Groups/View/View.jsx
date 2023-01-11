@@ -125,7 +125,7 @@ const View = () => {
                 dispatch(setCurrentGroup(res.data.data))
                 setLoading(false);
             }
-            // console.log(res.data);
+            console.log(res.data);
         }
         fetchGroupDetails()
     }, [groupId, dispatch]);
