@@ -2,6 +2,7 @@
   height: auto;
   width: 90%;
   margin: 0 auto;
+  position: relative;
   .body {
     width: 100%;
     height: auto;
@@ -72,30 +73,138 @@
       flex-wrap: wrap;
       padding: 1rem 0;
     }
-    .bottom {
-      display: flex;
-      justify-content: space-between;
-      gap: 2rem;
-      .sections {
-        width: 50%;
-        background-color: var(--bgDark);
-        border-radius: 1rem;
-        height: auto;
-        padding: 1.5rem;
+    .sections {
+      width: 50%;
+      background-color: var(--bgDark);
+      border-radius: 1rem;
+      height: auto;
+      padding: 1.5rem;
 
-        .insight_card {
-          width: 100%;
-          height: 8rem;
-          background-color: var(--bgLight);
-          padding: 0 1rem;
-          margin: 1rem auto;
-          cursor: default;
-          .small_icon {
-            transform: rotate(-45deg);
-            font-size: 2.5rem;
+      .insight_card {
+        width: 100%;
+        height: 8rem;
+        background-color: var(--bgLight);
+        padding: 0 1rem;
+        margin: 1rem auto;
+        cursor: default;
+        .small_icon {
+          transform: rotate(-45deg);
+          font-size: 2.5rem;
+        }
+      }
+    }
+  }
+  .charts_full {
+    background-color: var(--bgDark);
+    height: auto;
+    color: var(--text);
+    padding: 1rem;
+    border-radius: 1rem;
+    margin: 2rem 0;
+    h1 {
+      font-size: 2rem;
+      font-weight: 500;
+    }
+    small {
+      font-size: 1.2rem;
+      color: var(--textSoft);
+    }
+    .chart_div {
+      // height: 50vh;
+      margin: 1rem 0;
+      // border: 1px solid red;
+    }
+  }
+  .insight_count {
+    height: auto;
+    color: var(--text);
+    border-radius: 1rem;
+    margin: 2rem 0;
+    display: flex;
+    gap: 2rem;
+    .counts_div {
+      background-color: var(--bgDark);
+      display: flex;
+      flex-direction: column;
+      margin: 1rem 0;
+      padding: 1rem;
+      flex: 1;
+      border-radius: 1rem;
+      h1 {
+        font-size: 2rem;
+        font-weight: 500;
+      }
+      small {
+        font-size: 1.2rem;
+        margin-top: 0.1rem;
+        color: var(--textSoft);
+      }
+      .counts_wrapper {
+        display: flex;
+        gap: 2rem;
+        margin-top: 1rem;
+        .count {
+          flex: 1;
+          height: auto;
+          display: flex;
+          flex-direction: column;
+          background-color: var(--bg);
+          border-radius: 1rem;
+          padding: 0.5rem 1rem;
+          b {
+            font-size: 2.1rem;
+            font-weight: 100;
+            color: var(--textSoft);
+          }
+          span {
+            font-size: 5rem;
+            color: var(--bgLighter);
+            font-weight: 100;
           }
         }
       }
     }
+  }
+  .demo_message {
+    position: absolute;
+    top: 0rem;
+    right: 0rem;
+    width: 100%;
+    height: 85vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
+    display: flex;
+    justify-content: flex-end;
+    padding: 2rem;
+    .wrapper {
+      width: fit-content;
+      height: fit-content;
+      padding: 0.5rem;
+      background-color: var(--bgLight);
+      border-radius: 0.3rem;
+      overflow: hidden;
+      animation: grow 500ms linear 1;
+      .close {
+        width: fit-content;
+        cursor: pointer;
+        margin-left: auto;
+        margin-bottom: 0.2rem;
+        .icon {
+          font-size: 3rem;
+          color: var(--error);
+        }
+      }
+      p {
+        font-size: 1.4rem;
+        color: var(--text);
+        text-align: center;
+      }
+    }
+  }
+}
+
+@keyframes grow {
+  0% {
+    width: 0;
+    height: 0;
   }
 }
