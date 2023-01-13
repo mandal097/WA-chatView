@@ -14,18 +14,27 @@ const ChangePassword = () => {
     const [otp, setOtp] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
-    const [phoneEmail, setPhoneEmail] = useState('');
     const [loading, setLoading] = useState(false);
+    const [dbQuery, setDbQuery] = useState({});
 
     const { otpState } = useSelector((state) => state.user);
 
     useEffect(() => {
-        if (otpState.phone !== '') {
-            setPhoneEmail(otpState.phone)
-        } else {
-            setPhoneEmail(otpState.email)
+        if (otpState.sourceType === 'phone') {
+            setDbQuery({
+                phone:otpState.phone,
+                otp: +otp,
+                password: newPassword
+            })
+        } 
+         if(otpState.sourceType==='email') {
+            setDbQuery({
+                email:otpState.email,
+                otp: +otp,
+                password: newPassword
+            })
         }
-    }, [otpState])
+    }, [otpState, otp , newPassword])
 
     const submit = async (e) => {
         e.preventDefault();
@@ -37,11 +46,7 @@ const ChangePassword = () => {
             } else {
                 try {
                     setLoading(true)
-                    const res = await axios.post('/user/update-password/forgot', {
-                        phone: phoneEmail,
-                        otp: +otp,
-                        password: newPassword
-                    });
+                    const res = await axios.post('/user/update-password/forgot', dbQuery);
                     if (res.data.status === 'err') {  //if backend error comes 
                         toast.error(res.data.message);
                         setLoading(false);
@@ -49,30 +54,9 @@ const ChangePassword = () => {
                     if (res.data.status === 'success') { //if  password successfully updated
                         toast.success(res.data.message);
                         setLoading(false);
-                        // setTimeout(() => {
-                        //     navigate('/login');                            
-                        // }, 1000);
-                        // if everything is fine, know according to backend api we have delete the otp document of this user with given credential from OTP table
-                        // setTimeout(async () => {
-
-                        //     if (otpState.phone !== '') {
-                        //         const res = await axios.delete(`/delete-otp/${phoneEmail}`);
-                        //         if (res.data.status === 'err') {
-                        //             toast.error(res.data.message)
-                        //         }
-                        //         if (res.data.status === 'success') {
-                        //             toast.error(res.data.message)
-                        //         }
-                        //     } else {
-                        //         const res = await axios.post(`/delete-otp/${phoneEmail}`)
-                        //         if (res.data.status === 'err') {
-                        //             toast.error(res.data.message)
-                        //         }
-                        //         if (res.data.status === 'success') {
-                        //             toast.error(res.data.message)
-                        //         }
-                        //     }
-                        // }, 2000);
+                        setTimeout(() => {
+                            navigate('/login')
+                        }, 1000);
                     };
                 } catch (error) {
                     setLoading(false);
@@ -84,7 +68,7 @@ const ChangePassword = () => {
         <div className={styles.change_password}>
             <ToastContainer className='toaster' />
             <AuthLayout heading='WeChat'>
-                <h4 style={{ marginTop: '0.5rem' }}>Enter the OTP we've just sent to you</h4>
+                <h4 style={{ marginTop: '0.5rem' }}>Enter the OTP we've just sent to you on {otpState.sourceType}</h4>
                 <div className={styles.code_icon}>
                     <VerifiedOutlined />
                 </div>
@@ -123,3 +107,31 @@ const ChangePassword = () => {
 }
 
 export default ChangePassword;
+
+
+
+
+                        // setTimeout(() => {
+                        //     navigate('/login');                            
+                        // }, 1000);
+                        // if everything is fine, know according to backend api we have delete the otp document of this user with given credential from OTP table
+                        // setTimeout(async () => {
+
+                        //     if (otpState.phone !== '') {
+                        //         const res = await axios.delete(`/delete-otp/${dbQuery}`);
+                        //         if (res.data.status === 'err') {
+                        //             toast.error(res.data.message)
+                        //         }
+                        //         if (res.data.status === 'success') {
+                        //             toast.error(res.data.message)
+                        //         }
+                        //     } else {
+                        //         const res = await axios.post(`/delete-otp/${dbQuery}`)
+                        //         if (res.data.status === 'err') {
+                        //             toast.error(res.data.message)
+                        //         }
+                        //         if (res.data.status === 'success') {
+                        //             toast.error(res.data.message)
+                        //         }
+                        //     }
+                        // }, 2000);

@@ -32,7 +32,7 @@ const SendOtp = () => {
                     phone: phone
                 });
                 if (res.data.status === 'success') {
-                    dispatch(setOtpState({ phone: phone }))
+                    dispatch(setOtpState({ phone: phone, sourceType: 'phone' }))
                     setLoading(false)
                 }
             }
@@ -46,7 +46,7 @@ const SendOtp = () => {
                     email: email
                 });
                 if (res.data.status === 'success') {
-                    dispatch(setOtpState({ email: email }))
+                    dispatch(setOtpState({ email: email, sourceType: 'email' }))
                     setLoading(false);
                 }
             }

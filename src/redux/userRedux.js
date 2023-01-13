@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     currentUser: null,
     otpState: {
+        sourceType: 'phone',
         phone: '',
         email: ''
     },
@@ -24,9 +25,10 @@ const userSlice = createSlice({
             state.currentUser.img = action.payload
         },
         setOtpState: (state, action) => {
-            const { phone, email } = action.payload
+            const { phone, email, sourceType } = action.payload
             state.otpState.phone = phone;
             state.otpState.email = email;
+            state.otpState.sourceType = sourceType;
         },
         followFriend: (state, action) => {
             if (!state.currentUser.followings.includes(action.payload)) {
@@ -52,13 +54,13 @@ const userSlice = createSlice({
             state.currentUser.schoolCollege = details.schoolCollege;
             state.currentUser.insta = details.insta;
         },
-        updateBio:(state,action)=>{
+        updateBio: (state, action) => {
             state.currentUser.bio = action.payload.bio
         },
-        updateProfilePic:(state,action)=>{
+        updateProfilePic: (state, action) => {
             state.currentUser.profilePic = action.payload.profilePic
         },
-        updateCover:(state,action)=>{
+        updateCover: (state, action) => {
             state.currentUser.coverImg = action.payload.coverImg
         },
     },
