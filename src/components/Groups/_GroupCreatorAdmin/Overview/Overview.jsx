@@ -23,11 +23,11 @@ const Overview = () => {
                 style={{ background: 'transparent', padding: '0', display: 'flex', gap: '1rem' }}>
                 <PostInsights />
                 <div className={styles.sections}>
-                    <Chart data={productData} dataKey="Sales" title="Sales Performance" />
+                    <Chart data={productData} dataKey="Posts" title="Post Insights" />
                 </div>
             </div>
-            <Chart data={userData} title="2 total members" dataKey="Active User" />
-            <Chart data={productData} dataKey="Sales" title="Sales Performance" />
+            <Chart data={userData} title="2 total members" dataKey="Members" />
+                    <Chart data={productData} dataKey="Posts" title="Post Insights" />
             <Counts />
             {
                 showMessage && <DemoMessage setShowMessage={setShowMessage} />
