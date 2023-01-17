@@ -17,7 +17,7 @@ const SendOtp = () => {
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [loading, setLoading] = useState(false);
-    const [option, setOption] = useState('phone');
+    const [option, setOption] = useState('email');
 
 
     const submit = async (e) => {
@@ -55,7 +55,10 @@ const SendOtp = () => {
             toast.error(res.data.message)
             setLoading(false);
         }
-        if (res.data.status === 'success') {  //if successully otp sent to user
+        if (res.data.status === 'success' && option === 'phone') {
+            toast.error('facing problem use email instead');
+        }
+        if (res.data.status === 'success' && option === 'email') {  //if successully otp sent to user
             toast.success(res.data.message)
             setTimeout(() => {
                 navigate('/forgot-password')

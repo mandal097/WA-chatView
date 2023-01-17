@@ -21,11 +21,13 @@ import { setCurrentChatInitial } from '../../redux/chatRedux';
 import { useState } from 'react';
 import FriendsList from '../FriendsList/FriendsList';
 import { useEffect } from 'react';
+import ProfileSidebar from '../ProfileSidebar/ProfileSidebar';
 
 const Navbar = () => {
     const user = useSelector((state) => state.user.currentUser);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [showProfileSidebar, setShowProfileSidebar] = useState(false);
     const [showFriendsList, setShowFriendsList] = useState('');
     const [active, setActive] = useState('')
     const navRef = useRef()
@@ -93,7 +95,7 @@ const Navbar = () => {
                         </div>
 
                         <div className={styles.toolkit}>
-                       <div className={styles.auth_actions}>
+                            <div className={styles.auth_actions}>
                                 <button
                                     onClick={logoutUser}>
                                     <LogoutOutlined className={styles.icon} /><span>Logout</span>
@@ -101,7 +103,7 @@ const Navbar = () => {
                             </div>
                             <button className={styles.tools} onClick={() => navigate('/messenger')}><MessageFilled /></button>
                             <button className={styles.tools}><BellFilled /></button>
-                            <button className={styles.tools} onClick={() => navigate(`/profile/${user?._id}`)}>
+                            <button className={styles.tools} onClick={() => setShowProfileSidebar(true)}>
                                 <img src={user?.profilePic} alt="profile_pic" />
                             </button>
                         </div>
@@ -126,6 +128,14 @@ const Navbar = () => {
                 <FriendsList
                     setShowFriendsList={setShowFriendsList}
                     showFriendsList={showFriendsList}
+                />
+            }
+            {
+                showProfileSidebar &&
+                <ProfileSidebar
+                    showProfileSidebar={showProfileSidebar}
+                    setShowProfileSidebar={setShowProfileSidebar}
+                    user={user}
                 />
             }
         </nav>

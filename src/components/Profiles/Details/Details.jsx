@@ -12,14 +12,14 @@ import {
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import axios from '../../../config/axios';
-import {capitalizeFirstLetter} from '../../../helpers/strings';
+import { capitalizeFirstLetter } from '../../../helpers/strings';
+import { useNavigate } from 'react-router-dom';
 
 const Details = ({ id }) => {
     const { currentUser } = useSelector(state => state.user);
-    // const { currentProfile } = useSelector(state => state.profile);
     const [currentProfile, setCurrentProfile] = useState({});
     const [me, setMe] = useState(false)
-    // console.log(id);
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (String(id) === String(currentUser.id)) {
@@ -48,10 +48,14 @@ const Details = ({ id }) => {
     }, [id, me])
     return (
         <>
-            <ul>
+            <ul style={{ width: "100%" }}>
                 <li>
                     <div className={styles.icon_}><UserOutlined className={styles.icon} /></div>
-                    <div className={styles.fields}><p>{me ? capitalizeFirstLetter(currentUser.name) : capitalizeFirstLetter(currentProfile?.name)}</p></div>
+                    <div className={`${styles.fields}`}>
+                        <p className={styles.link} onClick={() => navigate(`/profile/${currentUser?._id}`)}>
+                            {me ? capitalizeFirstLetter(currentUser.name) : capitalizeFirstLetter(currentProfile?.name)}
+                        </p>
+                    </div>
                 </li>
                 <li>
                     <div className={styles.icon_}><MailFilled className={styles.icon} /></div>
@@ -66,7 +70,7 @@ const Details = ({ id }) => {
                     <div className={styles.fields}><span>Joined on</span> <p>{me ? currentUser.createdAt : currentProfile?.createdAt?.slice(0, 4)}</p></div>
                 </li>
 
-                {(currentProfile?.city  || currentUser?.city) &&
+                {(currentProfile?.city || currentUser?.city) &&
                     <li>
                         <div className={styles.icon_}><HomeFilled className={styles.icon} /></div>
                         <div className={styles.fields}><span>Lives in</span> <p>{me ? currentUser.city : currentProfile?.city}</p></div>
