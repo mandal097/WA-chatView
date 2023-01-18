@@ -15,7 +15,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import LikeModal from '../_Modals/LikesModal/LikeModal';
 
-const PostActions = ({ onClick, post, showModal,vidRef }) => {
+const PostActions = ({ onClick, post, showModal, vidRef }) => {
     const { currentUser } = useSelector(state => state.user)
     const [liked, setLiked] = useState(post?.likes?.includes(currentUser._id));
     const [saved, setSaved] = useState(post?.saved?.includes(currentUser._id));
@@ -85,6 +85,7 @@ const PostActions = ({ onClick, post, showModal,vidRef }) => {
         }
     }
 
+    console.log(post);
 
     return (
         <>
@@ -100,10 +101,10 @@ const PostActions = ({ onClick, post, showModal,vidRef }) => {
                     <div className={styles.icons} onClick={onClick}>
                         <MessageOutlined className={styles.icon} />
                     </div>
-                    <div className={styles.icons} onClick={()=>{
+                    <div className={styles.icons} onClick={() => {
                         vidRef.current?.pause()
                         showModal()
-                        }}>
+                    }}>
                         <FolderViewOutlined className={styles.icon} />
                     </div>
                     <div className={styles.icons}>
@@ -111,13 +112,13 @@ const PostActions = ({ onClick, post, showModal,vidRef }) => {
                     </div>
                 </div>
                 <div className={styles.right}>
-                    <div className={styles.icons} onClick={saveUnsavePost}>
+                    {!post?.isGroupPost && <div className={styles.icons} onClick={saveUnsavePost}>
                         {
                             saved
                                 ? <BookFilled className={styles.icon} />
                                 : <BookOutlined className={styles.icon} />
                         }
-                    </div>
+                    </div>}
                 </div>
             </div>
 

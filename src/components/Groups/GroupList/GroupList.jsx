@@ -87,7 +87,6 @@ const GroupList = () => {
 
     const handleQuery = () => {
         setSearchParams({ 'q': searchQuery, 'count': 'all' });
-
     };
 
     useEffect(() => {

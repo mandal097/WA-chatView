@@ -1,4 +1,8 @@
-.shop{
-    font-size: 10rem;
-    color: var(--text);
+.shop {
+  font-size: 10rem;
+  color: var(--text);
+  .outlet {
+    width: 98%;
+    margin: 0 auto;
+  }
 }

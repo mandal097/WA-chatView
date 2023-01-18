@@ -21,9 +21,11 @@
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.4.1",
     "react-scripts": "5.0.1",
+    "react-slick": "^0.29.0",
     "react-toastify": "^9.0.8",
     "recharts": "^2.2.0",
     "redux-persist": "^6.0.0",
+    "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.6",
     "timeago.js": "^4.0.2",
     "web-vitals": "^2.1.4"

@@ -1,8 +1,11 @@
 import React from 'react'
+import Banner from '../Banner/Banner'
 
 const BrowseProducts = () => {
   return (
-    <div style={{fontSize:'5rem', color:'blue'}}>BrowseProducts</div>
+    <div >
+      <Banner/>
+    </div>
   )
 }
 

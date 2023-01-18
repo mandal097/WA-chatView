@@ -5,13 +5,13 @@ import {
     HomeOutlined,
     DesktopOutlined,
     UsergroupDeleteOutlined,
-    BellFilled,
     MessageFilled,
     UserAddOutlined,
     QqOutlined,
     LogoutOutlined,
     LoginOutlined,
-    ShopOutlined
+    ShopOutlined,
+    ShoppingFilled
 } from '@ant-design/icons';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -102,7 +102,10 @@ const Navbar = () => {
                                 </button>
                             </div>
                             <button className={styles.tools} onClick={() => navigate('/messenger')}><MessageFilled /></button>
-                            <button className={styles.tools}><BellFilled /></button>
+                            <button className={styles.tools} onClick={()=>{
+                                navigate('/shop')
+                                window.location.reload()
+                            }}><ShoppingFilled /></button>
                             <button className={styles.tools} onClick={() => setShowProfileSidebar(true)}>
                                 <img src={user?.profilePic} alt="profile_pic" />
                             </button>

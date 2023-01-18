@@ -21,14 +21,42 @@
         }
       }
       .right {
-        .link {
-          font-size: 1.7rem;
-          border-radius: 0.4rem;
-          padding: 0.5rem 1rem;
-          text-decoration: none;
-          color: var(--btnLight);
-          &:hover {
-            background-color: var(--bgLight);
+        flex: 1;
+        height: 4rem;
+        .search_box {
+          width: 90%;
+          margin: 0 auto;
+          height: 90%;
+          border-radius: 10rem;
+          border: 1px solid var(--border);
+          display: flex;
+          align-items: center;
+          .icon_ {
+            width: 4rem;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            .icon{
+              font-size: 3rem;
+              color: var(--text);
+            }
+            &::after{
+              position: absolute;
+              content: '';
+              right: 0;
+              width: 0.2rem;
+              height: 1.7rem;
+              background-color: var(--textSoft);
+            }
+          }
+          input {
+            flex: 1;
+            height: 100%;
+            padding: 0.4rem 1rem;
+            font-size: 1.4rem;
+            color: var(--text);
           }
         }
       }

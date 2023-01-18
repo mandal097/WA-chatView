@@ -6,16 +6,11 @@ import TaggedUser from '../_Modals/TaggedUsersModal/TaggedUser';
 import Loading from '../Loading/Loading';
 import {
     LoadingOutlined,
-    // HeartFilled,
-    // HeartOutlined,
-    // MessageOutlined,
     MoreOutlined,
-    // BookOutlined,
     SendOutlined
 } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
-// import Comment from '../Comment/Comment';
 import PostModal from '../_Modals/PostModal/PostModal';
 import { useRef } from 'react';
 import PostActions from './PostActions';
@@ -93,7 +88,6 @@ const PostCard = ({ post, loading }) => {
         }
         fetchComments()
     }, [post]);
-
 
 
     if (loading) return <Loading font='8rem' color='white' />
