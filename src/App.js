@@ -49,7 +49,7 @@ import Error from './pages/Error/Error';
 import GroupInvites from './components/Groups/Invites/GroupInvites';
 import Shop from './pages/Shop/Shop';
 import ShopNavbar from './components/Shop/ShopNavbar/ShopNavbar';
-import BrowseProducts from './components/Shop/BrowseProducts/BrowseProducts'
+import ShopHome from './components/Shop/ShopHome/ShopHome'
 import Cart from './components/Shop/Cart/Cart'
 import ShopProductPage from './components/Shop/ProductPage/ProductPage.jsx'
 import { useEffect } from 'react';
@@ -156,7 +156,7 @@ const App = () => {
           </Route>
 
           <Route path='shop/*' element={<Shop />}>
-            <Route index path='' element={<BrowseProducts />} />
+            <Route index path='' element={<ShopHome />} />
             <Route path='cart' element={<Cart />} />
             <Route path='product' element={<ShopProductPage />} />
           </Route>
