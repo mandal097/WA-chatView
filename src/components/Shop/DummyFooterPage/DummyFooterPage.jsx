@@ -6,7 +6,6 @@ const DummyFooterPage = () => {
     const location = useLocation();
     const path = location.pathname.split('/')[2];
 
-
     return (
         <div className={styles.dummy_page}>
             <p>we are working on <span>{path}</span> {' '} page</p>

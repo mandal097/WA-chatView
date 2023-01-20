@@ -1,0 +1,117 @@
+.contact_us {
+  margin: 5rem 0;
+  .wrapper {
+    width: 70%;
+    margin: 0 auto;
+    // margin-top: 10rem;
+    height: auto;
+    .stripe {
+      background-color: var(--bgDark);
+      height: 10rem;
+      display: flex;
+      align-items: center;
+      padding: 0 2rem;
+      border-radius: 0.5rem;
+      gap: 1rem;
+      .icon {
+        font-size: 5rem;
+      }
+      p {
+        font-size: 2.6rem;
+        // color: var(--btnLight);
+        font-weight: 500;
+      }
+      button {
+        font-size: 1.8rem;
+        background-color: var(--btn);
+        text-transform: uppercase;
+        padding: 1rem 2rem;
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.2rem;
+        margin-left: auto;
+        .icon {
+          font-size: 2.3rem;
+          color: var(--text);
+          rotate: -45deg;
+        }
+        &:hover {
+          background-color: var(--btnLight);
+        }
+      }
+    }
+    .contact_details {
+      background-color: var(--bgLight);
+      margin-top: 3rem;
+      padding: 3rem;
+      border-radius: 0.5rem;
+      h1 {
+        font-size: 3rem;
+        font-weight: 400;
+        padding-bottom: 1rem;
+        border-bottom: 3px solid var(--btn);
+        margin-bottom: 1rem;
+      }
+      h2 {
+        font-size: 2rem;
+        font-weight: 400;
+      }
+      .contacts {
+        margin-top: 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 3rem;
+        .contact {
+          width: 50%;
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 3rem;
+          span {
+            font-size: 2rem;
+            color: var(--text);
+            font-weight: 500;
+          }
+          a {
+            text-decoration: none;
+            font-size: 1.8rem;
+            color: var(--successLight);
+            width: fit-content;
+            &:hover{
+                color: var(--success);
+            }
+          }
+        }
+      }
+      .faqs {
+        background-color: var(--bg);
+        width: 90%;
+        margin: 0 auto;
+        p {
+          font-size: 1.8rem;
+          color: var(--bgLighter);
+          span {
+            color: var(--btn);
+            font-size: 2rem;
+            font-weight: 500;
+            cursor: pointer;
+            &:hover {
+              color: var(--btnLight);
+            }
+          }
+        }
+      }
+    }
+    .phone {
+        margin-top: 3rem;
+      p {
+        font-size: 2rem;
+        text-align: center;
+        span {
+            font-size: 2.2rem;
+          color: var(--error);
+        }
+      }
+    }
+  }
+}
