@@ -1,6 +1,98 @@
-.footer{
-    font-size: 5rem;
-    color: var(--text);
-    background-color: var(--bgDark);
-    height: 50vh;
+.footer {
+  font-size: 5rem;
+  color: var(--text);
+  background-color: var(--bgDark);
+  padding: 1rem 0;
+  padding-bottom: 3rem;
+  .wrapper {
+    height: auto;
+    width: 96%;
+    margin: 0 auto;
+    display: flex;
+    .section {
+      height: auto;
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-wrap: wrap;
+      padding: 2rem 0;
+      .footer_item {
+        flex: 1;
+        flex: 1 1 10rem;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        padding: 0.8rem;
+        span {
+          font-size: 2rem;
+          color: var(--btnLight);
+          font-weight: 100;
+          margin-bottom: 0.6rem;
+          text-transform: uppercase;
+        }
+        .link {
+          color: var(--text);
+          text-decoration: none;
+          font-size: 1.4rem;
+          font-weight: 200;
+          text-transform: capitalize;
+          display: inline-block;
+          width: fit-content;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+      .newsletter {
+        height: auto;
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        border: 2px solid var(--error);
+        padding: 2rem;
+        border-radius: 1rem;
+        span {
+          font-size: 3rem;
+          color: var(--btnLight);
+          font-weight: 400;
+        }
+        p {
+          font-size: 2rem;
+          color: var(--textSoft);
+        }
+        .input {
+          margin-top: 1rem;
+          display: flex;
+          gap: 1rem;
+          border-bottom: 1px solid var(--border);
+          padding: 1rem 0;
+          input {
+            font-size: 1.8rem;
+            color: var(--bgLighter);
+            flex: 1;
+            padding: 1rem;
+          }
+          button {
+            font-size: 1.6rem;
+            padding: 0 2rem;
+            border-radius: 0.5rem;
+            text-transform: uppercase;
+            &:hover {
+              background-color: var(--bgLight);
+            }
+          }
+        }
+      }
+    }
+  }
+  .c_name {
+    display: flex;
+    justify-content: center;
+    span {
+      font-size: 1.7rem;
+      color: var(--text);
+    }
+  }
 }
