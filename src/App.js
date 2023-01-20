@@ -58,6 +58,7 @@ import Overview from './components/Groups/_GroupCreatorAdmin/Overview/Overview';
 import PendingPost from './components/Groups/_GroupCreatorAdmin/PendingPosts/PendingPost';
 import DummyFooterPage from './components/Shop/DummyFooterPage/DummyFooterPage';
 import ContactUs from './components/Shop/ContactUs/ContactUs';
+import FAQ from './components/Shop/FAQ/FAQ';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
@@ -162,6 +163,7 @@ const App = () => {
             <Route path='cart' element={<Cart />} />
             <Route path='product' element={<ShopProductPage />} />
             <Route path='contact_us' element={<ContactUs />} />
+            <Route path='faq' element={<FAQ />} />
             <Route path=':test' element={<DummyFooterPage />} />
           </Route>
 
