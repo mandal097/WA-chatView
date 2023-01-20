@@ -10,29 +10,29 @@ const Footer = () => {
 
           <div className={styles.footer_item}>
             <span>About</span>
-            <Link className={styles.link}>contact us</Link>
-            <Link className={styles.link}>about us</Link>
-            <Link className={styles.link}>our story</Link>
-            <Link className={styles.link}>blog</Link>
-            <Link className={styles.link}>sign in</Link>
+            <Link to='contact_us' className={styles.link}>contact us</Link>
+            <Link to='about_us' className={styles.link}>about us</Link>
+            <Link to='our_story' className={styles.link}>our story</Link>
+            <Link to='blog' className={styles.link}>blog</Link>
+            <Link to='signin' className={styles.link}>sign in</Link>
           </div>
 
           <div className={styles.footer_item}>
             <span>Help</span>
-            <Link className={styles.link}>Payments</Link>
-            <Link className={styles.link}>shippings</Link>
-            <Link className={styles.link}>cancellation & returns</Link>
-            <Link className={styles.link}>FAQs</Link>
-            <Link className={styles.link}>Report infringement</Link>
+            <Link to='payments' className={styles.link}>Payments</Link>
+            <Link to='shippings' className={styles.link}>shippings</Link>
+            <Link to='cancellation&returns' className={styles.link}>cancellation & returns</Link>
+            <Link to='faqs' className={styles.link}>FAQs</Link>
+            <Link to='report' className={styles.link}>Report infringement</Link>
           </div>
 
           <div className={styles.footer_item}>
             <span>POLICY</span>
-            <Link className={styles.link}>return policy</Link>
-            <Link className={styles.link}>terms of use</Link>
-            <Link className={styles.link}>security</Link>
-            <Link className={styles.link}>privacy</Link>
-            <Link className={styles.link}>sitemap</Link>
+            <Link to='return_policy' className={styles.link}>return policy</Link>
+            <Link to='terms_of_use' className={styles.link}>terms of use</Link>
+            <Link to='security' className={styles.link}>security</Link>
+            <Link to='privacy' className={styles.link}>privacy</Link>
+            <Link to='sitemap' className={styles.link}>sitemap</Link>
           </div>
 
           <div className={styles.footer_item}>

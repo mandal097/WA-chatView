@@ -56,6 +56,7 @@ import { useEffect } from 'react';
 import InviteMembers from './components/Groups/_GroupCreatorAdmin/InviteMembers/InviteMembers';
 import Overview from './components/Groups/_GroupCreatorAdmin/Overview/Overview';
 import PendingPost from './components/Groups/_GroupCreatorAdmin/PendingPosts/PendingPost';
+import DummyFooterPage from './components/Shop/DummyFooterPage/DummyFooterPage';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
@@ -159,6 +160,7 @@ const App = () => {
             <Route index path='' element={<ShopHome />} />
             <Route path='cart' element={<Cart />} />
             <Route path='product' element={<ShopProductPage />} />
+            <Route path=':test' element={<DummyFooterPage />} />
           </Route>
 
           {/* ------------------------error page when routes found------------------ */}

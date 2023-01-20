@@ -1,0 +1,11 @@
+.dummy_page {
+    height: 30rem;
+    padding: 3rem;
+  p {
+    font-size: 3rem;
+    color: var(--text);
+    span{
+        text-transform: uppercase;
+    }
+  }
+}
