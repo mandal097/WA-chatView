@@ -59,6 +59,7 @@ import PendingPost from './components/Groups/_GroupCreatorAdmin/PendingPosts/Pen
 import DummyFooterPage from './components/Shop/DummyFooterPage/DummyFooterPage';
 import ContactUs from './components/Shop/ContactUs/ContactUs';
 import FAQ from './components/Shop/FAQ/FAQ';
+import ShopAboutUs from './components/Shop/ShopAboutUs/ShopAboutUs';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
@@ -123,7 +124,7 @@ const App = () => {
               <Route path='search' element={<GroupList type='searched' />} />
               <Route path='invites' element={<GroupInvites />} />
               {/* <Route path='search/:searchTerm/all' element={<GroupList type='all' />} /> */}
-              <Route path=':id/*' element={<View  />} >
+              <Route path=':id/*' element={<View />} >
                 <Route index path='' element={<Common type='discussion' />} />
                 <Route path='featured' element={<Common type='featured' />} />
                 <Route path='videos' element={<Common type='videos' />} />
@@ -163,7 +164,8 @@ const App = () => {
             <Route path='cart' element={<Cart />} />
             <Route path='product' element={<ShopProductPage />} />
             <Route path='contact_us' element={<ContactUs />} />
-            <Route path='faq' element={<FAQ />} />
+            <Route path='faqs' element={<FAQ />} />
+            <Route path='about_us' element={<ShopAboutUs />} />
             <Route path=':test' element={<DummyFooterPage />} />
           </Route>
 

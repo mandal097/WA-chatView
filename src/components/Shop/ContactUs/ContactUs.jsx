@@ -12,7 +12,7 @@ const ContactUs = () => {
                 <div className={styles.stripe}>
                     <BugOutlined className={styles.icon} />
                     <p>Wondering where your order is?</p>
-                    <button onClick={()=>navigate('/shop/test')}>track <ArrowRightOutlined className={styles.icon} /> </button>
+                    <button onClick={() => navigate('/shop/test')}>track <ArrowRightOutlined className={styles.icon} /> </button>
                 </div>
 
                 <div className={styles.contact_details}>
@@ -45,13 +45,14 @@ const ContactUs = () => {
                     <div className={`${styles.stripe} ${styles.faqs}`}>
                         <p>Quick answers to the most common queries are found on our
                             {' '}  <span>Frequently Asked Questions</span> page. Check there first!</p>
-                        <button onClick={()=>navigate('/shop/faq')}>FAQ <ArrowRightOutlined className={styles.icon} /> </button>
+                        <button onClick={() => navigate('/shop/faqs')}>FAQs <ArrowRightOutlined className={styles.icon} /> </button>
                     </div>
 
                 </div>
 
                 <div className={styles.phone}>
-                    <p>Or reach us offline at <span>+91 88267 64772</span></p>
+                    <p>Or reach us offline at </p>
+                    <a href="tel:+918826764772">+91 8826764772</a>
                 </div>
 
             </div>

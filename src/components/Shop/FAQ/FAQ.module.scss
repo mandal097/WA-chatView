@@ -28,13 +28,13 @@
       .ques {
         display: flex;
         width: 100%;
-        // border: 1px solid red;
         height: 8rem;
         align-items: center;
         justify-content: space-between;
         p {
-          font-size: 2.5rem;
+          font-size: 2rem;
           font-weight: 100;
+          color: var(--text);
         }
         .controls {
           cursor: pointer;
@@ -47,6 +47,7 @@
       .ans {
         overflow: hidden;
         animation: animate 300ms linear;
+        padding: 1rem 0;
         p {
           font-size: 1.8rem;
           color: var(--textSoft);

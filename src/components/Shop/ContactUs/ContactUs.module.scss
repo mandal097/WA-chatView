@@ -1,5 +1,15 @@
 .contact_us {
   margin: 5rem 0;
+  a {
+    text-decoration: none;
+    font-size: 1.8rem;
+    color: var(--successLight);
+    width: fit-content;
+    &:hover{
+        color: var(--success);
+        text-decoration: underline;
+    }
+  }
   .wrapper {
     width: 70%;
     margin: 0 auto;
@@ -72,15 +82,6 @@
             color: var(--text);
             font-weight: 500;
           }
-          a {
-            text-decoration: none;
-            font-size: 1.8rem;
-            color: var(--successLight);
-            width: fit-content;
-            &:hover{
-                color: var(--success);
-            }
-          }
         }
       }
       .faqs {
@@ -104,6 +105,10 @@
     }
     .phone {
         margin-top: 3rem;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        align-items: center;
       p {
         font-size: 2rem;
         text-align: center;
@@ -111,6 +116,10 @@
             font-size: 2.2rem;
           color: var(--error);
         }
+      }
+      a{
+        font-size: 2.6rem;
+        color: var(--error);
       }
     }
   }
