@@ -31,7 +31,7 @@ const ShopHome = () => {
       <Browse />
 
       <div className={styles.products_availability}>
-        <h1>What Can You Buy From Flipkart?</h1>
+        <h1>What Can You Buy From WeeConnect shop?</h1>
         {aboutProdutsType?.map(ele => (
           <div key={ele.id} style={{ marginTop: '1rem' }}>
             <span>{ele.product}</span>

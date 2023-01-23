@@ -1,0 +1,111 @@
+.blog {
+  .cover {
+    position: relative;
+    .cover_img {
+      width: 100%;
+      height: 65vh;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    .layer {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to left,
+        rgba(0, 0, 0, 0.9),
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 0, 0.4),
+        rgba(0, 0, 0, 0.7)
+      );
+      display: flex;
+      align-items: center;
+      padding: 10rem;
+      //   justify-content: center;
+      span {
+        font-size: 5rem;
+        font-weight: 500;
+        color: var(--textSoft);
+        text-transform: uppercase;
+        margin-left: auto;
+      }
+    }
+  }
+  .blog_card_container {
+    margin: 5rem auto;
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4rem;
+    .card {
+      flex: 1 1 30rem;
+      margin-bottom: 2rem;
+      height: auto;
+      text-decoration: none;
+      .img {
+        width: 100%;
+        height: 30rem;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 1rem;
+        }
+      }
+      p {
+        font-size: 2.7rem;
+        color: var(--btn);
+      }
+      &:hover {
+        scale: 1.05;
+        text-decoration: underline;
+        color: var(--btn);
+      }
+    }
+  }
+}
+
+.single_blog {
+  height: auto;
+  width: 70%;
+  margin: 5rem auto;
+  .cover_img {
+    width: 100%;
+    height: 60vh;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .content {
+    width: 100%;
+    margin: 2rem auto;
+    h1 {
+      font-size: 3rem;
+      font-weight: 500;
+      margin: 1.5rem 0;
+      color: var(--textSoft);
+      text-transform: capitalize;
+    }
+    p {
+      font-size: 1.6rem;
+      color: var(--bgLighter);
+    }
+  }
+  button {
+    background-color: var(--bgLight);
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    border-radius: 0.5rem;
+    &:hover {
+      background-color: var(--bgLighter);
+    }
+  }
+}
