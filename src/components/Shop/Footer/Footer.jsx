@@ -28,7 +28,7 @@ const Footer = () => {
 
           <div className={styles.footer_item}>
             <span>POLICY</span>
-            <Link to='return_policy' className={styles.link}>return policy</Link>
+            <Link to='returns_policy' className={styles.link}>return policy</Link>
             <Link to='terms_of_use' className={styles.link}>terms of use</Link>
             <Link to='security' className={styles.link}>security</Link>
             <Link to='privacy' className={styles.link}>privacy</Link>

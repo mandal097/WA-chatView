@@ -62,6 +62,7 @@ import FAQ from './components/Shop/FAQ/FAQ';
 import ShopAboutUs from './components/Shop/ShopAboutUs/ShopAboutUs';
 import Blog from './components/Shop/Blog/Blog';
 import SingleBlog from './components/Shop/Blog/SingleBlog';
+import Returnspolicy from './components/Shop/ReturnsPolicy/Returnspolicy';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
@@ -168,6 +169,7 @@ const App = () => {
             <Route path='contact_us' element={<ContactUs />} />
             <Route path='faqs' element={<FAQ />} />
             <Route path='about_us' element={<ShopAboutUs />} />
+            <Route path='returns_policy' element={<Returnspolicy />} />
             <Route path='blog/*' element={<Blog />} />
             <Route path='blog/:blogId' element={<SingleBlog />} />
             <Route path=':test' element={<DummyFooterPage />} />
