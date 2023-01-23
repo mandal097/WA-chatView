@@ -102,16 +102,24 @@ const Navbar = () => {
                                 </button>
                             </div>
                             <button className={styles.tools} onClick={() => navigate('/messenger')}><MessageFilled /></button>
-                            <button className={styles.tools} onClick={()=>{
+
+                            <button className={styles.tools} onClick={() => {
                                 navigate('/shop')
                                 window.location.reload()
                             }}><ShoppingFilled /></button>
+
                             <button className={styles.tools} onClick={() => setShowProfileSidebar(true)}>
                                 <img src={user?.profilePic} alt="profile_pic" />
                             </button>
                         </div>
                     </>
                 }
+                {!user && <div className={styles.toolkit}>
+                    <button className={styles.tools} onClick={() => {
+                        navigate('/shop')
+                        window.location.reload()
+                    }}><ShoppingFilled /></button>
+                </div>}
 
                 {
                     !user
@@ -126,6 +134,7 @@ const Navbar = () => {
                         </button>
                     </div>
                 }
+
             </div>
             {showFriendsList &&
                 <FriendsList

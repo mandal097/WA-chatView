@@ -12,7 +12,7 @@ const Footer = () => {
             <span>About</span>
             <Link to='contact_us' className={styles.link}>contact us</Link>
             <Link to='about_us' className={styles.link}>about us</Link>
-            <Link to='our_story' className={styles.link}>our story</Link>
+            {/* <Link to='our_story' className={styles.link}>our story</Link> */}
             <Link to='blog' className={styles.link}>blog</Link>
             <Link to='signin' className={styles.link}>sign in</Link>
           </div>
