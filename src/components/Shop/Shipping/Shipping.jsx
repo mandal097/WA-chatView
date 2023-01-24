@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import styles from './Shipping.module.scss';
-import { payments } from './data'
+import { shippings } from './data'
 import { useState } from 'react';
 
-const Modes = ({ ele }) => {
+const Component = ({ ele }) => {
     return (
         <div className={styles.section}>
-            <b>{ele?.mode}</b>
+            <b>{ele?.topic}</b>
             {
                 ele?.desc?.map(d => (
                     <p>{d}</p>
@@ -17,9 +17,9 @@ const Modes = ({ ele }) => {
 }
 
 const Shipping = () => {
-    const [paymentData, setPaymentData] = useState();
+    const [shippingDetails, setShippingDetails] = useState();
     useEffect(() => {
-        setPaymentData(payments)
+        setShippingDetails(shippings)
     }, [])
 
     return (
@@ -27,8 +27,8 @@ const Shipping = () => {
             <h1>Shipping</h1>
 
             {
-                paymentData?.map(ele => (
-                    <Modes key={ele.id} ele={ele} />
+                shippingDetails?.map(ele => (
+                    <Component key={ele.id} ele={ele} />
                 ))
             }
 

@@ -1,7 +1,7 @@
-export const payments = [
+export const shippings = [
     {
         id: 1,
-        mode: 'What are the delivery charges?',
+        topic: 'What are the delivery charges?',
         desc: [
             "Sellers incur relatively higher shipping costs on low value items. In such cases, charging a nominal delivery charge helps them offset logistics costs. Please check your order summary to understand the delivery charges for individual products.",
             "For Products listed as WeeConnect Plus, a Rs 40 charge for delivery per item may be applied if the order value is less than Rs 500. While, orders of Rs 500 or above are delivered free."
