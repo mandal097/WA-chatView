@@ -64,6 +64,7 @@ import Blog from './components/Shop/Blog/Blog';
 import SingleBlog from './components/Shop/Blog/SingleBlog';
 import Returnspolicy from './components/Shop/ReturnsPolicy/Returnspolicy';
 import Terms from './components/Shop/TermsOfUse/Terms';
+import Payment from './components/Shop/Payments/Payment';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
@@ -174,6 +175,7 @@ const App = () => {
             <Route path='blog/:blogId' element={<SingleBlog />} />
             <Route path='returns_policy' element={<Returnspolicy />} />
             <Route path='terms-of-use' element={<Terms />} />
+            <Route path='payments' element={<Payment />} />
             <Route path=':test' element={<DummyFooterPage />} />
           </Route>
 
