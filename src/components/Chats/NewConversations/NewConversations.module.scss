@@ -10,17 +10,19 @@
   overflow-y: scroll;
   .btn_wrapper {
     width: 90%;
-    button {
-      align-self: flex-end;
+    .button {
       display: flex;
       align-items: center;
       color: var(--text);
-      height: 2rem;
+      height: auto;
+      width: fit-content;
+      cursor: pointer;
       .icon {
         font-size: 2rem;
       }
       span {
         margin-left: 1rem;
+        display: inline;
         font-size: 1.2rem;
       }
       &:hover {

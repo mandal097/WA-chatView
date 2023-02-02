@@ -10,6 +10,7 @@ import {
   SearchOutlined,
   TeamOutlined,
   ArrowLeftOutlined,
+  UsergroupAddOutlined,
   // VideoCameraOutlined,
   // PhoneOutlined,
   // DownOutlined
@@ -53,25 +54,25 @@ const Message = () => {
 
         <div className={styles.left_header}>
           <div className={styles.left_header_wrapper}>
-            <button 
+            <button className={styles.btn} 
             onClick={()=>navigate(-1)}
             style={{fontSize:'5rem',color:'var(--text)'}}>
-              <ArrowLeftOutlined />
+              <ArrowLeftOutlined className={styles.icon}/>
             </button>
             <Link to={`/profile/${currentUser._id}`} className={styles.profile}>
               <img src={currentUser?.profilePic} alt="" />
             </Link>
-            <h4 style={{ fontSize: '1.4rem' }}>{capitalizeFirstLetter(currentUser.name.split(' ')[0])}</h4>
+            {/* <h4 style={{ fontSize: '1.4rem' }}>{capitalizeFirstLetter(currentUser.name.split(' ')[0])}</h4> */}
             <div className={styles.actions}>
-              <button><HistoryOutlined /></button>
-              <button onClick={() => {
+              <button className={styles.btn}><HistoryOutlined className={styles.icon} /><span>Status</span></button>
+              <button className={styles.btn} onClick={() => {
                 setNewConverstations(true);
                 setShowGroupList(false);
-              }}><PlusOutlined /></button>
-              <button onClick={() => {
+              }}><PlusOutlined  className={styles.icon}/><span>New Chat</span></button>
+              <button className={styles.btn} onClick={() => {
                 setShowGroupModal(!showGroupModal)
                 dispatch(setCurrentChatInitial())
-              }}><MoreOutlined /></button>
+              }}><UsergroupAddOutlined  className={styles.icon}/><span>Create Group</span></button>
             </div>
           </div>
         </div>
@@ -88,9 +89,9 @@ const Message = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-          <div className='icon' onClick={() => {
+          <button className={styles.btn} style={{flexDirection:'row'}} onClick={() => {
             setShowGroupList(!showGroupList);
-          }}><TeamOutlined /></div>
+          }}><TeamOutlined className={styles.icon}/><span>Groups</span></button>
         </div>
 
         {showGroupModal
@@ -130,10 +131,10 @@ const Message = () => {
                 <p>Lorem, ipsum dolor sit amet consecteturoluptatibus consequuntur alias iusto quasi dolores? Vel.</p>
               </div>
               <div className={styles.actions}>
-                {/* <button><VideoCameraOutlined /></button>
-                <button><PhoneOutlined /></button> */}
-                {/* <button><SearchOutlined /></button> */}
-                <button><MoreOutlined /></button>
+                {/* <button className={styles.btn}><VideoCameraOutlined /></button>
+                <button className={styles.btn}><PhoneOutlined /></button> */}
+                {/* <button className={styles.btn}><SearchOutlined /></button> */}
+                <button className={styles.btn}><MoreOutlined /></button>
               </div>
             </div>
           </div>

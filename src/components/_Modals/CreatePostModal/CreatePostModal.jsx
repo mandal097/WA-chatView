@@ -69,7 +69,8 @@ const CreatePostModal = ({ setShowModal, mediaType, isGroupPost }) => {
                 setLoading(false);
                 toast.success(res.data.message)
                 setMedia('');
-                setText('')
+                setText('');
+                dispatch(removeMembers())
                 setTimeout(() => {
                     setShowModal(false)
                 }, 200);

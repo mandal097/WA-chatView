@@ -19,10 +19,10 @@
         height: 7rem;
         display: flex;
         align-items: center;
-        gap: 3rem;
+        gap: 1rem;
         .profile {
-          width: 55px;
-          height: 55px;
+          width: 4rem;
+          height: 4rem;
           border-radius: 50%;
           img {
             width: 100%;
@@ -33,23 +33,11 @@
         }
         .actions {
           width: auto;
-          height: 50px;
+          height: auto;
           display: flex;
           align-items: center;
-          gap: 20px;
+          gap: 1rem;
           margin-left: auto;
-          button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 5rem;
-            padding: 0.7rem;
-            border-radius: 50%;
-            &:hover {
-              background-color: var(--bgPrimary);
-              transform: scale(1.07);
-            }
-          }
         }
       }
     }
@@ -60,7 +48,7 @@
       margin-top: 0.9rem;
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 0.6rem;
       color: var(--text);
       .search_box {
         width: 90%;
@@ -146,6 +134,25 @@
           }
         }
       }
+    }
+  }
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    // border: 1px solid red;
+    .icon{
+      font-size: 3rem;
+    }
+    span{
+      font-size: 1.2rem;
+    }
+    &:hover {
+      background-color: var(--bgPrimary);
     }
   }
   .to_bottom {

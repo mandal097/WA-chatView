@@ -45,10 +45,10 @@ const NewConverstations = ({ setNewConverstations,searchTerm}) => {
     return (
         <div className={styles.new_conversations}>
             <div className={styles.btn_wrapper}>
-                <button onClick={() => setNewConverstations(false)}>
+                <div className={styles.button} onClick={() => setNewConverstations(false)}>
                     <ArrowLeftOutlined className={styles.icon} />
                     <span>Go to chats</span>
-                </button>
+                </div>
             </div>
             {searchTerm ?
                 searchedUsers?.map((user) => (
