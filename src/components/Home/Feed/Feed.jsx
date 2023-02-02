@@ -40,7 +40,7 @@ const Feed = () => {
                 )))
             }
             {
-                posts.length === 0 && !loading && <h2  style={{ fontSize: '2.3rem', color: 'var(--error)', fontWeight: '200' }}>follow friends to show there feeds here ☺</h2>
+                posts?.length === 0 && !loading && <h2  style={{ fontSize: '2.3rem', color: 'var(--error)', fontWeight: '200' }}>follow friends to show their feeds here ☺</h2>
             }
         </div>
     )

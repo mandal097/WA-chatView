@@ -7,7 +7,8 @@ import {
     SendOutlined,
     HeartFilled,
     FolderViewOutlined,
-    BookFilled
+    BookFilled,
+    CloseOutlined
 } from '@ant-design/icons';
 import { toast } from 'react-toastify';
 import axios from '../../config/axios';
@@ -21,7 +22,8 @@ const PostActions = ({ onClick, post, showModal, vidRef }) => {
     const [saved, setSaved] = useState(post?.saved?.includes(currentUser._id));
     const [likes, setLikes] = useState(post?.likes?.length ? post?.likes?.length : 0);
     const [clicked, setClicked] = useState(false);
-    const [showLikesModal, setShowLikesModal] = useState(false)
+    const [showLikesModal, setShowLikesModal] = useState(false);
+    const [showMessage, setShowMessage] = useState(false);
 
     const likeDislikePost = async () => {
         switch (liked) {
@@ -72,20 +74,20 @@ const PostActions = ({ onClick, post, showModal, vidRef }) => {
                     token: `Bearer ${localStorage.getItem('token')}`
                 }
             })
-            console.log(res.data);
+            // console.log(res.data);
             if (res.data.status === 'err') {
                 toast.error(res.data.message)
             }
             if (res.data.status === 'success') {
                 toast.success(res.data.message);
-                console.log(res.data.data);
+                // console.log(res.data.data);
             }
         } catch (error) {
             toast.error('something went wrong')
         }
     }
 
-    console.log(post);
+    // console.log(post);
 
     return (
         <>
@@ -107,9 +109,23 @@ const PostActions = ({ onClick, post, showModal, vidRef }) => {
                     }}>
                         <FolderViewOutlined className={styles.icon} />
                     </div>
-                    <div className={styles.icons}>
-                        <SendOutlined className={styles.icon} />
+                    <div
+                        className={styles.icons}
+                        style={{ transform: showMessage && 'rotate(0)' }}
+                        onClick={() => {
+                            setShowMessage(!showMessage)
+                            setTimeout(() => {
+                                setShowMessage(false)
+                            }, 4000);
+                        }}>
+                        {showMessage
+                            ? <CloseOutlined className={styles.icon} />
+                            : <SendOutlined className={`${styles.icon} ${styles.icon_}`} />
+                        }
                     </div>
+                    {showMessage && <div className={`${styles.icons} ${styles.default_message}`}>
+                        <span>This feature is not working for-a-know 🙁</span>
+                    </div>}
                 </div>
                 <div className={styles.right}>
                     {!post?.isGroupPost && <div className={styles.icons} onClick={saveUnsavePost}>

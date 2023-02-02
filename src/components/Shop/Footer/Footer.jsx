@@ -21,9 +21,9 @@ const Footer = () => {
             <span>Help</span>
             <Link to='payments' className={styles.link}>Payments</Link>
             <Link to='shippings' className={styles.link}>shippings</Link>
-            <Link to='cancellation&returns' className={styles.link}>cancellation & returns</Link>
             <Link to='faqs' className={styles.link}>FAQs</Link>
-            <Link to='report' className={styles.link}>Report infringement</Link>
+            <Link to='cancellation&returns' className={styles.link}>cancellation & returns</Link>
+            {/* <Link to='report' className={styles.link}>Report infringement</Link> */}
           </div>
 
           <div className={styles.footer_item}>
@@ -31,7 +31,7 @@ const Footer = () => {
             <Link to='returns_policy' className={styles.link}>return policy</Link>
             <Link to='terms-of-use' className={styles.link}>terms of use</Link>
             <Link to='security' className={styles.link}>security</Link>
-            <Link to='privacy' className={styles.link}>privacy</Link>
+            {/* <Link to='privacy' className={styles.link}>privacy</Link> */}
             <Link to='sitemap' className={styles.link}>sitemap</Link>
           </div>
 

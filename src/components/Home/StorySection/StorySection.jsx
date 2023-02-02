@@ -33,9 +33,9 @@ const StorySection = () => {
         if (direction === 'right' && (transform + 4 * 65) >= width) {
             setTransform(edge - 2 * 65)
         }
-        console.log(width);
-        console.log(transform);
-        console.log(direction);
+        // console.log(width);
+        // console.log(transform);
+        // console.log(direction);
     }
 
     return (
@@ -49,48 +49,6 @@ const StorySection = () => {
                 <div className={styles.scroll}
                     ref={scrollRef}
                     style={{ transform: `translateX(${-transform}px)` }}>
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
                     <Card />
                     <Card />
                     <Card />
