@@ -26,7 +26,7 @@ const CommonFriends = ({ group }) => {
     return (
         <div className={styles.friend}>
             <UserBadge array={commonFriends} size='2.3rem' show='false' mr='-0.7rem' />
-            <p>{commonFriends?.length} friends common from your followings</p>
+            <p>{commonFriends?.length} common friends from your followings</p>
         </div>
     )
 }

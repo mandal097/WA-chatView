@@ -54,21 +54,17 @@ const Suggestions = () => {
             <div className={styles.groups_}>
                 <div className={styles.top}>
                     <div className={styles.left}>
-                        {/* // ? <h3>Searched Groups</h3>
-                        // : searchTerm && <h3>Not results found</h3> */}
-                        {
-                            !searchTerm
-                                ?
-                                <>
-                                    <span>All Groups</span>
-                                     <p>Groups that you can join</p>
-                                </>
-                                :
-                                <>
-                                    <span>Searched Groups</span>
-                                </>
+                        {searchTerm && searchedGroup.length === 0 ?
+                            <>
+                                <span>Your Search</span>
+                                <p>No results found</p>
+                            </>
+                            :
+                            <>
+                                <span>All Groups</span>
+                                <p>Groups that you can join</p>
+                            </>
                         }
-                        {searchedGroup.length > 0 && <p>Groups that you can join</p>}
                     </div>
                     <div className={styles.right} >
                         <div className={styles.search_box}>
@@ -104,6 +100,12 @@ const Suggestions = () => {
                                 </div>
                             ))
                     }
+
+                    {
+                        searchedGroup.length === 0 &&
+                        <h1>No groups found.....</h1>
+                    }
+
 
                 </div>
             </div>
