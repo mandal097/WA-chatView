@@ -119,15 +119,22 @@
           button {
             display: flex;
             align-items: center;
-            font-size: 5rem;
-            padding: 0 0.5rem;
+            justify-content: center;
+            padding: 0.7rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            // border: 1px solid red;
+            .icon{
+              font-size: 3rem;
+            }
+            span{
+              font-size: 1.2rem;
+            }
             &:hover {
               color: var(--text);
             }
-            &:nth-child(2) {
-              padding-right: 2rem;
-              border-right: 1px solid var(--textSoft);
-            }
+          
             &:last-child {
               transform: rotate(90deg);
             }

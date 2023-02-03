@@ -6,11 +6,13 @@ import ChatBox from '../../components/Chats/Chatbox/ChatBox';
 import {
   PlusOutlined,
   HistoryOutlined,
-  MoreOutlined,
-  SearchOutlined,
+  FolderOpenFilled,
+  // SearchOutlined,
   TeamOutlined,
   ArrowLeftOutlined,
   UsergroupAddOutlined,
+  VideoCameraOutlined,
+  PhoneOutlined,
   // VideoCameraOutlined,
   // PhoneOutlined,
   // DownOutlined
@@ -21,7 +23,7 @@ import { setCurrentChatInitial } from '../../redux/chatRedux';
 import GroupList from '../../components/Chats/_Group/GroupList/GroupList';
 import GroupInfo from '../../components/Chats/_Group/GroupInfo/GroupInfo';
 import { Link, useNavigate } from 'react-router-dom';
-import {capitalizeFirstLetter} from '../../helpers/strings';
+import { capitalizeFirstLetter } from '../../helpers/strings';
 
 
 const Message = () => {
@@ -54,10 +56,10 @@ const Message = () => {
 
         <div className={styles.left_header}>
           <div className={styles.left_header_wrapper}>
-            <button className={styles.btn} 
-            onClick={()=>navigate(-1)}
-            style={{fontSize:'5rem',color:'var(--text)'}}>
-              <ArrowLeftOutlined className={styles.icon}/>
+            <button className={styles.btn}
+              onClick={() => navigate(-1)}
+              style={{ fontSize: '5rem', color: 'var(--text)' }}>
+              <ArrowLeftOutlined className={styles.icon} />
             </button>
             <Link to={`/profile/${currentUser._id}`} className={styles.profile}>
               <img src={currentUser?.profilePic} alt="" />
@@ -68,11 +70,11 @@ const Message = () => {
               <button className={styles.btn} onClick={() => {
                 setNewConverstations(true);
                 setShowGroupList(false);
-              }}><PlusOutlined  className={styles.icon}/><span>New Chat</span></button>
+              }}><PlusOutlined className={styles.icon} /><span>New Chat</span></button>
               <button className={styles.btn} onClick={() => {
                 setShowGroupModal(!showGroupModal)
                 dispatch(setCurrentChatInitial())
-              }}><UsergroupAddOutlined  className={styles.icon}/><span>Create Group</span></button>
+              }}><UsergroupAddOutlined className={styles.icon} /><span>Create Group</span></button>
             </div>
           </div>
         </div>
@@ -81,7 +83,7 @@ const Message = () => {
 
         <div className={styles.search}>
           <div className={styles.search_box}>
-            <div className='icon'><SearchOutlined color={'green'} /></div>
+            {/* <div className='icon'><SearchOutlined color={'green'} /></div> */}
             <input
               type="text"
               placeholder='Search or start new chat'
@@ -89,9 +91,9 @@ const Message = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-          <button className={styles.btn} style={{flexDirection:'row'}} onClick={() => {
+          <button className={styles.btn} style={{ flexDirection: 'row' }} onClick={() => {
             setShowGroupList(!showGroupList);
-          }}><TeamOutlined className={styles.icon}/><span>Groups</span></button>
+          }}><TeamOutlined className={styles.icon} /><span>Groups</span></button>
         </div>
 
         {showGroupModal
@@ -125,16 +127,25 @@ const Message = () => {
               }>
                 <h4 className={styles.chat_name}>{
                   currentChat?.isGroupChat === true ?
-                  capitalizeFirstLetter(currentChat.chatName) : capitalizeFirstLetter(currentChat.name)
+                    capitalizeFirstLetter(currentChat.chatName) : capitalizeFirstLetter(currentChat.name)
                 }
                 </h4>
                 <p>Lorem, ipsum dolor sit amet consecteturoluptatibus consequuntur alias iusto quasi dolores? Vel.</p>
               </div>
               <div className={styles.actions}>
-                {/* <button className={styles.btn}><VideoCameraOutlined /></button>
-                <button className={styles.btn}><PhoneOutlined /></button> */}
-                {/* <button className={styles.btn}><SearchOutlined /></button> */}
-                <button className={styles.btn}><MoreOutlined /></button>
+                {currentChat?.isGroupChat !== true &&
+                  <>
+                    <button className={styles.btn}><VideoCameraOutlined className={styles.icon} /></button>
+                    <button className={styles.btn}><PhoneOutlined className={styles.icon} /></button>
+                  </>
+                }
+                {/* <button className={styles.btn}><SearchOutlined className={styles.icon}/></button> */}
+               {currentChat?.isGroupChat === true && 
+               <button 
+               onClick={()=>setShowInfo(!showInfo)}
+               className={styles.btn} 
+               style={{transform:'rotate(0)'}}>
+                <FolderOpenFilled className={styles.icon} /><span>Group Details</span></button>}
               </div>
             </div>
           </div>

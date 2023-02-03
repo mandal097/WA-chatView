@@ -8,7 +8,6 @@ import {
     CheckOutlined,
     LoadingOutlined,
     DeleteOutlined,
-    DownOutlined,
     CameraOutlined,
 } from '@ant-design/icons';
 import axios from '../../../../config/axios';
@@ -122,7 +121,7 @@ const ChatInfo = ({ setShowInfo }) => {
     }, [showInput])
 
     const handleAvatar = async (e) => {
-        
+
         try {
             setLoading(true)
             const token = localStorage.getItem('token');
@@ -159,19 +158,19 @@ const ChatInfo = ({ setShowInfo }) => {
                                 : <img src={currentChat.groupAvatar} alt="" />
                         }
                         {/* {currentChat.isGroupAdmin && */}
-                            <div className={styles.img_backdrop} style={{
-                                opacity: groupAvatar && uploadPerc < 100 && 1
+                        <div className={styles.img_backdrop} style={{
+                            opacity: groupAvatar && uploadPerc < 100 && 1
 
-                            }}>
-                                <label htmlFor="avatar">Upload <br /><CameraOutlined className={styles.icon} /></label>
-                                <input
-                                    style={{ display: 'none' }}
-                                    type="file"
-                                    id="avatar"
-                                    accept='image/*'
-                                    onChange={(e) => setGroupAvatar(e.target.files[0])}
-                                />
-                            </div>
+                        }}>
+                            <label htmlFor="avatar">Upload <br /><CameraOutlined className={styles.icon} /></label>
+                            <input
+                                style={{ display: 'none' }}
+                                type="file"
+                                id="avatar"
+                                accept='image/*'
+                                onChange={(e) => setGroupAvatar(e.target.files[0])}
+                            />
+                        </div>
                         {/* } */}
                     </div>
                     {
@@ -180,27 +179,28 @@ const ChatInfo = ({ setShowInfo }) => {
                             <button className={styles.change_avatar} onClick={handleAvatar}>{loading ? <LoadingOutlined style={{ fontSize: '3rem' }} /> : 'Upload'}</button>
                         </div>
                     }
-                    {
-                        !showInput
-                            ? <div className={styles._name}>
-                                <h3>{currentChat.chatName}</h3>
-                                <EditFilled className={styles.icon} onClick={() => setShowInput(true)} />
-                            </div>
-                            : <div className={styles.input} ref={inputRef}>
-                                <input
-                                    type="text"
-                                    value={groupName}
-                                    placeholder='group Name'
-                                    autoFocus
-                                    onChange={(e) => setGroupName(e.target.value)}
-                                />
-                                {
-                                    loading
-                                        ? <LoadingOutlined className={styles.icon} />
-                                        : <CheckOutlined className={styles.icon} onClick={renameGroup} />
-                                }
-                            </div>
+                    {!showInput
+                        ? <div className={styles._name}>
+                            <h3>{currentChat.chatName}</h3>
+                            <EditFilled className={styles.icon} onClick={() => setShowInput(true)} />
+                        </div>
+                        : <div className={styles.input} ref={inputRef}>
+                            <input
+                                type="text"
+                                value={groupName}
+                                placeholder='group Name'
+                                autoFocus
+                                onChange={(e) => setGroupName(e.target.value)}
+                            />
+                            {
+                                loading
+                                    ? <LoadingOutlined className={styles.icon} />
+                                    : <CheckOutlined className={styles.icon} onClick={renameGroup} />
+                            }
+                        </div>
                     }
+
+
                     <span>{currentChat.users.length} members</span>
                 </div>
                 <div className={styles.information}>
@@ -226,10 +226,9 @@ const ChatInfo = ({ setShowInfo }) => {
                                     !Object.values(u).includes(currentChat.groupAdmin._id) &&
                                     <>
                                         <div className={styles.down_arrow}>
-                                            <DownOutlined className={styles.icon} />
-                                            <div className={styles.popup}>
-                                                <button onClick={() => removeUser(u._id, 'remove-user')}>Remove</button>
-                                            </div>
+                                            <button onClick={() => removeUser(u._id, 'remove-user')}>
+                                                <DeleteOutlined className={styles.icon} />
+                                            </button>
                                         </div>
                                     </>
                                 }
@@ -242,7 +241,7 @@ const ChatInfo = ({ setShowInfo }) => {
                         ))
                     }
                     <div style={{ backgroundColor: 'var(--bg)', height: '0.7rem' }}></div>
-                    
+
                     <div className={styles.actions} onClick={() => removeUser(currentUser._id, 'exit-group')}>
                         <div className={styles._icon}>
                             <ExportOutlined className={styles.icon} /></div>

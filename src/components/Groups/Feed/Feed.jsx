@@ -25,7 +25,7 @@ const Feed = () => {
                     }
                 })
                 setPosts(res.data.data)
-                console.log(res.data.data);
+                // console.log(res.data.data);
                 setLoading(false)
             } catch (error) {
                 console.log('something went wrong');

@@ -5,12 +5,38 @@ import { toast } from 'react-toastify';
 import styles from './GroupList.module.scss';
 import axios from '../../../config/axios';
 import Loading from '../../Loading/Loading';
+import UserBadge from '../../UserBadge/UserBadge';
+
+
+const CommonFriends = ({ group }) => {
+    const [commonFriends, setCommonFriends] = useState([]);
+    useEffect(() => {
+        const getCommonFriends = async () => {
+            const res = await axios.get(`/groups/common-friends/${group?._id}`, {
+                headers: {
+                    token: `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            console.log(res.data);
+            setCommonFriends(res.data.data);
+        }
+        getCommonFriends()
+    }, [group?._id]);
+
+    return (
+        <div className={styles.friend}>
+            <UserBadge array={commonFriends} size='2.3rem' show='false' mr='-0.7rem' />
+            <p>{commonFriends?.length} friends common from your followings</p>
+        </div>
+    )
+}
 
 
 const Card = ({ count, group }) => {
     const { currentUser } = useSelector(state => state.user);
     const [sending, setSending] = useState(false) // loading purpose for sending request to join member
     const [requested, setRequested] = useState(false);
+
 
     useEffect(() => {
         if (group?.membersRequests?.includes(currentUser?._id)) {
@@ -46,6 +72,7 @@ const Card = ({ count, group }) => {
     };
 
 
+
     return (
         <div className={styles.card_}>
             <div className={styles.card} style={{ alignItems: count === 'all' ? 'flex-start' : 'center' }}>
@@ -59,12 +86,7 @@ const Card = ({ count, group }) => {
                     </div>
                     {
                         count === 'all' &&
-                        <div className={styles.friend}>
-                            <div className={styles.img}>
-                                <img src={currentUser?.profilePic} alt="" />
-                            </div>
-                            <p>1 friend is a follower</p>
-                        </div>
+                        <CommonFriends currentUser={currentUser} group={group} />
                     }
                 </div>
                 {group?.members?.includes(currentUser?._id)
@@ -78,6 +100,11 @@ const Card = ({ count, group }) => {
         </div>
     )
 }
+
+
+
+
+
 const GroupList = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const searchQuery = searchParams.get('q');

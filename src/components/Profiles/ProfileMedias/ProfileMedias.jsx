@@ -10,7 +10,6 @@ import { EditFilled } from '@ant-design/icons';
 import { useRef } from 'react';
 import PostActionPopup from './PostAction/PostActionPopup';
 import PostModal from '../../_Modals/PostModal/PostModal';
-import CreatePostModal from '../../_Modals/CreatePostModal/CreatePostModal';
 
 const Media = ({ loading, post, isFriendsProfile, active, type }) => {
   // const [showImagePopup, setShowImagePopup] = useState(false);

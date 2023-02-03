@@ -89,8 +89,11 @@ const GroupNameAvatar = ({ setShowCreateGroup }) => {
                     onChange={(e) => setGroupName(e.target.value)}
                 />
             </div>
-            {img &&
 
+            {!img &&
+                <p style={{ fontSize: '1.6rem', textAlign: 'center' }}>Plase upload group avatar <br /></p>
+            }
+            {img &&
                 <p style={{ fontSize: '1.6rem', textAlign: 'center' }}>Wait until your file is uploading <br />{uploadPerc}</p>
             }
             <button onClick={createGroup} style={{

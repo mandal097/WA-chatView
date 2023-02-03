@@ -205,35 +205,13 @@
           color: var(--textSoft);
         }
         .down_arrow {
-          padding-bottom: 0.2rem;
+          padding-bottom: 1rem;
           margin-left: auto;
           align-self: flex-end;
           display: none;
           position: relative;
           .icon {
             font-size: 2.5rem;
-          }
-        }
-        .popup {
-          display: none;
-          width: 14rem;
-          height: auto;
-          background-color: var(--bg);
-          position: absolute;
-          bottom: 1.5rem;
-          border-radius: 0.4rem;
-          right: 0rem;
-          padding: 1rem 0;
-          button {
-            font-size: 1.5rem;
-            color: var(--textSoft);
-            font-weight: bold;
-            width: 100%;
-            padding: 1rem;
-            background-color: var(--bgLight);
-            &:hover {
-              background-color: var(--bgLighter);
-            }
           }
         }
         .down_arrow:hover .popup {
