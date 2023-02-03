@@ -16,6 +16,11 @@ const Register = () => {
 
     const navigate = useNavigate();
 
+    const handlePhone = (e) => {
+        setPhone(phone => e.target.value.length <= 10 && !isNaN(Number(e.target.value)) ? e.target.value: phone)
+    }
+
+
     const submit = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -73,7 +78,7 @@ const Register = () => {
                         type='text'
                         value={phone}
                         placeholder='Write your phone'
-                        onchange={(e) => setPhone(e.target.value)}
+                        onchange={handlePhone}
                     />
                     <InputPassword
                         label='Password'

@@ -17,7 +17,11 @@ const EditDetailsModal = ({ setShowEditDetailsModal }) => {
     const [school, setSchool] = useState(currentUser?.schoolCollege);
     const [insta, setInsta] = useState(currentUser?.insta);
     const [loading, setLoading] = useState(false);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+
+    const handlePhone = (e) => {
+        setPhone(phone => e.target.value.length <= 10 && !isNaN(Number(e.target.value)) ? e.target.value: phone)
+    }
 
     const updateProfile = async (e) => {
         e.preventDefault()
@@ -45,14 +49,18 @@ const EditDetailsModal = ({ setShowEditDetailsModal }) => {
                 }
             })
             console.log(res.data);
+            if (res.data.status === 'err') {
+                toast.error(res.data.message);
+                setLoading(false);
+            }
             if (res.data.status === 'success') {
                 toast.success(res.data.message);
                 setLoading(false);
                 dispatch(updateDetails({ details: obj }))
             }
         } catch (error) {
-            setLoading(true);
             toast.error('something went wrong')
+            setLoading(false);
         }
     }
 
@@ -87,7 +95,7 @@ const EditDetailsModal = ({ setShowEditDetailsModal }) => {
                     label='Phone'
                     type='number'
                     value={phone}
-                    onchange={(e) => setPhone(e.target.value)}
+                    onchange={handlePhone}
                     placeholder='write your contact number...'
                     required={true}
                 />
