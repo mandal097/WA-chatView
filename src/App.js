@@ -73,6 +73,16 @@ const App = () => {
   const [path, setPath] = useState(false);
   const path_ = window.location.pathname.split('/')[1];
 
+  const matchMedia = window.matchMedia('(max-width: 600px)');
+  const [match, setMatch] = useState(matchMedia.matches);
+
+  useEffect(() => {
+    const handler = e => setMatch(e.matches);
+    matchMedia.addListener(handler);
+    return () => matchMedia.removeListener(handler)
+  }, [matchMedia])
+
+
   useEffect(() => {
     if (path_ === 'shop') {
       setPath(true)
@@ -81,6 +91,25 @@ const App = () => {
     }
   }, [path_]);
 
+
+
+  if (match) return (
+    <div style={{display:'flex',flexDirection:'column' , alignItems:'center',justifyContent:'center'}}>
+      <h1 style={{
+        fontSize: '2rem',
+        color: 'var(--error)',
+        margin: '3rem auto',
+        textAlign: 'center',
+        fontWeight: '200'
+      }}
+      >Please open it on desktop/laptop.... <br />🙄🤷‍♀️🖖 <br />Not works properly in mobile version </h1>
+      <button style={{
+        border: '1px solid var(--border)',
+        fontSize:'1.5rem',
+        padding:'1rem'
+      }} onClick={()=>setMatch(!match)}>OPEN ANYWAY!</button>
+    </div>
+  )
   return (
     <div>
       <BrowserRouter>

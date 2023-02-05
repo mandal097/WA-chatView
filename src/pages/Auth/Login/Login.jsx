@@ -13,6 +13,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showMessage, setShowMessage] = useState(false)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -71,7 +72,17 @@ const Login = () => {
 
           <Submit value={loading ? "Loading..." : "Login"} />
           <p className={styles.or}>OR</p>
-          <Submit value='Sign In with Google' color='coral' />
+          {showMessage
+            ? <div className={`${styles.btn_google}  ${styles.animate}`} style={{ backgroundColor: 'var(--error)' }}>Facing problem try above method</div>
+            : <div
+              onClick={() => {
+                setShowMessage(!showMessage)
+                setTimeout(() => {
+                  setShowMessage(false)
+                }, 3000);
+              }}
+              className={styles.btn_google}>Sign in with Google</div>
+          }
           <div className={styles.to_register}>
             <span>Don't have an Account ?</span>
             <Link to='/register' className='link'>Sign Up</Link>
