@@ -67,6 +67,7 @@ import Terms from './components/Shop/TermsOfUse/Terms';
 import Payment from './components/Shop/Payments/Payment';
 import Shipping from './components/Shop/Shipping/Shipping';
 import Security from './components/Shop/Security/Security';
+import Category from './components/Shop/Category/Category';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
@@ -198,6 +199,7 @@ const App = () => {
           <Route path='shop/*' element={<Shop />}>
             <Route index path='' element={<ShopHome />} />
             <Route path='cart' element={<Cart />} />
+            <Route path='category' element={<Category />} />
             <Route path='product' element={<ShopProductPage />} />
             <Route path='contact_us' element={<ContactUs />} />
             <Route path='faqs' element={<FAQ />} />

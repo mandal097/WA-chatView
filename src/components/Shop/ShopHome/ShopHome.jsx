@@ -1,28 +1,15 @@
 import React from 'react';
 import styles from './ShopHome.module.scss';
 import Banner from '../Banner/Banner';
-import { categories, banners, aboutProdutsType } from './data'
+import { banners, aboutProdutsType } from './data'
 import Browse from '../../MarkePlace/Browse/Browse';
+import CatStripe from '../CategoryStripe/CatStripe';
 
-const Category = ({ ele }) => {
-  return (
-    <div className={styles.cat_card}>
-      <img src={`/assets/images/${ele?.img}`} alt="" />
-      <span>{ele.cat}</span>
-    </div>
-  )
-}
 
 const ShopHome = () => {
   return (
     <div className={styles.products_home}>
-      <div className={styles.categories}>
-        {
-          categories?.map(ele => (
-            <Category key={ele.id} ele={ele} />
-          ))
-        }
-      </div>
+      <CatStripe />
       <Banner banners={banners} />
       <div className={styles.discount_coupan}>
         <img src="/assets/images/discount_coupan.jpg" alt="" />
