@@ -9,7 +9,7 @@ import CatStripe from '../CategoryStripe/CatStripe';
 const ShopHome = () => {
   return (
     <div className={styles.products_home}>
-      <CatStripe />
+      <CatStripe type='shophome'/>
       <Banner banners={banners} />
       <div className={styles.discount_coupan}>
         <img src="/assets/images/discount_coupan.jpg" alt="" />
