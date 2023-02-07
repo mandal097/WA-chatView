@@ -6,6 +6,7 @@
   justify-content: space-evenly;
   gap: 2rem;
   background-color: var(--bgDark);
+  transition: all 300ms linear;
   .cat_card {
     width: fit-content;
     height: auto;
@@ -33,5 +34,15 @@
         scale: 1.2;
       }
     }
+  }
+}
+
+
+@keyframes animate {
+  0% {
+    transform: translateY(-16rem);
+  }
+  100% {
+    transform: translateY(16rem);
   }
 }
