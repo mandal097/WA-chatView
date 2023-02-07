@@ -38,11 +38,11 @@ const CatStripe = ({ type }) => {
             if (type === 'categories_page') {
                 if (prevScrollPosition > currentScrollPosition) {
                     ref.current.style.position = 'fixed'
-                    ref.current.style.top = '60px'
+                    ref.current.style.top = '55px'
                     // ref.current.style.transform = 'translateY(12rem)'
                 } else {
                     ref.current.style.position = 'fixed'
-                    ref.current.style.top = '-60px'
+                    ref.current.style.top = '-55px'
                     // ref.current.style.transform = 'translateY(-12rem)'
                 }
             }
