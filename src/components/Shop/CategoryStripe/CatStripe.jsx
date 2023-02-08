@@ -30,7 +30,7 @@ const Category = ({ ele, type }) => {
 const CatStripe = ({ type }) => {
     // const [scroll, setScroll] = useState(false)
     const ref = useRef(null);
-    console.log(ref.current)
+    // console.log(ref.current)
     useEffect(() => {
         var prevScrollPosition = window.pageYOffset;
         const handler = () => {
@@ -39,10 +39,12 @@ const CatStripe = ({ type }) => {
                 if (prevScrollPosition > currentScrollPosition) {
                     ref.current.style.position = 'fixed'
                     ref.current.style.top = '55px'
+                    ref.current.style.left = '0'
                     // ref.current.style.transform = 'translateY(12rem)'
                 } else {
                     ref.current.style.position = 'fixed'
                     ref.current.style.top = '-55px'
+                    ref.current.style.left = '0'
                     // ref.current.style.transform = 'translateY(-12rem)'
                 }
             }
@@ -57,8 +59,8 @@ const CatStripe = ({ type }) => {
             ref={ref}
             className={styles.categories}
             style={{
-                height: type === 'categories_page' && 'auto',
-                padding: type === 'categories_page' && '1rem 0',
+                height: (type === 'categories_page' || type === 'product_page') && 'auto',
+                padding: (type === 'categories_page' || type === 'product_page') && '1rem 0',
             }}>
             {
                 categories?.map(ele => (

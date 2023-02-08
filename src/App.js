@@ -51,7 +51,6 @@ import Shop from './pages/Shop/Shop';
 import ShopNavbar from './components/Shop/ShopNavbar/ShopNavbar';
 import ShopHome from './components/Shop/ShopHome/ShopHome'
 import Cart from './components/Shop/Cart/Cart'
-import ShopProductPage from './components/Shop/ProductPage/ProductPage.jsx'
 import { useEffect } from 'react';
 import InviteMembers from './components/Groups/_GroupCreatorAdmin/InviteMembers/InviteMembers';
 import Overview from './components/Groups/_GroupCreatorAdmin/Overview/Overview';
@@ -68,6 +67,7 @@ import Payment from './components/Shop/Payments/Payment';
 import Shipping from './components/Shop/Shipping/Shipping';
 import Security from './components/Shop/Security/Security';
 import Category from './components/Shop/Category/Category';
+import SProductPage from './components/Shop/S_ProductPage/S_ProductPage';
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
@@ -95,7 +95,7 @@ const App = () => {
 
 
   if (match) return (
-    <div style={{display:'flex',flexDirection:'column' , alignItems:'center',justifyContent:'center'}}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
       <h1 style={{
         fontSize: '2rem',
         color: 'var(--error)',
@@ -106,9 +106,9 @@ const App = () => {
       >Please open it on desktop/laptop.... <br />🙄🤷‍♀️🖖 <br />Not works properly in mobile version </h1>
       <button style={{
         border: '1px solid var(--border)',
-        fontSize:'1.5rem',
-        padding:'1rem'
-      }} onClick={()=>setMatch(!match)}>OPEN ANYWAY!</button>
+        fontSize: '1.5rem',
+        padding: '1rem'
+      }} onClick={() => setMatch(!match)}>OPEN ANYWAY!</button>
     </div>
   )
   return (
@@ -200,7 +200,7 @@ const App = () => {
             <Route index path='' element={<ShopHome />} />
             <Route path='cart' element={<Cart />} />
             <Route path='category' element={<Category />} />
-            <Route path='product' element={<ShopProductPage />} />
+            <Route path='product/:productId' element={<SProductPage />} />
             <Route path='contact_us' element={<ContactUs />} />
             <Route path='faqs' element={<FAQ />} />
             <Route path='about_us' element={<ShopAboutUs />} />

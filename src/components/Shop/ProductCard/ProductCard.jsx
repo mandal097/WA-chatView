@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import styles from './ProductCard.module.scss';
 import { HeartFilled, QqOutlined, StarFilled } from '@ant-design/icons'
 import { capitalizeFirstLetter } from '../../../helpers/strings';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 
 const ProductCard = () => {
+    const navigate = useNavigate();
     const [added, setAdded] = useState(false);
     const handleWishlist = (e) => {
         e.stopPropagation()
@@ -27,7 +28,7 @@ const ProductCard = () => {
             <ToastContainer className='toaster' />
             <div className={styles.product_card}>
                 <div className={styles.wrapper}>
-                    <div className={styles.img}>
+                    <div className={styles.img} onClick={()=>navigate(`/shop/product/kuch-bhi-lele-yaha-se`)}>
                         <div className={`${styles.wishlist} ${added && 'pop'}`} onClick={handleWishlist} >
                             <HeartFilled className={`${styles.icon} ${added && styles.added} `} />
                         </div>
@@ -35,7 +36,9 @@ const ProductCard = () => {
                     </div>
 
                     <div className={styles.details}>
-                        <Link className={styles.name}>Name of the product should be here</Link>
+                        <Link
+                            to={`/shop/product/kuch-bhi-filhal-haha`}
+                            className={styles.name}>Name of the product should be here</Link>
                         <div className={styles.ratings}>
                             <div className={styles.stars}>
                                 <span>4.3</span>
