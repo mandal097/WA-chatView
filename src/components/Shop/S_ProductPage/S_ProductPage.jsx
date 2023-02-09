@@ -1,4 +1,11 @@
-import { InfoCircleOutlined, QqOutlined, SearchOutlined, ShoppingCartOutlined, StarFilled, TagFilled, ThunderboltOutlined } from '@ant-design/icons';
+import {
+    InfoCircleOutlined,
+    QqOutlined,
+    ShoppingCartOutlined,
+    StarFilled,
+    TagFilled,
+    ThunderboltOutlined
+} from '@ant-design/icons';
 import React from 'react';
 import CatStripe from '../CategoryStripe/CatStripe';
 import styles from './S_ProductPage.module.scss';
@@ -71,7 +78,10 @@ const SProductPage = () => {
                     <div className={styles.pincode_check_}>
                         <div className={styles.head}>Delivery</div>
                         <div className={styles.pincode_wrap}>
-                            <SearchOutlined className={styles.icon} />
+                            <div className={styles.icon}>
+                                <img src="/assets/images/gmap.png" alt="" />
+                            </div>
+                            {/* <SearchOutlined className={styles.icon} /> */}
                             <input type="text" placeholder='Enter your pincode to check' />
                             <button>Check</button>
                         </div>
