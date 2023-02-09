@@ -1,0 +1,38 @@
+.price_info {
+  height: fit-content;
+  width: 27rem;
+  position: absolute;
+  top: 3rem;
+  left: 95%;
+  background-color: var(--bgDark);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  b {
+    font-size: 1.4rem;
+    color: var(--btn);
+    font-weight: 500;
+  }
+  .prices {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1.5rem 0;
+    p {
+      font-size: 1.3rem;
+      color: var(--bgLighter);
+    }
+    strike {
+      font-size: 1.25rem !important;
+      color: var(--bgLighter) !important;
+    }
+  }
+  .discount_per {
+    padding-top: 0.5rem;
+    margin-top: 1rem;
+    border-top: 2px solid var(--successLight);
+    p {
+      font-size: 1.2rem;
+      color: var(--successLight);
+    }
+  }
+}
