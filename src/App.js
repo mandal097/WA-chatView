@@ -47,32 +47,14 @@ import ActivityLog from './components/Groups/_GroupCreatorAdmin/ActivityLog/Acti
 import ManageAdmins from './components/Groups/_GroupCreatorAdmin/ManageAdmins/ManageAdmins';
 import Error from './pages/Error/Error';
 import GroupInvites from './components/Groups/Invites/GroupInvites';
-import Shop from './pages/Shop/Shop';
-import ShopNavbar from './components/Shop/ShopNavbar/ShopNavbar';
-import ShopHome from './components/Shop/ShopHome/ShopHome'
-import Cart from './components/Shop/Cart/Cart'
 import { useEffect } from 'react';
 import InviteMembers from './components/Groups/_GroupCreatorAdmin/InviteMembers/InviteMembers';
 import Overview from './components/Groups/_GroupCreatorAdmin/Overview/Overview';
 import PendingPost from './components/Groups/_GroupCreatorAdmin/PendingPosts/PendingPost';
-import DummyFooterPage from './components/Shop/DummyFooterPage/DummyFooterPage';
-import ContactUs from './components/Shop/ContactUs/ContactUs';
-import FAQ from './components/Shop/FAQ/FAQ';
-import ShopAboutUs from './components/Shop/ShopAboutUs/ShopAboutUs';
-import Blog from './components/Shop/Blog/Blog';
-import SingleBlog from './components/Shop/Blog/SingleBlog';
-import Returnspolicy from './components/Shop/ReturnsPolicy/Returnspolicy';
-import Terms from './components/Shop/TermsOfUse/Terms';
-import Payment from './components/Shop/Payments/Payment';
-import Shipping from './components/Shop/Shipping/Shipping';
-import Security from './components/Shop/Security/Security';
-import Category from './components/Shop/Category/Category';
-import SProductPage from './components/Shop/S_ProductPage/S_ProductPage';
+
 
 const App = () => {
   const user = useSelector(state => state.user.currentUser);
-  const [path, setPath] = useState(false);
-  const path_ = window.location.pathname.split('/')[1];
 
   const matchMedia = window.matchMedia('(max-width: 600px)');
   const [match, setMatch] = useState(matchMedia.matches);
@@ -82,16 +64,6 @@ const App = () => {
     matchMedia.addListener(handler);
     return () => matchMedia.removeListener(handler)
   }, [matchMedia])
-
-
-  useEffect(() => {
-    if (path_ === 'shop') {
-      setPath(true)
-    } else {
-      setPath(false)
-    }
-  }, [path_]);
-
 
 
   if (match) return (
@@ -114,10 +86,7 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-        {path ?
-          <ShopNavbar /> :
-          <Navbar />
-        }
+        <Navbar />
         <Routes>
 
           <Route path='/'>
@@ -196,23 +165,6 @@ const App = () => {
             </Route>
           </Route>
 
-          <Route path='shop/*' element={<Shop />}>
-            <Route index path='' element={<ShopHome />} />
-            <Route path='cart' element={<Cart />} />
-            <Route path='category' element={<Category />} />
-            <Route path='product/:productId' element={<SProductPage />} />
-            <Route path='contact_us' element={<ContactUs />} />
-            <Route path='faqs' element={<FAQ />} />
-            <Route path='about_us' element={<ShopAboutUs />} />
-            <Route path='blog/*' element={<Blog />} />
-            <Route path='blog/:blogId' element={<SingleBlog />} />
-            <Route path='returns_policy' element={<Returnspolicy />} />
-            <Route path='terms-of-use' element={<Terms />} />
-            <Route path='payments' element={<Payment />} />
-            <Route path='shippings' element={<Shipping />} />
-            <Route path='security' element={<Security />} />
-            <Route path=':test' element={<DummyFooterPage />} />
-          </Route>
 
           {/* ------------------------error page when routes found------------------ */}
 
