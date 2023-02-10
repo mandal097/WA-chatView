@@ -8,14 +8,21 @@ import {
 } from '@ant-design/icons';
 import React from 'react';
 import CatStripe from '../CategoryStripe/CatStripe';
+import PriceInfo from './PriceInfo';
+import Ratings from './Ratings';
 import styles from './S_ProductPage.module.scss';
+
+
+// in shop branch 
+let int; 
+//this is in shop
 
 const SProductPage = () => {
     // const location = useLocation();
     // const path = location.pathname.split('/')[3]
     return (
         <div className={styles.s_product_page}>
-            <CatStripe type='product_page' />
+            <CatStripe type='categories_page' />
 
             <div className={styles.wrapper}>
                 <div className={styles.left}>
@@ -56,7 +63,12 @@ const SProductPage = () => {
                         <span>₹ 267</span>
                         <strike>₹ 400</strike>
                         <small>58% off</small>
-                        <InfoCircleOutlined className={styles.icon} />
+                        <div className={styles.show_price_details}>
+                            <InfoCircleOutlined className={styles.icon} />
+                            <div className={styles.priceInfo}>
+                                <PriceInfo />
+                            </div>
+                        </div>
                     </div>
 
                     <div className={styles.offers}>
@@ -72,6 +84,30 @@ const SProductPage = () => {
                         <div className={styles.offer}>
                             <TagFilled className={styles.icon} />
                             <p>No Cost EMI on Bajaj Finserv EMI Card on cart value above ₹2999</p>
+                        </div>
+                    </div>
+
+                    <div className={styles.product_detail}>
+                        <p>Size : </p>
+                        <div className={styles.size_select}>
+                            <label>M</label>
+                            <input type="radio" name="size" id="size"/>
+                        </div>
+                        <div className={styles.size_select}>
+                            <label>S</label>
+                            <input type="radio" name="size" id="size"/>
+                        </div>
+                        <div className={styles.size_select}>
+                            <label>L</label>
+                            <input type="radio" name="size" id="size"/>
+                        </div>
+                        <div className={styles.size_select}>
+                            <label>XL</label>
+                            <input type="radio" name="size" id="size"/>
+                        </div>
+                        <div className={styles.size_select}>
+                            <label>XXL</label>
+                            <input type="radio" name="size" id="size"/>
                         </div>
                     </div>
 
@@ -126,6 +162,8 @@ const SProductPage = () => {
                             </div>
                         </div>
                     </div>
+
+                    <Ratings />
 
                 </div>
             </div>

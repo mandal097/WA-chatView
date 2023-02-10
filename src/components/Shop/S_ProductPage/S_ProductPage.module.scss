@@ -92,8 +92,10 @@
       }
       .prices {
         display: flex;
+        width: fit-content;
         gap: 1rem;
         align-items: center;
+        position: relative;
         span {
           font-size: 3rem;
         }
@@ -104,8 +106,19 @@
           color: var(--textSoft);
         }
         .icon {
-          color: var(--bgLight);
+          color: var(--bgLighter);
           cursor: pointer;
+        }
+        .priceInfo {
+          display: none;
+          animation: zoom 200ms linear 1;
+        }
+        .show_price_details {
+          &:hover {
+            .priceInfo {
+              display: block;
+            }
+          }
         }
       }
       .ratings {
@@ -163,8 +176,33 @@
           }
         }
       }
+      .product_detail {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 2rem;
+        p{
+          font-size: 1.5rem;
+          color: var(--error);
+        }
+        .size_select {
+          display: flex;
+          align-items: center;
+          gap: 0.3rem;
+          label{
+            font-size: 1.4rem;
+            color: var(--btn);
+          }
+          input{
+            padding: 0.1rem;
+            &[type='radio']{
+              accent-color: var(--successLight);
+            }
+          }
+        }
+      }
       .pincode_check_ {
-        margin-top: 3rem;
+        margin-top: 2rem;
         display: flex;
         align-items: center;
         .head {
@@ -173,18 +211,19 @@
           width: 10rem;
         }
         .pincode_wrap {
+          padding-bottom: 0.3rem;
           display: flex;
           align-items: center;
           gap: 0.3rem;
           border-bottom: 2px solid var(--btn);
           .icon {
-           width: 2.5rem;
-           height: 2.5rem;
-           img{
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-           }
+            width: 2.5rem;
+            height: 2.5rem;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+            }
           }
           input {
             padding: 0.2rem;
@@ -222,7 +261,7 @@
         }
       }
       .specifications {
-        border: 1px solid var(--bgLight);
+        border: 1px solid var(--border);
         margin-top: 3rem;
         .top {
           border-bottom: 1px solid var(--bgLight);
@@ -262,5 +301,14 @@
     height: auto;
     margin: 3rem 0;
     overflow: hidden;
+  }
+}
+
+@keyframes zoom {
+  0% {
+    scale: 0.1;
+  }
+  100% {
+    scale: 1;
   }
 }
