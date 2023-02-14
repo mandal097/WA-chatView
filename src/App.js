@@ -51,6 +51,7 @@ import { useEffect } from 'react';
 import InviteMembers from './components/Groups/_GroupCreatorAdmin/InviteMembers/InviteMembers';
 import Overview from './components/Groups/_GroupCreatorAdmin/Overview/Overview';
 import PendingPost from './components/Groups/_GroupCreatorAdmin/PendingPosts/PendingPost';
+import ScrollToTop from './utils/ScrollToTop';
 
 
 const App = () => {
@@ -86,91 +87,93 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-        <Navbar />
-        <Routes>
+        <ScrollToTop>
+          <Navbar />
+          <Routes>
 
-          <Route path='/'>
+            <Route path='/'>
 
-            <Route index element={user ? <Navigate to='home' /> : <Welcome />} />
+              <Route index element={user ? <Navigate to='home' /> : <Welcome />} />
 
-            <Route path='home' element={<Home />} />
+              <Route path='home' element={<Home />} />
 
 
-            {/* ---------------------authentication routes -------------------------------*/}
-            <Route path='login' element={user ? <Navigate to={`/profile/${user._id}`} /> : <Login />} />
-            <Route path='register' element={<Register />} />
-            <Route path='reset-password' element={<ResetPassword />} />
-            <Route path='send-otp' element={<SendOtp />} />
-            <Route path='forgot-password' element={<ChangePassword />} />
+              {/* ---------------------authentication routes -------------------------------*/}
+              <Route path='login' element={user ? <Navigate to={`/profile/${user._id}`} /> : <Login />} />
+              <Route path='register' element={<Register />} />
+              <Route path='reset-password' element={<ResetPassword />} />
+              <Route path='send-otp' element={<SendOtp />} />
+              <Route path='forgot-password' element={<ChangePassword />} />
 
-            {/* --------------------------------------messenger routes --------------------*/}
-            <Route path='messenger' element={user ? <Messages /> : <Navigate to='/login' />} />
+              {/* --------------------------------------messenger routes --------------------*/}
+              <Route path='messenger' element={user ? <Messages /> : <Navigate to='/login' />} />
 
-            {/* ----------------------profile routes --------------------------------*/}
-            <Route path='profile/:id/*' element={user ? <Profile /> : <Navigate to='/login' />} >
-              <Route path='' element={<Posts />} />
-              <Route path='about' element={<About />} />
-              <Route path='friends' element={<Friends />} />
-              <Route path='photos' element={<ProfileMedias type='image' />} />
-              <Route path='videos' element={<ProfileMedias type='video' />} />
-              <Route path='commerce' element={<Commerce />} />
-            </Route>
+              {/* ----------------------profile routes --------------------------------*/}
+              <Route path='profile/:id/*' element={user ? <Profile /> : <Navigate to='/login' />} >
+                <Route path='' element={<Posts />} />
+                <Route path='about' element={<About />} />
+                <Route path='friends' element={<Friends />} />
+                <Route path='photos' element={<ProfileMedias type='image' />} />
+                <Route path='videos' element={<ProfileMedias type='video' />} />
+                <Route path='commerce' element={<Commerce />} />
+              </Route>
 
-            <Route path='friends' element={<FriendsPage />} />
+              <Route path='friends' element={<FriendsPage />} />
 
-            <Route path='watch' element={<Watch />} />
+              <Route path='watch' element={<Watch />} />
 
-            {/* ----------------------group creatiion --------------------------------*/}
-            <Route path='group/create' element={<CreateGroup />} />  {/* for creating groups */}
+              {/* ----------------------group creatiion --------------------------------*/}
+              <Route path='group/create' element={<CreateGroup />} />  {/* for creating groups */}
 
-            {/* ----------------------groups routes --------------------------------*/}
-            <Route path='groups/*' element={<Groups />}>
-              <Route index path='feed' element={<Feed />} />
-              <Route path='discover' element={<Suggestions />} />
-              <Route path='search' element={<GroupList type='searched' />} />
-              <Route path='invites' element={<GroupInvites />} />
-              {/* <Route path='search/:searchTerm/all' element={<GroupList type='all' />} /> */}
-              <Route path=':id/*' element={<View />} >
-                <Route index path='' element={<Common type='discussion' />} />
-                <Route path='featured' element={<Common type='featured' />} />
-                <Route path='videos' element={<Common type='videos' />} />
-                <Route path='about' element={<AboutGroup />} />
-                <Route path='members' element={<Members />} />
-                <Route path='media' element={<Media />} />
-                <Route path='files' element={<Files />} />
-                <Route path='admin_assist' element={<ManageAdmins />} />
-                <Route path='member-requests' element={<MemberRequest />} />
-                <Route path='Invite-members' element={<InviteMembers />} />
-                <Route path='manage-rules' element={<Rules />} />
-                <Route path='edit' element={<Edit />} />
-                <Route path='admin_activities' element={<ActivityLog />} />
-                <Route path='overview' element={<Overview />} />
-                <Route path='pending-posts' element={<PendingPost />} />
-                <Route path='test' element={<Test />} />
+              {/* ----------------------groups routes --------------------------------*/}
+              <Route path='groups/*' element={<Groups />}>
+                <Route index path='feed' element={<Feed />} />
+                <Route path='discover' element={<Suggestions />} />
+                <Route path='search' element={<GroupList type='searched' />} />
+                <Route path='invites' element={<GroupInvites />} />
+                {/* <Route path='search/:searchTerm/all' element={<GroupList type='all' />} /> */}
+                <Route path=':id/*' element={<View />} >
+                  <Route index path='' element={<Common type='discussion' />} />
+                  <Route path='featured' element={<Common type='featured' />} />
+                  <Route path='videos' element={<Common type='videos' />} />
+                  <Route path='about' element={<AboutGroup />} />
+                  <Route path='members' element={<Members />} />
+                  <Route path='media' element={<Media />} />
+                  <Route path='files' element={<Files />} />
+                  <Route path='admin_assist' element={<ManageAdmins />} />
+                  <Route path='member-requests' element={<MemberRequest />} />
+                  <Route path='Invite-members' element={<InviteMembers />} />
+                  <Route path='manage-rules' element={<Rules />} />
+                  <Route path='edit' element={<Edit />} />
+                  <Route path='admin_activities' element={<ActivityLog />} />
+                  <Route path='overview' element={<Overview />} />
+                  <Route path='pending-posts' element={<PendingPost />} />
+                  <Route path='test' element={<Test />} />
+                </Route>
+              </Route>
+
+              {/* ----------------------marketplace routes --------------------------------*/}
+              <Route path='marketplace/*' element={<MarketPlace />} >
+                <Route index path='' element={<Browse />} />
+                <Route path='inbox' element={<Inbox />} />
+                <Route path='you/buying' element={<Buying />} />
+                <Route path='category/:cat' element={<Browse />} />{/*fileterd by categories*/}
+                <Route path='search' element={<SearchMarketPlace />} />
+
+                <Route path='create' element={<CreateMarketPlaceProduct />} />
+                <Route path='item/:id' element={<ProductPage />} />
+
+                <Route path='you/selling' element={<Selling />} /> {/* for admins who wants to sell*/}
               </Route>
             </Route>
 
-            {/* ----------------------marketplace routes --------------------------------*/}
-            <Route path='marketplace/*' element={<MarketPlace />} >
-              <Route index path='' element={<Browse />} />
-              <Route path='inbox' element={<Inbox />} />
-              <Route path='you/buying' element={<Buying />} />
-              <Route path='category/:cat' element={<Browse />} />{/*fileterd by categories*/}
-              <Route path='search' element={<SearchMarketPlace />} />
 
-              <Route path='create' element={<CreateMarketPlaceProduct />} />
-              <Route path='item/:id' element={<ProductPage />} />
+            {/* ------------------------error page when routes found------------------ */}
 
-              <Route path='you/selling' element={<Selling />} /> {/* for admins who wants to sell*/}
-            </Route>
-          </Route>
+            <Route path='*' element={<Error />} />
 
-
-          {/* ------------------------error page when routes found------------------ */}
-
-          <Route path='*' element={<Error />} />
-
-        </Routes>
+          </Routes>
+        </ScrollToTop>
       </BrowserRouter>
     </div>
   )
