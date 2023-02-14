@@ -1,0 +1,91 @@
+.create_post {
+  width: 100%;
+  padding: 1.5rem;
+  background-color: var(--bgDark);
+  border-radius: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.create_post .top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 1px solid var(--border);
+  padding: 0.5rem 0;
+  gap: 2rem;
+}
+
+.create_post .top img {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.create_post .top .whats_new {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  font-size: 1.8rem;
+  background-color: var(--bgLight);
+  border-radius: 1rem;
+  padding: 0.8rem 0.5rem;
+  color: var(--textSoft);
+  cursor: pointer;
+}
+
+.create_post .top .whats_new:hover {
+  background-color: var(--bgLighter);
+}
+
+.create_post .bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.create_post .bottom .upload_option {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 4rem;
+  font-size: 1.6rem;
+  color: var(--textSoft);
+  background-color: var(--bgLight);
+  border-radius: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 1.3rem;
+  cursor: pointer;
+}
+
+.create_post .bottom .upload_option .icon {
+  font-size: 3rem;
+}
+
+.create_post .bottom .upload_option:hover {
+  background-color: var(--bgLighter);
+}
+/*# sourceMappingURL=CreatePost.module.css.map */

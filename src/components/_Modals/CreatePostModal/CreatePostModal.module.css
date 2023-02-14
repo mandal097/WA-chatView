@@ -1,0 +1,272 @@
+.add_post_modal {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 100;
+}
+
+.add_post_modal .body {
+  width: 50rem;
+  height: 50rem;
+  background-color: var(--bgDark);
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  gap: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.add_post_modal .body .close {
+  position: absolute;
+  right: 1rem;
+  top: 0.7rem;
+  border-radius: 50%;
+  background-color: var(--bgLight);
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.add_post_modal .body .close .icon {
+  font-size: 3rem;
+  color: var(--text);
+}
+
+.add_post_modal .body .close:hover {
+  background-color: var(--bgLighter);
+}
+
+.add_post_modal .body .head {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-bottom: 1px solid var(--border);
+  font-size: 2rem;
+  color: var(--textSoft);
+  font-weight: 500;
+  height: 4rem;
+}
+
+.add_post_modal .body .wrapper {
+  padding: 0 1rem;
+  gap: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.add_post_modal .body .wrapper .user_details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 6rem;
+  gap: 1rem;
+}
+
+.add_post_modal .body .wrapper .user_details .img {
+  width: 4rem;
+  height: 4rem;
+}
+
+.add_post_modal .body .wrapper .user_details .img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.add_post_modal .body .wrapper .user_details .name span {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.add_post_modal .body .wrapper .post_inputs {
+  height: 32rem;
+  padding-right: 0.4rem;
+  overflow-y: scroll;
+}
+
+.add_post_modal .body .wrapper .post_inputs .inputs {
+  height: auto;
+}
+
+.add_post_modal .body .wrapper .post_inputs .inputs textarea {
+  width: 100%;
+  resize: none;
+  background-color: transparent;
+  font-size: 1.8rem;
+  color: var(--text);
+  height: 7rem;
+  outline: none;
+  border: none;
+}
+
+.add_post_modal .body .wrapper .post_inputs .media {
+  height: auto;
+  margin-bottom: 1rem;
+  border: 1px solid var(--bgLight);
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
+
+.add_post_modal .body .wrapper .post_inputs .media img {
+  width: 100%;
+  min-height: 25rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.add_post_modal .body .wrapper .post_inputs .media input {
+  font-size: 1.6rem;
+  margin: 1rem 0;
+}
+
+.add_post_modal .body .wrapper .post_inputs .media .dummy {
+  width: 100%;
+  height: 16rem;
+  background-color: var(--bgLight);
+  border-radius: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.add_post_modal .body .wrapper .post_inputs .media .dummy .add {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--textSoft);
+}
+
+.add_post_modal .body .wrapper .post_inputs .media .dummy .add .icon {
+  font-size: 5rem;
+  color: var(--textSoft);
+}
+
+.add_post_modal .body .wrapper .post_inputs .perc {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+
+.add_post_modal .body .wrapper .post_inputs .add_media {
+  height: 3.5rem;
+  margin: 0.4rem 0;
+  background-color: var(--bgLight);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: var(--textSoft);
+  font-size: 1.8rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+}
+
+.add_post_modal .body .wrapper .post_inputs .add_media:hover {
+  background-color: var(--bgLighter);
+}
+
+.add_post_modal .body .wrapper .post_inputs::-webkit-scrollbar {
+  width: 0.6rem;
+}
+
+.add_post_modal .body .wrapper .post_inputs::-webkit-scrollbar-track {
+  background: var(--bgLight);
+}
+
+.add_post_modal .body .wrapper .post_inputs::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.add_post_modal .body .wrapper .post_inputs::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.add_post_modal .body .wrapper .submit {
+  height: 4rem;
+  background-color: var(--btnLight);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: var(--textSoft);
+  font-size: 1.8rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.add_post_modal .body .wrapper .submit:hover {
+  background-color: var(--btn);
+}
+
+.add_post_modal .body .wrapper .in_active {
+  background-color: var(--bgLight);
+  cursor: not-allowed;
+}
+
+.add_post_modal .body .wrapper .in_active:hover {
+  background-color: var(--bgLighter);
+}
+/*# sourceMappingURL=CreatePostModal.module.css.map */

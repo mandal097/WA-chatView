@@ -1,0 +1,110 @@
+.message {
+  width: 40%;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  margin: 1.5rem 1rem;
+  gap: 1rem;
+  position: relative;
+}
+
+.message .img {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  margin-bottom: 0.2rem;
+}
+
+.message .img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.message .new_message {
+  width: auto calc(100% - 4rem);
+  height: auto;
+  border-radius: 1rem 1rem 1rem 0;
+  background-color: var(--bgChat);
+  position: relative;
+  word-wrap: break-word;
+}
+
+.message .new_message .name {
+  font-size: 1.3rem;
+  text-transform: capitalize;
+  font-weight: 500;
+  border-bottom: 1px solid var(--btn);
+  color: var(--bgDark);
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  border-bottom: 1px solid var(--bgDark);
+  padding: 0 1rem;
+}
+
+.message .new_message p {
+  font-size: 1.5rem;
+  color: var(--text);
+  padding: 1rem;
+}
+
+.message .new_message .till {
+  position: absolute;
+  width: 1rem;
+  height: 0.6rem;
+  background-color: var(--bgChat);
+  bottom: 0rem;
+  left: -0.5rem;
+  border-radius: 0rem 0rem 0rem 1rem;
+}
+
+.message .time {
+  position: absolute;
+  left: 1.5rem;
+  bottom: -1.4rem;
+  font-size: 1.2rem;
+}
+
+.own {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  position: relative;
+}
+
+.own .own_time {
+  position: absolute;
+  right: 1.5rem;
+  bottom: -1.4rem;
+  font-size: 1.2rem;
+}
+
+.own .own_newmessage {
+  border-radius: 1rem 1rem 0rem 1rem;
+  position: relative;
+}
+
+.own .own_newmessage .own_till {
+  position: absolute;
+  width: 1rem;
+  height: 0.6rem;
+  background-color: var(--bgChat);
+  bottom: 0rem;
+  right: -0.5rem;
+  border-radius: 0rem 0rem 1rem 0rem;
+}
+/*# sourceMappingURL=Message.module.css.map */

@@ -1,0 +1,104 @@
+.commerce {
+  font-size: 3rem;
+  background-color: var(--bgDark);
+  border-radius: 0.8rem;
+  padding: 1rem;
+  color: var(--text);
+}
+
+.commerce .body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.commerce .body .head {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.commerce .body .head h3 {
+  font-size: 2.3rem;
+}
+
+.commerce .body .head button {
+  font-size: 1.6rem;
+  padding: 0.7rem 1rem;
+  border-radius: 0.5rem;
+  color: var(--btnLight);
+  cursor: pointer;
+}
+
+.commerce .body .head button:hover {
+  background-color: var(--bgLight);
+}
+
+.commerce .body .products {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.commerce .body .products .img {
+  width: 16rem;
+  height: 16rem;
+  margin: 0.8rem 0;
+  cursor: pointer;
+  position: relative;
+}
+
+.commerce .body .products .img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.commerce .body .products .img video {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.commerce .body .products .img .actions {
+  position: absolute;
+  top: 0.3rem;
+  right: 0.3rem;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.commerce .body .products .img .actions .icon {
+  font-size: 2.6rem;
+  color: var(--text);
+}
+
+.commerce .body .products .img:hover img {
+  border: 1px solid var(--bgLighter);
+  padding: 0.1rem;
+}
+/*# sourceMappingURL=Commerce.module.css.map */

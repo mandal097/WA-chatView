@@ -1,0 +1,13 @@
+.groups {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.groups .body {
+  padding: 2rem 4rem;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+/*# sourceMappingURL=Groups.module.css.map */

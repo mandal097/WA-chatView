@@ -1,0 +1,155 @@
+.post_modal {
+  height: 85vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-animation: fade 300ms linear 1;
+          animation: fade 300ms linear 1;
+}
+
+.post_modal .img {
+  width: 49%;
+  height: 100%;
+}
+
+.post_modal .img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-bottom-left-radius: 1rem;
+}
+
+.post_modal .img video {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-bottom-left-radius: 1rem;
+}
+
+.post_modal .right {
+  width: 51%;
+  padding: 1rem;
+}
+
+.post_modal .right .head {
+  height: 5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.post_modal .right .head .img_ {
+  width: 3.6rem;
+  height: 3.6rem;
+}
+
+.post_modal .right .head .img_ img {
+  width: 100%;
+  border-radius: 50%;
+  height: 100%;
+  border: 2px solid hotpink;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.post_modal .right .head .link {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1.5rem;
+  text-transform: capitalize;
+}
+
+.post_modal .right .head .link:hover {
+  text-decoration: underline;
+}
+
+.post_modal .right .head button {
+  border: 1px solid var(--border);
+  padding: 0.4rem 1rem;
+  font-size: 1.2rem;
+  border-radius: 0.3rem;
+}
+
+.post_modal .right .head button:hover {
+  border-color: var(--text);
+}
+
+.post_modal .right .comments_div {
+  height: calc(80vh - 180px);
+  overflow-y: scroll;
+}
+
+.post_modal .right .post_time small {
+  font-size: 1.4rem;
+  color: var(--bgLighter);
+  cursor: pointer;
+}
+
+.post_modal .right .post_time small:hover {
+  color: grey;
+}
+
+.post_modal .right .comment_form {
+  height: 5rem;
+  background-color: var(--bgLight);
+  border-radius: 0.5rem;
+  padding: 0 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.post_modal .right .comment_form .img {
+  height: 3.5rem;
+  width: 3.5rem;
+}
+
+.post_modal .right .comment_form .img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+
+.post_modal .right .comment_form input {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  padding: 0.2rem 1rem;
+  font-size: 1.6rem;
+  color: var(--text);
+}
+
+.post_modal .right .comment_form button {
+  height: 5rem;
+  width: 5rem;
+  font-size: 5rem;
+}
+
+@-webkit-keyframes fade {
+  0% {
+    height: 0;
+    width: 0;
+  }
+}
+
+@keyframes fade {
+  0% {
+    height: 0;
+    width: 0;
+  }
+}
+/*# sourceMappingURL=PostModal.module.css.map */

@@ -1,0 +1,13 @@
+.marketplace {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.marketplace .body {
+  padding: 1rem 1rem;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+/*# sourceMappingURL=MarketPlace.module.css.map */

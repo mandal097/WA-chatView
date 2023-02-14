@@ -1,0 +1,98 @@
+.user_card {
+  width: 100%;
+  height: 7rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 2rem;
+  padding: 0 1rem;
+  margin-top: 0.5rem;
+}
+
+.user_card .img {
+  width: 5.5rem;
+  height: 5.5rem;
+}
+
+.user_card .img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+
+.user_card .details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-right: auto;
+}
+
+.user_card .details span {
+  font-size: 1.5rem;
+  color: var(--text);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.user_card .details span:hover {
+  text-decoration: underline;
+}
+
+.user_card button {
+  height: 3.5rem;
+  border-radius: 0.7rem;
+  padding: 0 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 1.5rem;
+  color: var(--text);
+  background-color: var(--bgLight);
+  font-weight: 500;
+  gap: 0.5rem;
+}
+
+.user_card button .icon {
+  font-size: 2.4rem;
+  color: var(--text);
+}
+
+.user_card button:hover {
+  background-color: var(--bgLighter);
+}
+
+.user_card .active {
+  background-color: var(--btn);
+}
+
+.user_card .active:hover {
+  background-color: var(--btnLight);
+}
+
+.user_card .cancel {
+  background-color: var(--error);
+}
+
+.user_card .cancel:hover {
+  background-color: var(--text);
+}
+
+.user_card .cancel:hover .icon {
+  color: var(--error);
+}
+/*# sourceMappingURL=Card.module.css.map */

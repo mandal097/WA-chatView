@@ -1,0 +1,265 @@
+.edit .wrapper {
+  width: 50%;
+  font-size: 10rem;
+  margin: 3rem auto;
+  color: var(--text);
+}
+
+.edit .wrapper .section {
+  background-color: var(--bgDark);
+  border-radius: 1rem;
+  height: auto;
+  padding: 1.5rem 1rem;
+}
+
+.edit .wrapper .section h1 {
+  font-size: 2rem;
+  color: var(--textSoft);
+}
+
+.edit .wrapper .section .btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1.5rem;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.edit .wrapper .section .btns button {
+  padding: 0.7rem 2rem;
+  border-radius: 0.4rem;
+  background-color: var(--btn);
+}
+
+.edit .wrapper .section .btns button:hover {
+  background-color: var(--btnLight);
+}
+
+.edit .wrapper .section .btns button:nth-child(1) {
+  color: var(--btn);
+  font-weight: bold;
+  background-color: transparent;
+}
+
+.edit .wrapper .section .btns button:nth-child(1):hover {
+  background-color: var(--bgLight);
+}
+
+.edit .wrapper .section .btns .disabled {
+  background-color: var(--bgLight);
+  cursor: not-allowed;
+}
+
+.edit .wrapper .section .btns .disabled:hover {
+  background-color: var(--bgLighter);
+}
+
+.edit .wrapper .section .edit_field {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  margin: 1.5rem 0;
+}
+
+.edit .wrapper .section .edit_field div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-bottom: 1rem;
+}
+
+.edit .wrapper .section .edit_field div span {
+  color: var(--text);
+  font-size: 1.7rem;
+}
+
+.edit .wrapper .section .edit_field div small {
+  color: var(--textSoft);
+  font-weight: 100;
+  font-size: 1.3rem;
+  text-transform: capitalize;
+}
+
+.edit .wrapper .section .edit_field .manage_btn {
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--bgLight);
+  border-radius: 0.3rem;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+}
+
+.edit .wrapper .section .edit_field .manage_btn:hover {
+  background-color: var(--bgLighter);
+}
+
+.edit .wrapper .section .edit_field .icon_ {
+  cursor: pointer;
+}
+
+.edit .wrapper .section .edit_field .icon_ .icon {
+  font-size: 3.5rem;
+}
+
+.edit .wrapper .section .edit_field:last-child {
+  border-bottom: none;
+}
+
+.edit .wrapper .section .inputs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 0;
+}
+
+.edit .wrapper .section .inputs label {
+  font-size: 1.4rem;
+  margin: 0.3rem 0;
+}
+
+.edit .wrapper .section .inputs input,
+.edit .wrapper .section .inputs textarea {
+  font-size: 1.5rem;
+  border: 1px solid var(--border);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  color: var(--text);
+  resize: none;
+  margin-bottom: 1rem;
+}
+
+.edit .wrapper .section .radios {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1rem;
+}
+
+.edit .wrapper .section .radios .radio {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  gap: 1rem;
+  cursor: pointer;
+  margin: 0.5rem 0;
+}
+
+.edit .wrapper .section .radios .radio:hover {
+  background-color: var(--bgLight);
+}
+
+.edit .wrapper .section .radios .radio:hover .icon_ {
+  background-color: var(--bgDark);
+}
+
+.edit .wrapper .section .radios .radio .icon_ {
+  width: 3.5rem;
+  height: 3.5rem;
+  background-color: var(--bgLight);
+  border-radius: 50%;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.edit .wrapper .section .radios .radio .icon_ .icon {
+  font-size: 3.5rem;
+}
+
+.edit .wrapper .section .radios .radio .type span {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.edit .wrapper .section .radios .radio .type p {
+  font-size: 1.3rem;
+  color: var(--textSoft);
+}
+
+.edit .wrapper .section .radios .radio .state {
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  border: 1px solid var(--bgLighter);
+  margin-left: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.edit .wrapper .section .radios .radio .state div {
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--btn);
+  border-radius: 50%;
+}
+
+.edit .wrapper .section .radios .radio_active {
+  background-color: var(--bgLight);
+}
+
+.edit .wrapper .section .radios .radio_active .icon_ {
+  background-color: var(--bgDark);
+}
+
+.edit .wrapper .section .radios:last-child {
+  border: none;
+}
+
+.edit .wrapper .section .location {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.edit .wrapper .section .location input {
+  font-size: 1.5rem;
+  border: 1px solid var(--border);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  color: var(--text);
+  resize: none;
+  margin-bottom: 1rem;
+}
+
+.edit .wrapper .section .location .selection_ {
+  border: 1px solid var(--border);
+  height: 16rem;
+  overflow-y: scroll;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  padding: 0.5rem;
+}
+/*# sourceMappingURL=Edit.module.css.map */

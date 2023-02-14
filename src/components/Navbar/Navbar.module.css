@@ -1,0 +1,214 @@
+nav {
+  height: 5.5rem;
+}
+
+nav .navbar {
+  width: 100%;
+  height: 5.5rem;
+  background-color: var(--bgDark);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 2rem;
+  gap: 3rem;
+  border-bottom: 1px solid var(--border);
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+nav .navbar .logo {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  cursor: pointer;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  color: var(--btn);
+}
+
+nav .navbar .logo:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+nav .navbar .search_box {
+  width: 27rem;
+  height: 4rem;
+  border-radius: 2rem;
+  margin-left: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 1rem;
+  gap: 1rem;
+  background-color: var(--bgLighter);
+}
+
+nav .navbar .search_box .icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: var(--text);
+  font-size: 4rem;
+}
+
+nav .navbar .search_box input {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 100%;
+  font-size: 1.5rem;
+  color: var(--text);
+}
+
+nav .navbar .middle {
+  -webkit-box-flex: 1.5;
+      -ms-flex: 1.5;
+          flex: 1.5;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 2rem;
+}
+
+nav .navbar .middle .items {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: var(--textSoft);
+  font-size: 5rem;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  border-radius: 0.5rem;
+}
+
+nav .navbar .middle .items:hover {
+  background-color: var(--bgLight);
+}
+
+nav .navbar .middle .active {
+  position: relative;
+}
+
+nav .navbar .middle .active::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 2px;
+  background-color: var(--btnLight);
+  bottom: -0.5rem;
+}
+
+nav .navbar .toolkit {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 4.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  gap: 1rem;
+}
+
+nav .navbar .toolkit .tools {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background-color: var(--bgLight);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: var(--textSoft);
+  font-size: 5rem;
+  cursor: pointer;
+}
+
+nav .navbar .toolkit .tools img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+nav .navbar .toolkit .tools:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+  background-color: var(--bgLighter);
+}
+
+nav .navbar .auth_actions {
+  height: 4rem;
+  margin-left: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+}
+
+nav .navbar .auth_actions button {
+  height: 100%;
+  background-color: var(--bgLight);
+  width: 10rem;
+  color: var(--text);
+  border-radius: 1rem;
+}
+
+nav .navbar .auth_actions button .icon {
+  font-size: 2.5rem;
+  margin-right: 0.5rem;
+}
+
+nav .navbar .auth_actions button span {
+  font-size: 1.5rem;
+}
+
+nav .navbar .auth_actions button:hover {
+  background-color: var(--bgLighter);
+}
+/*# sourceMappingURL=Navbar.module.css.map */

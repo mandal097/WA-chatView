@@ -1,0 +1,59 @@
+.discussion {
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.discussion .left {
+  width: 60%;
+}
+
+.discussion .about {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  background-color: var(--bgDark);
+  border-radius: 1rem;
+  padding: 1.2rem;
+  width: 38%;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 12rem;
+}
+
+.discussion .about h3 {
+  font-size: 2.1rem;
+  font-weight: 500;
+}
+
+.discussion .about .icon {
+  color: var(--text);
+  font-size: 2.3rem;
+}
+
+.discussion .about .link {
+  font-size: 1.5rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.discussion .about .link:hover {
+  color: var(--btn);
+}
+
+.discussion .about button {
+  font-size: 1.5rem;
+  background-color: var(--bgLight);
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.7rem;
+}
+
+.discussion .about button:hover {
+  background-color: var(--bgLighter);
+}
+/*# sourceMappingURL=Common.module.css.map */

@@ -1,0 +1,118 @@
+.friends {
+  height: auto;
+  background-color: var(--bgDark);
+  border-radius: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 0 1rem;
+}
+
+.friends .header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 4rem;
+  margin-top: 1.5rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.friends .header h3 {
+  font-size: 2.4rem;
+}
+
+.friends .header .right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 2rem;
+}
+
+.friends .header .right .search_box {
+  width: 24rem;
+  height: 4rem;
+  border-radius: 5rem;
+  padding: 0 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+  background-color: var(--bgLight);
+}
+
+.friends .header .right .search_box .icon {
+  font-size: 2.4rem;
+  color: var(--textSoft);
+}
+
+.friends .header .right .search_box input {
+  width: 100%;
+  font-size: 1.5rem;
+  color: var(--text);
+}
+
+.friends .header .right button {
+  font-size: 1.6rem;
+  height: 4rem;
+  border-radius: 0.5rem;
+  padding: 0 1rem;
+  color: var(--btnLight);
+}
+
+.friends .header .right button:hover {
+  background-color: var(--bgLight);
+}
+
+.friends .navs {
+  height: 5rem;
+  width: 100%;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1.5rem;
+}
+
+.friends .navs .nav_items {
+  height: 85%;
+  width: 10rem;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  position: relative;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.friends .navs .nav_items:hover {
+  background-color: var(--bgLight);
+}
+
+.friends .navs .active_nav::after {
+  content: "";
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  border-bottom: 2px solid var(--btnLight);
+  bottom: -4px;
+}
+/*# sourceMappingURL=Friends.module.css.map */

@@ -1,0 +1,92 @@
+.wrapper {
+  color: var(--text);
+  padding: 0 1rem;
+}
+
+.wrapper .top h2 {
+  font-size: 2rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.wrapper .top .example_rules {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.wrapper .top .example_rules button {
+  font-size: 1.5rem;
+  background-color: var(--bgLight);
+  padding: 1rem 3rem;
+  border-radius: 5rem;
+}
+
+.wrapper .top .example_rules button:hover {
+  background-color: var(--bgLighter);
+}
+
+.wrapper .form {
+  margin-top: 2rem;
+}
+
+.wrapper .form h2 {
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.wrapper .form input,
+.wrapper .form textarea {
+  width: 100%;
+  border-radius: 0.5rem;
+  color: var(--text);
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  background-color: transparent;
+  border: 1px solid var(--border);
+  padding: 1rem;
+  resize: none;
+}
+
+.wrapper .form .btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  gap: 1.5rem;
+}
+
+.wrapper .form .btns button {
+  font-size: 1.5rem;
+  padding: 0.8rem 1rem;
+  background-color: var(--btn);
+  border-radius: 0.5rem;
+}
+
+.wrapper .form .btns button:hover {
+  background-color: var(--btnLight);
+}
+
+.wrapper .form .btns button:first-child {
+  background-color: transparent;
+  color: var(--btnLight);
+}
+
+.wrapper .form .btns button:first-child:hover {
+  background-color: var(--bgLight);
+}
+
+.wrapper .form .btns .disable_btn {
+  cursor: not-allowed;
+  background-color: var(--bgLight);
+}
+
+.wrapper .form .btns .disable_btn:hover {
+  background-color: var(--bgLight);
+}
+/*# sourceMappingURL=CreateRules.module.css.map */

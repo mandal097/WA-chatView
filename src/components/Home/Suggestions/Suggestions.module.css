@@ -1,0 +1,82 @@
+.suggestions {
+  width: 100%;
+}
+
+.suggestions .card {
+  width: 100%;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.suggestions .card .img {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+}
+
+.suggestions .card .img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.suggestions .card span {
+  font-size: 1.5rem;
+  color: var(--textSoft);
+  cursor: pointer;
+}
+
+.suggestions .card span:hover {
+  text-decoration: underline;
+}
+
+.suggestions .card button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.4rem 1.4rem;
+  color: var(--text);
+  font-size: 1.4rem;
+  border-radius: 0.2rem;
+  margin-left: auto;
+  background-color: var(--btnLight);
+}
+
+.suggestions .card button:hover {
+  background-color: var(--btn);
+}
+
+.suggestions .head {
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.suggestions .head h3 {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--textSoft);
+}
+/*# sourceMappingURL=Suggestions.module.css.map */

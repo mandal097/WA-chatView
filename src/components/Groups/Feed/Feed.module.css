@@ -1,0 +1,84 @@
+.feeds {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.feeds .feed_posts {
+  width: 58%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.5rem;
+}
+
+.feeds .feed_posts h2 {
+  font-size: 3rem;
+  color: var(--error);
+}
+
+.feeds .friends_groups {
+  width: 38%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 8rem;
+  background-color: var(--bgDark);
+  border-radius: 1rem;
+  padding: 2rem;
+  padding-top: 1rem;
+}
+
+.feeds .friends_groups .top {
+  margin: 1rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.feeds .friends_groups .top .left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.2rem;
+}
+
+.feeds .friends_groups .top .left span {
+  font-size: 1.7rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.feeds .friends_groups .top .left p {
+  font-size: 1.4rem;
+  color: var(--textSoft);
+}
+
+.feeds .friends_groups .top .right .link {
+  font-size: 1.7rem;
+  border-radius: 0.4rem;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  color: var(--btnLight);
+}
+
+.feeds .friends_groups .top .right .link:hover {
+  background-color: var(--bgLight);
+}
+/*# sourceMappingURL=Feed.module.css.map */

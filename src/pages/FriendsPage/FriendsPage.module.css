@@ -1,0 +1,200 @@
+.friends {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-size: 2rem;
+  color: var(--text);
+  height: auto;
+}
+
+.friends .side_bar {
+  width: 38rem;
+  border-right: 1px solid var(--border);
+  height: calc(100vh - 5.5rem);
+  position: -webkit-sticky;
+  position: sticky;
+  top: 5.5rem;
+  background-color: var(--bgDark);
+  padding: 1rem;
+}
+
+.friends .side_bar .filters {
+  width: 100%;
+  height: 5.5rem;
+  border-radius: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 2rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.friends .side_bar .filters .icon_ {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  background-color: var(--bgLight);
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.friends .side_bar .filters .icon_ .icon {
+  font-size: 3rem;
+  color: var(--text);
+}
+
+.friends .side_bar .filters span {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.friends .side_bar .filters:hover {
+  background-color: var(--bgLight);
+}
+
+.friends .side_bar .filters:hover .icon_ {
+  background-color: var(--bgLighter);
+}
+
+.friends .side_bar .active {
+  background-color: var(--bgLight);
+}
+
+.friends .side_bar .active .icon_ {
+  background-color: var(--btnLight);
+}
+
+.friends .side_bar .active:hover {
+  background-color: var(--bgLight);
+}
+
+.friends .side_bar .active:hover .icon_ {
+  background-color: var(--btnLight);
+}
+
+.friends h3 {
+  font-size: 1.8rem;
+  color: var(--textSoft);
+  font-weight: 500;
+  text-transform: capitalize;
+  padding-bottom: 1rem;
+}
+
+.friends .body {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: auto;
+  padding: 2rem;
+}
+
+.friends .body .friends_div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: auto;
+}
+
+.friends .body .friends_div .card {
+  border: 1px solid var(--border);
+  width: 23%;
+  height: auto;
+  margin-top: 1.4rem;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+.friends .body .friends_div .card .img {
+  width: 100%;
+  height: 20rem;
+  overflow: hidden;
+}
+
+.friends .body .friends_div .card .img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+}
+
+.friends .body .friends_div .card .details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  color: var(--text);
+  margin: 0.5rem 0 1.2rem 0;
+  padding: 0 1rem;
+}
+
+.friends .body .friends_div .card .details .name {
+  font-size: 1.6rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  margin: 0.2rem 0;
+  color: var(--successLight);
+}
+
+.friends .body .friends_div .card .details .connections {
+  margin-top: 0.3rem;
+}
+
+.friends .body .friends_div .card .details .connections span {
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.friends .body .friends_div .card .details .connections span:nth-child(2) {
+  margin-left: 1rem;
+}
+
+.friends .body .friends_div .card .details .connections span:hover {
+  color: var(--btn);
+  text-decoration: underline;
+}
+
+.friends .body .friends_div .card .details button {
+  width: 100%;
+  font-size: 1.5rem;
+  color: var(--text);
+  background-color: var(--bgLight);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+}
+
+.friends .body .friends_div .card .details button:hover {
+  background-color: var(--bgLighter);
+}
+
+.friends .body .friends_div .card .details .followBtn {
+  background-color: var(--btn);
+}
+
+.friends .body .friends_div .card .details .followBtn:hover {
+  background-color: var(--btnLight);
+}
+/*# sourceMappingURL=FriendsPage.module.css.map */

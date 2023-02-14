@@ -1,0 +1,221 @@
+.add_modal {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.add_modal .wrapper {
+  width: 50rem;
+  height: 50rem;
+  background-color: var(--bgDark);
+  position: relative;
+  border-radius: 1rem;
+}
+
+.add_modal .wrapper .cancel {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.4rem;
+}
+
+.add_modal .wrapper .cancel .icon {
+  font-size: 3.5rem;
+}
+
+.add_modal .wrapper h2 {
+  font-size: 2.5rem;
+  color: var(--successLight);
+  font-weight: 500;
+  border-bottom: 1px solid var(--border);
+  padding: 0.5rem 1rem;
+  text-align: center;
+}
+
+.add_modal .wrapper .body {
+  padding: 0 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 90%;
+  overflow-y: scroll;
+}
+
+.add_modal .wrapper .body .search {
+  margin: 1rem 0;
+  border-radius: 1rem;
+  background-color: var(--bg);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 1rem;
+}
+
+.add_modal .wrapper .body .search input {
+  width: 100%;
+  padding: 0.6rem 0.1rem;
+  font-size: 1.6rem;
+  color: var(--textSoft);
+}
+
+.add_modal .wrapper .body .search .icon {
+  font-size: 3rem;
+  color: var(--textSoft);
+}
+
+.add_modal .wrapper .body .selected {
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--bg);
+}
+
+.add_modal .wrapper .body .selected .selected_users {
+  width: auto;
+  height: 3rem;
+  background-color: var(--bgLight);
+  border-radius: 0.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+  padding: 0.2rem 0.5rem;
+}
+
+.add_modal .wrapper .body .selected .selected_users .img {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.add_modal .wrapper .body .selected .selected_users span {
+  font-size: 1.5rem;
+  color: var(--textSoft);
+}
+
+.add_modal .wrapper .body .selected .selected_users .remove {
+  font-size: 1rem;
+  background-color: var(--bgDark);
+  border-radius: 50%;
+  padding: 0.2rem;
+  cursor: pointer;
+}
+
+.add_modal .wrapper .body .selected .selected_users .remove .icon {
+  font-size: 2rem;
+  color: var(--error);
+}
+
+.add_modal .wrapper .body .add_user_btn {
+  background-color: var(--successLight);
+  margin-top: 1rem;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  cursor: pointer;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: var(--textSoft);
+  padding: 0.7rem 2rem;
+  border-radius: 0.4rem;
+  gap: 1rem;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
+
+.add_modal .wrapper .body .add_user_btn span {
+  font-size: 1.5rem;
+}
+
+.add_modal .wrapper .body .add_user_btn .icon {
+  font-size: 3rem;
+}
+
+.add_modal .wrapper .body .add_user_btn:hover {
+  background-color: var(--success);
+}
+
+.add_modal .wrapper .body .users_list {
+  margin: 1rem 0;
+}
+
+.add_modal .wrapper .body .users_list .user {
+  width: 100%;
+  height: 5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 2rem;
+  background-color: var(--bg);
+  padding: 0 1rem;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border);
+}
+
+.add_modal .wrapper .body .users_list .user .img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.add_modal .wrapper .body .users_list .user span {
+  font-size: 1.5rem;
+  color: var(--textSoft);
+}
+
+.add_modal .wrapper .body .users_list .user:hover {
+  background-color: var(--bgLight);
+}
+
+.add_modal .wrapper .body::-webkit-scrollbar {
+  width: 0.6rem;
+}
+
+.add_modal .wrapper .body::-webkit-scrollbar-track {
+  background: var(--bgLight);
+}
+
+.add_modal .wrapper .body::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.add_modal .wrapper .body::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+/*# sourceMappingURL=AddModal.module.css.map */

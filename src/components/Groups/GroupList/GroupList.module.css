@@ -1,0 +1,128 @@
+.group_list {
+  width: 75%;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  color: var(--text);
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+
+.group_list h2 {
+  color: var(--textSoft);
+  font-size: 2.3rem;
+  margin-bottom: 1.4rem;
+}
+
+.group_list .button {
+  font-size: 1.8rem;
+  background-color: var(--bgLight);
+  height: 3.2rem;
+  width: 100%;
+  padding: 0 2.5rem;
+  border-radius: 0.5rem;
+  margin-left: auto;
+}
+
+.group_list .button:hover {
+  background-color: var(--bgLighter);
+}
+
+.group_list .card_ {
+  background-color: var(--bgDark);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin: 1rem 0;
+}
+
+.group_list .card_ .card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.group_list .card_ .card .img {
+  width: 6rem;
+  height: 6rem;
+}
+
+.group_list .card_ .card .img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.group_list .card_ .card .details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.group_list .card_ .card .details .link {
+  font-size: 2rem;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.group_list .card_ .card .details .link:hover {
+  text-decoration: underline;
+}
+
+.group_list .card_ .card .details .counters p {
+  font-size: 1.3rem;
+  color: var(--textSoft);
+  margin: 0.4rem 0;
+}
+
+.group_list .card_ .card .details .friend {
+  margin-top: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1.5rem;
+}
+
+.group_list .card_ .card .details .friend .img {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.group_list .card_ .card .details .friend .img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.group_list .card_ .card .details .friend p {
+  font-size: 1.2rem;
+  color: var(--textSoft);
+}
+
+.group_list .card_ .card button {
+  font-size: 1.5rem;
+  background-color: var(--success);
+  height: 3rem;
+  padding: 0 2rem;
+  border-radius: 0.5rem;
+  margin: auto 0;
+  margin-left: auto;
+}
+
+.group_list .card_ .card button:hover {
+  background-color: var(--successLight);
+}
+/*# sourceMappingURL=GroupList.module.css.map */

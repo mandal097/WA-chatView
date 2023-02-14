@@ -1,0 +1,108 @@
+.members {
+  background-color: var(--bgDark);
+  width: 75rem;
+  font-size: 2rem;
+  margin: 0 auto;
+  color: var(--text);
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.members .top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-bottom: 1px solid var(--border);
+}
+
+.members .top .heading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.members .top .heading h3 {
+  font-size: 1.9rem;
+  font-weight: 500;
+}
+
+.members .top .heading span {
+  color: var(--textSoft);
+}
+
+.members .top p {
+  font-size: 1.4rem;
+  color: var(--textSoft);
+}
+
+.members .top p .link {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 1.5rem;
+}
+
+.members .top p .link:hover {
+  color: var(--textSoft);
+  text-decoration: underline;
+}
+
+.members .top .search_box {
+  height: 3.7rem;
+  margin: 1rem 0;
+  border-radius: 5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 1rem;
+  gap: 1rem;
+  border: 1px solid var(--bgLighter);
+}
+
+.members .top .search_box .icon {
+  font-size: 3rem;
+  color: var(--textSoft);
+}
+
+.members .top .search_box input {
+  height: 100%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  color: var(--text);
+  font-size: 1.5rem;
+}
+
+.members .section {
+  padding: 1rem 0;
+  min-height: 25rem;
+}
+
+.members .section .heading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.members .section .heading h3 {
+  font-size: 1.5rem;
+  font-weight: 100;
+}
+
+.members .section .heading span {
+  color: var(--textSoft);
+  font-size: 1.2rem;
+}
+/*# sourceMappingURL=Members.module.css.map */

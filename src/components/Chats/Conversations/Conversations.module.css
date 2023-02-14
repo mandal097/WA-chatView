@@ -1,0 +1,34 @@
+.conversations {
+  width: 100%;
+  height: 78vh;
+  padding: 10px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+  overflow-y: scroll;
+}
+
+.conversations::-webkit-scrollbar {
+  width: 0.6rem;
+}
+
+.conversations::-webkit-scrollbar-track {
+  background: var(--bgLight);
+}
+
+.conversations::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.conversations::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+/*# sourceMappingURL=Conversations.module.css.map */

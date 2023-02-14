@@ -1,0 +1,93 @@
+.error {
+  width: 100%;
+  height: calc(100vh - 5.5rem);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.error .absolute {
+  color: var(--bgDark);
+  font-size: 60rem;
+  position: absolute;
+  top: -7rem;
+  z-index: 1;
+  font-weight: bolder;
+}
+
+.error .wrapper {
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: 2;
+}
+
+.error .wrapper h1 {
+  font-size: 8rem;
+  color: var(--error);
+}
+
+.error .wrapper p {
+  color: var(--textSoft);
+  text-align: center;
+  font-size: 1.7rem;
+  margin: 1rem 0;
+}
+
+.error .wrapper .btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 2rem;
+}
+
+.error .wrapper .btns button {
+  border: 2px solid var(--error);
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+  -webkit-transition: all 300ms linear;
+  transition: all 300ms linear;
+}
+
+.error .wrapper .btns button:hover {
+  border-color: var(--btn);
+  padding: 1rem 3rem;
+}
+
+@media screen and (max-width: 1000px) {
+  .error .absolute {
+    font-size: 40rem;
+    top: 0;
+  }
+  .error .wrapper {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 746px) {
+  .error .absolute {
+    font-size: 30rem;
+    top: 5rem;
+  }
+}
+/*# sourceMappingURL=Error.module.css.map */

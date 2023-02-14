@@ -1,0 +1,107 @@
+.selected_user {
+  font-size: 3rem;
+  padding: 0 2rem;
+  position: fixed;
+  background-color: var(--bgDark);
+  width: 30rem;
+  left: 45rem;
+  margin-top: 5rem;
+  height: auto;
+  border-radius: 0.5rem;
+  padding-bottom: 2rem;
+}
+
+.selected_user .wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: auto;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 2rem;
+  padding: 2rem;
+  position: relative;
+}
+
+.selected_user .wrapper .cancel {
+  position: absolute;
+  top: 1rem;
+  right: -1rem;
+  cursor: pointer;
+}
+
+.selected_user .wrapper .cancel .icon {
+  font-size: 3rem;
+  color: var(--textSoft);
+}
+
+.selected_user .wrapper .continue {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background-color: var(--success);
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  position: absolute;
+  bottom: -4.5rem;
+  left: 41%;
+}
+
+.selected_user .wrapper .continue .ok {
+  font-size: 3rem;
+}
+
+.selected_user .wrapper .continue:hover {
+  background-color: var(--successLight);
+}
+
+.selected_user .wrapper .elem {
+  height: 2rem;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: var(--bgLight);
+  padding: 1.2rem 0.6rem;
+  border-radius: 1rem;
+}
+
+.selected_user .wrapper .elem .img {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+}
+
+.selected_user .wrapper .elem .img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.selected_user .wrapper .elem .name {
+  font-size: 1.2rem;
+  color: var(--textSoft);
+  margin: 0 0.6rem;
+  font-weight: 100;
+}
+
+.selected_user .wrapper .elem .close {
+  color: var(--error);
+  background-color: var(--bg);
+  padding: 0.2rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.selected_user .wrapper .elem .close .icon {
+  font-size: 2rem;
+}
+/*# sourceMappingURL=Members.module.css.map */

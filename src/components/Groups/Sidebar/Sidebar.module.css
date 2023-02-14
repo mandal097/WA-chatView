@@ -1,0 +1,260 @@
+.sidebar {
+  width: 38rem;
+  border-right: 1px solid var(--border);
+  height: calc(100vh - 5.5rem);
+  position: -webkit-sticky;
+  position: sticky;
+  top: 5.5rem;
+  background-color: var(--bgDark);
+  padding: 1rem;
+  color: var(--text);
+}
+
+.sidebar .top {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 5.5rem;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.sidebar .top .heading {
+  height: 2.5rem;
+}
+
+.sidebar .top .heading span {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--text);
+}
+
+.sidebar .top .search_box {
+  height: 3.7rem;
+  margin: 1rem 0;
+  border-radius: 5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 1rem;
+  gap: 1rem;
+  position: relative;
+  border: 1px solid var(--bgLighter);
+}
+
+.sidebar .top .search_box .icon {
+  font-size: 3rem;
+  color: var(--textSoft);
+}
+
+.sidebar .top .search_box input {
+  height: 100%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  color: var(--text);
+  font-size: 1.5rem;
+}
+
+.sidebar .top .search_item {
+  position: absolute;
+  top: 3.8rem;
+  left: 0;
+  background-color: var(--bgLight);
+  height: 5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: 100;
+  cursor: pointer;
+  border-radius: 1rem;
+}
+
+.sidebar .top .search_item span {
+  color: var(--btnLight);
+  font-weight: bold;
+  font-size: 1.6rem;
+}
+
+.sidebar .top .search_item .icon {
+  font-size: 4rem;
+}
+
+.sidebar .bottom {
+  height: calc(100% - 8rem);
+  overflow-y: scroll;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-right: 0.5rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.sidebar .bottom .links {
+  width: 100%;
+  height: 5rem;
+  border-radius: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 2rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.sidebar .bottom .links .icon_ {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background-color: var(--bgLight);
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.sidebar .bottom .links .icon_ .icon {
+  font-size: 3rem;
+  color: var(--text);
+}
+
+.sidebar .bottom .links span {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.sidebar .bottom .links:hover {
+  background-color: var(--bgLight);
+}
+
+.sidebar .bottom .links:hover .icon_ {
+  background-color: var(--bgLighter);
+}
+
+.sidebar .bottom .active {
+  background-color: var(--bgLight);
+}
+
+.sidebar .bottom .active .icon_ {
+  background-color: var(--btnLight);
+}
+
+.sidebar .bottom .active:hover {
+  background-color: var(--bgLight);
+}
+
+.sidebar .bottom .active:hover .icon_ {
+  background-color: var(--btnLight);
+}
+
+.sidebar .bottom .create_group_btn {
+  margin-bottom: 1rem;
+  padding: 1rem 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 2.2rem;
+  color: var(--text);
+  gap: 0.5rem;
+  background-color: var(--btn);
+  border-radius: 1rem;
+}
+
+.sidebar .bottom .create_group_btn .icon {
+  font-size: 2.7rem;
+}
+
+.sidebar .bottom .create_group_btn:hover {
+  background-color: var(--btnLight);
+}
+
+.sidebar .bottom .group_list {
+  border-top: 1px solid var(--border);
+  padding: 1rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1rem;
+}
+
+.sidebar .bottom .group_list h2 {
+  font-size: 1.7rem;
+  font-weight: 400;
+}
+
+.sidebar .bottom .group_list .card {
+  height: 6rem;
+  border-radius: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.sidebar .bottom .group_list .card .img {
+  width: 5rem;
+  height: 5rem;
+}
+
+.sidebar .bottom .group_list .card .img img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 0.6rem;
+}
+
+.sidebar .bottom .group_list .card .details {
+  width: calc(100% - 10rem);
+}
+
+.sidebar .bottom .group_list .card .details span {
+  font-size: 1.5rem;
+  color: var(--successLight);
+}
+
+.sidebar .bottom .group_list .card:hover {
+  background-color: var(--bgLight);
+}
+/*# sourceMappingURL=Sidebar.module.css.map */

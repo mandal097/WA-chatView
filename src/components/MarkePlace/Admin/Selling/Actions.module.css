@@ -1,0 +1,81 @@
+.actions_popup {
+  width: 23rem;
+  height: auto;
+  background-color: var(--bgLight);
+  border-radius: 1rem;
+  position: fixed;
+  top: 3rem;
+  z-index: 150;
+  padding: 1rem;
+}
+
+.actions_popup .wrapper {
+  height: auto;
+  position: relative;
+}
+
+.actions_popup .wrapper ul li button,
+.actions_popup .wrapper ul li a {
+  padding: 0.5rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  gap: 1.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.actions_popup .wrapper ul li button .icon,
+.actions_popup .wrapper ul li a .icon {
+  font-size: 3rem;
+  color: var(--text);
+}
+
+.actions_popup .wrapper ul li button span,
+.actions_popup .wrapper ul li a span {
+  font-size: 1.5rem;
+}
+
+.actions_popup .wrapper ul li button:hover,
+.actions_popup .wrapper ul li a:hover {
+  background-color: var(--bg);
+}
+
+.actions_popup .before_bottom::before {
+  position: absolute;
+  content: "";
+  right: -1rem;
+  width: 0;
+  height: 0;
+  z-index: 0;
+  top: 100%;
+  border-radius: 1rem 0rem 0rem 1rem;
+  border-right: 0px solid transparent;
+  border-left: 30px solid transparent;
+  border-top: 20px solid var(--bgLight);
+}
+
+.actions_popup .before_top::before {
+  position: absolute;
+  content: "";
+  top: -2rem;
+  right: -1rem;
+  width: 0;
+  height: 0;
+  z-index: 0;
+  border-radius: 0rem 7rem 1rem 0rem;
+  border-radius: 1rem 0rem 0rem 1rem;
+  border-right: 0px solid transparent;
+  border-left: 30px solid transparent;
+  border-bottom: 20px solid var(--bgLight);
+}
+/*# sourceMappingURL=Actions.module.css.map */

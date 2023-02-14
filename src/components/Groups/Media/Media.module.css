@@ -1,0 +1,140 @@
+.media {
+  background-color: var(--bgDark);
+  width: 94%;
+  margin: 2rem auto;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.media .head {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+  height: auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.media .head h2 {
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+.media .head .btns {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+.media .head .btns button {
+  font-size: 1.5rem;
+  color: var(--successLight);
+  border-radius: 0.5rem;
+  padding: 1rem 2rem;
+  font-weight: 300;
+}
+
+.media .head .btns button:hover {
+  background-color: var(--bgLight);
+}
+
+.media .navs {
+  height: 5rem;
+  margin: 1rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1.5rem;
+}
+
+.media .navs .nav_items {
+  height: 85%;
+  width: 10rem;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  position: relative;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.media .navs .nav_items:hover {
+  background-color: var(--bgLight);
+}
+
+.media .navs .active_nav::after {
+  content: "";
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  border-bottom: 2px solid var(--btnLight);
+  bottom: -4px;
+}
+
+.media .medias {
+  height: auto;
+  margin: 2rem 0 0rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.media .medias .card {
+  height: 18rem;
+  width: 18rem;
+  background-color: var(--bg);
+  margin: 1rem;
+  position: relative;
+}
+
+.media .medias .card img,
+.media .medias .card video {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.media .medias .card:hover img,
+.media .medias .card:hover video {
+  border: 1px solid var(--bgLighter);
+  padding: 0.1rem;
+}
+
+.media .medias .actions {
+  position: absolute;
+  top: 0.3rem;
+  right: 0.3rem;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.media .medias .actions .icon {
+  font-size: 2.6rem;
+  color: var(--text);
+}
+/*# sourceMappingURL=Media.module.css.map */

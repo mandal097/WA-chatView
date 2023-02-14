@@ -1,0 +1,167 @@
+.SidebarAdmin {
+  width: 38rem;
+  border-right: 1px solid var(--border);
+  height: calc(100vh - 5.5rem);
+  position: -webkit-sticky;
+  position: sticky;
+  top: 5.5rem;
+  background-color: var(--bgDark);
+  color: var(--text);
+}
+
+.SidebarAdmin .top {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 5.5rem;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 1rem;
+}
+
+.SidebarAdmin .top .heading {
+  height: 2.5rem;
+}
+
+.SidebarAdmin .top .heading span {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--textSoft);
+}
+
+.SidebarAdmin .top .card {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 0.5rem;
+  gap: 1rem;
+  margin: 0.5rem 0;
+}
+
+.SidebarAdmin .top .card .img {
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+.SidebarAdmin .top .card .img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.SidebarAdmin .top .card span {
+  font-size: 2rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.SidebarAdmin .bottom {
+  height: calc(100% - 10.2rem);
+}
+
+.SidebarAdmin .bottom .navs {
+  border-bottom: 1px solid var(--border);
+}
+
+.SidebarAdmin .bottom .navs .navs_wrap {
+  height: 5rem;
+  width: 80%;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1.5rem;
+}
+
+.SidebarAdmin .bottom .navs .navs_wrap .nav_items {
+  height: 85%;
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  position: relative;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.SidebarAdmin .bottom .navs .navs_wrap .nav_items:hover {
+  background-color: var(--bgLight);
+}
+
+.SidebarAdmin .bottom .navs .navs_wrap .active_nav::after {
+  content: "";
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  border-bottom: 2px solid var(--btnLight);
+  bottom: -4px;
+}
+
+.SidebarAdmin .bottom::-webkit-scrollbar {
+  width: 1rem;
+}
+
+.SidebarAdmin .sections .heading {
+  margin: 1rem 0;
+}
+
+.SidebarAdmin .sections .heading span {
+  font-size: 1.7rem;
+  font-weight: 500;
+  padding: 1rem;
+  color: var(--textSoft);
+}
+
+.SidebarAdmin .sections .card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  margin: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.SidebarAdmin .sections .card:hover {
+  background-color: var(--bgLight);
+}
+
+.SidebarAdmin .sections .card .left .icon {
+  font-size: 3rem;
+  color: var(--text);
+}
+
+.SidebarAdmin .sections .card .right span {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.SidebarAdmin .sections .active_card {
+  background-color: var(--btn);
+}
+
+.SidebarAdmin .sections .active_card:hover {
+  background-color: var(--btnLight);
+}
+/*# sourceMappingURL=SidebarAdmin.module.css.map */

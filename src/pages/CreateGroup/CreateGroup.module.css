@@ -1,0 +1,174 @@
+.create_group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.create_group .sidebar {
+  width: 38rem;
+  z-index: 1000;
+  bottom: 0;
+  position: -webkit-sticky;
+  position: sticky;
+  height: 100vh;
+  border-right: 1px solid var(--border);
+  background-color: var(--bgDark);
+  color: var(--text);
+  padding: 0 1rem;
+}
+
+.create_group .sidebar .close {
+  background-color: var(--bgDark);
+  font-size: 3rem;
+  padding: 1rem 0;
+}
+
+.create_group .sidebar .close button {
+  width: 4rem;
+  height: 4rem;
+  background-color: var(--bg);
+  border-radius: 50%;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.create_group .sidebar .close button:hover {
+  background-color: var(--bgLight);
+}
+
+.create_group .sidebar .close .icon {
+  font-size: 3.5rem;
+  color: white;
+}
+
+.create_group .sidebar h1 {
+  font-size: 2.4rem;
+  color: var(--text);
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+.create_group .sidebar .admin_card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.create_group .sidebar .admin_card .img {
+  width: 4rem;
+  height: 4rem;
+}
+
+.create_group .sidebar .admin_card .img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.create_group .sidebar .admin_card .name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.create_group .sidebar .admin_card .name span {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.create_group .sidebar .admin_card .name small {
+  font-size: 1.3rem;
+  color: var(--textSoft);
+}
+
+.create_group .sidebar .inputs {
+  height: 50rem;
+  margin-top: 2rem;
+}
+
+.create_group .sidebar .inputs .input {
+  margin: 0.5rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.5rem;
+}
+
+.create_group .sidebar .inputs .input label {
+  font-size: 1.4rem;
+  margin-top: 1rem;
+}
+
+.create_group .sidebar .inputs .input input,
+.create_group .sidebar .inputs .input select,
+.create_group .sidebar .inputs .input button {
+  width: 100%;
+  font-size: 1.6rem;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 1rem;
+}
+
+.create_group .sidebar .inputs .input option {
+  color: var(--text);
+  background-color: var(--bgDark);
+  font-size: 1.6rem;
+}
+
+.create_group .sidebar .inputs .input button {
+  margin: 2rem 0;
+}
+
+.create_group .sidebar .inputs .input p {
+  font-size: 1.3rem;
+  color: var(--textSoft);
+}
+
+.create_group .sidebar .inputs .create_btn {
+  margin: 2rem 0;
+  background-color: var(--btn);
+  width: 100%;
+  font-size: 1.6rem;
+  color: var(--text);
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.create_group .sidebar .inputs .create_btn:hover {
+  background-color: var(--btnLight);
+}
+
+.create_group .sidebar .inputs .btn_disabled {
+  background-color: var(--bgLight);
+  cursor: not-allowed;
+}
+
+.create_group .sidebar .inputs .btn_disabled:hover {
+  background-color: var(--bgLighter);
+}
+
+.create_group .body {
+  padding: 4rem 2rem;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin: 0 auto;
+  height: 100%;
+}
+/*# sourceMappingURL=CreateGroup.module.css.map */

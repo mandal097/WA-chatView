@@ -1,0 +1,379 @@
+.view {
+  color: var(--text);
+  width: 100%;
+}
+
+.view .group_cover {
+  width: 100%;
+  height: 30rem;
+  position: relative;
+}
+
+.view .group_cover img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 1rem;
+}
+
+.view .group_cover .edit_cover {
+  position: absolute;
+  right: 2rem;
+  bottom: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+}
+
+.view .group_cover .edit_cover .edit_cover_btns {
+  font-size: 1.6rem;
+  background-color: var(--successLight);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+}
+
+.view .group_cover .edit_cover .edit_cover_btns .icon {
+  font-size: 2.5rem;
+  color: black;
+}
+
+.view .group_cover .edit_cover .edit_cover_button {
+  font-weight: 600;
+  background-color: var(--error);
+}
+
+.view .group_cover .edit_cover .edit_cover_button:hover {
+  background-color: var(--error);
+}
+
+.view .group_name {
+  font-size: 2.2rem;
+  margin: 0.5rem 0;
+  font-weight: 500;
+}
+
+.view .counter {
+  font-size: 1.4rem;
+  margin: 0.2rem 0;
+  font-weight: 100;
+  color: var(--textSoft);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-transform: capitalize;
+  gap: 0.2rem;
+}
+
+.view .counter span {
+  font-weight: 500;
+  font-size: 1.3rem;
+}
+
+.view .counter .icon {
+  font-size: 2rem;
+}
+
+.view .actions {
+  height: 5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 5.5rem;
+  background-color: var(--bg);
+  z-index: 10;
+}
+
+.view .actions .badges {
+  width: 50%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.view .actions .badges h3 {
+  font-size: 1.5rem;
+}
+
+.view .actions .badges .card {
+  height: 5rem;
+  border-radius: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  width: 100%;
+}
+
+.view .actions .badges .card .img {
+  width: 4rem;
+  height: 4rem;
+}
+
+.view .actions .badges .card .img img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 1rem;
+}
+
+.view .actions .badges .card .details {
+  width: calc(100% - 10rem);
+}
+
+.view .actions .badges .card .details span {
+  font-size: 1.5rem;
+  color: var(--successLight);
+}
+
+.view .actions .badges .card:hover {
+  background-color: var(--bgLight);
+}
+
+.view .actions .btns {
+  width: 50%;
+  height: 70%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  gap: 1rem;
+}
+
+.view .actions .btns button {
+  font-size: 1.5rem;
+  background-color: var(--bgLight);
+  height: 100%;
+  padding: 0 2rem;
+  border-radius: 0.4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+}
+
+.view .actions .btns button .icon {
+  font-size: 2.5rem;
+}
+
+.view .actions .btns button:hover {
+  background-color: var(--bgLighter);
+}
+
+.view .actions .btns button:nth-child(2) {
+  background-color: var(--btn);
+}
+
+.view .actions .btns button:nth-child(2):hover {
+  background-color: var(--btnLight);
+}
+
+.view .scrolled {
+  -webkit-animation: animate 300ms linear 1;
+          animation: animate 300ms linear 1;
+}
+
+.view .related_group {
+  margin: 1rem 0;
+  padding: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+.view .related_group .head {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 0.6rem;
+  padding: 0.6rem;
+}
+
+.view .related_group .head h2 {
+  font-size: 1.7rem;
+  font-weight: 400;
+}
+
+.view .related_group .head .link {
+  font-size: 1.6rem;
+  color: var(--btnLight);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.view .related_group .groups {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 1.1rem;
+  padding: 0 1rem;
+  padding-bottom: 1rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.view .related_group .groups div {
+  width: 200px;
+}
+
+.view .related_group .groups .default {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 0 1rem;
+  padding-bottom: 1rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  gap: 1.5rem;
+}
+
+.view .related_group .groups .default .icon {
+  font-size: 10rem;
+  color: var(--btn);
+}
+
+.view .related_group .groups .default span {
+  font-size: 2.6rem;
+}
+
+.view .related_group .groups .default .link {
+  padding: 1rem 3rem;
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: var(--text);
+  background-color: var(--btn);
+}
+
+.view .related_group .groups .default .link:hover {
+  background-color: var(--btnLight);
+}
+
+.view .navs {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  height: 5rem;
+  margin: 1rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1.5rem;
+}
+
+.view .navs .nav_items {
+  height: 85%;
+  width: 10rem;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  position: relative;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.view .navs .nav_items:hover {
+  background-color: var(--bgLight);
+}
+
+.view .navs .active_nav::after {
+  content: "";
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  border-bottom: 2px solid var(--btnLight);
+  bottom: -4px;
+}
+
+.view .outlet_ {
+  margin: 1rem 0;
+  height: auto;
+  color: var(--text);
+}
+
+@-webkit-keyframes animate {
+  0% {
+    -webkit-transform: translateY(-10rem);
+            transform: translateY(-10rem);
+  }
+  100% {
+    -webkit-transform: translateY(0rem);
+            transform: translateY(0rem);
+  }
+}
+
+@keyframes animate {
+  0% {
+    -webkit-transform: translateY(-10rem);
+            transform: translateY(-10rem);
+  }
+  100% {
+    -webkit-transform: translateY(0rem);
+            transform: translateY(0rem);
+  }
+}
+/*# sourceMappingURL=View.module.css.map */

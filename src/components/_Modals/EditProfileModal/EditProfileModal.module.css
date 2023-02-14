@@ -1,0 +1,185 @@
+.head {
+  height: 4.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 2.3rem;
+  font-weight: 500;
+  color: var(--textsoft);
+  border-bottom: 1px solid var(--border);
+  color: var(--textSoft);
+}
+
+.update_sections {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 0 1rem;
+}
+
+.update_sections .update_options {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  color: var(--textSoft);
+  margin-bottom: 1rem;
+}
+
+.update_sections .update_options span {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.update_sections .update_options .edit {
+  font-size: 1.8rem;
+  color: var(--btnLight);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.update_sections .update_options .edit:hover {
+  background-color: var(--bgLight);
+}
+
+.update_sections button {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 3.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.3rem 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--btn);
+  -ms-flex-item-align: center;
+      align-self: center;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.update_sections button:hover {
+  background-color: var(--btnLight);
+}
+
+.profile_section {
+  padding: 1rem;
+}
+
+.profile_section .img {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.profile_section .img img {
+  width: 18rem;
+  height: 18rem;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.cover_section {
+  padding: 1rem;
+}
+
+.cover_section .img {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.cover_section .img img {
+  width: 80%;
+  height: 20rem;
+  border-radius: 1rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.bio_section .bio {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 5rem;
+  font-size: 1.8rem;
+  color: var(--bgLighter);
+}
+
+.bio_section .bio_inputs {
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.bio_section .bio_inputs textarea {
+  width: 40%;
+  height: 7rem;
+  background-color: transparent;
+  resize: none;
+  color: var(--textSoft);
+  font-size: 1.6rem;
+  outline: none;
+  border-radius: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--btn);
+}
+
+.bio_section .bio_inputs .btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+}
+
+.bio_section .bio_inputs .btns button {
+  background-color: var(--bgLight);
+}
+
+.bio_section .bio_inputs .btns button:hover {
+  background-color: var(--bgLighter);
+}
+/*# sourceMappingURL=EditProfileModal.module.css.map */

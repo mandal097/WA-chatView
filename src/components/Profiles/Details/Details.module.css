@@ -1,0 +1,58 @@
+ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: var(--text);
+}
+
+ul li .icon_ {
+  width: 4rem;
+  height: 4rem;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+ul li .icon_ .icon {
+  font-size: 3rem;
+}
+
+ul li .fields {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+ul li .fields span {
+  font-size: 1.5rem;
+  width: auto;
+}
+
+ul li .fields p {
+  font-size: 1.5rem;
+  margin-left: 0.6rem;
+  color: var(--btnLight);
+}
+
+ul li .fields .link:hover {
+  color: var(--btn);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+ul li .fields a {
+  font-size: 1.5rem;
+  color: lightskyblue;
+  text-decoration: none;
+}
+
+ul li .fields a:hover {
+  text-decoration: underline;
+}
+/*# sourceMappingURL=Details.module.css.map */

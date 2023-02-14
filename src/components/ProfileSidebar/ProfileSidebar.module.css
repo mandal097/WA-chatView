@@ -1,0 +1,145 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.7)));
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
+  position: fixed;
+  top: 1;
+  bottom: 1;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  z-index: 1000;
+  -webkit-animation: fade 300ms linear 1;
+          animation: fade 300ms linear 1;
+}
+
+.container .profile_sidebar {
+  width: 30rem;
+  height: 100%;
+  background-color: var(--bgDark);
+  border-left: 1px solid var(--border);
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-animation: slide 400ms ease-in-out 1;
+          animation: slide 400ms ease-in-out 1;
+}
+
+.container .profile_sidebar .close {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  cursor: pointer;
+}
+
+.container .profile_sidebar .close .icon {
+  font-size: 3rem;
+  color: var(--textSoft);
+}
+
+.container .profile_sidebar .close:hover {
+  scale: 1.2;
+}
+
+.container .profile_sidebar .img {
+  width: 13rem;
+  height: 13rem;
+  margin: 3rem 0 1rem 0;
+}
+
+.container .profile_sidebar .img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.container .profile_sidebar .cta_btns {
+  margin-bottom: 1rem;
+  width: 100%;
+  height: auto;
+  padding: 0 1rem;
+}
+
+.container .profile_sidebar .cta_btns button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+  background-color: var(--bgLight);
+  width: 100%;
+  padding: 0.5rem 0;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+.container .profile_sidebar .cta_btns button .icon {
+  font-size: 3rem;
+  color: var(--text);
+}
+
+.container .profile_sidebar .cta_btns button span {
+  font-size: 1.4rem;
+}
+
+.container .profile_sidebar .cta_btns button:hover {
+  background-color: var(--bgLighter);
+}
+
+@-webkit-keyframes fade {
+  0% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes slide {
+  0% {
+    -webkit-transform: translateX(30rem);
+            transform: translateX(30rem);
+  }
+  100% {
+    -webkit-transform: translateX(0rem);
+            transform: translateX(0rem);
+  }
+}
+
+@keyframes slide {
+  0% {
+    -webkit-transform: translateX(30rem);
+            transform: translateX(30rem);
+  }
+  100% {
+    -webkit-transform: translateX(0rem);
+            transform: translateX(0rem);
+  }
+}
+/*# sourceMappingURL=ProfileSidebar.module.css.map */

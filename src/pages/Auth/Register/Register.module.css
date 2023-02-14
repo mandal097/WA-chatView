@@ -1,0 +1,17 @@
+.register form .to_togin {
+  margin: 1rem  0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 2rem;
+}
+
+.register form .to_togin span {
+  color: var(--text);
+  font-size: 1.3rem;
+  margin-right: 0.8rem;
+}
+/*# sourceMappingURL=Register.module.css.map */

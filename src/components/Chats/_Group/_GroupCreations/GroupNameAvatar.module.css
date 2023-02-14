@@ -1,0 +1,123 @@
+.group_name_avatar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.group_name_avatar .header {
+  width: 100%;
+  height: 10rem;
+  background-color: var(--bgDark);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.group_name_avatar .header .header_wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 2rem;
+  padding: 2rem 2rem;
+}
+
+.group_name_avatar .header .header_wrapper .icon {
+  font-size: 3.5rem;
+}
+
+.group_name_avatar .header .header_wrapper h2 {
+  font-size: 2rem;
+  color: var(--textSoft);
+}
+
+.group_name_avatar .img {
+  width: 12rem;
+  height: 12rem;
+  border-radius: 50%;
+  margin: 4rem 0;
+  position: relative;
+}
+
+.group_name_avatar .img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.group_name_avatar .img .add_img {
+  width: 2.4rem;
+  height: 2.4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0.2rem;
+  right: 1.2rem;
+  background-color: var(--bg);
+}
+
+.group_name_avatar .img .add_img .icon {
+  font-size: 2.3rem;
+}
+
+.group_name_avatar .name {
+  width: 100%;
+  padding: 0 2rem;
+  height: 6rem;
+  margin-top: 3rem;
+}
+
+.group_name_avatar .name input {
+  border-bottom: 1px solid var(--success);
+  width: 100%;
+  font-size: 1.8rem;
+  color: var(--textSoft);
+  padding: 0.3rem 0;
+}
+
+.group_name_avatar button {
+  margin-top: 3rem;
+  width: auto;
+  background-color: var(--successLight);
+  padding: 1rem 2rem;
+  font-size: 1.7rem;
+  border-radius: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 2rem;
+}
+
+.group_name_avatar button .icon {
+  font-size: 3rem;
+}
+
+.group_name_avatar button:hover {
+  background-color: var(--success);
+}
+/*# sourceMappingURL=GroupNameAvatar.module.css.map */

@@ -1,0 +1,43 @@
+.browse {
+  padding: 1rem;
+}
+
+.browse .section_ {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--bgLighter);
+}
+
+.browse .section_:last-child {
+  border: none;
+}
+
+.browse .section_ .top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 1rem 0;
+}
+
+.browse .section_ .top span {
+  font-size: 2.3rem;
+  font-weight: 500;
+  color: var(--text);
+  text-transform: capitalize;
+}
+
+.browse .section_ .section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.browse .section_ .section .span {
+  font-size: 2rem;
+}
+/*# sourceMappingURL=Browse.module.css.map */

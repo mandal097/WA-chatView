@@ -1,0 +1,109 @@
+.edit_product {
+  padding: 0rem 1rem;
+  font-size: 2rem;
+}
+
+.edit_product .fields {
+  padding: 0 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 3rem;
+}
+
+.edit_product .fields .left {
+  width: 100%;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.edit_product .fields .left label {
+  font-size: 1.8rem;
+  color: var(--text);
+}
+
+.edit_product .fields .left p {
+  font-size: 1.4rem;
+  color: var(--textSoft);
+  margin-top: 0.5rem;
+}
+
+.edit_product .fields .left .inputs {
+  margin-top: 1rem;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.edit_product .fields .left .inputs input,
+.edit_product .fields .left .inputs select,
+.edit_product .fields .left .inputs textarea {
+  border: 1px solid var(--bgLight);
+  font-size: 1.5rem;
+  color: var(--text);
+  padding: 1rem;
+  width: 100%;
+  resize: none;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+}
+
+.edit_product .fields .left .inputs textarea {
+  height: 10rem;
+}
+
+.edit_product .fields .left .inputs option {
+  color: var(--text);
+  background-color: var(--bgDark);
+  font-size: 1.6rem;
+}
+
+.edit_product .fields .left .inputs .btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.edit_product .fields .left .inputs .btns button {
+  font-size: 1.5rem;
+  background-color: var(--btn);
+  padding: 0.7rem 1.5rem;
+  border-radius: 0.5rem;
+}
+
+.edit_product .fields .left .inputs .btns button:hover {
+  background-color: var(--btnLight);
+}
+
+.edit_product .fields .left .inputs .btns button:nth-child(1) {
+  background-color: var(--bgLight);
+}
+
+.edit_product .fields .left .inputs .btns button:nth-child(1):hover {
+  background-color: var(--bgLighter);
+}
+
+.edit_product .fields .right {
+  width: 5rem;
+  height: 5rem;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.edit_product .fields .right .icon {
+  font-size: 4rem;
+  color: var(--text);
+  cursor: pointer;
+}
+/*# sourceMappingURL=EditProductModal.module.css.map */

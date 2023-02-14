@@ -1,0 +1,114 @@
+.manage_admins {
+  color: var(--text);
+}
+
+.manage_admins .wrapper {
+  width: 90%;
+  margin: 0 auto;
+  height: 100%;
+  padding: 2rem 1rem;
+}
+
+.manage_admins .top {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  background-color: var(--bgDark);
+  position: -webkit-sticky;
+  position: sticky;
+  top: 5.5rem;
+}
+
+.manage_admins .top h1 {
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: var(--textSoft);
+}
+
+.manage_admins .top .search_box {
+  margin: 1rem 0;
+  height: 4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+}
+
+.manage_admins .top .search_box .search {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 100%;
+  border-radius: 5rem;
+  background-color: var(--bgLight);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 1rem;
+  gap: 1rem;
+}
+
+.manage_admins .top .search_box .search .icon {
+  font-size: 3rem;
+}
+
+.manage_admins .top .search_box .search input {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 100%;
+  color: var(--text);
+  font-size: 1.5rem;
+}
+
+.manage_admins .top .search_box .sort_btn {
+  height: 100%;
+  border-radius: 1rem;
+  padding: 0 1rem;
+  background-color: var(--bgLight);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-weight: 600;
+  gap: 1rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.manage_admins .top .search_box .sort_btn span {
+  font-size: 1.4rem;
+  text-transform: capitalize;
+}
+
+.manage_admins .top .search_box .sort_btn .icon {
+  font-size: 3rem;
+}
+
+.manage_admins .bottom {
+  width: 86%;
+  margin: 2rem auto;
+  border-radius: 0.5rem;
+  background-color: var(--bgDark);
+  padding: 0 1rem;
+}
+
+.manage_admins .bottom h2 {
+  font-size: 1.7rem;
+  font-weight: 400;
+  padding: 0.3rem 0;
+  color: var(--btnLight);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-bottom: 1px solid var(--bgLighter);
+}
+/*# sourceMappingURL=ManageAdmins.module.css.map */

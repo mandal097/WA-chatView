@@ -1,0 +1,32 @@
+.privacy_stat {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  margin: 1rem 0;
+}
+
+.privacy_stat .icon_ {
+  padding-top: 2px;
+  color: var(--text);
+}
+
+.privacy_stat .icon_ .icons {
+  color: var(--text);
+  font-size: 2.6rem;
+}
+
+.privacy_stat .stat span {
+  font-size: 1.7rem;
+  color: var(--text);
+  font-weight: 400;
+}
+
+.privacy_stat .stat p {
+  font-size: 1.4rem;
+  color: var(--textSoft);
+}
+/*# sourceMappingURL=PivacyStat.module.css.map */

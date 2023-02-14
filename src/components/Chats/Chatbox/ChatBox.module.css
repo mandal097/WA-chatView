@@ -1,0 +1,89 @@
+.chat_box {
+  width: 100%;
+  height: calc(100% - 7rem);
+}
+
+.chat_box .chats {
+  width: 100%;
+  height: 85%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  overflow-y: scroll;
+}
+
+.chat_box .chats::-webkit-scrollbar {
+  width: 0.6rem;
+}
+
+.chat_box .chats::-webkit-scrollbar-track {
+  background: var(--bgLight);
+}
+
+.chat_box .chats::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.chat_box .chats::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.chat_box .form {
+  width: 100%;
+  height: 15%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 1rem;
+}
+
+.chat_box .form .left {
+  width: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.chat_box .form .left button {
+  font-size: 7rem;
+}
+
+.chat_box .form .input {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 5rem;
+  background-color: var(--bgDark);
+  margin: 0 1.5rem;
+  border-radius: 1.1rem;
+  position: relative;
+}
+
+.chat_box .form .input input {
+  width: 100%;
+  height: 100%;
+  padding: 0 1rem;
+  font-size: 1.6rem;
+  font-weight: 100;
+  color: var(--textSoft);
+}
+
+.chat_box .form .right {
+  width: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.chat_box .form .right button {
+  font-size: 7rem;
+}
+/*# sourceMappingURL=ChatBox.module.css.map */

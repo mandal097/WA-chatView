@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAEI,SAFK,CACP,IAAI,CACF,SAAS,CAAC;EACN,MAAM,EAAE,OAAO;EACf,OAAO,EAAE,IAAI;EACb,WAAW,EAAE,MAAM;EACnB,aAAa,EAAE,IAAI;CAMtB;;AAZL,AAOM,SAPG,CACP,IAAI,CACF,SAAS,CAKP,IAAI,CAAC;EACH,KAAK,EAAE,WAAW;EAClB,SAAS,EAAE,MAAM;EACjB,YAAY,EAAE,MAAM;CACrB",
+    "sources": [
+        "Register.module.scss"
+    ],
+    "names": [],
+    "file": "Register.module.css"
+}

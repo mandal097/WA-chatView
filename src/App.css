@@ -1,0 +1,131 @@
+html,
+body {
+  background-color: var(--bg);
+  font-family: var(--fontS);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  color: var(--textSoft);
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+input,
+select,
+option,
+textarea {
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
+
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 5rem;
+  cursor: pointer;
+}
+
+.link {
+  color: var(--btnLight);
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+.toaster {
+  font-size: 6rem;
+  right: 1rem;
+}
+
+.pop {
+  -webkit-animation: pop 400ms linear 1;
+          animation: pop 400ms linear 1;
+}
+
+.custom_scroll::-webkit-scrollbar {
+  width: 0.6rem;
+}
+
+.custom_scroll::-webkit-scrollbar-track {
+  background: var(--bgLight);
+}
+
+.custom_scroll::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.custom_scroll::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@-webkit-keyframes pop {
+  25% {
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+  }
+  50% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  75% {
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes pop {
+  25% {
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+  }
+  50% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  75% {
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .container {
+    width: 95%;
+  }
+}
+/*# sourceMappingURL=App.css.map */

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,YAAY,CAAC;EACT,OAAO,EAAE,IAAI;CAKd;;AANH,AAEI,YAFQ,CAER,KAAK,CAAC;EACJ,OAAO,EAAE,SAAS;EAClB,IAAI,EAAE,CAAC;CACR",
+    "sources": [
+        "MarketPlace.module.scss"
+    ],
+    "names": [],
+    "file": "MarketPlace.module.css"
+}

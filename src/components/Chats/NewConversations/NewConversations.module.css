@@ -1,0 +1,68 @@
+.new_conversations {
+  width: 100%;
+  margin: 0 auto;
+  height: 78vh;
+  padding: 10px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+  overflow-y: scroll;
+}
+
+.new_conversations .btn_wrapper {
+  width: 90%;
+}
+
+.new_conversations .btn_wrapper .button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: var(--text);
+  height: auto;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.new_conversations .btn_wrapper .button .icon {
+  font-size: 2rem;
+}
+
+.new_conversations .btn_wrapper .button span {
+  margin-left: 1rem;
+  display: inline;
+  font-size: 1.2rem;
+}
+
+.new_conversations .btn_wrapper .button:hover {
+  color: var(--success);
+}
+
+.new_conversations::-webkit-scrollbar {
+  width: 0.6rem;
+}
+
+.new_conversations::-webkit-scrollbar-track {
+  background: var(--bgLight);
+}
+
+.new_conversations::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.new_conversations::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+/*# sourceMappingURL=NewConversations.module.css.map */

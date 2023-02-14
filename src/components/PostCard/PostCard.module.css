@@ -1,0 +1,236 @@
+.postcard {
+  width: 100%;
+  background-color: var(--bgDark);
+  border-radius: 1rem;
+  margin: 1rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: auto;
+  padding-bottom: 2rem;
+}
+
+.postcard .post_details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.postcard .post_details .user_image img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.postcard .post_details .details {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  font-size: 1.6rem;
+}
+
+.postcard .post_details .details small {
+  display: inline;
+  color: var(--text);
+  font-size: 1.2rem;
+}
+
+.postcard .post_details .details .link {
+  text-decoration: none;
+  display: inline;
+  color: var(--text);
+  font-size: 1.5rem;
+  margin-right: 0.6rem;
+}
+
+.postcard .post_details .details .link:hover {
+  color: var(--textSoft);
+}
+
+.postcard .post_details .details .name_link {
+  color: var(--btnLight);
+}
+
+.postcard .post_details .details .name_link:hover {
+  color: var(--btn);
+}
+
+.postcard .post_details .details .more_tags {
+  display: inline;
+  font-size: 1.5rem;
+}
+
+.postcard .post_details .details .more_tags span {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.postcard .post_details .details .more_tags span:hover {
+  color: var(--textSoft);
+}
+
+.postcard .post_details .more {
+  margin-left: auto;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  border-radius: 50%;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.postcard .post_details .more .icon {
+  font-size: 3rem;
+  color: var(--textSoft);
+}
+
+.postcard .post_details .more:hover {
+  background-color: var(--bgLight);
+  -webkit-transform: rotate(90deg) scale(1.1);
+          transform: rotate(90deg) scale(1.1);
+}
+
+.postcard .image img {
+  width: 100%;
+  max-height: 90vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.postcard .video video {
+  width: 100%;
+  max-height: 90vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.postcard .bottom {
+  padding: 0 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.5rem;
+}
+
+.postcard .bottom .counters small {
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: var(--successLight);
+  font-weight: 500;
+}
+
+.postcard .bottom .counters small:hover {
+  color: var(--error);
+}
+
+.postcard .bottom .post_captions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  height: auto;
+}
+
+.postcard .bottom .post_captions span {
+  font-size: 1.3rem;
+  color: var(--btnLight);
+  cursor: pointer;
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+.postcard .bottom .post_captions span:hover {
+  color: var(--btn);
+}
+
+.postcard .bottom .post_captions p {
+  font-size: 1.4rem;
+  color: var(--text);
+  line-height: 1.5em;
+}
+
+.postcard .bottom .post_captions div {
+  font-size: 1.3rem;
+  border: 1px solid transparent;
+  padding: 0rem 0.6rem;
+  border-radius: 2px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  cursor: pointer;
+  font-weight: bolder;
+  color: var(--error);
+}
+
+.postcard .bottom .post_captions div:hover {
+  color: var(--textsoft);
+}
+
+.postcard .bottom .post_time small {
+  font-size: 1.4rem;
+  color: var(--bgLighter);
+  cursor: pointer;
+}
+
+.postcard .bottom .post_time small:hover {
+  color: grey;
+}
+
+.postcard .bottom .comment_form {
+  height: 5rem;
+  background-color: var(--bgLight);
+  border-radius: 0.5rem;
+  padding: 0 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+}
+
+.postcard .bottom .comment_form .img {
+  height: 3.5rem;
+  width: 3.5rem;
+}
+
+.postcard .bottom .comment_form .img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+
+.postcard .bottom .comment_form input {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  padding: 0.2rem 1rem;
+  font-size: 1.6rem;
+  color: var(--text);
+}
+
+.postcard .bottom .comment_form button {
+  height: 5rem;
+  width: 5rem;
+  font-size: 5rem;
+}
+/*# sourceMappingURL=PostCard.module.css.map */

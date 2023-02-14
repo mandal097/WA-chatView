@@ -1,0 +1,57 @@
+.add_notes .form {
+  padding: 0 1.5rem;
+  padding-bottom: 1rem;
+}
+
+.add_notes .form input,
+.add_notes .form textarea {
+  width: 100%;
+  border-radius: 0.5rem;
+  color: var(--text);
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  background-color: transparent;
+  border: 1px solid var(--border);
+  padding: 1rem;
+  resize: none;
+}
+
+.add_notes .form .btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  gap: 1.5rem;
+}
+
+.add_notes .form .btns button {
+  font-size: 1.5rem;
+  padding: 0.8rem 1rem;
+  background-color: var(--btn);
+  border-radius: 0.5rem;
+}
+
+.add_notes .form .btns button:hover {
+  background-color: var(--btnLight);
+}
+
+.add_notes .form .btns button:first-child {
+  background-color: transparent;
+  color: var(--btnLight);
+}
+
+.add_notes .form .btns button:first-child:hover {
+  background-color: var(--bgLight);
+}
+
+.add_notes .form .btns .disable_btn {
+  cursor: not-allowed;
+  background-color: var(--bgLight);
+}
+
+.add_notes .form .btns .disable_btn:hover {
+  background-color: var(--bgLight);
+}
+/*# sourceMappingURL=AddNoteModal.module.css.map */
