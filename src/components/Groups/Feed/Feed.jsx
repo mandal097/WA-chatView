@@ -6,12 +6,12 @@ import PostCard from '../../PostCard/PostCard'
 import Loading from '../../Loading/Loading';
 import GroupCard from '../GroupCard/GroupCard';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 // import CreatePost from '../../CreatePost/CreatePost';
 
 
 const Feed = () => {
-    const { currentGroup } = useSelector(state => state.currentGroup)
+    // const { currentGroup } = useSelector(state => state.currentGroup)
     const [loading, setLoading] = useState(false);
     const [posts, setPosts] = useState([]);
 
@@ -19,7 +19,7 @@ const Feed = () => {
         const getPosts = async () => {
             try {
                 setLoading(true)
-                const res = await axios.get(`/post/group-posts/${currentGroup?._id}`, {
+                const res = await axios.get(`/post/all-group-posts`, {
                     headers: {
                         token: `Bearer ${localStorage.getItem('token')}`
                     }
@@ -33,7 +33,7 @@ const Feed = () => {
             }
         }
         getPosts()
-    }, [currentGroup])
+    }, [])
 
 
     if (loading) return <Loading font='10rem' color='white' />

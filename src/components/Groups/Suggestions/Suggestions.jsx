@@ -102,7 +102,7 @@ const Suggestions = () => {
                     }
 
                     {
-                        searchedGroup.length === 0 &&
+                        searchTerm && searchedGroup.length === 0 &&
                         <h1>No groups found.....</h1>
                     }
 
