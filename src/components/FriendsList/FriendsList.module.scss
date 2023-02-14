@@ -59,6 +59,9 @@
           height: 100%;
           font-size: 1.5rem;
           color: var(--text);
+         &::placeholder{
+          color: var(--textSoft);
+         }
         }
       }
     }

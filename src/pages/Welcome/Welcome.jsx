@@ -1,6 +1,10 @@
 import React from 'react'
-import styles from './Welcome.module.scss'
+import { useNavigate } from 'react-router-dom'
+import styles from './Welcome.module.scss';
+
+
 const Welcome = () => {
+    const navigate = useNavigate();
     return (
         <div className={`${styles.welcome} ${'container'}`}>
             Welcome  <br />😁🥱😫😛 <br />
@@ -9,6 +13,8 @@ const Welcome = () => {
             😎
             <br />
             Please login to explore other sections
+<br />
+            <button onClick={()=>navigate('/login')}>Login</button>
         </div>
     )
 }
